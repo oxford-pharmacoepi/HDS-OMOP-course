@@ -1,3 +1,3 @@
-# Complex Phenotyping at Scale with and without LLMs Using PhenotypeR
+# HDS-OMOP-course
 
-Code for: <https://oxford-pharmacoepi.github.io/OHDSI-US-2026-Phenotyping/>
+Code for: <https://oxford-pharmacoepi.github.io/HDS-OMOP-course/>
