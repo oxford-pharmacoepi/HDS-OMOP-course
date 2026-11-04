@@ -6,21 +6,26 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="UTF-8">
+<meta name="generator" content="quarto-1.11.9">
 <meta name="dcterms.date" content="2026-11-04">
 <title>HDS-OMOP-course – Creating cohorts from scratch using R</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
 <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
 <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -29,8 +34,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -41,7 +47,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -94,7 +100,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-d7ed4613cbdbd7cabdbc3ea838f57ebd.css">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-e6beccd3067aa6ca58895913f1130f0a.css">
 <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
 <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
 <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -289,19 +295,16 @@
 <p><br></p>
 <p>The <a href="https://github.com/darwin-eu/CodelistGenerator"><code>CodelistGenerator</code></a> R package provides tools to</p>
 <p><br></p>
-<div>
 <ul>
 <li class="fragment"><p><strong>Explore OMOP CDM vocabularies</strong> available in the database</p></li>
 <li class="fragment"><p><strong>Generate codelists systematically</strong> using vocabulary-based search strategies</p></li>
 <li class="fragment"><p><strong>Generate codelist diagnostics</strong> to assess code use and identify potentially missing concepts</p></li>
 </ul>
-</div>
 <p><br></p>
 </section><section id="generating-candidate-concepts" class="slide level2"><h2>Generating candidate concepts</h2>
 <p>Today, we’ll focus on the <code><a href="https://darwin-eu.github.io/CodelistGenerator/reference/getCandidateCodes.html">getCandidateCodes()</a></code> function to identify candidate concepts for our two phenotypes.</p>
-<div>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">getCandidateCodes</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">getCandidateCodes</span><span class="op">(</span></span>
 <span>  <span class="va">cdm</span>,</span>
 <span>  <span class="va">keywords</span>,</span>
 <span>  exclude <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -312,8 +315,7 @@
 <span>  searchNonStandard <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  includeDescendants <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  includeAncestor <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
 <p>The function returns <strong>candidate concepts for review</strong>, together with the <strong>search strategy</strong> used to identify them.</p>
@@ -325,7 +327,7 @@
 </ol>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/omock/">omock</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/omock/">omock</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu.github.io/CodelistGenerator/">CodelistGenerator</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/CohortConstructor/">CohortConstructor</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/PhenotypeR/">PhenotypeR</a></span><span class="op">)</span></span>
@@ -333,7 +335,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r.duckdb.org/">duckdb</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu.github.io/visOmopResults/">visOmopResults</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com">gt</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com">gt</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="2" type="1">
 <li class="fragment">Create a cdm reference to a synthetic omop database</li>
@@ -341,7 +343,7 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/omock/reference/mockCdmFromDataset.html">mockCdmFromDataset</a></span><span class="op">(</span>datasetName <span class="op">=</span> <span class="st">"synpuf-1k_5.4"</span>, source <span class="op">=</span> <span class="st">"duckdb"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/omock/reference/mockCdmFromDataset.html">mockCdmFromDataset</a></span><span class="op">(</span>datasetName <span class="op">=</span> <span class="st">"synpuf-1k_5.4"</span>, source <span class="op">=</span> <span class="st">"duckdb"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section><section id="create-cdm-reference-1" class="slide level2"><h2>Create CDM reference</h2>
@@ -349,10 +351,10 @@
 <p>The <code>cdm</code> object provides a reference to the tables in our data source.</p>
 <p>We can access individual tables using <code>$</code>. For example, to access the OMOP <code>person</code> table:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">person</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A query:  ?? x 18
-# Database: DuckDB 1.5.6 [root@Darwin 25.6.0:R 4.4.3//private/var/folders/sw/rd8zn92n2nz45cfcc5dcs_080000gr/T/RtmpLauCK3/file157d51df86cfc.duckdb]
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1017-azure:R 4.6.2//tmp/Rtmp9rD7Qv/file1c685cfd6e1f.duckdb]
    person_id gender_concept_id year_of_birth month_of_birth day_of_birth
        &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;
  1         0              8507          1932              7            1
@@ -381,7 +383,7 @@
 <p>Our target phenotype is <strong>primary (essential) hypertension</strong>.</p>
 <p>We start by searching for concepts related to <code>"essential hypertension"</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hypertensionCodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CodelistGenerator/reference/getCandidateCodes.html">getCandidateCodes</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hypertensionCodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CodelistGenerator/reference/getCandidateCodes.html">getCandidateCodes</a></span><span class="op">(</span></span>
 <span>  cdm <span class="op">=</span> <span class="va">cdm</span>,</span>
 <span>  keywords <span class="op">=</span> <span class="st">"essential hypertension"</span>,</span>
 <span>  domains <span class="op">=</span> <span class="st">"condition"</span>,</span>
@@ -389,7 +391,7 @@
 <span>  searchInSynonyms <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  includeDescendants <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">hypertensionCodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">hypertensionCodes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1;34mi[0m This is a candidate code searh, see: &lt;link to vignette&gt;
 [3mCandidate codes[0m generated using [32mCodelistGenerator[0m ([1m4.1.0[0m):
@@ -458,7 +460,7 @@ getCandidateCodes(
 <p>If we identify unwanted candidate concepts that can be <strong>systematically captured by keywords</strong>, we can refine our search strategy using exclusion terms:</p>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hypertensionCodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CodelistGenerator/reference/getCandidateCodes.html">getCandidateCodes</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hypertensionCodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CodelistGenerator/reference/getCandidateCodes.html">getCandidateCodes</a></span><span class="op">(</span></span>
 <span>  cdm <span class="op">=</span> <span class="va">cdm</span>,</span>
 <span>  keywords <span class="op">=</span> <span class="st">"essential hypertension"</span>,</span>
 <span>  exclude <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"pregnancy"</span>, <span class="st">"childbirth"</span>, <span class="st">"puerperium"</span>, <span class="st">"obstetric"</span>, <span class="st">"postpartum"</span>, <span class="st">"postnatal"</span><span class="op">)</span>,</span>
@@ -467,7 +469,7 @@ getCandidateCodes(
 <span>  searchInSynonyms <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  includeDescendants <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">hypertensionCodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">hypertensionCodes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1;34mi[0m This is a candidate code searh, see: &lt;link to vignette&gt;
 [3mCandidate codes[0m generated using [32mCodelistGenerator[0m ([1m4.1.0[0m):
@@ -522,7 +524,7 @@ getCandidateCodes(
 <h3 id="generate-candidate-concepts-1">Generate candidate concepts</h3>
 <p>We repeat the process for <strong>warfarin</strong>, starting with an initial search strategy:</p>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">warfarinCodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CodelistGenerator/reference/getCandidateCodes.html">getCandidateCodes</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">warfarinCodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/CodelistGenerator/reference/getCandidateCodes.html">getCandidateCodes</a></span><span class="op">(</span></span>
 <span>  cdm <span class="op">=</span> <span class="va">cdm</span>,</span>
 <span>  keywords <span class="op">=</span> <span class="st">"warfarin"</span>,</span>
 <span>  domains <span class="op">=</span> <span class="st">"drug"</span>,</span>
@@ -531,7 +533,7 @@ getCandidateCodes(
 <span>  includeDescendants <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">warfarinCodes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">warfarinCodes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1;34mi[0m This is a candidate code searh, see: &lt;link to vignette&gt;
 [3mCandidate codes[0m generated using [32mCodelistGenerator[0m ([1m4.1.0[0m):
@@ -571,7 +573,6 @@ getCandidateCodes(
 </section><section id="cohortconstructor" class="slide level2"><h2>CohortConstructor</h2>
 <p><br></p>
 <p><a href="https://github.com/OHDSI/CohortConstructor"><code>CohortConstructor</code></a> provides tools to create and manipulate cohorts using the OMOP CDM.</p>
-<div>
 <ul>
 <li class="fragment">Create <strong>base cohorts</strong> from codelists</li>
 <li class="fragment">Apply <strong>demographic and observation requirements</strong>
@@ -582,12 +583,9 @@ getCandidateCodes(
 </li>
 <li class="fragment">
 <strong>Combine, collapse, and manipulate</strong> cohort records</li>
-</ul>
-</div>
-</section><section id="primary-hypertension-cohort" class="slide level2"><h2>Primary hypertension cohort</h2>
+</ul></section><section id="primary-hypertension-cohort" class="slide level2"><h2>Primary hypertension cohort</h2>
 <p><br></p>
 <p>We will progressively apply our cohort inclusion criteria to identify adults with <strong>primary (essential) hypertension</strong>.</p>
-<div>
 <ol type="1">
 <li class="fragment">Create a base cohort from our essential hypertension codelist</li>
 <li class="fragment">Require <strong>≥ 180 days of prior observation</strong>
@@ -598,41 +596,39 @@ getCandidateCodes(
 </li>
 <li class="fragment">Exit at <strong>end of observation</strong>
 </li>
-</ol>
-</div>
-</section><section id="primary-hypertension-cohort-1" class="slide level2"><h2>Primary hypertension cohort</h2>
+</ol></section><section id="primary-hypertension-cohort-1" class="slide level2"><h2>Primary hypertension cohort</h2>
 <h3 id="create-the-base-cohort">→ Create the base cohort</h3>
 <p>We first create a base cohort from condition records corresponding to concepts in our preliminary hypertension codelist:</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hypertensionCodelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"essential_hypertension"</span> <span class="op">=</span> <span class="va">hypertensionCodes</span><span class="op">$</span><span class="va">concept_id</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">hypertensionCodelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"essential_hypertension"</span> <span class="op">=</span> <span class="va">hypertensionCodes</span><span class="op">$</span><span class="va">concept_id</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">cdm</span><span class="op">$</span><span class="va">essential_hypertension_base</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/CohortConstructor/reference/conceptCohort.html">conceptCohort</a></span><span class="op">(</span></span>
 <span>  cdm <span class="op">=</span> <span class="va">cdm</span>,</span>
 <span>  conceptSet <span class="op">=</span> <span class="va">hypertensionCodelist</span>,</span>
 <span>  name <span class="op">=</span> <span class="st">"essential_hypertension_base"</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
 <p>At this stage, each qualifying hypertension record can contribute to cohort entry.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="obdpffbgfw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#obdpffbgfw table {
+<div id="bvbngkciqv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bvbngkciqv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#obdpffbgfw thead, #obdpffbgfw tbody, #obdpffbgfw tfoot, #obdpffbgfw tr, #obdpffbgfw td, #obdpffbgfw th {
+#bvbngkciqv thead, #bvbngkciqv tbody, #bvbngkciqv tfoot, #bvbngkciqv tr, #bvbngkciqv td, #bvbngkciqv th {
   border-style: none;
 }
 
-#obdpffbgfw p {
+#bvbngkciqv p {
   margin: 0;
   padding: 0;
 }
 
-#obdpffbgfw .gt_table {
+#bvbngkciqv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -658,12 +654,12 @@ getCandidateCodes(
   border-left-color: #D9D9D9;
 }
 
-#obdpffbgfw .gt_caption {
+#bvbngkciqv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#obdpffbgfw .gt_title {
+#bvbngkciqv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -675,7 +671,7 @@ getCandidateCodes(
   border-bottom-width: 0;
 }
 
-#obdpffbgfw .gt_subtitle {
+#bvbngkciqv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -687,7 +683,7 @@ getCandidateCodes(
   border-top-width: 0;
 }
 
-#obdpffbgfw .gt_heading {
+#bvbngkciqv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -699,13 +695,13 @@ getCandidateCodes(
   border-right-color: #D3D3D3;
 }
 
-#obdpffbgfw .gt_bottom_border {
+#bvbngkciqv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#obdpffbgfw .gt_col_headings {
+#bvbngkciqv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -720,7 +716,7 @@ getCandidateCodes(
   border-right-color: #D3D3D3;
 }
 
-#obdpffbgfw .gt_col_heading {
+#bvbngkciqv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -740,7 +736,7 @@ getCandidateCodes(
   overflow-x: hidden;
 }
 
-#obdpffbgfw .gt_column_spanner_outer {
+#bvbngkciqv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -752,15 +748,15 @@ getCandidateCodes(
   padding-right: 4px;
 }
 
-#obdpffbgfw .gt_column_spanner_outer:first-child {
+#bvbngkciqv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#obdpffbgfw .gt_column_spanner_outer:last-child {
+#bvbngkciqv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#obdpffbgfw .gt_column_spanner {
+#bvbngkciqv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -772,11 +768,11 @@ getCandidateCodes(
   width: 100%;
 }
 
-#obdpffbgfw .gt_spanner_row {
+#bvbngkciqv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#obdpffbgfw .gt_group_heading {
+#bvbngkciqv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -802,7 +798,7 @@ getCandidateCodes(
   text-align: left;
 }
 
-#obdpffbgfw .gt_empty_group_heading {
+#bvbngkciqv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -817,15 +813,15 @@ getCandidateCodes(
   vertical-align: middle;
 }
 
-#obdpffbgfw .gt_from_md > :first-child {
+#bvbngkciqv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#obdpffbgfw .gt_from_md > :last-child {
+#bvbngkciqv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#obdpffbgfw .gt_row {
+#bvbngkciqv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -844,7 +840,7 @@ getCandidateCodes(
   overflow-x: hidden;
 }
 
-#obdpffbgfw .gt_stub {
+#bvbngkciqv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -857,7 +853,7 @@ getCandidateCodes(
   padding-right: 5px;
 }
 
-#obdpffbgfw .gt_stub_row_group {
+#bvbngkciqv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -871,15 +867,15 @@ getCandidateCodes(
   vertical-align: top;
 }
 
-#obdpffbgfw .gt_row_group_first td {
+#bvbngkciqv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#obdpffbgfw .gt_row_group_first th {
+#bvbngkciqv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#obdpffbgfw .gt_summary_row {
+#bvbngkciqv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -889,16 +885,16 @@ getCandidateCodes(
   padding-right: 5px;
 }
 
-#obdpffbgfw .gt_first_summary_row {
+#bvbngkciqv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#obdpffbgfw .gt_first_summary_row.thick {
+#bvbngkciqv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#obdpffbgfw .gt_last_summary_row {
+#bvbngkciqv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -908,7 +904,7 @@ getCandidateCodes(
   border-bottom-color: #D3D3D3;
 }
 
-#obdpffbgfw .gt_grand_summary_row {
+#bvbngkciqv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -918,7 +914,7 @@ getCandidateCodes(
   padding-right: 5px;
 }
 
-#obdpffbgfw .gt_first_grand_summary_row {
+#bvbngkciqv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -928,7 +924,7 @@ getCandidateCodes(
   border-top-color: #D3D3D3;
 }
 
-#obdpffbgfw .gt_last_grand_summary_row_top {
+#bvbngkciqv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -938,11 +934,11 @@ getCandidateCodes(
   border-bottom-color: #D3D3D3;
 }
 
-#obdpffbgfw .gt_striped {
+#bvbngkciqv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#obdpffbgfw .gt_table_body {
+#bvbngkciqv .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #D9D9D9;
@@ -951,7 +947,7 @@ getCandidateCodes(
   border-bottom-color: #D3D3D3;
 }
 
-#obdpffbgfw .gt_footnotes {
+#bvbngkciqv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -965,7 +961,7 @@ getCandidateCodes(
   border-right-color: #D3D3D3;
 }
 
-#obdpffbgfw .gt_footnote {
+#bvbngkciqv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -974,7 +970,7 @@ getCandidateCodes(
   padding-right: 5px;
 }
 
-#obdpffbgfw .gt_sourcenotes {
+#bvbngkciqv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -988,7 +984,7 @@ getCandidateCodes(
   border-right-color: #D3D3D3;
 }
 
-#obdpffbgfw .gt_sourcenote {
+#bvbngkciqv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -996,76 +992,76 @@ getCandidateCodes(
   padding-right: 5px;
 }
 
-#obdpffbgfw .gt_left {
+#bvbngkciqv .gt_left {
   text-align: left;
 }
 
-#obdpffbgfw .gt_center {
+#bvbngkciqv .gt_center {
   text-align: center;
 }
 
-#obdpffbgfw .gt_right {
+#bvbngkciqv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#obdpffbgfw .gt_font_normal {
+#bvbngkciqv .gt_font_normal {
   font-weight: normal;
 }
 
-#obdpffbgfw .gt_font_bold {
+#bvbngkciqv .gt_font_bold {
   font-weight: bold;
 }
 
-#obdpffbgfw .gt_font_italic {
+#bvbngkciqv .gt_font_italic {
   font-style: italic;
 }
 
-#obdpffbgfw .gt_super {
+#bvbngkciqv .gt_super {
   font-size: 65%;
 }
 
-#obdpffbgfw .gt_footnote_marks {
+#bvbngkciqv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#obdpffbgfw .gt_asterisk {
+#bvbngkciqv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#obdpffbgfw .gt_indent_1 {
+#bvbngkciqv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#obdpffbgfw .gt_indent_2 {
+#bvbngkciqv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#obdpffbgfw .gt_indent_3 {
+#bvbngkciqv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#obdpffbgfw .gt_indent_4 {
+#bvbngkciqv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#obdpffbgfw .gt_indent_5 {
+#bvbngkciqv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#obdpffbgfw .katex-display {
+#bvbngkciqv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#obdpffbgfw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#bvbngkciqv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 20%">
@@ -1089,7 +1085,7 @@ Variable name
 </thead>
 <tbody class="gt_table_body">
 <tr class="gt_group_heading_row odd">
-<td colspan="5" id="synpuf-1k;-essential_hypertension" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">synpuf-1k; essential_hypertension</td>
+<th colspan="5" id="synpuf-1k;-essential_hypertension" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">synpuf-1k; essential_hypertension</th>
 </tr>
 <tr class="gt_row_group_first even">
 <td class="gt_row gt_left" headers="synpuf-1k;-essential_hypertension  Reason" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">Initial qualifying events</td>
@@ -1129,7 +1125,7 @@ Variable name
 <h3 id="apply-the-inclusion-criteria">→ Apply the inclusion criteria</h3>
 <p>Now we apply inclusion criteria in a pipeline-fashion to refine the base cohort:</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">essential_hypertension</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">essential_hypertension_base</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">essential_hypertension</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">essential_hypertension_base</span> <span class="op">|&gt;</span></span>
 <span></span>
 <span>  <span class="co"># Age ≥18 and ≥180 days of prior observation</span></span>
 <span>  <span class="fu"><a href="https://ohdsi.github.io/CohortConstructor/reference/requireDemographics.html">requireDemographics</a></span><span class="op">(</span></span>
@@ -1149,30 +1145,30 @@ Variable name
 <span>  <span class="co"># Follow until the end of observation</span></span>
 <span>  <span class="fu"><a href="https://ohdsi.github.io/CohortConstructor/reference/exitAtObservationEnd.html">exitAtObservationEnd</a></span><span class="op">(</span></span>
 <span>    name <span class="op">=</span> <span class="st">"essential_hypertension"</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="primary-hypertension-cohort-3" class="slide level2"><h2>Primary hypertension cohort</h2>
 <h3 id="cohort-attrition">Cohort attrition</h3>
 <p>How does each requirement affect the number of people meeting our phenotype definition?</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="gvclnjivgk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gvclnjivgk table {
+<div id="wxszidxutk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wxszidxutk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gvclnjivgk thead, #gvclnjivgk tbody, #gvclnjivgk tfoot, #gvclnjivgk tr, #gvclnjivgk td, #gvclnjivgk th {
+#wxszidxutk thead, #wxszidxutk tbody, #wxszidxutk tfoot, #wxszidxutk tr, #wxszidxutk td, #wxszidxutk th {
   border-style: none;
 }
 
-#gvclnjivgk p {
+#wxszidxutk p {
   margin: 0;
   padding: 0;
 }
 
-#gvclnjivgk .gt_table {
+#wxszidxutk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1198,12 +1194,12 @@ Variable name
   border-left-color: #D9D9D9;
 }
 
-#gvclnjivgk .gt_caption {
+#wxszidxutk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gvclnjivgk .gt_title {
+#wxszidxutk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1215,7 +1211,7 @@ Variable name
   border-bottom-width: 0;
 }
 
-#gvclnjivgk .gt_subtitle {
+#wxszidxutk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1227,7 +1223,7 @@ Variable name
   border-top-width: 0;
 }
 
-#gvclnjivgk .gt_heading {
+#wxszidxutk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1239,13 +1235,13 @@ Variable name
   border-right-color: #D3D3D3;
 }
 
-#gvclnjivgk .gt_bottom_border {
+#wxszidxutk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gvclnjivgk .gt_col_headings {
+#wxszidxutk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1260,7 +1256,7 @@ Variable name
   border-right-color: #D3D3D3;
 }
 
-#gvclnjivgk .gt_col_heading {
+#wxszidxutk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1280,7 +1276,7 @@ Variable name
   overflow-x: hidden;
 }
 
-#gvclnjivgk .gt_column_spanner_outer {
+#wxszidxutk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1292,15 +1288,15 @@ Variable name
   padding-right: 4px;
 }
 
-#gvclnjivgk .gt_column_spanner_outer:first-child {
+#wxszidxutk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gvclnjivgk .gt_column_spanner_outer:last-child {
+#wxszidxutk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gvclnjivgk .gt_column_spanner {
+#wxszidxutk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1312,11 +1308,11 @@ Variable name
   width: 100%;
 }
 
-#gvclnjivgk .gt_spanner_row {
+#wxszidxutk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gvclnjivgk .gt_group_heading {
+#wxszidxutk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1342,7 +1338,7 @@ Variable name
   text-align: left;
 }
 
-#gvclnjivgk .gt_empty_group_heading {
+#wxszidxutk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1357,15 +1353,15 @@ Variable name
   vertical-align: middle;
 }
 
-#gvclnjivgk .gt_from_md > :first-child {
+#wxszidxutk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gvclnjivgk .gt_from_md > :last-child {
+#wxszidxutk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gvclnjivgk .gt_row {
+#wxszidxutk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1384,7 +1380,7 @@ Variable name
   overflow-x: hidden;
 }
 
-#gvclnjivgk .gt_stub {
+#wxszidxutk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1397,7 +1393,7 @@ Variable name
   padding-right: 5px;
 }
 
-#gvclnjivgk .gt_stub_row_group {
+#wxszidxutk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1411,15 +1407,15 @@ Variable name
   vertical-align: top;
 }
 
-#gvclnjivgk .gt_row_group_first td {
+#wxszidxutk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gvclnjivgk .gt_row_group_first th {
+#wxszidxutk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gvclnjivgk .gt_summary_row {
+#wxszidxutk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1429,16 +1425,16 @@ Variable name
   padding-right: 5px;
 }
 
-#gvclnjivgk .gt_first_summary_row {
+#wxszidxutk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gvclnjivgk .gt_first_summary_row.thick {
+#wxszidxutk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gvclnjivgk .gt_last_summary_row {
+#wxszidxutk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1448,7 +1444,7 @@ Variable name
   border-bottom-color: #D3D3D3;
 }
 
-#gvclnjivgk .gt_grand_summary_row {
+#wxszidxutk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1458,7 +1454,7 @@ Variable name
   padding-right: 5px;
 }
 
-#gvclnjivgk .gt_first_grand_summary_row {
+#wxszidxutk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1468,7 +1464,7 @@ Variable name
   border-top-color: #D3D3D3;
 }
 
-#gvclnjivgk .gt_last_grand_summary_row_top {
+#wxszidxutk .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1478,11 +1474,11 @@ Variable name
   border-bottom-color: #D3D3D3;
 }
 
-#gvclnjivgk .gt_striped {
+#wxszidxutk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gvclnjivgk .gt_table_body {
+#wxszidxutk .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #D9D9D9;
@@ -1491,7 +1487,7 @@ Variable name
   border-bottom-color: #D3D3D3;
 }
 
-#gvclnjivgk .gt_footnotes {
+#wxszidxutk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1505,7 +1501,7 @@ Variable name
   border-right-color: #D3D3D3;
 }
 
-#gvclnjivgk .gt_footnote {
+#wxszidxutk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1514,7 +1510,7 @@ Variable name
   padding-right: 5px;
 }
 
-#gvclnjivgk .gt_sourcenotes {
+#wxszidxutk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1528,7 +1524,7 @@ Variable name
   border-right-color: #D3D3D3;
 }
 
-#gvclnjivgk .gt_sourcenote {
+#wxszidxutk .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1536,76 +1532,76 @@ Variable name
   padding-right: 5px;
 }
 
-#gvclnjivgk .gt_left {
+#wxszidxutk .gt_left {
   text-align: left;
 }
 
-#gvclnjivgk .gt_center {
+#wxszidxutk .gt_center {
   text-align: center;
 }
 
-#gvclnjivgk .gt_right {
+#wxszidxutk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gvclnjivgk .gt_font_normal {
+#wxszidxutk .gt_font_normal {
   font-weight: normal;
 }
 
-#gvclnjivgk .gt_font_bold {
+#wxszidxutk .gt_font_bold {
   font-weight: bold;
 }
 
-#gvclnjivgk .gt_font_italic {
+#wxszidxutk .gt_font_italic {
   font-style: italic;
 }
 
-#gvclnjivgk .gt_super {
+#wxszidxutk .gt_super {
   font-size: 65%;
 }
 
-#gvclnjivgk .gt_footnote_marks {
+#wxszidxutk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gvclnjivgk .gt_asterisk {
+#wxszidxutk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gvclnjivgk .gt_indent_1 {
+#wxszidxutk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gvclnjivgk .gt_indent_2 {
+#wxszidxutk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gvclnjivgk .gt_indent_3 {
+#wxszidxutk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gvclnjivgk .gt_indent_4 {
+#wxszidxutk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gvclnjivgk .gt_indent_5 {
+#wxszidxutk .gt_indent_5 {
   text-indent: 25px;
 }
 
-#gvclnjivgk .katex-display {
+#wxszidxutk .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#gvclnjivgk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wxszidxutk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 20%">
@@ -1629,7 +1625,7 @@ Variable name
 </thead>
 <tbody class="gt_table_body">
 <tr class="gt_group_heading_row odd">
-<td colspan="5" id="synpuf-1k;-essential_hypertension" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">synpuf-1k; essential_hypertension</td>
+<th colspan="5" id="synpuf-1k;-essential_hypertension" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">synpuf-1k; essential_hypertension</th>
 </tr>
 <tr class="gt_row_group_first even">
 <td class="gt_row gt_left" headers="synpuf-1k;-essential_hypertension  Reason" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">Initial qualifying events</td>
@@ -1712,7 +1708,7 @@ Variable name
 <div class="fragment">
 <p>For instance we could use systolic and diastolic blood pressure measurements:</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">systolic_blood_pressure</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/CohortConstructor/reference/measurementCohort.html">measurementCohort</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">systolic_blood_pressure</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/CohortConstructor/reference/measurementCohort.html">measurementCohort</a></span><span class="op">(</span></span>
 <span>  cdm <span class="op">=</span> <span class="va">cdm</span>, </span>
 <span>  conceptSet <span class="op">=</span> <span class="va">codelist</span><span class="op">[</span><span class="st">"systolic_blood_pressure"</span><span class="op">]</span>,</span>
 <span>  valueAsNumber <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">140</span>, <span class="fl">99999</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -1724,13 +1720,12 @@ Variable name
 <span>  conceptSet <span class="op">=</span> <span class="va">codelist</span><span class="op">[</span><span class="st">"diastolic_blood_pressure"</span><span class="op">]</span>,</span>
 <span>  valueAsNumber <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">99999</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  name <span class="op">=</span> <span class="st">"diastolic_blood_pressure"</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section><section id="warfarin-cohort" class="slide level2"><h2>Warfarin cohort</h2>
 <p><br></p>
 <p>We want to identify <strong>new users of warfarin</strong>.</p>
-<div>
 <ol type="1">
 <li class="fragment">Create a base cohort from our warfarin codelist</li>
 <li class="fragment">Collapse exposures separated by <strong>≤ 30 days</strong>
@@ -1739,41 +1734,39 @@ Variable name
 </li>
 <li class="fragment">Require <strong>no warfarin exposure in the previous 365 days</strong>
 </li>
-</ol>
-</div>
-</section><section id="warfarin-cohort-1" class="slide level2"><h2>Warfarin cohort</h2>
+</ol></section><section id="warfarin-cohort-1" class="slide level2"><h2>Warfarin cohort</h2>
 <h3 id="create-the-base-cohort-1">→ Create the base cohort</h3>
 <p>We first create a base cohort from drug exposure records corresponding to concepts in our <strong>preliminary warfarin codelist</strong>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">warfarinCodelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"warfarin"</span> <span class="op">=</span> <span class="va">warfarinCodes</span><span class="op">$</span><span class="va">concept_id</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">warfarinCodelist</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"warfarin"</span> <span class="op">=</span> <span class="va">warfarinCodes</span><span class="op">$</span><span class="va">concept_id</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">cdm</span><span class="op">$</span><span class="va">warfarin_base</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/CohortConstructor/reference/conceptCohort.html">conceptCohort</a></span><span class="op">(</span></span>
 <span>  cdm <span class="op">=</span> <span class="va">cdm</span>,</span>
 <span>  conceptSet <span class="op">=</span> <span class="va">warfarinCodelist</span>,</span>
 <span>  name <span class="op">=</span> <span class="st">"warfarin_base"</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
 <p>At this stage, qualifying warfarin exposures can contribute to cohort entries.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="zqkndtfsaw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zqkndtfsaw table {
+<div id="gqshronubz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gqshronubz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zqkndtfsaw thead, #zqkndtfsaw tbody, #zqkndtfsaw tfoot, #zqkndtfsaw tr, #zqkndtfsaw td, #zqkndtfsaw th {
+#gqshronubz thead, #gqshronubz tbody, #gqshronubz tfoot, #gqshronubz tr, #gqshronubz td, #gqshronubz th {
   border-style: none;
 }
 
-#zqkndtfsaw p {
+#gqshronubz p {
   margin: 0;
   padding: 0;
 }
 
-#zqkndtfsaw .gt_table {
+#gqshronubz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1799,12 +1792,12 @@ Variable name
   border-left-color: #D9D9D9;
 }
 
-#zqkndtfsaw .gt_caption {
+#gqshronubz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zqkndtfsaw .gt_title {
+#gqshronubz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1816,7 +1809,7 @@ Variable name
   border-bottom-width: 0;
 }
 
-#zqkndtfsaw .gt_subtitle {
+#gqshronubz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1828,7 +1821,7 @@ Variable name
   border-top-width: 0;
 }
 
-#zqkndtfsaw .gt_heading {
+#gqshronubz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1840,13 +1833,13 @@ Variable name
   border-right-color: #D3D3D3;
 }
 
-#zqkndtfsaw .gt_bottom_border {
+#gqshronubz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zqkndtfsaw .gt_col_headings {
+#gqshronubz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1861,7 +1854,7 @@ Variable name
   border-right-color: #D3D3D3;
 }
 
-#zqkndtfsaw .gt_col_heading {
+#gqshronubz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1881,7 +1874,7 @@ Variable name
   overflow-x: hidden;
 }
 
-#zqkndtfsaw .gt_column_spanner_outer {
+#gqshronubz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1893,15 +1886,15 @@ Variable name
   padding-right: 4px;
 }
 
-#zqkndtfsaw .gt_column_spanner_outer:first-child {
+#gqshronubz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zqkndtfsaw .gt_column_spanner_outer:last-child {
+#gqshronubz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zqkndtfsaw .gt_column_spanner {
+#gqshronubz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1913,11 +1906,11 @@ Variable name
   width: 100%;
 }
 
-#zqkndtfsaw .gt_spanner_row {
+#gqshronubz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zqkndtfsaw .gt_group_heading {
+#gqshronubz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1943,7 +1936,7 @@ Variable name
   text-align: left;
 }
 
-#zqkndtfsaw .gt_empty_group_heading {
+#gqshronubz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1958,15 +1951,15 @@ Variable name
   vertical-align: middle;
 }
 
-#zqkndtfsaw .gt_from_md > :first-child {
+#gqshronubz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zqkndtfsaw .gt_from_md > :last-child {
+#gqshronubz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zqkndtfsaw .gt_row {
+#gqshronubz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1985,7 +1978,7 @@ Variable name
   overflow-x: hidden;
 }
 
-#zqkndtfsaw .gt_stub {
+#gqshronubz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1998,7 +1991,7 @@ Variable name
   padding-right: 5px;
 }
 
-#zqkndtfsaw .gt_stub_row_group {
+#gqshronubz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2012,15 +2005,15 @@ Variable name
   vertical-align: top;
 }
 
-#zqkndtfsaw .gt_row_group_first td {
+#gqshronubz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zqkndtfsaw .gt_row_group_first th {
+#gqshronubz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zqkndtfsaw .gt_summary_row {
+#gqshronubz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2030,16 +2023,16 @@ Variable name
   padding-right: 5px;
 }
 
-#zqkndtfsaw .gt_first_summary_row {
+#gqshronubz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zqkndtfsaw .gt_first_summary_row.thick {
+#gqshronubz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zqkndtfsaw .gt_last_summary_row {
+#gqshronubz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2049,7 +2042,7 @@ Variable name
   border-bottom-color: #D3D3D3;
 }
 
-#zqkndtfsaw .gt_grand_summary_row {
+#gqshronubz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2059,7 +2052,7 @@ Variable name
   padding-right: 5px;
 }
 
-#zqkndtfsaw .gt_first_grand_summary_row {
+#gqshronubz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2069,7 +2062,7 @@ Variable name
   border-top-color: #D3D3D3;
 }
 
-#zqkndtfsaw .gt_last_grand_summary_row_top {
+#gqshronubz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2079,11 +2072,11 @@ Variable name
   border-bottom-color: #D3D3D3;
 }
 
-#zqkndtfsaw .gt_striped {
+#gqshronubz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zqkndtfsaw .gt_table_body {
+#gqshronubz .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #D9D9D9;
@@ -2092,7 +2085,7 @@ Variable name
   border-bottom-color: #D3D3D3;
 }
 
-#zqkndtfsaw .gt_footnotes {
+#gqshronubz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2106,7 +2099,7 @@ Variable name
   border-right-color: #D3D3D3;
 }
 
-#zqkndtfsaw .gt_footnote {
+#gqshronubz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2115,7 +2108,7 @@ Variable name
   padding-right: 5px;
 }
 
-#zqkndtfsaw .gt_sourcenotes {
+#gqshronubz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2129,7 +2122,7 @@ Variable name
   border-right-color: #D3D3D3;
 }
 
-#zqkndtfsaw .gt_sourcenote {
+#gqshronubz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2137,76 +2130,76 @@ Variable name
   padding-right: 5px;
 }
 
-#zqkndtfsaw .gt_left {
+#gqshronubz .gt_left {
   text-align: left;
 }
 
-#zqkndtfsaw .gt_center {
+#gqshronubz .gt_center {
   text-align: center;
 }
 
-#zqkndtfsaw .gt_right {
+#gqshronubz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zqkndtfsaw .gt_font_normal {
+#gqshronubz .gt_font_normal {
   font-weight: normal;
 }
 
-#zqkndtfsaw .gt_font_bold {
+#gqshronubz .gt_font_bold {
   font-weight: bold;
 }
 
-#zqkndtfsaw .gt_font_italic {
+#gqshronubz .gt_font_italic {
   font-style: italic;
 }
 
-#zqkndtfsaw .gt_super {
+#gqshronubz .gt_super {
   font-size: 65%;
 }
 
-#zqkndtfsaw .gt_footnote_marks {
+#gqshronubz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zqkndtfsaw .gt_asterisk {
+#gqshronubz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zqkndtfsaw .gt_indent_1 {
+#gqshronubz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zqkndtfsaw .gt_indent_2 {
+#gqshronubz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zqkndtfsaw .gt_indent_3 {
+#gqshronubz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zqkndtfsaw .gt_indent_4 {
+#gqshronubz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zqkndtfsaw .gt_indent_5 {
+#gqshronubz .gt_indent_5 {
   text-indent: 25px;
 }
 
-#zqkndtfsaw .katex-display {
+#gqshronubz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#zqkndtfsaw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gqshronubz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 20%">
@@ -2230,7 +2223,7 @@ Variable name
 </thead>
 <tbody class="gt_table_body">
 <tr class="gt_group_heading_row odd">
-<td colspan="5" id="synpuf-1k;-warfarin" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">synpuf-1k; warfarin</td>
+<th colspan="5" id="synpuf-1k;-warfarin" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">synpuf-1k; warfarin</th>
 </tr>
 <tr class="gt_row_group_first even">
 <td class="gt_row gt_left" headers="synpuf-1k;-warfarin  Reason" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">Initial qualifying events</td>
@@ -2270,7 +2263,7 @@ Variable name
 <h3 id="create-treatment-episodes-and-identify-new-users">→ Create treatment episodes and identify new users</h3>
 <p>We now combine nearby exposures into treatment episodes and apply our new-user criteria:</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">warfarin_new_users</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">warfarin_base</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">warfarin_new_users</span> <span class="op">&lt;-</span> <span class="va">cdm</span><span class="op">$</span><span class="va">warfarin_base</span> <span class="op">|&gt;</span></span>
 <span></span>
 <span>  <span class="co"># Collapse exposures separated by ≤30 days</span></span>
 <span>  <span class="fu"><a href="https://ohdsi.github.io/CohortConstructor/reference/collapseCohorts.html">collapseCohorts</a></span><span class="op">(</span></span>
@@ -2290,30 +2283,30 @@ Variable name
 <span>    window <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">365</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>    intersections <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>    name <span class="op">=</span> <span class="st">"warfarin_new_users"</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section><section id="warfarin-cohort-3" class="slide level2"><h2>Warfarin cohort</h2>
 <h3 id="new-user-cohort-attrition">New-user cohort attrition</h3>
 <p>How do our requirements affect the number of warfarin treatment episodes?</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="ewwdzlndbd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ewwdzlndbd table {
+<div id="nfqnlkehdr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nfqnlkehdr table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ewwdzlndbd thead, #ewwdzlndbd tbody, #ewwdzlndbd tfoot, #ewwdzlndbd tr, #ewwdzlndbd td, #ewwdzlndbd th {
+#nfqnlkehdr thead, #nfqnlkehdr tbody, #nfqnlkehdr tfoot, #nfqnlkehdr tr, #nfqnlkehdr td, #nfqnlkehdr th {
   border-style: none;
 }
 
-#ewwdzlndbd p {
+#nfqnlkehdr p {
   margin: 0;
   padding: 0;
 }
 
-#ewwdzlndbd .gt_table {
+#nfqnlkehdr .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2339,12 +2332,12 @@ Variable name
   border-left-color: #D9D9D9;
 }
 
-#ewwdzlndbd .gt_caption {
+#nfqnlkehdr .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ewwdzlndbd .gt_title {
+#nfqnlkehdr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2356,7 +2349,7 @@ Variable name
   border-bottom-width: 0;
 }
 
-#ewwdzlndbd .gt_subtitle {
+#nfqnlkehdr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2368,7 +2361,7 @@ Variable name
   border-top-width: 0;
 }
 
-#ewwdzlndbd .gt_heading {
+#nfqnlkehdr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2380,13 +2373,13 @@ Variable name
   border-right-color: #D3D3D3;
 }
 
-#ewwdzlndbd .gt_bottom_border {
+#nfqnlkehdr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ewwdzlndbd .gt_col_headings {
+#nfqnlkehdr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2401,7 +2394,7 @@ Variable name
   border-right-color: #D3D3D3;
 }
 
-#ewwdzlndbd .gt_col_heading {
+#nfqnlkehdr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2421,7 +2414,7 @@ Variable name
   overflow-x: hidden;
 }
 
-#ewwdzlndbd .gt_column_spanner_outer {
+#nfqnlkehdr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2433,15 +2426,15 @@ Variable name
   padding-right: 4px;
 }
 
-#ewwdzlndbd .gt_column_spanner_outer:first-child {
+#nfqnlkehdr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ewwdzlndbd .gt_column_spanner_outer:last-child {
+#nfqnlkehdr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ewwdzlndbd .gt_column_spanner {
+#nfqnlkehdr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2453,11 +2446,11 @@ Variable name
   width: 100%;
 }
 
-#ewwdzlndbd .gt_spanner_row {
+#nfqnlkehdr .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ewwdzlndbd .gt_group_heading {
+#nfqnlkehdr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2483,7 +2476,7 @@ Variable name
   text-align: left;
 }
 
-#ewwdzlndbd .gt_empty_group_heading {
+#nfqnlkehdr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2498,15 +2491,15 @@ Variable name
   vertical-align: middle;
 }
 
-#ewwdzlndbd .gt_from_md > :first-child {
+#nfqnlkehdr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ewwdzlndbd .gt_from_md > :last-child {
+#nfqnlkehdr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ewwdzlndbd .gt_row {
+#nfqnlkehdr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2525,7 +2518,7 @@ Variable name
   overflow-x: hidden;
 }
 
-#ewwdzlndbd .gt_stub {
+#nfqnlkehdr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2538,7 +2531,7 @@ Variable name
   padding-right: 5px;
 }
 
-#ewwdzlndbd .gt_stub_row_group {
+#nfqnlkehdr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2552,15 +2545,15 @@ Variable name
   vertical-align: top;
 }
 
-#ewwdzlndbd .gt_row_group_first td {
+#nfqnlkehdr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ewwdzlndbd .gt_row_group_first th {
+#nfqnlkehdr .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ewwdzlndbd .gt_summary_row {
+#nfqnlkehdr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2570,16 +2563,16 @@ Variable name
   padding-right: 5px;
 }
 
-#ewwdzlndbd .gt_first_summary_row {
+#nfqnlkehdr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ewwdzlndbd .gt_first_summary_row.thick {
+#nfqnlkehdr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ewwdzlndbd .gt_last_summary_row {
+#nfqnlkehdr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2589,7 +2582,7 @@ Variable name
   border-bottom-color: #D3D3D3;
 }
 
-#ewwdzlndbd .gt_grand_summary_row {
+#nfqnlkehdr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2599,7 +2592,7 @@ Variable name
   padding-right: 5px;
 }
 
-#ewwdzlndbd .gt_first_grand_summary_row {
+#nfqnlkehdr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2609,7 +2602,7 @@ Variable name
   border-top-color: #D3D3D3;
 }
 
-#ewwdzlndbd .gt_last_grand_summary_row_top {
+#nfqnlkehdr .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2619,11 +2612,11 @@ Variable name
   border-bottom-color: #D3D3D3;
 }
 
-#ewwdzlndbd .gt_striped {
+#nfqnlkehdr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ewwdzlndbd .gt_table_body {
+#nfqnlkehdr .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #D9D9D9;
@@ -2632,7 +2625,7 @@ Variable name
   border-bottom-color: #D3D3D3;
 }
 
-#ewwdzlndbd .gt_footnotes {
+#nfqnlkehdr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2646,7 +2639,7 @@ Variable name
   border-right-color: #D3D3D3;
 }
 
-#ewwdzlndbd .gt_footnote {
+#nfqnlkehdr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2655,7 +2648,7 @@ Variable name
   padding-right: 5px;
 }
 
-#ewwdzlndbd .gt_sourcenotes {
+#nfqnlkehdr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2669,7 +2662,7 @@ Variable name
   border-right-color: #D3D3D3;
 }
 
-#ewwdzlndbd .gt_sourcenote {
+#nfqnlkehdr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2677,76 +2670,76 @@ Variable name
   padding-right: 5px;
 }
 
-#ewwdzlndbd .gt_left {
+#nfqnlkehdr .gt_left {
   text-align: left;
 }
 
-#ewwdzlndbd .gt_center {
+#nfqnlkehdr .gt_center {
   text-align: center;
 }
 
-#ewwdzlndbd .gt_right {
+#nfqnlkehdr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ewwdzlndbd .gt_font_normal {
+#nfqnlkehdr .gt_font_normal {
   font-weight: normal;
 }
 
-#ewwdzlndbd .gt_font_bold {
+#nfqnlkehdr .gt_font_bold {
   font-weight: bold;
 }
 
-#ewwdzlndbd .gt_font_italic {
+#nfqnlkehdr .gt_font_italic {
   font-style: italic;
 }
 
-#ewwdzlndbd .gt_super {
+#nfqnlkehdr .gt_super {
   font-size: 65%;
 }
 
-#ewwdzlndbd .gt_footnote_marks {
+#nfqnlkehdr .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ewwdzlndbd .gt_asterisk {
+#nfqnlkehdr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ewwdzlndbd .gt_indent_1 {
+#nfqnlkehdr .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ewwdzlndbd .gt_indent_2 {
+#nfqnlkehdr .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ewwdzlndbd .gt_indent_3 {
+#nfqnlkehdr .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ewwdzlndbd .gt_indent_4 {
+#nfqnlkehdr .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ewwdzlndbd .gt_indent_5 {
+#nfqnlkehdr .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ewwdzlndbd .katex-display {
+#nfqnlkehdr .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ewwdzlndbd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#nfqnlkehdr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
-<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 20%">
@@ -2770,7 +2763,7 @@ Variable name
 </thead>
 <tbody class="gt_table_body">
 <tr class="gt_group_heading_row odd">
-<td colspan="5" id="synpuf-1k;-warfarin" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">synpuf-1k; warfarin</td>
+<th colspan="5" id="synpuf-1k;-warfarin" class="gt_group_heading" data-quarto-table-cell-role="th" style="background-color: #E9E9E9; font-family: Arial; font-size: 10; font-weight: bold; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8" scope="colgroup">synpuf-1k; warfarin</th>
 </tr>
 <tr class="gt_row_group_first even">
 <td class="gt_row gt_left" headers="synpuf-1k;-warfarin  Reason" style="text-align: left; font-family: Arial; font-size: 10; border-left-width: 1px; border-left-style: solid; border-left-color: #c8c8c8; border-right-width: 1px; border-right-style: solid; border-right-color: #c8c8c8; border-top-width: 1px; border-top-style: solid; border-top-color: #c8c8c8; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #c8c8c8; background-color: rgba(255,255,255,0);">Initial qualifying events</td>
@@ -3041,18 +3034,18 @@ Variable name
 </section><section id="run-diagnostics-together" class="slide level2"><h2>Run diagnostics together</h2>
 <p>Rather than running each diagnostic separately, <code><a href="https://ohdsi.github.io/PhenotypeR/reference/phenotypeDiagnostics.html">phenotypeDiagnostics()</a></code> allows us to run them <strong>together</strong>.</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/PhenotypeR/reference/phenotypeDiagnostics.html">phenotypeDiagnostics</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/PhenotypeR/reference/phenotypeDiagnostics.html">phenotypeDiagnostics</a></span><span class="op">(</span></span>
 <span>  <span class="va">cohort</span>,</span>
 <span>  databaseDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  codelistDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  cohortDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  populationDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
 <p>We can choose <strong>which diagnostics to run</strong> and customise their parameters.</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/PhenotypeR/reference/phenotypeDiagnostics.html">phenotypeDiagnostics</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/PhenotypeR/reference/phenotypeDiagnostics.html">phenotypeDiagnostics</a></span><span class="op">(</span></span>
 <span>  <span class="va">cohort</span>,</span>
 <span>  databaseDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  codelistDiagnostics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -3060,18 +3053,18 @@ Variable name
 <span>    cohortSample <span class="op">=</span> <span class="fl">1000</span></span>
 <span>  <span class="op">)</span>,</span>
 <span>  populationDiagnostics <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section><section id="run-diagnostics-of-hypertension-and-warfarin-cohorts-together" class="slide level2"><h2>Run diagnostics of hypertension and warfarin cohorts together</h2>
 <p>We created our two cohort separately. To run phenotyper, we can bring them together into a single cohort table and then run PhenotypeR functions to this table.</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/bind.html">bind</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/bind.html">bind</a></span><span class="op">(</span></span>
 <span>  <span class="va">cdm</span><span class="op">$</span><span class="va">essential_hypertension</span>,</span>
 <span>  <span class="va">cdm</span><span class="op">$</span><span class="va">warfarin_new_users</span>,</span>
 <span>  name <span class="op">=</span> <span class="st">"phenotypes"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">cdm</span><span class="op">$</span><span class="va">phenotypes</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/settings.html">settings</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">cdm</span><span class="op">$</span><span class="va">phenotypes</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/settings.html">settings</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 8
   cohort_definition_id cohort_name      cdm_version vocabulary_version age_range
@@ -3086,7 +3079,7 @@ Variable name
 <p><br></p>
 <p>Now we can evaluate both phenotypes using the same standardised diagnostic workflow.</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/PhenotypeR/reference/phenotypeDiagnostics.html">phenotypeDiagnostics</a></span><span class="op">(</span>cohort <span class="op">=</span> <span class="va">cdm</span><span class="op">$</span><span class="va">phenotypes</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/PhenotypeR/reference/phenotypeDiagnostics.html">phenotypeDiagnostics</a></span><span class="op">(</span>cohort <span class="op">=</span> <span class="va">cdm</span><span class="op">$</span><span class="va">phenotypes</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
 <p><br></p>
@@ -3094,7 +3087,7 @@ Variable name
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ohdsi.github.io/PhenotypeR/reference/shinyDiagnostics.html">shinyDiagnostics</a></span><span class="op">(</span>result <span class="op">=</span> <span class="va">result</span>, directory <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ohdsi.github.io/PhenotypeR/reference/shinyDiagnostics.html">shinyDiagnostics</a></span><span class="op">(</span>result <span class="op">=</span> <span class="va">result</span>, directory <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section><section id="explore-the-phenotyper-results" class="slide level2"><h2>Explore the PhenotypeR results</h2>
@@ -3170,7 +3163,7 @@ OHDSI-US 2026 PhenotypeR Workshop
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"\u003ci class=\"fas fa-gear\">\u003c/i>","content":"\u003cul class=\"slide-menu-items\">\n\u003cli class=\"slide-tool-item active\" data-item=\"0\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\">\u003ckbd>f\u003c/kbd> Fullscreen\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"1\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\">\u003ckbd>s\u003c/kbd> Speaker View\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"2\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\">\u003ckbd>o\u003c/kbd> Slide Overview\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"3\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\">\u003ckbd>e\u003c/kbd> PDF Export Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"4\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\">\u003ckbd>r\u003c/kbd> Scroll View Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"5\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\">\u003ckbd>b\u003c/kbd> Toggle Chalkboard\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"6\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\">\u003ckbd>c\u003c/kbd> Toggle Notes Canvas\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"7\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\">\u003ckbd>d\u003c/kbd> Download Drawings\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"8\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\">\u003ckbd>?\u003c/kbd> Keyboard Help\u003c/a>\u003c/li>\n\u003c/ul>"}],"openButton":true,"openButtonLabel":"Slide menu"},
 'chalkboard': {"buttons":true},
 'smaller': false,
  
@@ -3325,7 +3318,7 @@ OHDSI-US 2026 PhenotypeR Workshop
         margin: 7.0e-2,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -3386,190 +3379,236 @@ OHDSI-US 2026 PhenotypeR Workshop
 
       })();
     </script><script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
+          return false;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
           for (const childEl of codeEl.children) {
             if (isCodeAnnotation(childEl)) {
               childEl.remove();
             }
           }
           return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+          window.quartoDecorateExternalLinks = function (root) {
+         var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+              if (!link.classList.contains('no-external-icon')) {
+              }
             }
           }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
+          };
+          window.quartoDecorateExternalLinks(window.document);
+        // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+        // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+        const hideOnEscAndFocusOut = {
+          name: 'hideOnEscAndFocusOut',
+          defaultValue: true,
+          fn(instance) {
+            const dismiss = () => {
+              // A show scheduled by the trigger delay would otherwise reopen it
+              instance.clearDelayTimeouts();
+              instance.hide();
             };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+            const onKeyDown = (event) => {
+              if (event.key !== 'Escape') {
+                return;
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+              // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+              // except an open reveal.js slide menu, which Esc should close too.
+              // The menu handles keys only when its keyboard option is on.
+              const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+                window.Reveal.getConfig().menu?.keyboard !== false;
+              if (!menuHandlesEsc) {
+                event.stopPropagation();
+              }
+              if (instance.popper.contains(window.document.activeElement)) {
+                // Disabled while refocusing so the focus trigger does not reopen it
+                instance.disable();
+                instance.reference.focus();
+                instance.enable();
+              }
+              dismiss();
+            };
+            const onFocusOut = (event) => {
+              const target = event.relatedTarget;
+              if (target && !instance.reference.contains(target) &&
+                  !instance.popper.contains(target)) {
+                dismiss();
+              }
+            };
+            // On the trigger too: a click trigger (code-annotations: select) has no
+            // blur handling. Attached for the instance's lifetime so leaving the
+            // trigger also cancels a show still pending on the trigger delay.
+            instance.reference.addEventListener('focusout', onFocusOut);
+            return {
+              onShow() {
+                window.document.addEventListener('keydown', onKeyDown, true);
+                instance.popper.addEventListener('focusout', onFocusOut);
+              },
+              onHide() {
+                window.document.removeEventListener('keydown', onKeyDown, true);
+                instance.popper.removeEventListener('focusout', onFocusOut);
+              },
+              onDestroy() {
+                instance.reference.removeEventListener('focusout', onFocusOut);
+              },
+            };
+          },
+        };
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+            plugins: [hideOnEscAndFocusOut],
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
 
 
 </body></html>

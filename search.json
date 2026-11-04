@@ -18,14 +18,14 @@
     "href": "Presentations/PhenotypeR/index.html#codelistgenerator",
     "title": "Creating cohorts from scratch using R",
     "section": "CodelistGenerator",
-    "text": "CodelistGenerator\n\nThe CodelistGenerator R package provides tools to\n\n\n\nExplore OMOP CDM vocabularies available in the database\nGenerate codelists systematically using vocabulary-based search strategies\nGenerate codelist diagnostics to assess code use and identify potentially missing concepts"
+    "text": "CodelistGenerator\n\nThe CodelistGenerator R package provides tools to\n\n\nExplore OMOP CDM vocabularies available in the database\nGenerate codelists systematically using vocabulary-based search strategies\nGenerate codelist diagnostics to assess code use and identify potentially missing concepts"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#generating-candidate-concepts",
     "href": "Presentations/PhenotypeR/index.html#generating-candidate-concepts",
     "title": "Creating cohorts from scratch using R",
     "section": "Generating candidate concepts",
-    "text": "Generating candidate concepts\nToday, we’ll focus on the getCandidateCodes() function to identify candidate concepts for our two phenotypes.\n\n\ngetCandidateCodes(\n  cdm,\n  keywords,\n  exclude = NULL,\n  domains = \"Condition\",\n  vocabularyId = NULL,\n  standardConcept = \"Standard\",\n  searchInSynonyms = FALSE,\n  searchNonStandard = FALSE,\n  includeDescendants = TRUE,\n  includeAncestor = FALSE\n)\n\n\n\nThe function returns candidate concepts for review, together with the search strategy used to identify them.\nThis allows us to define a systematic and reproducible codelist search strategy."
+    "text": "Generating candidate concepts\nToday, we’ll focus on the getCandidateCodes() function to identify candidate concepts for our two phenotypes.\n\ngetCandidateCodes(\n  cdm,\n  keywords,\n  exclude = NULL,\n  domains = \"Condition\",\n  vocabularyId = NULL,\n  standardConcept = \"Standard\",\n  searchInSynonyms = FALSE,\n  searchNonStandard = FALSE,\n  includeDescendants = TRUE,\n  includeAncestor = FALSE\n)\n\n\nThe function returns candidate concepts for review, together with the search strategy used to identify them.\nThis allows us to define a systematic and reproducible codelist search strategy."
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#create-cdm-reference",
@@ -39,7 +39,7 @@
     "href": "Presentations/PhenotypeR/index.html#create-cdm-reference-1",
     "title": "Creating cohorts from scratch using R",
     "section": "Create CDM reference",
-    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 1.5.6 [root@Darwin 25.6.0:R 4.4.3//private/var/folders/sw/rd8zn92n2nz45cfcc5dcs_080000gr/T/RtmpLauCK3/file157d51df86cfc.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
+    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1017-azure:R 4.6.2//tmp/Rtmp9rD7Qv/file1c685cfd6e1f.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist",
@@ -81,14 +81,14 @@
     "href": "Presentations/PhenotypeR/index.html#cohortconstructor",
     "title": "Creating cohorts from scratch using R",
     "section": "CohortConstructor",
-    "text": "CohortConstructor\n\nCohortConstructor provides tools to create and manipulate cohorts using the OMOP CDM.\n\n\nCreate base cohorts from codelists\nApply demographic and observation requirements\n\nApply additional clinical requirements\n\nDefine cohort entry and exit\n\n\nCombine, collapse, and manipulate cohort records"
+    "text": "CohortConstructor\n\nCohortConstructor provides tools to create and manipulate cohorts using the OMOP CDM.\n\nCreate base cohorts from codelists\nApply demographic and observation requirements\n\nApply additional clinical requirements\n\nDefine cohort entry and exit\n\n\nCombine, collapse, and manipulate cohort records"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-cohort",
     "href": "Presentations/PhenotypeR/index.html#primary-hypertension-cohort",
     "title": "Creating cohorts from scratch using R",
     "section": "Primary hypertension cohort",
-    "text": "Primary hypertension cohort\n\nWe will progressively apply our cohort inclusion criteria to identify adults with primary (essential) hypertension.\n\n\nCreate a base cohort from our essential hypertension codelist\nRequire ≥ 180 days of prior observation\n\nRestrict to age ≥ 18 years\n\nRequire a second hypertension record within 365 days\n\nExit at end of observation"
+    "text": "Primary hypertension cohort\n\nWe will progressively apply our cohort inclusion criteria to identify adults with primary (essential) hypertension.\n\nCreate a base cohort from our essential hypertension codelist\nRequire ≥ 180 days of prior observation\n\nRestrict to age ≥ 18 years\n\nRequire a second hypertension record within 365 days\n\nExit at end of observation"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-cohort-1",
@@ -123,7 +123,7 @@
     "href": "Presentations/PhenotypeR/index.html#warfarin-cohort",
     "title": "Creating cohorts from scratch using R",
     "section": "Warfarin cohort",
-    "text": "Warfarin cohort\n\nWe want to identify new users of warfarin.\n\n\nCreate a base cohort from our warfarin codelist\nCollapse exposures separated by ≤ 30 days\n\nRequire ≥ 365 days of prior observation\n\nRequire no warfarin exposure in the previous 365 days"
+    "text": "Warfarin cohort\n\nWe want to identify new users of warfarin.\n\nCreate a base cohort from our warfarin codelist\nCollapse exposures separated by ≤ 30 days\n\nRequire ≥ 365 days of prior observation\n\nRequire no warfarin exposure in the previous 365 days"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#warfarin-cohort-1",
