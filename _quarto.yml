@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: _site
+
+date: today
+
+website:
+  title: "OHDSI-US 2026 Phenotyping"
+  open-graph: true # https://quarto.org/docs/websites/website-tools.html#open-graph
+  repo-url: https://github.com/oxford-pharmacoepi/OHDSI-US-2026-Phenotyping
+  repo-actions: [issue]
+  page-footer:
+    center: "Rendered on {{< meta date >}}"
+    right:
+      - href: https://github.com/oxford-pharmacoepi/OHDSI-US-2026-Phenotyping
+        icon: github
+
+format:
+  html:
+    toc: true
+    theme: cosmo
+    search: false

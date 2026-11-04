@@ -1,0 +1,756 @@
+[
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#introduction",
+    "href": "Presentations/PhenotypeR/index.html#introduction",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Introduction",
+    "text": "Introduction\n\nCreating cohorts from scratch using R. Workflow overview:\n\n\n\n1. Codelists\nCreating codelists\n\n↓\nCodelistGenerator\n\n\n→\n\n2. Cohorts\nCodelists + cohort logic\n\n↓\nCohortConstructor\n\n\n→\n\n3. Review\nReviewing codelists and cohorts\n\n↓\nPhenotypeR\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nAll three packages are open source and available on CRAN."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#creating-cohorts-from-scratch-using-r",
+    "href": "Presentations/PhenotypeR/index.html#creating-cohorts-from-scratch-using-r",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Creating cohorts from scratch using R",
+    "text": "Creating cohorts from scratch using R\nAn end-to-end workflow using open-source R packages.\n\n\n1. Codelists\nCreating codelists\n↓\nCodelistGenerator\nGitHub\n\n →\n\n2. Cohorts\nCodelists + cohort logic\n↓\nCohortConstructor\nGitHub\n\n →\n\n3. Review\nReviewing cohorts\n↓\nPhenotypeR\nGitHub\n\n\n\n\n\n\n\n\nNote\n\n\nAll three packages are open source and available on CRAN."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#set-of-functions-individual-diagnostics-assessment",
+    "href": "Presentations/PhenotypeR/index.html#set-of-functions-individual-diagnostics-assessment",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Set of Functions: Individual Diagnostics Assessment",
+    "text": "Set of Functions: Individual Diagnostics Assessment\n\n\n\n\n\n\n\nDatabase diagnostics\n\ndatabaseDiagnostics()\n\n\n\n\n\n\n\n\nCodelist diagnostics\n\ncodelistDiagnostics()\n\n\n\n\n\n\nCohort diagnostics\n\ncohortDiagnostics()\n\n\n\n\n\n\n\n\nPopulation diagnostics\n\npopulationDiagnostics()"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#set-of-functions-phenotype-diagnostics",
+    "href": "Presentations/PhenotypeR/index.html#set-of-functions-phenotype-diagnostics",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Set of Functions: Phenotype Diagnostics",
+    "text": "Set of Functions: Phenotype Diagnostics\n\nComprises all the diagnostics that are being offered in this package.\n\n\n\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  databaseDiagnostics = list(),\n  codelistDiagnostics = list(),\n  cohortDiagnostics = list(),\n  populationDiagnostics = list()\n)\n\n\nRun only some of the diagnostics:\n\n\n\n\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  databaseDiagnostics = NULL,\n  codelistDiagnostics = list(),\n  cohortDiagnostics = NULL,\n  populationDiagnostics = list()\n)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#create-a-shiny-app-to-visualise-all-the-results",
+    "href": "Presentations/PhenotypeR/index.html#create-a-shiny-app-to-visualise-all-the-results",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Create a shiny app to visualise all the results!",
+    "text": "Create a shiny app to visualise all the results!\n\nCreate a shiny app to visualize all the results\n\n\n\nshinyDiagnostics(result = result, \n                 directory = here(), \n                 minCellCount = 5, \n                 removeEmptyTabs = FALSE)\n\nSee the example app provided with the training materials."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#database-diagnostics",
+    "href": "Presentations/PhenotypeR/index.html#database-diagnostics",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Database Diagnostics",
+    "text": "Database Diagnostics\nSummarise the database metadata including:\n\nSnapshot\nSummary of the person table\n\nSummary of the observation period\n\nSummary of the clinical tables (e.g., condition_occurrence) where concepts from the codelists defining the cohorts are found.\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n\n\n\n\n\nDatabase diagnostics use functionality from OmopSketch."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#database-diagnostics-1",
+    "href": "Presentations/PhenotypeR/index.html#database-diagnostics-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Database Diagnostics",
+    "text": "Database Diagnostics\n\ndb_diagnostics &lt;- databaseDiagnostics(\n  cohort,\n  cohortId = NULL,\n  snapshot = TRUE,\n  personTableSummary = TRUE,\n  observationPeriodsSummary = TRUE,\n  clinicalRecordsSummary = FALSE\n)\n\n# Modify databaseDiagnostics in phenotypeDiagnostics:\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  databaseDiagnostics = list(\n    \"cohortId\" = c(1,2),\n    \"snapshot\" = FALSE\n  )\n)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#codelist-diagnostics",
+    "href": "Presentations/PhenotypeR/index.html#codelist-diagnostics",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Codelist Diagnostics",
+    "text": "Codelist Diagnostics\n\nSummarise the codelist associated with your cohort including:\n\n\nAchilles codes use (only if ACHILLES tables are present)\n\nOrphan codes use (only if ACHILLES tables are present)\nCohort code use\n\nMeasurement code use (only if measurement concepts are present in your codelist)\n\nDrug diagnostics (only if drug concepts are present in your codelist)\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n\n\n\n\n\nCodelist diagnostics use functionality from CodelistGenerator to evaluate the use of concepts from our codelists in the OMOP CDM.\nIf the codelists contain measurement concepts, MeasurementDiagnostics is used to evaluate those concepts."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#codelist-diagnostics-1",
+    "href": "Presentations/PhenotypeR/index.html#codelist-diagnostics-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Codelist Diagnostics",
+    "text": "Codelist Diagnostics\n\ncl_diagnostics &lt;- codelistDiagnostics(\n  cohort,\n  cohortId = NULL,\n  achillesCodeUse = FALSE,\n  orphanCodeUse = TRUE,\n  cohortCodeUse = TRUE,\n  drugDiagnostics = FALSE,\n  drugDiagnosticsSample = 20000,\n  measurementDiagnostics = FALSE,\n  measurementDiagnosticsSample = 20000\n)\n\n# Modify codelistDiagnostics in phenotypeDiagnostics:\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  codelistDiagnostics = list(\n    \"cohortId\" = c(1,2),\n    \"achillesCodeUse\" = FALSE\n  )\n)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#cohort-diagnostics",
+    "href": "Presentations/PhenotypeR/index.html#cohort-diagnostics",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Cohort Diagnostics",
+    "text": "Cohort Diagnostics"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#cohort-diagnostics-1",
+    "href": "Presentations/PhenotypeR/index.html#cohort-diagnostics-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Cohort Diagnostics",
+    "text": "Cohort Diagnostics\nSummarise and evaluate the cohorts including:\n\nCohort count & attrition\n\nCohort characteristics — Baseline characteristics of the cohort\n\nLarge-scale characteristics — Clinical records observed in different time windows\n\nCompare cohorts — Overlap and timing between cohorts (if multiple cohorts)\n\n\nCohort survival — Survival until death (if death table is available)\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n\n\n\n\n\nCohort diagnostics use functionality from CohortCharacteristics to characterise and compare cohorts, and CohortSurvival to perform survival analyses."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#population-diagnostics",
+    "href": "Presentations/PhenotypeR/index.html#population-diagnostics",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Population Diagnostics",
+    "text": "Population Diagnostics\n\nContextualises the frequency of your study cohorts in the database calculating:\n\nIncidence\nPeriod Prevalence\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n\n\n\n\n\nPopulation diagnostics use functionality from IncidencePrevalence to estimate the incidence and prevalence of our cohorts in the database population."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#population-diagnostics-1",
+    "href": "Presentations/PhenotypeR/index.html#population-diagnostics-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Population Diagnostics",
+    "text": "Population Diagnostics\n\nc_diagnostics &lt;- populationDiagnostics(\n  cohort,\n  cohortId = NULL,\n  incidence = TRUE,\n  periodPrevalence = TRUE,\n  populationSample = 1e+05,\n  populationDateRange = as.Date(c(NA, NA))\n)\n\n# Modify populationDiagnostics in phenotypeDiagnostics:\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  populationDiagnostics = list(\n    \"populationSample\" = 10000\n  )\n)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#summary",
+    "href": "Presentations/PhenotypeR/index.html#summary",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Summary:",
+    "text": "Summary:\n\n\n\n\n\n\n\nDatabase diagnostics\n\ndatabaseDiagnostics()\n\n\n\n\n\n\n\n\nCodelist diagnostics\n\ncodelistDiagnostics()\n\n\n\n\n\n\nCohort diagnostics\n\ncohortDiagnostics()\n\n\n\n\n\n\n\n\nPopulation diagnostics\n\npopulationDiagnostics()\n\n\n\n\n\n\nRun all the diagnostics together:\n\n\n\n\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  databaseDiagnostics = list(), \n  codelistDiagnostics = list(), \n  cohortDiagnostics = list(), \n  populationDiagnostics = list(), \n  stagingDirectory = NULL\n)\n\nshinyDiagnostics(result = result, \n                 directory = here(), \n                 minCellCount = 5, \n                 removeEmptyTabs = FALSE)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#extra-changing-additional-parameters",
+    "href": "Presentations/PhenotypeR/index.html#extra-changing-additional-parameters",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Extra: Changing additional parameters",
+    "text": "Extra: Changing additional parameters\n\n\nModify extra parameters (window, eventInWindow, episodesInWindow for the LSC) using global variables:\n\n\n\n\noptions(\"PhenotypeR_summariseLargeScaleCharacteristics_window\" = list(c(0, 0)))\noptions(\"PhenotypeR_summariseLargeScaleCharacteristics_eventInWindow\"   = c(\"condition_occurrence\"))\noptions(\"PhenotypeR_summariseLargeScaleCharacteristics_episodeInWindow\" = c(\"drug_exposure\"))"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#extra-adding-context-to-your-results-via-data-source-description",
+    "href": "Presentations/PhenotypeR/index.html#extra-adding-context-to-your-results-via-data-source-description",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Extra: Adding context to your results via data source description",
+    "text": "Extra: Adding context to your results via data source description\n\nVisit Data source description shiny app"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#extra-adding-context-to-your-results-via-data-source-description-1",
+    "href": "Presentations/PhenotypeR/index.html#extra-adding-context-to-your-results-via-data-source-description-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Extra: Adding context to your results via data source description",
+    "text": "Extra: Adding context to your results via data source description\n\nVisit Data source description shiny app"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#extra-adding-context-to-your-results-via-clinical-descriptions",
+    "href": "Presentations/PhenotypeR/index.html#extra-adding-context-to-your-results-via-clinical-descriptions",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Extra: Adding context to your results via clinical descriptions",
+    "text": "Extra: Adding context to your results via clinical descriptions\n\nVisit Clinical Descriptions shiny app"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#extra-adding-context-to-your-results-via-clinical-descriptions-1",
+    "href": "Presentations/PhenotypeR/index.html#extra-adding-context-to-your-results-via-clinical-descriptions-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Extra: Adding context to your results via clinical descriptions",
+    "text": "Extra: Adding context to your results via clinical descriptions\n\nVisit Clinical descriptions shiny app"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#import-your-descriptions-in-the-shiny-app",
+    "href": "Presentations/PhenotypeR/index.html#import-your-descriptions-in-the-shiny-app",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Import your descriptions in the Shiny app",
+    "text": "Import your descriptions in the Shiny app\n\nshinyDiagnostics(\n  result = result,\n  directory = here(),\n  minCellCount = 5,\n  clinicalDescriptionsDir = NULL,\n  databaseDescriptionsDir = NULL\n)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#phenotyper",
+    "href": "Presentations/PhenotypeR/index.html#phenotyper",
+    "title": "Creating cohorts from scratch using R",
+    "section": "PhenotypeR",
+    "text": "PhenotypeR\nPhenotypeR provides a standardised set of diagnostics to review and evaluate phenotypes created using the OMOP CDM.\n\n\n\n\n\n\n\nDatabase diagnostics\n\ndatabaseDiagnostics()\n\n\n\n\n\n\n\n\nCodelist diagnostics\n\ncodelistDiagnostics()\n\n\n\n\n\n\nCohort diagnostics\n\ncohortDiagnostics()\n\n\n\n\n\n\n\n\nPopulation diagnostics\n\npopulationDiagnostics()"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#section",
+    "href": "Presentations/PhenotypeR/index.html#section",
+    "title": "Creating cohorts from scratch using R",
+    "section": "↓",
+    "text": "↓\nCodelistGenerator"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#section-1",
+    "href": "Presentations/PhenotypeR/index.html#section-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "→",
+    "text": "→"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#section-2",
+    "href": "Presentations/PhenotypeR/index.html#section-2",
+    "title": "Creating cohorts from scratch using R",
+    "section": "↓",
+    "text": "↓\nCohortConstructor"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#section-3",
+    "href": "Presentations/PhenotypeR/index.html#section-3",
+    "title": "Creating cohorts from scratch using R",
+    "section": "→",
+    "text": "→"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#section-4",
+    "href": "Presentations/PhenotypeR/index.html#section-4",
+    "title": "Creating cohorts from scratch using R",
+    "section": "↓",
+    "text": "↓\nPhenotypeR"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#what-are-we-going-to-build",
+    "href": "Presentations/PhenotypeR/index.html#what-are-we-going-to-build",
+    "title": "Creating cohorts from scratch using R",
+    "section": "What are we going to build?",
+    "text": "What are we going to build?\n\n\n\nPrimary (essential) hypertension\nCondition-based phenotype\n\nStart with hypertension codelist\nCreate initial base cohort\nRequire ≥ 180 days prior observation\n\nRestrict to adults (≥ 18 years)\n\nRequire a second hypertension record within 365 days\nExit at end of observation\n\n\n\n\n\nWarfarin users\nDrug-based phenotype\n\nStart with warfarin codelist\nCreate initial exposure cohort\nCollapse exposures with a ≤ 30-day gap\n\nRequire ≥ 365 days prior observation\n\nRequire 365-day washout"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#what-do-we-need-to-define-a-cohort",
+    "href": "Presentations/PhenotypeR/index.html#what-do-we-need-to-define-a-cohort",
+    "title": "Creating cohorts from scratch using R",
+    "section": "What do we need to define a cohort?",
+    "text": "What do we need to define a cohort?\n\n\n\n1. Codelists\nWhat clinical concepts are we looking for?\nExamples:\n\nHypertension diagnoses\nWarfarin exposures\n\n\nWHAT\n\n\n\n+\n\n\n\n\n2. Cohort logic\nHow do those records define cohort membership?\nExamples:\n\n≥ 365 days prior observation\nAge ≥ 18\nSecond hypertension record\nCollapse treatment episodes\n365-day washout\n\n\nWHEN + WHO\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nA codelist alone does not define a phenotype."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#example-1-hypertension",
+    "href": "Presentations/PhenotypeR/index.html#example-1-hypertension",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Example 1: Hypertension",
+    "text": "Example 1: Hypertension\nWe will progressively refine our cohort definition.\n\n\nHypertension record\n\n\n↓\n≥ 365 days of prior observation\n\n\n↓\nAge ≥ 18 at cohort entry\n\n\n↓\nSecond hypertension record\n\n\n↓\nExit at end of observation\n\n\n\n\n\n\n\n\n\nNote\n\n\nAt each step, some people or cohort entries may no longer meet our phenotype definition."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#example-2-warfarin-users",
+    "href": "Presentations/PhenotypeR/index.html#example-2-warfarin-users",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Example 2: Warfarin users",
+    "text": "Example 2: Warfarin users\nFor drug exposures, we often want to identify episodes of treatment and new users.\n\n\nWarfarin drug exposures\n\n\n↓\n≥ 365 days of prior observation\n\n\n↓\nCollapse exposures separated by ≤ 30 days\n\n\n↓\n365-day washout\n\n\n↓\nWarfarin new users\n\n\n\n\n\n\n\n\n\nNote\n\n\nPrior observation ≠ washout\nPrior observation tells us whether we can observe treatment history.\nWashout tells us whether a prior treatment occurred during that history."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#where-do-we-start",
+    "href": "Presentations/PhenotypeR/index.html#where-do-we-start",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Where do we start?",
+    "text": "Where do we start?\n\n\nWhich OMOP concepts represent…\n\n\n\n\nHypertension?\n\n\n\n\n\nWarfarin?\n\n\n\n\n\n↓\n\n\nCodelistGenerator"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#hypertension-1",
+    "href": "Presentations/PhenotypeR/index.html#hypertension-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Hypertension?",
+    "text": "Hypertension?"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#warfarin",
+    "href": "Presentations/PhenotypeR/index.html#warfarin",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Warfarin?",
+    "text": "Warfarin?"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#codelistgenerator-1",
+    "href": "Presentations/PhenotypeR/index.html#codelistgenerator-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "CodelistGenerator",
+    "text": "CodelistGenerator"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#codelistgenerator",
+    "href": "Presentations/PhenotypeR/index.html#codelistgenerator",
+    "title": "Creating cohorts from scratch using R",
+    "section": "CodelistGenerator",
+    "text": "CodelistGenerator\n\nThe CodelistGenerator R package provides tools to\n\n\nExplore OMOP CDM vocabularies available in the database\nGenerate codelists systematically using vocabulary-based search strategies\nGenerate codelist diagnostics to assess code use and identify potentially missing concepts"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#generating-candidate-codelists",
+    "href": "Presentations/PhenotypeR/index.html#generating-candidate-codelists",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Generating candidate codelists",
+    "text": "Generating candidate codelists\nToday, we’ll focus on the getCandidateCodes() function to identify candidate concepts for our two phenotypes.\n\ngetCandidateCodes(\n  cdm,\n  keywords,\n  exclude = NULL,\n  domains = \"Condition\",\n  vocabularyId = NULL,\n  standardConcept = \"Standard\",\n  searchInSynonyms = FALSE,\n  searchNonStandard = FALSE,\n  includeDescendants = TRUE,\n  includeAncestor = FALSE\n)\n\n\nThe function returns candidate concepts for review, along with the search strategy used to identify them.\nThis allows to define a systematic and reproducible search strategy."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#set-up",
+    "href": "Presentations/PhenotypeR/index.html#set-up",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Set-up",
+    "text": "Set-up\n Load relevant packages:\n\nlibrary(omock)\nlibrary(CodelistGenerator)\nlibrary(CohortConstructor)\nlibrary(PhenotypeR)\n\n Create a cdm reference to a synthetic omop database\n\ncdm &lt;- mockCdmFromDataset(datasetName = \"GiBleed\", source = \"duckdb\")\ncdm"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#lets-create-our-codelists",
+    "href": "Presentations/PhenotypeR/index.html#lets-create-our-codelists",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Let’s create our codelists!",
+    "text": "Let’s create our codelists!\nWarfarin\n\nwarfarinCodes &lt;- getCandidateCodes(\n  cdm = cdm,\n  keywords = \"warfarin\",\n  domains = \"drug\",\n  standardConcept = \"Standard\",\n  searchInSynonyms = TRUE,\n  includeDescendants = TRUE\n)\nwarfarinCodes\n\n# A tibble: 623 × 6\n   concept_id found_from   concept_name domain_id vocabulary_id standard_concept\n        &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;           \n 1    1310149 From initia… warfarin     Drug      RxNorm        S               \n 2    1830560 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n 3    1830561 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n 4    1830562 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n 5    1970875 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n 6    1970876 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n 7    2065868 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n 8    2065869 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n 9    2065870 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n10    2065871 From initia… warfarin 2 … Drug      RxNorm Exten… S               \n# ℹ 613 more rows"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#connect-to-mock-data",
+    "href": "Presentations/PhenotypeR/index.html#connect-to-mock-data",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Connect to mock data",
+    "text": "Connect to mock data\n Load relevant packages:\n\nlibrary(omock)\nlibrary(CodelistGenerator)\nlibrary(CohortConstructor)\nlibrary(PhenotypeR)\n\n Create a cdm reference to a synthetic omop database\n\ncdm &lt;- mockCdmFromDataset(datasetName = \"synthea-snf-10k\", source = \"duckdb\")\n\n\ncdm\n\n\n\n\n── # OMOP CDM reference (duckdb) of synthea-snf-10k ────────────────────────────\n\n\n• omop tables: attribute_definition, care_site, cdm_source, cohort_definition,\nconcept, concept_ancestor, concept_class, concept_relationship,\nconcept_synonym, condition_era, condition_occurrence, cost, death,\ndevice_exposure, domain, dose_era, drug_era, drug_exposure, drug_strength,\nfact_relationship, location, measurement, metadata, note, note_nlp,\nobservation, observation_period, payer_plan_period, person,\nprocedure_occurrence, provider, relationship, source_to_concept_map, specimen,\nvisit_detail, visit_occurrence, vocabulary\n\n\n• cohort tables: -\n\n\n• achilles tables: -\n\n\n• other tables: -"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#lets-create-our-codelists-1",
+    "href": "Presentations/PhenotypeR/index.html#lets-create-our-codelists-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Let’s create our codelists!",
+    "text": "Let’s create our codelists!\nHypertension\nRefine search strategy after inspection:\n\nhypertensionCodes &lt;- getCandidateCodes(\n  cdm = cdm,\n  keywords = \"essential hypertension\",\n  exclude = c(\n  \"pregnancy\", \"childbirth\", \"puerperium\",\n  \"obstetric\", \"postpartum\", \"postnatal\"\n  ),\n  domains = \"condition\",\n  standardConcept = \"Standard\",\n  searchInSynonyms = TRUE,\n  includeDescendants = TRUE\n)\nhypertensionCodes\n\n# A tibble: 7 × 6\n  concept_id found_from    concept_name domain_id vocabulary_id standard_concept\n       &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;           \n1     312648 From initial… Benign esse… Condition SNOMED        S               \n2     317898 From initial… Malignant e… Condition SNOMED        S               \n3     320128 From initial… Essential h… Condition SNOMED        S               \n4    4058987 From initial… High-renin … Condition SNOMED        S               \n5    4159755 From initial… Labile esse… Condition SNOMED        S               \n6    4180283 From initial… Systolic es… Condition SNOMED        S               \n7    4263067 From initial… Low-renin e… Condition SNOMED        S               \n\n\n\n\n\n\n\n\n\nNote\n\n\nOnce search strategy and preliminary codelist have been created, the codelist is reviewed clinical epidemiologists before creating cohorts."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#lets-create-our-codelists-2",
+    "href": "Presentations/PhenotypeR/index.html#lets-create-our-codelists-2",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Let’s create our codelists!",
+    "text": "Let’s create our codelists!\nWarfarin\n\nwarfarinCodes &lt;- getCandidateCodes(\n  cdm = cdm,\n  keywords = \"warfarin\",\n  domains = \"drug\",\n  standardConcept = \"Standard\",\n  searchInSynonyms = TRUE,\n  includeDescendants = TRUE\n)\nwarfarinCodes\n\n# A tibble: 623 × 6\n   concept_id found_from   concept_name domain_id vocabulary_id standard_concept\n        &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;           \n 1    1310149 From initia… warfarin     Drug      RxNorm        S               \n 2    1830560 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n 3    1830561 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n 4    1830562 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n 5    1970875 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n 6    1970876 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n 7    2065868 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n 8    2065869 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n 9    2065870 From initia… warfarin 5 … Drug      RxNorm Exten… S               \n10    2065871 From initia… warfarin 2 … Drug      RxNorm Exten… S               \n# ℹ 613 more rows"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#lets-create-our-codelists---hypertension",
+    "href": "Presentations/PhenotypeR/index.html#lets-create-our-codelists---hypertension",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Let’s create our codelists! - Hypertension",
+    "text": "Let’s create our codelists! - Hypertension\nInitial search strategy:\n\nhypertensionCodes &lt;- getCandidateCodes(\n  cdm = cdm,\n  keywords = \"essential hypertension\",\n  domains = \"condition\",\n  standardConcept = \"Standard\",\n  searchInSynonyms = TRUE,\n  includeDescendants = TRUE\n)\nhypertensionCodes\n\n# A tibble: 21 × 6\n   concept_id found_from   concept_name domain_id vocabulary_id standard_concept\n        &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;           \n 1     312648 From initia… Benign esse… Condition SNOMED        S               \n 2     314103 From initia… Benign esse… Condition SNOMED        S               \n 3     314423 From initia… Benign esse… Condition SNOMED        S               \n 4     317898 From initia… Malignant e… Condition SNOMED        S               \n 5     320128 From initia… Essential h… Condition SNOMED        S               \n 6     320456 From initia… Benign esse… Condition SNOMED        S               \n 7     321638 From initia… Benign esse… Condition SNOMED        S               \n 8    4034031 From initia… Benign esse… Condition SNOMED        S               \n 9    4058987 From initia… High-renin … Condition SNOMED        S               \n10    4062811 From initia… Benign esse… Condition SNOMED        S               \n# ℹ 11 more rows"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#lets-create-our-codelists---hypertension-1",
+    "href": "Presentations/PhenotypeR/index.html#lets-create-our-codelists---hypertension-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Let’s create our codelists! - Hypertension",
+    "text": "Let’s create our codelists! - Hypertension\nRefine search strategy after inspection:\n\nhypertensionCodes &lt;- getCandidateCodes(\n  cdm = cdm,\n  keywords = \"essential hypertension\",\n  exclude = c(\n  \"pregnancy\", \"childbirth\", \"puerperium\",\n  \"obstetric\", \"postpartum\", \"postnatal\"\n  ),\n  domains = \"condition\",\n  standardConcept = \"Standard\",\n  searchInSynonyms = TRUE,\n  includeDescendants = TRUE\n)\nhypertensionCodes\n\n# A tibble: 7 × 6\n  concept_id found_from    concept_name domain_id vocabulary_id standard_concept\n       &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;           \n1     312648 From initial… Benign esse… Condition SNOMED        S               \n2     317898 From initial… Malignant e… Condition SNOMED        S               \n3     320128 From initial… Essential h… Condition SNOMED        S               \n4    4058987 From initial… High-renin … Condition SNOMED        S               \n5    4159755 From initial… Labile esse… Condition SNOMED        S               \n6    4180283 From initial… Systolic es… Condition SNOMED        S               \n7    4263067 From initial… Low-renin e… Condition SNOMED        S               \n\n\n\n\n\n\n\n\n\nNote\n\n\nOnce search strategy and preliminary codelist have been created, the codelist is reviewed clinical epidemiologists before creating cohorts."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#create-cdm-reference",
+    "href": "Presentations/PhenotypeR/index.html#create-cdm-reference",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Create CDM reference",
+    "text": "Create CDM reference\n\nLoad relevant packages\n\n\n\nlibrary(omock)\nlibrary(CodelistGenerator)\nlibrary(CohortConstructor)\nlibrary(PhenotypeR)\nlibrary(omopgenerics)\nlibrary(here)\nlibrary(duckdb)\nlibrary(visOmopResults)\nlibrary(gt)\n\n\nCreate a cdm reference to a synthetic omop database\n\n\n\n\ncdm &lt;- mockCdmFromDataset(datasetName = \"synpuf-1k_5.4\", source = \"duckdb\")"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#create-cdm-reference-1",
+    "href": "Presentations/PhenotypeR/index.html#create-cdm-reference-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Create CDM reference",
+    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 1.5.6 [root@Darwin 25.6.0:R 4.5.2//private/var/folders/33/ny_t5lgj0mv3slx4bb7gd1wh0000gr/T/RtmpdcsEzY/file1ed036fc33d.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#hypertension-codelist",
+    "href": "Presentations/PhenotypeR/index.html#hypertension-codelist",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Hypertension codelist",
+    "text": "Hypertension codelist\nInitial search strategy:\n\nhypertensionCodes &lt;- getCandidateCodes(\n  cdm = cdm,\n  keywords = \"essential hypertension\",\n  domains = \"condition\",\n  standardConcept = \"Standard\",\n  searchInSynonyms = TRUE,\n  includeDescendants = TRUE\n)\nhypertensionCodes\n\n# A tibble: 21 × 6\n   concept_id found_from   concept_name domain_id vocabulary_id standard_concept\n        &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;           \n 1     312648 From initia… Benign esse… Condition SNOMED        S               \n 2     314103 From initia… Benign esse… Condition SNOMED        S               \n 3     314423 From initia… Benign esse… Condition SNOMED        S               \n 4     317898 From initia… Malignant e… Condition SNOMED        S               \n 5     320128 From initia… Essential h… Condition SNOMED        S               \n 6     320456 From initia… Benign esse… Condition SNOMED        S               \n 7     321638 From initia… Benign esse… Condition SNOMED        S               \n 8    4034031 From initia… Benign esse… Condition SNOMED        S               \n 9    4058987 From initia… High-renin … Condition SNOMED        S               \n10    4062811 From initia… Benign esse… Condition SNOMED        S               \n# ℹ 11 more rows"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#hypertension-codelist-1",
+    "href": "Presentations/PhenotypeR/index.html#hypertension-codelist-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Hypertension codelist",
+    "text": "Hypertension codelist\n\nDo all candidate concepts represent the phenotype we want?\n\nSome candidate concepts represent essential hypertension in an obstetric context:\n\nhypertensionCodes$concept_name\n\n [1] \"Benign essential hypertension\"                                                                                              \n [2] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium - delivered\"                            \n [3] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium - not delivered\"                        \n [4] \"Malignant essential hypertension\"                                                                                           \n [5] \"Essential hypertension\"                                                                                                     \n [6] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium - delivered with postnatal complication\"\n [7] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium\"                                        \n [8] \"Benign essential hypertension complicating AND/OR reason for care during pregnancy\"                                         \n [9] \"High-renin essential hypertension\"                                                                                          \n[10] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium with postnatal complication\"            \n[11] \"Essential hypertension complicating AND/OR reason for care during childbirth\"                                               \n[12] \"Benign essential hypertension complicating AND/OR reason for care during puerperium\"                                        \n[13] \"Labile essential hypertension\"                                                                                              \n[14] \"Systolic essential hypertension\"                                                                                            \n[15] \"Benign essential hypertension complicating AND/OR reason for care during childbirth\"                                        \n[16] \"Essential hypertension in obstetric context\"                                                                                \n[17] \"Low-renin essential hypertension\"                                                                                           \n[18] \"Benign essential hypertension in obstetric context\"                                                                         \n[19] \"Essential hypertension complicating AND/OR reason for care during pregnancy\"                                                \n[20] \"Essential hypertension complicating AND/OR reason for care during puerperium\"                                               \n[21] \"Postpartum pre-existing essential hypertension\""
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#warfarin-codelist",
+    "href": "Presentations/PhenotypeR/index.html#warfarin-codelist",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Warfarin codelist",
+    "text": "Warfarin codelist\nGenerate candidate concepts\nWe repeat the process for warfarin, starting with an initial search strategy:\n\nwarfarinCodes &lt;- getCandidateCodes(\n  cdm = cdm,\n  keywords = \"warfarin\",\n  domains = \"drug\",\n  standardConcept = \"Standard\",\n  searchInSynonyms = TRUE,\n  includeDescendants = TRUE\n)\n\nwarfarinCodes\n\n\u001b[1;34mi\u001b[0m This is a candidate code searh, see: &lt;link to vignette&gt;\n\u001b[3mCandidate codes\u001b[0m generated using \u001b[32mCodelistGenerator\u001b[0m (\u001b[1m4.1.0\u001b[0m):\ngetCandidateCodes(\n  cdm = cdm,\n  keywords = \"warfarin\",\n  exclude = NULL,\n  domains = \"drug\",\n  vocabularyId = c(\"cpt4\", \"dpd\", \"hcpcs\", \"multilex\", \"rxnorm\"),\n  standardConcept = \"Standard\",\n  searchInSynonyms = TRUE,\n  searchNonStandard = FALSE,\n  includeDescendants = TRUE,\n  includeAncestor = FALSE\n)\n# A tibble: 194 × 12\n   concept_id found_from concept_name vocabulary_version domain_id vocabulary_id\n *      &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;              &lt;chr&gt;     &lt;chr&gt;        \n 1    1310149 From init… Warfarin     v5.0 29-APR-16     Drug      RxNorm       \n 2   40093130 From init… Warfarin In… v5.0 29-APR-16     Drug      RxNorm       \n 3   40093131 From init… Warfarin In… v5.0 29-APR-16     Drug      RxNorm       \n 4   40093132 From init… Warfarin Or… v5.0 29-APR-16     Drug      RxNorm       \n 5   40093133 From init… Warfarin Or… v5.0 29-APR-16     Drug      RxNorm       \n 6   40093134 From init… Warfarin Or… v5.0 29-APR-16     Drug      RxNorm       \n 7   40121983 From init… Warfarin Or… v5.0 29-APR-16     Drug      RxNorm       \n 8   40121984 From init… Warfarin Or… v5.0 29-APR-16     Drug      RxNorm       \n 9   40163507 From init… Warfarin So… v5.0 29-APR-16     Drug      RxNorm       \n10   40163508 From init… Warfarin So… v5.0 29-APR-16     Drug      RxNorm       \n# ℹ 184 more rows\n# ℹ 6 more variables: concept_class_id &lt;chr&gt;, standard_concept &lt;chr&gt;,\n#   concept_code &lt;chr&gt;, valid_start_date &lt;date&gt;, valid_end_date &lt;date&gt;,\n#   invalid_reason &lt;chr&gt;"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#generating-candidate-concepts",
+    "href": "Presentations/PhenotypeR/index.html#generating-candidate-concepts",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Generating candidate concepts",
+    "text": "Generating candidate concepts\nToday, we’ll focus on the getCandidateCodes() function to identify candidate concepts for our two phenotypes.\n\ngetCandidateCodes(\n  cdm,\n  keywords,\n  exclude = NULL,\n  domains = \"Condition\",\n  vocabularyId = NULL,\n  standardConcept = \"Standard\",\n  searchInSynonyms = FALSE,\n  searchNonStandard = FALSE,\n  includeDescendants = TRUE,\n  includeAncestor = FALSE\n)\n\n\nThe function returns candidate concepts for review, together with the search strategy used to identify them.\nThis allows us to define a systematic and reproducible codelist search strategy."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#codelist-review",
+    "href": "Presentations/PhenotypeR/index.html#codelist-review",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Codelist Review",
+    "text": "Codelist Review\n\n\n\n\n\n\n\nNote\n\n\nOnce the search strategy and preliminary codelist have been created, they are reviewed by clinical epidemiologists before the codelist is used to construct cohorts."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#hypertension-codelist-2",
+    "href": "Presentations/PhenotypeR/index.html#hypertension-codelist-2",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Hypertension codelist",
+    "text": "Hypertension codelist\nLet’s refine our search strategy:\n\nhypertensionCodes &lt;- getCandidateCodes(\n  cdm = cdm,\n  keywords = \"essential hypertension\",\n  exclude = c(\n  \"pregnancy\", \"childbirth\", \"puerperium\",\n  \"obstetric\", \"postpartum\", \"postnatal\"\n  ),\n  domains = \"condition\",\n  standardConcept = \"Standard\",\n  searchInSynonyms = TRUE,\n  includeDescendants = TRUE\n)\nhypertensionCodes\n\n# A tibble: 7 × 6\n  concept_id found_from    concept_name domain_id vocabulary_id standard_concept\n       &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;           \n1     312648 From initial… Benign esse… Condition SNOMED        S               \n2     317898 From initial… Malignant e… Condition SNOMED        S               \n3     320128 From initial… Essential h… Condition SNOMED        S               \n4    4058987 From initial… High-renin … Condition SNOMED        S               \n5    4159755 From initial… Labile esse… Condition SNOMED        S               \n6    4180283 From initial… Systolic es… Condition SNOMED        S               \n7    4263067 From initial… Low-renin e… Condition SNOMED        S"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#cohortconstructor",
+    "href": "Presentations/PhenotypeR/index.html#cohortconstructor",
+    "title": "Creating cohorts from scratch using R",
+    "section": "CohortConstructor",
+    "text": "CohortConstructor\n\nCohortConstructor provides tools to create and manipulate cohorts using the OMOP CDM.\n\nCreate base cohorts from codelists\nApply demographic and observation requirements\n\nApply additional clinical requirements\n\nDefine cohort entry and exit\n\n\nCombine, collapse, and manipulate cohort records"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#essential-hypertension-cohort",
+    "href": "Presentations/PhenotypeR/index.html#essential-hypertension-cohort",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Essential hypertension cohort",
+    "text": "Essential hypertension cohort\nWe want to identify adults with essential hypertension.\n\n\nCreate a base cohort from our essential hypertension codelist\nRequire ≥ 365 days of prior observation\n\nRestrict to age ≥ 18 years\n\nRequire a second hypertension record within 365 days\n\nExit at end of observation"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#essential-hypertension-cohort-1",
+    "href": "Presentations/PhenotypeR/index.html#essential-hypertension-cohort-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Essential hypertension cohort",
+    "text": "Essential hypertension cohort\n\nFirst, create base cohort:\n\nhypertensionCodelist &lt;- asCodelist(hypertensionCodes)\ncdm$essential_hypertension_base &lt;- conceptCohort(\n  cdm = cdm,\n  conceptSet = hypertensionCodelist,\n  name = \"essential_hypertension_base\"\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReason\n\nVariable name\n\n\n\nnumber_records\nnumber_subjects\nexcluded_records\nexcluded_subjects\n\n\n\n\nsynpuf-1k; candidate_codes\n\n\nInitial qualifying events\n10,321\n755\n0\n0\n\n\nRecord in observation\n10,321\n755\n0\n0\n\n\nNot missing record date\n10,321\n755\n0\n0\n\n\nMerge overlapping records\n6,316\n755\n4,005\n0"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#essential-hypertension-cohort-2",
+    "href": "Presentations/PhenotypeR/index.html#essential-hypertension-cohort-2",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Essential hypertension cohort",
+    "text": "Essential hypertension cohort\n\nSecond, apply inclusion criteria:\n\ncdm$essential_hypertension &lt;- cdm$essential_hypertension_base |&gt;\n  # Require ≥ 365 days of prior observation \n  requireIsFirstEntry(name = \"essential_hypertension\") |&gt;\n  # Restrict to age ≥ 18 years\n  requireDemographics(\n    ageRange = c(18, 150),\n    minPriorObservation = 180,\n    name = \"essential_hypertension\"\n  ) |&gt;\n  # Require a second hypertension record within 365 days\n  requireCohortIntersect(\n    targetCohortTable = \"essential_hypertension_base\",\n    window = c(1, 365),\n    intersections = c(1, Inf),\n    name = \"essential_hypertension\"\n  ) |&gt;\n  # Exit at end of observation\n  exitAtObservationEnd(\n    name = \"essential_hypertension\"\n  )"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#essential-hypertension-cohort-3",
+    "href": "Presentations/PhenotypeR/index.html#essential-hypertension-cohort-3",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Essential hypertension cohort",
+    "text": "Essential hypertension cohort\nEssential hypertension cohort attrition:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReason\n\nVariable name\n\n\n\nnumber_records\nnumber_subjects\nexcluded_records\nexcluded_subjects\n\n\n\n\nsynpuf-1k; candidate_codes\n\n\nInitial qualifying events\n10,321\n755\n0\n0\n\n\nRecord in observation\n10,321\n755\n0\n0\n\n\nNot missing record date\n10,321\n755\n0\n0\n\n\nMerge overlapping records\n6,316\n755\n4,005\n0\n\n\nRestricted to first entry\n755\n755\n5,561\n0\n\n\nAge requirement: 18 to 150\n755\n755\n0\n0\n\n\nSex requirement: Both\n755\n755\n0\n0\n\n\nPrior observation requirement: 180 days\n262\n262\n493\n493\n\n\nFuture observation requirement: 0 days\n262\n262\n0\n0\n\n\nRequire 1 or more intersections with cohort candidate_codes. Intersection window: 1 to 365 days relative to cohort_start_date\n190\n190\n72\n72\n\n\nExit at observation period end date, limited to current observation period\n190\n190\n0\n0"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#warfarin-cohort",
+    "href": "Presentations/PhenotypeR/index.html#warfarin-cohort",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Warfarin cohort",
+    "text": "Warfarin cohort\n\nWe want to identify new users of warfarin.\n\nCreate a base cohort from our warfarin codelist\nCollapse exposures separated by ≤ 30 days\n\nRequire ≥ 365 days of prior observation\n\nRequire no warfarin exposure in the previous 365 days"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#warfarin-cohort-1",
+    "href": "Presentations/PhenotypeR/index.html#warfarin-cohort-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Warfarin cohort",
+    "text": "Warfarin cohort\n→ Create the base cohort\nWe first create a base cohort from drug exposure records corresponding to concepts in our preliminary warfarin codelist:\n\nwarfarinCodelist &lt;- list(\"warfarin\" = warfarinCodes$concept_id)\n\ncdm$warfarin_base &lt;- conceptCohort(\n  cdm = cdm,\n  conceptSet = warfarinCodelist,\n  name = \"warfarin_base\"\n)\n\n\nAt this stage, qualifying warfarin exposures can contribute to cohort entries.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReason\n\nVariable name\n\n\n\nnumber_records\nnumber_subjects\nexcluded_records\nexcluded_subjects\n\n\n\n\nsynpuf-1k; warfarin\n\n\nInitial qualifying events\n407\n226\n0\n0\n\n\nRecord in observation\n407\n226\n0\n0\n\n\nNot missing record date\n407\n226\n0\n0\n\n\nMerge overlapping records\n378\n226\n29\n0"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#warfarin-cohort-2",
+    "href": "Presentations/PhenotypeR/index.html#warfarin-cohort-2",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Warfarin cohort",
+    "text": "Warfarin cohort\n→ Create treatment episodes and identify new users\nWe now combine nearby exposures into treatment episodes and apply our new-user criteria:\n\ncdm$warfarin_new_users &lt;- cdm$warfarin_base |&gt;\n\n  # Collapse exposures separated by ≤30 days\n  collapseCohorts(\n    gap = 30,\n    name = \"warfarin_new_users\"\n  ) |&gt;\n\n  # Require ≥365 days of prior observation\n  requireDemographics(\n    minPriorObservation = 365,\n    name = \"warfarin_new_users\"\n  ) |&gt;\n\n  # No warfarin exposure during the previous 365 days\n  requireCohortIntersect(\n    targetCohortTable = \"warfarin_base\",\n    window = c(-365, -1),\n    intersections = 0,\n    name = \"warfarin_new_users\"\n  )"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#warfarin-cohort-3",
+    "href": "Presentations/PhenotypeR/index.html#warfarin-cohort-3",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Warfarin cohort",
+    "text": "Warfarin cohort\nNew-user cohort attrition\nHow do our requirements affect the number of warfarin treatment episodes?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReason\n\nVariable name\n\n\n\nnumber_records\nnumber_subjects\nexcluded_records\nexcluded_subjects\n\n\n\n\nsynpuf-1k; warfarin\n\n\nInitial qualifying events\n407\n226\n0\n0\n\n\nRecord in observation\n407\n226\n0\n0\n\n\nNot missing record date\n407\n226\n0\n0\n\n\nMerge overlapping records\n378\n226\n29\n0\n\n\nCollapse cohort with a gap of 30 days.\n350\n226\n28\n0\n\n\nAge requirement: 0 to 150\n350\n226\n0\n0\n\n\nSex requirement: Both\n350\n226\n0\n0\n\n\nPrior observation requirement: 365 days\n222\n171\n128\n55\n\n\nFuture observation requirement: 0 days\n222\n171\n0\n0\n\n\nRequire 0 intersections with cohort warfarin. Intersection window: -365 to -1 days relative to cohort_start_date\n150\n145\n72\n26"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#phenotyper-1",
+    "href": "Presentations/PhenotypeR/index.html#phenotyper-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "PhenotypeR",
+    "text": "PhenotypeR\n\n\n👉 Package website\n👉 CRAN link\n👉 GitHub link\n👉 Manual 📧"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist",
+    "href": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Primary hypertension codelist",
+    "text": "Primary hypertension codelist\nGenerate candidate concepts\nOur target phenotype is primary (essential) hypertension.\nWe start by searching for concepts related to \"essential hypertension\":\n\nhypertensionCodes &lt;- getCandidateCodes(\n  cdm = cdm,\n  keywords = \"essential hypertension\",\n  domains = \"condition\",\n  standardConcept = \"Standard\",\n  searchInSynonyms = TRUE,\n  includeDescendants = TRUE\n)\nhypertensionCodes\n\n\u001b[1;34mi\u001b[0m This is a candidate code searh, see: &lt;link to vignette&gt;\n\u001b[3mCandidate codes\u001b[0m generated using \u001b[32mCodelistGenerator\u001b[0m (\u001b[1m4.1.0\u001b[0m):\ngetCandidateCodes(\n  cdm = cdm,\n  keywords = \"essential hypertension\",\n  exclude = NULL,\n  domains = \"condition\",\n  vocabularyId = \"snomed\",\n  standardConcept = \"Standard\",\n  searchInSynonyms = TRUE,\n  searchNonStandard = FALSE,\n  includeDescendants = TRUE,\n  includeAncestor = FALSE\n)\n# A tibble: 21 × 12\n   concept_id found_from concept_name vocabulary_version domain_id vocabulary_id\n *      &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt;              &lt;chr&gt;     &lt;chr&gt;        \n 1     312648 From init… Benign esse… v5.0 29-APR-16     Condition SNOMED       \n 2     314103 From init… Benign esse… v5.0 29-APR-16     Condition SNOMED       \n 3     314423 From init… Benign esse… v5.0 29-APR-16     Condition SNOMED       \n 4     317898 From init… Malignant e… v5.0 29-APR-16     Condition SNOMED       \n 5     320128 From init… Essential h… v5.0 29-APR-16     Condition SNOMED       \n 6     320456 From init… Benign esse… v5.0 29-APR-16     Condition SNOMED       \n 7     321638 From init… Benign esse… v5.0 29-APR-16     Condition SNOMED       \n 8    4034031 From init… Benign esse… v5.0 29-APR-16     Condition SNOMED       \n 9    4058987 From init… High-renin … v5.0 29-APR-16     Condition SNOMED       \n10    4062811 From init… Benign esse… v5.0 29-APR-16     Condition SNOMED       \n# ℹ 11 more rows\n# ℹ 6 more variables: concept_class_id &lt;chr&gt;, standard_concept &lt;chr&gt;,\n#   concept_code &lt;chr&gt;, valid_start_date &lt;date&gt;, valid_end_date &lt;date&gt;,\n#   invalid_reason &lt;chr&gt;"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#hypertensprimary-hypertension-codelist",
+    "href": "Presentations/PhenotypeR/index.html#hypertensprimary-hypertension-codelist",
+    "title": "Creating cohorts from scratch using R",
+    "section": "HypertensPrimary hypertension codelist",
+    "text": "HypertensPrimary hypertension codelist\nDo all candidate concepts represent the phenotype we want?\n\nSome candidate concepts represent essential hypertension in an obstetric context:\n\n\n [1] \"Benign essential hypertension\"                                                                                              \n [2] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium - delivered\"                            \n [3] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium - not delivered\"                        \n [4] \"Malignant essential hypertension\"                                                                                           \n [5] \"Essential hypertension\"                                                                                                     \n [6] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium - delivered with postnatal complication\"\n [7] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium\"                                        \n [8] \"Benign essential hypertension complicating AND/OR reason for care during pregnancy\"                                         \n [9] \"High-renin essential hypertension\"                                                                                          \n[10] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium with postnatal complication\"            \n[11] \"Essential hypertension complicating AND/OR reason for care during childbirth\"                                               \n[12] \"Benign essential hypertension complicating AND/OR reason for care during puerperium\"                                        \n[13] \"Labile essential hypertension\"                                                                                              \n[14] \"Systolic essential hypertension\"                                                                                            \n[15] \"Benign essential hypertension complicating AND/OR reason for care during childbirth\"                                        \n[16] \"Essential hypertension in obstetric context\"                                                                                \n[17] \"Low-renin essential hypertension\"                                                                                           \n[18] \"Benign essential hypertension in obstetric context\"                                                                         \n[19] \"Essential hypertension complicating AND/OR reason for care during pregnancy\"                                                \n[20] \"Essential hypertension complicating AND/OR reason for care during puerperium\"                                               \n[21] \"Postpartum pre-existing essential hypertension\""
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist-1",
+    "href": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Primary hypertension codelist",
+    "text": "Primary hypertension codelist\nDo all candidate concepts represent the phenotype we want?\n\nSome candidate concepts represent essential hypertension in an obstetric context:\n\n\n [1] \"Benign essential hypertension\"                                                                                              \n [2] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium - delivered\"                            \n [3] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium - not delivered\"                        \n [4] \"Malignant essential hypertension\"                                                                                           \n [5] \"Essential hypertension\"                                                                                                     \n [6] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium - delivered with postnatal complication\"\n [7] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium\"                                        \n [8] \"Benign essential hypertension complicating AND/OR reason for care during pregnancy\"                                         \n [9] \"High-renin essential hypertension\"                                                                                          \n[10] \"Benign essential hypertension complicating pregnancy, childbirth and the puerperium with postnatal complication\"            \n[11] \"Essential hypertension complicating AND/OR reason for care during childbirth\"                                               \n[12] \"Benign essential hypertension complicating AND/OR reason for care during puerperium\"                                        \n[13] \"Labile essential hypertension\"                                                                                              \n[14] \"Systolic essential hypertension\"                                                                                            \n[15] \"Benign essential hypertension complicating AND/OR reason for care during childbirth\"                                        \n[16] \"Essential hypertension in obstetric context\"                                                                                \n[17] \"Low-renin essential hypertension\"                                                                                           \n[18] \"Benign essential hypertension in obstetric context\"                                                                         \n[19] \"Essential hypertension complicating AND/OR reason for care during pregnancy\"                                                \n[20] \"Essential hypertension complicating AND/OR reason for care during puerperium\"                                               \n[21] \"Postpartum pre-existing essential hypertension\""
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-cohort",
+    "href": "Presentations/PhenotypeR/index.html#primary-hypertension-cohort",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Primary hypertension cohort",
+    "text": "Primary hypertension cohort\n\nWe will progressively apply our cohort inclusion criteria to identify adults with primary (essential) hypertension.\n\nCreate a base cohort from our essential hypertension codelist\nRequire ≥ 180 days of prior observation\n\nRestrict to age ≥ 18 years\n\nRequire a second hypertension record within 365 days\n\nExit at end of observation"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-cohort-1",
+    "href": "Presentations/PhenotypeR/index.html#primary-hypertension-cohort-1",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Primary hypertension cohort",
+    "text": "Primary hypertension cohort\n→ Create the base cohort\nWe first create a base cohort from condition records corresponding to concepts in our preliminary hypertension codelist:\n\nhypertensionCodelist &lt;- list(\"essential_hypertension\" = hypertensionCodes$concept_id)\n\ncdm$essential_hypertension_base &lt;- conceptCohort(\n  cdm = cdm,\n  conceptSet = hypertensionCodelist,\n  name = \"essential_hypertension_base\"\n)\n\n\nAt this stage, each qualifying hypertension record can contribute to cohort entry.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReason\n\nVariable name\n\n\n\nnumber_records\nnumber_subjects\nexcluded_records\nexcluded_subjects\n\n\n\n\nsynpuf-1k; essential_hypertension\n\n\nInitial qualifying events\n10,321\n755\n0\n0\n\n\nRecord in observation\n10,321\n755\n0\n0\n\n\nNot missing record date\n10,321\n755\n0\n0\n\n\nMerge overlapping records\n6,316\n755\n4,005\n0"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-cohort-2",
+    "href": "Presentations/PhenotypeR/index.html#primary-hypertension-cohort-2",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Primary hypertension cohort",
+    "text": "Primary hypertension cohort\n→ Apply the inclusion criteria\nNow we apply inclusion criteria in a pipeline-fashion to refine the base cohort:\n\ncdm$essential_hypertension &lt;- cdm$essential_hypertension_base |&gt;\n\n  # Age ≥18 and ≥180 days of prior observation\n  requireDemographics(\n    ageRange = c(18, 150),\n    minPriorObservation = 180,\n    name = \"essential_hypertension\"\n  ) |&gt;\n\n  # Require another hypertension record within 365 days\n  requireCohortIntersect(\n    targetCohortTable = \"essential_hypertension_base\",\n    window = c(1, 365),\n    intersections = c(1, Inf),\n    name = \"essential_hypertension\"\n  ) |&gt;\n\n  # Follow until the end of observation\n  exitAtObservationEnd(\n    name = \"essential_hypertension\"\n  )"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-cohort-3",
+    "href": "Presentations/PhenotypeR/index.html#primary-hypertension-cohort-3",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Primary hypertension cohort",
+    "text": "Primary hypertension cohort\nCohort attrition\nHow does each requirement affect the number of people meeting our phenotype definition?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReason\n\nVariable name\n\n\n\nnumber_records\nnumber_subjects\nexcluded_records\nexcluded_subjects\n\n\n\n\nsynpuf-1k; essential_hypertension\n\n\nInitial qualifying events\n10,321\n755\n0\n0\n\n\nRecord in observation\n10,321\n755\n0\n0\n\n\nNot missing record date\n10,321\n755\n0\n0\n\n\nMerge overlapping records\n6,316\n755\n4,005\n0\n\n\nAge requirement: 18 to 150\n6,316\n755\n0\n0\n\n\nSex requirement: Both\n6,316\n755\n0\n0\n\n\nPrior observation requirement: 180 days\n5,234\n743\n1,082\n12\n\n\nFuture observation requirement: 0 days\n5,234\n743\n0\n0\n\n\nRequire 1 or more intersections with cohort essential_hypertension. Intersection window: 1 to 365 days relative to cohort_start_date\n4,461\n664\n773\n79\n\n\nExit at observation period end date, limited to current observation period\n664\n664\n3,797\n0"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#run-diagnostics-together",
+    "href": "Presentations/PhenotypeR/index.html#run-diagnostics-together",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Run diagnostics together",
+    "text": "Run diagnostics together\nRather than running each diagnostic separately, phenotypeDiagnostics() allows us to run them together.\n\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  databaseDiagnostics = list(),\n  codelistDiagnostics = list(),\n  cohortDiagnostics = list(),\n  populationDiagnostics = list()\n)\n\n\nWe can choose which diagnostics to run and customise their parameters.\n\nresult &lt;- phenotypeDiagnostics(\n  cohort,\n  databaseDiagnostics = list(),\n  codelistDiagnostics = list(),\n  cohortDiagnostics = list(\n    cohortSample = 1000\n  ),\n  populationDiagnostics = NULL\n)"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#run-diagnostics-of-hypertension-and-warfarin-cohorts-together",
+    "href": "Presentations/PhenotypeR/index.html#run-diagnostics-of-hypertension-and-warfarin-cohorts-together",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Run diagnostics of hypertension and warfarin cohorts together",
+    "text": "Run diagnostics of hypertension and warfarin cohorts together\nWe created our two cohort separately. To run phenotyper, we can bring them together into a single cohort table and then run PhenotypeR functions to this table.\n\ncdm &lt;- bind(\n  cdm$essential_hypertension,\n  cdm$warfarin_new_users,\n  name = \"phenotypes\"\n)\ncdm$phenotypes |&gt; settings()\n\n# A tibble: 2 × 8\n  cohort_definition_id cohort_name      cdm_version vocabulary_version age_range\n                 &lt;int&gt; &lt;chr&gt;            &lt;chr&gt;       &lt;chr&gt;              &lt;chr&gt;    \n1                    1 essential_hyper… 5.4         v5.0 29-APR-16     18_150   \n2                    2 warfarin         5.4         v5.0 29-APR-16     0_150    \n# ℹ 3 more variables: sex &lt;chr&gt;, min_prior_observation &lt;dbl&gt;,\n#   min_future_observation &lt;dbl&gt;"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#run-phenotype-diagnostics",
+    "href": "Presentations/PhenotypeR/index.html#run-phenotype-diagnostics",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Run phenotype diagnostics",
+    "text": "Run phenotype diagnostics\n\nNow we can evaluate both phenotypes using the same standardised diagnostic workflow.\n\nresult &lt;- phenotypeDiagnostics(cohort = cdm$phenotypes)\n\n\n\nThen we can use the function shinyDiagnostics to create a shinyApp to review results:\n\n\n\nshinyDiagnostics(result = result, directory = here())"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist-2",
+    "href": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist-2",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Primary hypertension codelist",
+    "text": "Primary hypertension codelist\nIf we identify unwanted candidate concepts that can be systematically captured by keywords, we can refine our search strategy using exclusion terms:\n\n\nhypertensionCodes &lt;- getCandidateCodes(\n  cdm = cdm,\n  keywords = \"essential hypertension\",\n  exclude = c(\"pregnancy\", \"childbirth\", \"puerperium\", \"obstetric\", \"postpartum\", \"postnatal\"),\n  domains = \"condition\",\n  standardConcept = \"Standard\",\n  searchInSynonyms = TRUE,\n  includeDescendants = TRUE\n)\nhypertensionCodes\n\n\u001b[1;34mi\u001b[0m This is a candidate code searh, see: &lt;link to vignette&gt;\n\u001b[3mCandidate codes\u001b[0m generated using \u001b[32mCodelistGenerator\u001b[0m (\u001b[1m4.1.0\u001b[0m):\ngetCandidateCodes(\n  cdm = cdm,\n  keywords = \"essential hypertension\",\n  exclude = c(\"pregnancy\", \"childbirth\", \"puerperium\", \"obstetric\", \"postpartum\", \"postnatal\"),\n  domains = \"condition\",\n  vocabularyId = \"snomed\",\n  standardConcept = \"Standard\",\n  searchInSynonyms = TRUE,\n  searchNonStandard = FALSE,\n  includeDescendants = TRUE,\n  includeAncestor = FALSE\n)\n# A tibble: 7 × 12\n  concept_id found_from  concept_name vocabulary_version domain_id vocabulary_id\n*      &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;              &lt;chr&gt;     &lt;chr&gt;        \n1     312648 From initi… Benign esse… v5.0 29-APR-16     Condition SNOMED       \n2     317898 From initi… Malignant e… v5.0 29-APR-16     Condition SNOMED       \n3     320128 From initi… Essential h… v5.0 29-APR-16     Condition SNOMED       \n4    4058987 From initi… High-renin … v5.0 29-APR-16     Condition SNOMED       \n5    4159755 From initi… Labile esse… v5.0 29-APR-16     Condition SNOMED       \n6    4180283 From initi… Systolic es… v5.0 29-APR-16     Condition SNOMED       \n7    4263067 From initi… Low-renin e… v5.0 29-APR-16     Condition SNOMED       \n# ℹ 6 more variables: concept_class_id &lt;chr&gt;, standard_concept &lt;chr&gt;,\n#   concept_code &lt;chr&gt;, valid_start_date &lt;date&gt;, valid_end_date &lt;date&gt;,\n#   invalid_reason &lt;chr&gt;"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#explore-the-phenotyper-results",
+    "href": "Presentations/PhenotypeR/index.html#explore-the-phenotyper-results",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Explore the PhenotypeR results",
+    "text": "Explore the PhenotypeR results\n\n\n\n\n\n\n\n\n\nTry it yourself!\n\n\nScan the QR code\n\n\nor\n\n\n 👉 Click here to open the Shiny app \n\n\nor enter this link:\n\n\n\n https://dpa-pde-oxford.shinyapps.io/OHDSI-US-PhenotypeR/"
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist-3",
+    "href": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist-3",
+    "title": "Creating cohorts from scratch using R",
+    "section": "Primary hypertension codelist",
+    "text": "Primary hypertension codelist\n\n\n\n\n\n\n\nNote\n\n\nA refined search strategy does not mean we have a final codelist.\nCodelistGenerator helps us define a reproducible search strategy and generate a preliminary codelist.\nBefore cohort construction, this preliminary codelist is clinically reviewed.\nOnce cohorts are created, diagnostics provide further evidence to support additional codelist review and refinement."
+  },
+  {
+    "objectID": "Presentations/PhenotypeR/index.html#more-complex-phenotype-definitions",
+    "href": "Presentations/PhenotypeR/index.html#more-complex-phenotype-definitions",
+    "title": "Creating cohorts from scratch using R",
+    "section": "More complex phenotype definitions",
+    "text": "More complex phenotype definitions\nOur primary hypertension cohort was a simple example to illustrate the workflow.\nWe can also implement more complex phenotype definitions combining different types of clinical evidence.\nFor instance we could use systolic and diastolic blood pressure measurements:\n\n\ncdm$systolic_blood_pressure &lt;- measurementCohort(\n  cdm = cdm, \n  conceptSet = codelist[\"systolic_blood_pressure\"],\n  valueAsNumber = list(c(140, 99999)),\n  name = \"systolic_blood_pressure\"\n)\n\ncdm$diastolic_blood_pressure &lt;- measurementCohort(\n  cdm = cdm, \n  conceptSet = codelist[\"diastolic_blood_pressure\"],\n  valueAsNumber = list(c(90, 99999)),\n  name = \"diastolic_blood_pressure\"\n)"
+    "objectID": "Presentations/llm_expectations/index.html#caveats",
+    "href": "Presentations/llm_expectations/index.html#caveats",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Caveats",
+    "text": "Caveats\nI will be showing you what you can do, not what you should do\n\n\nCreating LLM tools for phenotyping is relatively easy. Creating tools that are trusted, improve the quality of research, and provide a good user experience is the hard part.\n\n\n\nChoice of model undoubtedly matters. But not clear which model is best, by how much, or for which task.\n\n\n\nSystem prompts and user input can also have a dramatic impact on the results.\n\n\n\nClosed-weight cloud-based models show performance drift, making validation even harder."
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#more-caveats",
+    "href": "Presentations/llm_expectations/index.html#more-caveats",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "More caveats",
+    "text": "More caveats\nReliance on LLM tooling in OHDSI can increase barrier to entry, especially if tools are tied to specific providers (OpenAI, Anthropic, etc)\n\n\nAnd even more so if tools need access to other paid-for APIs (e.g. clinical resources)"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#even-more-caveats",
+    "href": "Presentations/llm_expectations/index.html#even-more-caveats",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Even more caveats",
+    "text": "Even more caveats\nLow quality health research is prevalent\n\n\nReproducibility crisis in health research\n\n\n\nLLM integration can go both ways. Increasing risk of OMOP-slop vs additional context and double-checking."
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#ellmer",
+    "href": "Presentations/llm_expectations/index.html#ellmer",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "ellmer",
+    "text": "ellmer\nWe’ll be using the ellmer R package for interacting with LLMs.\n\n\nProvides a simple interface for working with LLMs in a consistent manner.\n\n\n\nBuilding on ellmer, we can add model-agnostic support with users choosing the model to use."
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#unstructured-chat",
+    "href": "Presentations/llm_expectations/index.html#unstructured-chat",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Unstructured chat",
+    "text": "Unstructured chat\nellmer supports various popular providers\n\nlibrary(ellmer)\nchat &lt;- chat_anthropic()\nchat &lt;- chat_deepseek()\nchat &lt;- chat_google_gemini()\nchat &lt;- chat_mistral()\nchat &lt;- chat_openai()\n\n\n\nellmer::models_google_gemini() |&gt; \n  dplyr::pull(\"id\")\n\n [1] \"antigravity-preview-05-2026\"            \n [2] \"antigravity-preview-09-2026\"            \n [3] \"antigravity-preview-latest\"             \n [4] \"deep-research-max-preview-04-2026\"      \n [5] \"deep-research-preview-04-2026\"          \n [6] \"deep-research-pro-preview-12-2025\"      \n [7] \"gemini-2.5-computer-use-preview-10-2025\"\n [8] \"gemini-2.5-flash\"                       \n [9] \"gemini-2.5-flash-image\"                 \n[10] \"gemini-2.5-flash-lite\"                  \n[11] \"gemini-2.5-flash-preview-tts\"           \n[12] \"gemini-2.5-pro\"                         \n[13] \"gemini-2.5-pro-preview-tts\"             \n[14] \"gemini-3-flash-preview\"                 \n[15] \"gemini-3-pro-image\"                     \n[16] \"gemini-3-pro-image-preview\"             \n[17] \"gemini-3.1-flash-image\"                 \n[18] \"gemini-3.1-flash-image-preview\"         \n[19] \"gemini-3.1-flash-lite\"                  \n[20] \"gemini-3.1-flash-lite-image\"            \n[21] \"gemini-3.1-flash-lite-preview\"          \n[22] \"gemini-3.1-flash-tts-preview\"           \n[23] \"gemini-3.1-pro-preview\"                 \n[24] \"gemini-3.1-pro-preview-customtools\"     \n[25] \"gemini-3.5-flash\"                       \n[26] \"gemini-3.5-flash-lite\"                  \n[27] \"gemini-3.5-transcribe\"                  \n[28] \"gemini-3.6-flash\"                       \n[29] \"gemini-3.7-flash\"                       \n[30] \"gemini-3.8-flash\"                       \n[31] \"gemini-3.8-flash-lite-tts\"              \n[32] \"gemini-3.8-flash-tts\"                   \n[33] \"gemini-4-argon\"                         \n[34] \"gemini-flash-latest\"                    \n[35] \"gemini-flash-lite-latest\"               \n[36] \"gemini-nano-banana-2.1\"                 \n[37] \"gemini-omni-1.1-flash\"                  \n[38] \"gemini-omni-flash-preview\"              \n[39] \"gemini-pro-latest\"                      \n[40] \"gemini-robotics-er-2-preview\"           \n[41] \"gemma-4-26b-a4b-it\"                     \n[42] \"gemma-4-31b-it\"                         \n[43] \"lyria-3-clip-preview\"                   \n[44] \"lyria-3-pro-preview\"                    \n[45] \"lyria-3.5\"                              \n[46] \"nano-banana-pro-preview\""
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#unstructured-chat-1",
+    "href": "Presentations/llm_expectations/index.html#unstructured-chat-1",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Unstructured chat",
+    "text": "Unstructured chat\nSimilarly, we can run open-weight models locally via Ollama:\n\nchat &lt;- chat_ollama()\n\n\n\nellmer::models_ollama()\n\n            id created_at       size      capabilities\n1  MedGemma:4b 2026-10-14 3338942556 completion,vision\n2    gemma3:4b 2026-10-14 3350272403 completion,vision\n3 qwen2.5:0.5b 2026-10-14  397821319  completion,tools\n4    gemma3:1b 2026-10-14  806067407        completion"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#unstructured-chat-2",
+    "href": "Presentations/llm_expectations/index.html#unstructured-chat-2",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Unstructured chat",
+    "text": "Unstructured chat\nI’m going to be using local MedGemma 4B today. You can choose a model you have access to.\n\nlibrary(ellmer)\nlibrary(dplyr)\nlibrary(PhenotypeR)\n\nsystem_prompt &lt;- \"You are an expert clinical phenotyper defining study cohorts in real-world data. Be terse, cautious, and evidence-based.\"\nchat_medgemma &lt;- chat_ollama(\n  model = \"MedGemma:4b\", \n  system_prompt = system_prompt\n)\nchat_medgemma\n\n&lt;Chat Ollama/MedGemma:4b turns=1 input=0 output=0 cost=$0.00&gt;\n── system ──────────────────────────────────────────────────────────────────────\nYou are an expert clinical phenotyper defining study cohorts in real-world data. Be terse, cautious, and evidence-based."
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#unstructured-chat-3",
+    "href": "Presentations/llm_expectations/index.html#unstructured-chat-3",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Unstructured chat",
+    "text": "Unstructured chat\nWe can work with a simple, unstructured, chat.\n\nchat_medgemma$chat(\"Summarise the clinical presentation of hypertension\")\n\nHypertension is characterized by abnormally elevated blood pressure, typically \ndefined as systolic blood pressure ≥140 mmHg or diastolic blood pressure ≥90 \nmmHg.\n\nThe clinical presentation can vary widely, including:\n\n*   **Asymptomatic:** Many individuals with hypertension are unaware of their \ncondition.\n*   **Headaches:** Can be a common symptom, though not always present.\n*   **Dizziness:** Another possible symptom, often associated with orthostatic \nhypotension.\n*   **Vision problems:** Blurred vision or other visual disturbances.\n*   **Chest pain:** May occur, especially during exertion, but is less common.\n*   **Shortness of breath:** Can be a sign of left ventricular failure or \npulmonary hypertension.\n*   **Nosebleeds:** More frequent than in normotensive individuals.\n*   **Neurological symptoms:** Can include cognitive impairment, stroke, or \nseizures.\n\nManagement should focus on lifestyle modifications (diet, exercise, weight \nloss, stress reduction) and pharmacotherapy when indicated, guided by clinical \nguidelines."
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#unstructured-chat-4",
+    "href": "Presentations/llm_expectations/index.html#unstructured-chat-4",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Unstructured chat",
+    "text": "Unstructured chat\n\nchat_medgemma$chat(\"What are the demographics of people presenting with hypertension\")\n\nHypertension is more prevalent in older adults, with incidence increasing with \nage. It's also more common in men than women, although the gender difference \nnarrows with increasing age.\n\nSpecific demographic factors include:\n\n*   **Age:** Incidence rises with age (e.g., 1 in 3 adults in the US are \nestimated to have hypertension).\n*   **Race/Ethnicity:** African Americans have a higher prevalence of \nhypertension compared to Caucasians, potentially due to genetic and \nenvironmental factors.\n*   **Socioeconomic status:** Lower socioeconomic status is associated with \nhigher rates of hypertension, likely due to factors like limited access to \nhealthy food, exercise, and healthcare.\n*   **Geographic location:** Hypertension rates vary geographically, influenced\nby lifestyle and access to healthcare.\n\nIt's important to note that these are general trends, and individual risk \nfactors can vary widely."
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#unstructured-chat-5",
+    "href": "Presentations/llm_expectations/index.html#unstructured-chat-5",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Unstructured chat",
+    "text": "Unstructured chat\nBad idea:\n\nchat_medgemma$chat(\"What clinical codes should I use to identify hypertension in my  OMOP CDM?\")\n\nFor identifying hypertension in the OMOP CDM, a combination of clinical codes \nis recommended for a comprehensive capture.  Use a combination of codes for:\n\n1.  **Hypertension Diagnosis (Dx):**\n    *   `Dx_concept: 20046165` - Hypertension\n    *   Other hypertension diagnosis codes, use `same.concept` to link to the \nprimary code (e.g., `Dx_concept: 20046165 same.concept: 20046451` for stage 1).\n\n2.  **Blood Pressure Measurements (Obs):**\n    *   `Obs_concept: 20017666` - Blood Pressure\n    *   `Obs_concept: 502313002` - Blood Pressure (Systolic) (for systolic \npressure)\n    *   `Obs_concept: 502313003` - Blood Pressure (Diastolic) (for diastolic \npressure)\n\n3.  **Medications for Hypertension (Rx):**\n    *   Use the medications codes, which is available in the Rx5 class.\n\n4. **Additional Codes**\n*   Consider adding other relevant clinical concepts like ICD codes (e.g., \n`ICD9_concept: 404.9` for unspecified hypertension).\n\nKey Considerations:\n\n*   **Specificity:** The more specific the codes, the better.\n*   **Linkage:** Ensure proper linking of diagnoses to blood pressure \nmeasurements and medications.\n*   **Context:**  Always review the context of the clinical codes to ensure \naccurate interpretation.\n*   **Up-to-date List:** Always check for updated or validated concepts for \nhypertension.\n\nProvide your specific clinical codes for further assessment."
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#structured-chat",
+    "href": "Presentations/llm_expectations/index.html#structured-chat",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Structured chat",
+    "text": "Structured chat\nInstead of allowing freedom in output, we can instead force results to be returned in a specific structured format\n\nchat_medgemma$chat_structured(\n  \"Summarise the clinical presentation of hypertension\",\n  type = type_object(\n    typical_symptoms = type_string(\"summarise typical symptoms\"),\n    confirmatory_test = type_string(\"summarise what test result would confirm diagnosis\"),\n    disqualifying_diagnoses = type_string(\"summarise what alternative diagnoses need to be ruled out\")\n  )\n)\n\n$typical_symptoms\n[1] \"Headaches, dizziness, vision problems, chest pain, shortness of breath, nosebleeds, fatigue, cognitive impairment\"\n\n$confirmatory_test\n[1] \"Blood pressure ≥ 140/90 mmHg\"\n\n$disqualifying_diagnoses\n[1] \"No known diagnosis of hypertension. Further review of medical history is required.\""
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#structured-chat-1",
+    "href": "Presentations/llm_expectations/index.html#structured-chat-1",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Structured chat",
+    "text": "Structured chat\nWe can force results to be integers/ numbers\n\nchat_medgemma$chat_structured(\n  \"What are the demographics of people presenting with hypertension\",\n  type = type_object(\n    average_age_at_diagnosis = type_integer(\"What is the average age at diagnosis?\"),\n    proportion_male = type_number(\"What proportion (between 0 and 1) of patients diagnosed with hypertension are male?\")\n  )\n)\n\n$average_age_at_diagnosis\n[1] 60\n\n$proportion_male\n[1] 0.55"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#structured-chat-2",
+    "href": "Presentations/llm_expectations/index.html#structured-chat-2",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Structured chat",
+    "text": "Structured chat\nBut remember, even with the same model you can get different results!\n\nchat_medgemma_new &lt;- chat_ollama(\n  model = \"MedGemma:4b\", \n  system_prompt = system_prompt\n)\nexpected_age &lt;- NULL\nfor (i in 1:10) {\n  cloned_chat &lt;- chat_medgemma_new$clone()\n  res &lt;- cloned_chat$chat_structured(\n    \"Summarise the clinical presentation and typical age at diagnosis of hypertension\",\n    type = type_object(\n      clinical_summary = type_string(\n        description = \"Brief 1-sentence summary of the presentation.\"\n      ),\n      average_age_at_diagnosis = type_integer(\n        description = \"Estimated average age at diagnosis in years (positive integer between 1 and 100).\"\n      )\n    )\n  )\n  \n  expected_age[i] &lt;- as.integer(res$average_age_at_diagnosis)\n  \n  cli::cli_inform(\n    \"Turn {i}: Expected age at clinical presentation of hypertension = {expected_age[i]}\"\n  )\n}\n\nTurn 1: Expected age at clinical presentation of hypertension = 55\nTurn 2: Expected age at clinical presentation of hypertension = 56\nTurn 3: Expected age at clinical presentation of hypertension = 53\nTurn 4: Expected age at clinical presentation of hypertension = 54\nTurn 5: Expected age at clinical presentation of hypertension = 53\nTurn 6: Expected age at clinical presentation of hypertension = 55\nTurn 7: Expected age at clinical presentation of hypertension = 40\nTurn 8: Expected age at clinical presentation of hypertension = 50\nTurn 9: Expected age at clinical presentation of hypertension = 40\nTurn 10: Expected age at clinical presentation of hypertension = 45"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#structured-chat-3",
+    "href": "Presentations/llm_expectations/index.html#structured-chat-3",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Structured chat",
+    "text": "Structured chat\nWe can set temperature to zero and add a seed to get closer to reproducibility. (This generally works better for local models than when working with cloud models.)\n\nchat_medgemma_new &lt;- chat_ollama(\n  model = \"MedGemma:4b\", \n  system_prompt = system_prompt, \n  params = params(temperature = 0, \n                  seed = 42)\n)\nexpected_age &lt;- NULL\nfor (i in 1:10) {\n  cloned_chat &lt;- chat_medgemma_new$clone()\n  res &lt;- cloned_chat$chat_structured(\n    \"Summarise the clinical presentation and typical age at diagnosis of hypertension\",\n    type = type_object(\n      clinical_summary = type_string(\n        description = \"Brief 1-sentence summary of the presentation.\"\n      ),\n      average_age_at_diagnosis = type_integer(\n        description = \"Estimated average age at diagnosis in years (positive integer between 1 and 100).\"\n      )\n    )\n  )\n  \n  expected_age[i] &lt;- as.integer(res$average_age_at_diagnosis)\n  \n  cli::cli_inform(\n    \"Turn {i}: Expected age at clinical presentation of hypertension = {expected_age[i]}\"\n  )\n}\n\nTurn 1: Expected age at clinical presentation of hypertension = 57\nTurn 2: Expected age at clinical presentation of hypertension = 57\nTurn 3: Expected age at clinical presentation of hypertension = 57\nTurn 4: Expected age at clinical presentation of hypertension = 57\nTurn 5: Expected age at clinical presentation of hypertension = 57\nTurn 6: Expected age at clinical presentation of hypertension = 57\nTurn 7: Expected age at clinical presentation of hypertension = 57\nTurn 8: Expected age at clinical presentation of hypertension = 57\nTurn 9: Expected age at clinical presentation of hypertension = 57\nTurn 10: Expected age at clinical presentation of hypertension = 57"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#designed-first-for-open-weight-locally-hosted-models",
+    "href": "Presentations/llm_expectations/index.html#designed-first-for-open-weight-locally-hosted-models",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Designed first for open-weight locally-hosted models",
+    "text": "Designed first for open-weight locally-hosted models\n\nAvailable to all of the OHDSI community\n\n\n\n\nSmoother package development (easy to implement, cheaper, and straightforward to test)\n\n\n\n\n\nEasy to switch to using frontier models (and see if they are worth the extra cost).\n\n\n\n\n\nBut 6+ months behind “state-of-the-art”. (Although allows us to learn from experience of others)"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#human-in-the-loop",
+    "href": "Presentations/llm_expectations/index.html#human-in-the-loop",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Human-in-the-loop",
+    "text": "Human-in-the-loop\n\nDesigned to support the human phenotyper, not automate them away.\n\n\n\n\nAll LLM-generated artefacts can be inspected, reviewed, and edited.\n\n\n\n\n\nMain use of LLM is to provide additional context making it easier to double-check results"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#phenotyping-tasks",
+    "href": "Presentations/llm_expectations/index.html#phenotyping-tasks",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Phenotyping tasks",
+    "text": "Phenotyping tasks\n\n“A problem well stated is a problem half solved.”\nCharles F. Kettering (1876 – 1958)\n\n\n\nNowadays, a problem well stated is a problem 95% solved."
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#phenotyping-tasks-1",
+    "href": "Presentations/llm_expectations/index.html#phenotyping-tasks-1",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Phenotyping tasks",
+    "text": "Phenotyping tasks\nStarted with lower-stakes, human-in-the-loop, phenotyping tasks:\n\nDrafting clinical descriptions\n\n\n\nReviewing codes included that led to cohort inclusion\n\n\n\n\nContextualising PhenotypeR results\n\n\n\nHigher-risk tasks currently out-of-scope:\n\nSearching for codes.\n\n\n\n\nCreating cohort logic.\n\n\n\n\nEnd-to-end phenotyping"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#specification",
+    "href": "Presentations/llm_expectations/index.html#specification",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Specification",
+    "text": "Specification\n\nclinicalDescriptionSpecification() |&gt; \n  listviewer::jsonedit()"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#specification-1",
+    "href": "Presentations/llm_expectations/index.html#specification-1",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Specification",
+    "text": "Specification\n\nshinyClinicalDescriptions(directory = tempdir())"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#drafting-clinical-descriptions-using-an-llm",
+    "href": "Presentations/llm_expectations/index.html#drafting-clinical-descriptions-using-an-llm",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Drafting clinical descriptions using an LLM",
+    "text": "Drafting clinical descriptions using an LLM\n\nhypertension_cd &lt;- draftClinicalDescription(chat_medgemma, \"hypertension\")\n\nGetting clinical description for hypertension using MedGemma:4b\n\nhypertension_cd\n\n$hypertension\n$hypertension$metadata\n$hypertension$metadata$phenotype_name\n[1] \"hypertension\"\n\n$hypertension$metadata$version\n[1] \"1.0\"\n\n$hypertension$metadata$created_by\n[1] \"MedGemma:4b\"\n\n$hypertension$metadata$created_date\n[1] \"2026-10-20\"\n\n$hypertension$metadata$last_edited_by\n[1] \"N/A\"\n\n$hypertension$metadata$last_edited_date\n[1] \"2026-10-20\"\n\n$hypertension$metadata$source_of_information\n[1] \"MedGemma:4b\"\n\n\n$hypertension$clinical_profile\n$hypertension$clinical_profile$introduction_synonyms\n[1] \"Hypertension is often referred to as the 'silent killer' due to its frequent lack of noticeable symptoms in its early stages. Other synonyms include high blood pressure, arterial hypertension, and hypertenstion. It is a major public health concern, defined by persistent elevation of blood pressure within the systemic circulation.\"\n\n$hypertension$clinical_profile$clinical_presentation_and_symptoms\n[1] \"The most common symptom of hypertension is the absence of symptoms, with many individuals unaware they have the condition. Some patients may experience symptoms like severe headaches, nosebleeds, shortness of breath, or confusion, but these are often attributed to other causes. Symptoms related to complications of hypertension may include visual disturbances (blurred vision, double vision), chest pain, dizziness, and fatigue.\"\n\n$hypertension$clinical_profile$assessment_diagnosis\n[1] \"The diagnosis of hypertension is typically made based on repeated blood pressure measurements at different times, as per guidelines. Standard blood pressure measurements are taken with an upper arm sphygmomanometer, usually at the patient's right arm. Blood pressure is measured in millimeters of mercury (mmHg), with readings of 130/80 mmHg or higher considered hypertension. Doctors also evaluate a patient's medical history, conduct a physical examination, and may order additional tests to rule out other conditions contributing to the elevated blood pressure. These tests may include a complete blood count, an electrocardiogram (ECG), and blood tests to assess kidney function and cholesterol levels.\"\n\n$hypertension$clinical_profile$therapeutic_plan_treatment\n[1] \"The initial treatment of hypertension typically involves lifestyle modifications, including dietary changes (reducing sodium intake, increasing potassium intake) and regular physical activity. If lifestyle changes are insufficient, medications are often prescribed. These medications can be grouped into different classes, including diuretics (such as hydrochlorothiazide), ACE inhibitors (such as lisinopril), angiotensin II receptor blockers (such as losartan), beta-blockers (such as atenolol), and calcium channel blockers (such as amlodipine), among others. The choice of medication depends on the individual patient's characteristics and the severity of their hypertension, after which treatment plans can progress. If initial treatment fails to adequately control blood pressure, different medications may be used, or the dose of the current medication may be increased. Some patients may also require more than one medication to achieve their target blood pressure.\"\n\n$hypertension$clinical_profile$complications_prognosis\n[1] \"Uncontrolled hypertension can lead to serious complications, including cardiovascular diseases such as heart attack, stroke, heart failure, peripheral artery disease, and kidney failure. The prognosis for individuals with hypertension depends on the severity of the condition, the presence of other health problems, and adherence to treatment. With appropriate management, the risk of complications can be significantly reduced, although the risk of certain complications (such as heart attack or stroke) remains elevated for longer. For early diagnosis, regular monitoring of blood pressure is important.\"\n\n$hypertension$clinical_profile$disqualifiers\n[1] \"Several conditions can mimic or complicate the diagnosis of hypertension. These include secondary causes of hypertension (such as kidney disease, thyroid disorders, sleep apnea, and hormonal imbalances), as well as certain medications (such as nonsteroidal anti-inflammatory drugs [NSAIDs], decongestants, and oral contraceptives), and illicit drug use (such as cocaine and amphetamines), which can temporarily elevate blood pressure. When assessing a patient's blood pressure, medical professionals must consider these potential causes of falsely elevated readings. The temporality of a patient's symptoms should also be taken into account to rule out conditions such as acute emotional stress or anxiety, which can lead to temporary increases in blood pressure. Anamnesis is key to properly differentiate between true and transient hypertension.\"\n\n$hypertension$clinical_profile$epidemiology\n[1] \"Hypertension prevalence and incidence vary by age, sex, ethnicity, and socioeconomic status. It is more common with advancing age, generally increasing after age 55. It is also more prevalent in males than in females, although the difference decreases with age. Hypertension is also more common in obese or overweight individuals and in those with a family history of high blood pressure. Key modifiable risk factors include sodium intake, physical inactivity, obesity, and excessive alcohol consumption. Non-modifiable risk factors include age, sex, genetics, and race. Common comorbidities related to hypertension include cardiovascular disease (such as stroke, heart attack, heart failure, peripheral artery disease), kidney disease (renal insufficiency, chronic kidney disease), and diabetes mellitus. These comorbidities can also increase the risk of developing hypertension.\""
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#drafting-clinical-descriptions-using-an-llm-1",
+    "href": "Presentations/llm_expectations/index.html#drafting-clinical-descriptions-using-an-llm-1",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Drafting clinical descriptions using an LLM",
+    "text": "Drafting clinical descriptions using an LLM\n\nhypertension_cds &lt;- draftClinicalDescription(chat_medgemma, \n                                            c(\"Primary hypertension\",\n                                              \"Secondary hypertension\",\n                                              \"Resistant hypertension\"))\n\n\nhypertension_cds$`Primary hypertension`$clinical_profile$introduction_synonyms\n\n[1] \"Primary hypertension, essential hypertension, chronic hypertension, or long-standing hypertension. These terms refer to hypertension where no specific underlying pathology can be identified.\"\n\n\n\nhypertension_cds$`Secondary hypertension`$clinical_profile$introduction_synonyms\n\n[1] \"Secondary hypertension is defined as hypertension that is caused by a specific underlying medical condition. Synonym terms include secondary hypertension, secondary cause of hypertension, and hypertension with identifiable etiology.\"\n\n\n\nhypertension_cds$`Resistant hypertension`$clinical_profile$introduction_synonyms\n\n[1] \"Resistant hypertension is a diagnosis that describes persistently elevated blood pressure that remains uncontrolled despite the use of three or more antihypertensive medications, including a diuretic, at optimal doses. Other terms that are used to describe the condition include difficult-to-control hypertension and refractory hypertension.\""
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#extra-context-data-source-descriptions",
+    "href": "Presentations/llm_expectations/index.html#extra-context-data-source-descriptions",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Extra context: data source descriptions",
+    "text": "Extra context: data source descriptions\nData partner descriptions can be used to provide extra context\n\nshinyDataSourceDescriptions(directory = tempdir())"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#reviewing-codes-1",
+    "href": "Presentations/llm_expectations/index.html#reviewing-codes-1",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Reviewing codes",
+    "text": "Reviewing codes\n\nlibrary(omock)\nlibrary(CohortConstructor)\nlibrary(PhenotypeR)\nlibrary(gt)\ncdm &lt;- mockCdmFromDataset(datasetName = \"synpuf-1k_5.4\", source = \"duckdb\")\ncdm$hypertension &lt;- conceptCohort(cdm, \n                                  list(hypertension = c(320128,\n                                                        312648, \n                                                        201826,\n                                                        313217)), \n                                  name = \"hypertension\")"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#reviewing-codes-2",
+    "href": "Presentations/llm_expectations/index.html#reviewing-codes-2",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Reviewing codes",
+    "text": "Reviewing codes\n\ncode_diag &lt;- codelistDiagnostics(cdm$hypertension)\nreviewCohortConcepts(chat_medgemma, code_diag, hypertension_cd) |&gt; \n  select(standard_concept, source_concept_name, score, explanation) |&gt; \n  gt()\n\n\n\n\n\nstandard_concept\nsource_concept_name\nscore\nexplanation\n\n\n\nAtrial fibrillation\nAtrial fibrillation\nexclude\nExcluded because atrial fibrillation is a distinct cardiac arrhythmia, not a synonym for hypertension.\n\n\nBenign essential hypertension\nBenign essential hypertension\ninclude\nIncluded because 'Benign essential hypertension' is a standard clinical term specifically for hypertension.\n\n\nEssential hypertension\nUnspecified essential hypertension\ninclude\nIncluded because 'essential hypertension' is a specific type of hypertension that is not caused by another medical condition.\n\n\nType 2 diabetes mellitus\nDiabetes mellitus without mention of complication, type II or unspecified type, not stated as uncontrolled\nexclude\nExcluded because it is a comorbidity and not a direct clinical synonym for hypertension.\n\n\nType 2 diabetes mellitus\nDiabetes mellitus without mention of complication, type II or unspecified type, uncontrolled\nexclude\nExcluded because it is a comorbidity, not a direct synonym or a clinical manifestation of hypertension."
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#contextualising-phenotyper-results-1",
+    "href": "Presentations/llm_expectations/index.html#contextualising-phenotyper-results-1",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Contextualising PhenotypeR results",
+    "text": "Contextualising PhenotypeR results\n\nhypertension_exp &lt;- getCohortExpectations(chat_medgemma,\n                                         \"hypertension\")\nhypertension_exp\n\n# A tibble: 8 × 5\n  cohort_name  estimate                           value       diagnostics source\n  &lt;chr&gt;        &lt;chr&gt;                              &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt; \n1 hypertension Clinical description               Hypertensi… cohort_cou… MedGe…\n2 hypertension Frequency                          Hypertensi… cohort_cou… MedGe…\n3 hypertension Median age of incident cases       60 to 75 (… cohort_cha… MedGe…\n4 hypertension Percentage male                    45% to 55%… cohort_cha… MedGe…\n5 hypertension Survival at five years             60% to 80%… cohort_sur… MedGe…\n6 hypertension Frequently seen comorbidities      Individual… large_scal… MedGe…\n7 hypertension Frequently seen signs and symptoms Common sig… large_scal… MedGe…\n8 hypertension Frequently seen medications        Individual… large_scal… MedGe…"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#contextualising-phenotyper-results-2",
+    "href": "Presentations/llm_expectations/index.html#contextualising-phenotyper-results-2",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Contextualising PhenotypeR results",
+    "text": "Contextualising PhenotypeR results\n\nhypertension_exp &lt;- getCohortExpectations(chat_medgemma,\n                                         c(\"Primary hypertension\",\n                                           \"Secondary hypertension\",\n                                           \"Resistant hypertension\"))\n\nGetting expectations for Primary hypertension\nGetting expectations for Secondary hypertension\nGetting expectations for Resistant hypertension\n\n\n\nhypertension_exp |&gt; \n  filter(estimate == \"Median age of incident cases\") |&gt; \n  select(cohort_name, value)\n\n# A tibble: 3 × 2\n  cohort_name            value                                                  \n  &lt;chr&gt;                  &lt;chr&gt;                                                  \n1 Primary hypertension   50 to 60 (Individuals typically present with primary h…\n2 Secondary hypertension 50 to 70 (Individuals are typically diagnosed with sec…\n3 Resistant hypertension 600 to 800 (Individuals are typically diagnosed with r…\n\n\n\nhypertension_exp |&gt; \n  filter(estimate == \"Percentage male\") |&gt; \n  select(cohort_name, value)\n\n# A tibble: 3 × 2\n  cohort_name            value                                                  \n  &lt;chr&gt;                  &lt;chr&gt;                                                  \n1 Primary hypertension   50% to 60% (The majority of individuals diagnosed with…\n2 Secondary hypertension 50% to 60% (Men are slightly more likely than women to…\n3 Resistant hypertension 50% to 70% (Men are slightly more likely to be diagnos…"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#benchmarking-llm-performance",
+    "href": "Presentations/llm_expectations/index.html#benchmarking-llm-performance",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Benchmarking LLM performance",
+    "text": "Benchmarking LLM performance\nWe can use the vitals package to test how closely LLM output matches known clinical benchmarks.\n\nlibrary(vitals)\nvitals::vitals_log_dir_set(tempdir())\n\nage_benchmark &lt;- tibble(\n  input = \"Summarise the clinical presentation and typical age at diagnosis of hypertension\",\n  target = \"50\"\n)\n\nscore_within_5_years &lt;- function(samples) {\n  est_age &lt;- purrr::map_int(samples$solver_metadata, \"average_age_at_diagnosis\")\n  target_age &lt;- as.integer(samples$target)\n  \n  list(\n    score = factor(\n      ifelse(abs(est_age - target_age) &lt;= 5, \"Pass\", \"Fail\"),\n      levels = c(\"Fail\", \"Pass\"), \n      ordered = TRUE\n    )\n  )\n}\n\nchat_medgemma_fresh &lt;- chat_medgemma$clone()\nchat_medgemma_fresh$set_turns(list())\nchat_medgemma_fresh$set_system_prompt(system_prompt)\n\nage_task &lt;- Task$new(\n  dataset = age_benchmark,\n  solver = generate_structured(\n    solver_chat = chat_medgemma_fresh,\n    type = type_object(\n      clinical_summary = type_string(\n        description = \"Brief 1-sentence summary of the presentation.\"\n      ),\n      average_age_at_diagnosis = type_integer(\"Estimated average age in years\")\n    )\n  ),\n  scorer = score_within_5_years\n)\n\nage_task$eval(epochs = 10, view = FALSE)\n\nℹ Solving\n\n\n[working] (0 + 0) -&gt; 9 -&gt; 1 | ■■■■                              10%\n\n\n[working] (0 + 0) -&gt; 8 -&gt; 2 | ■■■■■■■                           20%\n\n\n[working] (0 + 0) -&gt; 7 -&gt; 3 | ■■■■■■■■■■                        30%\n\n\n[working] (0 + 0) -&gt; 6 -&gt; 4 | ■■■■■■■■■■■■■                     40%\n\n\n[working] (0 + 0) -&gt; 5 -&gt; 5 | ■■■■■■■■■■■■■■■■                  50%\n\n\n[working] (0 + 0) -&gt; 4 -&gt; 6 | ■■■■■■■■■■■■■■■■■■■               60%\n\n\n[working] (0 + 0) -&gt; 3 -&gt; 7 | ■■■■■■■■■■■■■■■■■■■■■■            70%\n\n\n[working] (0 + 0) -&gt; 2 -&gt; 8 | ■■■■■■■■■■■■■■■■■■■■■■■■■         80%\n\n\n[working] (0 + 0) -&gt; 0 -&gt; 10 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■  100%\n\n\nℹ Solving\n✔ Solving [38.3s]\n\nℹ Scoring\n✔ Scoring [392ms]"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#benchmarking-llm-performance-1",
+    "href": "Presentations/llm_expectations/index.html#benchmarking-llm-performance-1",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Benchmarking LLM performance",
+    "text": "Benchmarking LLM performance\n\nage_task$get_samples() |&gt; \n  tidyr::unnest(solver_metadata) |&gt; \n  dplyr::select(id, epoch, average_age_at_diagnosis, target, score)\n\n# A tibble: 10 × 5\n      id epoch average_age_at_diagnosis target score\n   &lt;int&gt; &lt;int&gt;                    &lt;int&gt; &lt;chr&gt;  &lt;ord&gt;\n 1     1     1                       45 50     Pass \n 2     1     2                       50 50     Pass \n 3     1     3                       55 50     Pass \n 4     1     4                       50 50     Pass \n 5     1     5                       53 50     Pass \n 6     1     6                       35 50     Fail \n 7     1     7                       55 50     Pass \n 8     1     8                       55 50     Pass \n 9     1     9                       56 50     Fail \n10     1    10                       50 50     Pass"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#tool-calling-1",
+    "href": "Presentations/llm_expectations/index.html#tool-calling-1",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Tool calling",
+    "text": "Tool calling\nWe can incorporate tool calling. But note we can’t use them directly with structured chat. We first have to use chat for the tool to be run, and then extract out into structured chat.\n\nlibrary(ellmer)\nlibrary(httr2)\nchat &lt;- chat_google_gemini(model = \"gemini-4-argon\")\n\nsearch_hecate_standard_concepts &lt;- function(query) {\n  req &lt;- request(\"https://hecate.pantheon-hds.com/api/search_standard\") |&gt;\n    req_url_query(q = query)\n  resp &lt;- req_perform(req)\n  resp_body_string(resp)\n}\n\nhecate_tool &lt;- tool(\n  search_hecate_standard_concepts,\n  name = \"search_hecate\",\n  description = \"Search the OHDSI Hecate semantic search engine for standard concepts\",\n  arguments = list(\n    query = type_string(\n      \"The medical term or condition related to my search.\",\n      required = TRUE\n    )\n  )\n)\n\nchat$register_tool(hecate_tool)\n\nchat$chat(\n  \"Use the Hecate tool to search for 'hypertension' and list all returned concepts.\"\n)\n\n◯ [tool call] search_hecate(query = \"hypertension\")\n\n\n● #&gt; [{\"concept_name\":\"Hypertensive disorder\",\"concept_name_lower\":\"hypertensi…\n\n\nHere are the standard concepts returned by the Hecate tool for the search term \n**'hypertension'**:\n\n1. **Hypertensive disorder** (Score: 1.0)\n   * **Concept ID:** 316866 | **Domain:** Condition | **Vocabulary:** SNOMED | \n**Class:** Disorder | **Code:** 38341003\n\n2. **Hypertension** (Score: 1.0)\n   * **Concept ID:** 45876622 | **Domain:** Meas Value | **Vocabulary:** LOINC \n| **Class:** Answer | **Code:** LA7444-8\n\n3. **Ever told by doctor or nurse that you have high blood pressure** (Score: \n0.874)\n   * **Concept ID:** 40761396 | **Domain:** Observation | **Vocabulary:** LOINC\n| **Class:** Clinical Observation | **Code:** 58295-7\n\n4. **Hypertension (high blood pressure)** (Score: 0.854)\n   * **Concept ID:** 1989868 | **Domain:** Meas Value | **Vocabulary:** LOINC |\n**Class:** Answer | **Code:** LA32904-7\n\n5. **Hypertension or high blood pressure** (Score: 0.814)\n   * **Concept ID:** 45879470 | **Domain:** Meas Value | **Vocabulary:** LOINC \n| **Class:** Answer | **Code:** LA15810-7\n\n6. **History of event** (Score: 0.779)\n   * **Concept ID:** 1340204 | **Domain:** Observation | **Vocabulary:** OMOP \nExtension | **Class:** Context-dependent | **Code:** OMOP5165859\n\n7. **Essential hypertension** (Score: 0.736)\n   * **Concept ID:** 320128 | **Domain:** Condition | **Vocabulary:** SNOMED | \n**Class:** Disorder | **Code:** 59621000\n\n8. **High blood pressure** (Score: 0.730)\n   * **Concept ID:** 35819550 | **Domain:** Observation | **Vocabulary:** UK \nBiobank | **Class:** Answer | **Code:** 1010-8\n   * **Concept ID:** 35819549 | **Domain:** Observation | **Vocabulary:** UK \nBiobank | **Class:** Answer | **Code:** 100605-4\n   * **Concept ID:** 45883495 | **Domain:** Meas Value | **Vocabulary:** LOINC \n| **Class:** Answer | **Code:** LA14293-7\n\n9. **Blood pressure above reference range** (Score: 0.730)\n   * **Concept ID:** 4086587 | **Domain:** Condition | **Vocabulary:** SNOMED |\n**Class:** Clinical Finding | **Code:** 24184005\n\n10. **Hypertension risk level** (Score: 0.729)\n    * **Concept ID:** 4149389 | **Domain:** Observation | **Vocabulary:** \nSNOMED | **Class:** Observable Entity | **Code:** 268607006\n\n11. **Medical-hypertension** (Score: 0.727)\n    * **Concept ID:** 45881060 | **Domain:** Meas Value | **Vocabulary:** LOINC\n| **Class:** Answer | **Code:** LA17551-5\n\n12. **Low blood pressure** (Score: 0.727)\n    * **Concept ID:** 317002 | **Domain:** Condition | **Vocabulary:** SNOMED |\n**Class:** Disorder | **Code:** 45007003\n\n13. **Hypotension** (Score: 0.727)\n    * **Concept ID:** 45876625 | **Domain:** Meas Value | **Vocabulary:** LOINC\n| **Class:** Answer | **Code:** LA7443-0\n\n14. **Hypertension service** (Score: 0.725)\n    * **Concept ID:** 1243883 | **Domain:** Observation | **Vocabulary:** \nSNOMED | **Class:** Qualifier Value | **Code:** 1874591000000103\n\n15. **Severe hypertension (NICE - National Institute for Health and Clinical \nExcellence 2011)** (Score: 0.720)\n    * **Concept ID:** 44809027 | **Domain:** Condition | **Vocabulary:** SNOMED\n| **Class:** Disorder | **Code:** 843841000000109\n\n16. **High BP** (Score: 0.719)\n    * **Concept ID:** 35826191 | **Domain:** Observation | **Vocabulary:** UK \nBiobank | **Class:** Value | **Code:** 47-504\n    * **Concept ID:** 35826193 | **Domain:** Observation | **Vocabulary:** UK \nBiobank | **Class:** Value | **Code:** 60-428\n    * **Concept ID:** 35826192 | **Domain:** Observation | **Vocabulary:** UK \nBiobank | **Class:** Value | **Code:** 59-428\n\n17. **FH: Hypertension** (Score: 0.718)\n    * **Concept ID:** 4050816 | **Domain:** Observation | **Vocabulary:** \nSNOMED | **Class:** Context-dependent | **Code:** 160357008\n\n18. **Portal hypertension** (Score: 0.717)\n    * **Concept ID:** 192680 | **Domain:** Condition | **Vocabulary:** SNOMED |\n**Class:** Disorder | **Code:** 34742003\n\n19. **Diastolic hypertension** (Score: 0.715)\n    * **Concept ID:** 4167358 | **Domain:** Condition | **Vocabulary:** SNOMED \n| **Class:** Disorder | **Code:** 48146000\n\n20. **Systolic hypertension** (Score: 0.710)\n    * **Concept ID:** 4209293 | **Domain:** Condition | **Vocabulary:** SNOMED \n| **Class:** Disorder | **Code:** 56218007\n\n21. **Chronic disease** (Score: 0.705)\n    * **Concept ID:** 443783 | **Domain:** Condition | **Vocabulary:** SNOMED |\n**Class:** Disorder | **Code:** 27624003"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#tool-calling-2",
+    "href": "Presentations/llm_expectations/index.html#tool-calling-2",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Tool calling",
+    "text": "Tool calling\n\nstructured_response &lt;- chat$chat_structured(\n  \"Extract and return ALL concept IDs and concept names found in the Hecate tool's response. Do not skip or omit any.\",\n  type = type_array(\n    items = type_object(\n      concept_id = type_string(\"The standard OHDSI concept ID\"),\n      concept_name = type_string(\"The standard OHDSI concept name\")\n    )\n  )\n)\n\nstructured_response\n\n# A tibble: 25 × 2\n   concept_id concept_name                                                  \n   &lt;chr&gt;      &lt;chr&gt;                                                         \n 1 316866     Hypertensive disorder                                         \n 2 45876622   Hypertension                                                  \n 3 40761396   Ever told by doctor or nurse that you have high blood pressure\n 4 1989868    Hypertension (high blood pressure)                            \n 5 45879470   Hypertension or high blood pressure                           \n 6 1340204    History of event                                              \n 7 320128     Essential hypertension                                        \n 8 35819550   High blood pressure                                           \n 9 35819549   High blood pressure                                           \n10 45883495   High blood pressure                                           \n# ℹ 15 more rows"
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#grounding-expectations-with-a-trusted-source",
+    "href": "Presentations/llm_expectations/index.html#grounding-expectations-with-a-trusted-source",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Grounding expectations with a trusted source",
+    "text": "Grounding expectations with a trusted source\nWe can download a clinical guideline (e.g., NICE NG136: Hypertension in adults) and extract its text so models are grounded in authoritative up-to-date guidance\n\nlibrary(pdftools)\n\nUsing poppler version 25.09.1\n\nnice_url &lt;- paste0(\n  \"https://www.nice.org.uk/guidance/ng136/resources/\",\n  \"hypertension-in-adults-diagnosis-and-management-pdf-66141722710213\"\n)\nnice_pages &lt;- pdf_text(nice_url)\nnice_context &lt;- paste(nice_pages[5:12], collapse = \"\\n\")\n\nchat_nice &lt;- chat$clone()$set_turns(list())$set_system_prompt(paste(\n    system_prompt,\n    \"\\n\\nBase your answers on this NICE NG136 guideline excerpt:\\n\",\n    nice_context\n  ))\n\nchat$chat(\n  \"Summarise approach to diagnosing for hypertension according to NICE.\"\n)\n\nAccording to the **National Institute for Health and Care Excellence (NICE) \nguideline NG136** (*Hypertension in adults: diagnosis and management*), the \ndiagnosis of hypertension is a two-step process involving initial **clinic \nblood pressure (BP)** measurements followed by confirmatory **out-of-office \nmonitoring** (to rule out \"white-coat\" hypertension).\n\nHere is a summary of the NICE approach to diagnosing hypertension:\n\n---\n\n### 1. Initial Clinic Blood Pressure Measurement\n* **Check the pulse first:** Palpate the radial or brachial pulse before \nmeasuring BP. If pulse irregularity is present (suggesting atrial \nfibrillation), measure BP manually using direct auscultation over the brachial \nartery, as automated devices may be inaccurate.\n* **Both arms:** When considering a diagnosis, measure BP in both arms. If the \ndifference in readings between arms is more than **15 mmHg**, repeat the \nmeasurements. If the difference remains more than 15 mmHg on the second \nmeasurement, measure subsequent blood pressures in the arm with the higher \nreading.\n* **Multiple readings during the visit:** If the first clinic BP reading is **≥\n140/90 mmHg**, take a second measurement during the consultation. If the second\nmeasurement is substantially different from the first, take a third \nmeasurement. **Record the lower of the last two measurements** as the clinic \nblood pressure.\n\n---\n\n### 2. Action Based on Clinic BP Thresholds\n\n#### **A. Clinic BP &lt; 140/90 mmHg**\n* **Normal:** The person does not have hypertension. Recheck BP at least every \n5 years (or more frequently if the clinic BP is close to 140/90 mmHg).\n\n#### **B. Clinic BP between 140/90 mmHg and 179/119 mmHg**\n* **Suspected Hypertension:** Do not diagnose hypertension on a single clinic \nreading.\n* **Offer Ambulatory Blood Pressure Monitoring (ABPM):** This is the \ngold-standard method to confirm a diagnosis.\n* **Alternative – Home Blood Pressure Monitoring (HBPM):** If the person is \nunable to tolerate or declines ABPM, offer HBPM as a suitable alternative to \nconfirm the diagnosis.\n* **While waiting for confirmation:** Carry out investigations for **target \norgan damage** and conduct a formal **cardiovascular risk assessment** (e.g., \nQRISK).\n\n#### **C. Clinic BP ≥ 180/120 mmHg (Severe Hypertension)**\nRequires immediate clinical assessment before deciding on out-of-office \nmonitoring:\n* **Refer for same-day specialist investigation** if the patient has:\n  * Signs of **accelerated/malignant hypertension** (e.g., retinal haemorrhages\nor papilloedema).\n  * **Life-threatening symptoms** (e.g., new confusion, chest pain, signs of \nheart failure, or acute kidney injury).\n  * Suspected **phaeochromocytoma** (e.g., labile BP, postural hypotension, \nheadache, palpitations, pallor, diaphoresis).\n* **If there are NO symptoms or signs above:** Carry out investigations for \ntarget organ damage as soon as possible:\n  * **If target organ damage is identified:** Consider starting \nantihypertensive drug treatment immediately, without waiting for the results of\nABPM or HBPM.\n  * **If no target organ damage is identified:** Repeat clinic BP measurement \nwithin 7 days, or confirm diagnosis using ABPM/HBPM.\n\n---\n\n### 3. Protocol for Out-of-Office Confirmation (ABPM vs. HBPM)\n* **ABPM:** Ensure that at least two measurements per hour are taken during the\nperson’s usual waking hours (for example, between 08:00 and 22:00). Use the \naverage value of **at least 14 measurements** taken during usual waking hours \nto confirm the diagnosis.\n* **HBPM:** For each recording, two consecutive measurements should be taken \n(at least 1 minute apart) with the person seated. BP should be recorded twice \ndaily (ideally morning and evening) for at least **4 days, and ideally for 7 \ndays**. Discard the measurements taken on the first day and use the average \nvalue of all the remaining measurements to confirm the diagnosis.\n\n---\n\n### 4. Diagnostic Criteria (Staging of Hypertension)\nHypertension is formally diagnosed and staged using both the clinic reading and\nthe subsequent ABPM/HBPM daytime average:\n\n| Stage | Clinic Blood Pressure | **AND** ABPM / HBPM Daytime Average |\n| :--- | :--- | :--- |\n| **Stage 1 Hypertension** | 140/90 mmHg to 159/99 mmHg | **135/85 mmHg to \n149/94 mmHg** |\n| **Stage 2 Hypertension** | 160/100 mmHg to 179/119 mmHg | **≥ 150/95 mmHg** |\n| **Stage 3 (Severe) Hypertension** | Systolic ≥ 180 mmHg **or** Diastolic ≥ \n120 mmHg | *(Confirmed clinically or via repeat testing)* |\n\n*(Note: If clinic BP is ≥ 140/90 mmHg, but the ABPM/HBPM average is &lt; 135/85 \nmmHg, this is classified as **White-Coat Hypertension**).*\n\n---\n\n### 5. Concurrent Investigations (Target Organ Damage & CV Risk)\nFor all patients undergoing assessment for hypertension, NICE recommends \nperforming the following tests to assess for target organ damage, secondary \ncauses, and overall cardiovascular (CV) risk:\n1. **Urine test:** Send a urine sample to estimate the albumin:creatinine ratio\n(ACR) and test for haematuria using a reagent strip.\n2. **Blood tests:** Measure HbA1c, electrolytes, creatinine, estimated \nglomerular filtration rate (eGFR), total cholesterol, and HDL cholesterol.\n3. **Fundoscopy:** Examine the fundi for the presence of hypertensive \nretinopathy.\n4. **Cardiac assessment:** Arrange a 12-lead ECG (to check for left ventricular\nhypertrophy or arrhythmias).\n5. **CV Risk Assessment:** Use an established risk tool (such as QRISK) to \ncalculate the 10-year cardiovascular risk."
+  },
+  {
+    "objectID": "Presentations/llm_expectations/index.html#grounding-with-ragnar-embed_google_gemini",
+    "href": "Presentations/llm_expectations/index.html#grounding-with-ragnar-embed_google_gemini",
+    "title": "Using LLMs with PhenotypeR",
+    "section": "Grounding with ragnar & embed_google_gemini()\n",
+    "text": "Grounding with ragnar & embed_google_gemini()\n\nInstead of pasting all the NICE guideline into the prompt, ragnar chunks the document and uses embed_google_gemini() to index each chunk as a semantic vector in DuckDB:\n\nlibrary(ragnar)\nlibrary(pdftools)\nchunks &lt;- pdf_text(nice_url) |&gt; \n  paste(collapse = \"\\n\") |&gt; \n  MarkdownDocument(origin = nice_url) |&gt; \n  markdown_chunk()\nstore &lt;- ragnar_store_create(\n  location = \":memory:\",\n  embed = embed_google_gemini()\n)\nragnar_store_insert(store, chunks)\nragnar_store_build_index(store)\n\n\nchat_nice_rag &lt;- chat$clone()$set_turns(list())$set_system_prompt(\"You are an expert clinical phenotyper. Answer strictly using retrieved NICE NG136 excerpts.\")\nragnar_register_tool_retrieve(\n  chat = chat_nice_rag,\n  store = store,\n  store_description = \"NICE NG136 hypertension guideline chunks\"\n)\nchat_nice_rag$chat(\n  \"According to NICE NG136, what blood pressure thresholds define Stage 1 vs Stage 2 hypertension?\"\n)\n\n◯ [tool call] search_store_001(text = c(\"What are the blood pressure thresholds\nthat define stage 1 and stage 2 hypertension?\", ...)\n\n\n● #&gt; [\n\n\n  #&gt; {\n\n\n  #&gt; \"origin\":\n\"https://www.nice.org.uk/guidance/ng136/resources/hypertension-in-adults-diagnosis-and-management-pdf-66141722710213\",\n\n\n  #&gt; \"doc_id\": 1,\n\n\n  #&gt; \"chunk_id\": 16,\n\n\n  #&gt; …\n\n\nAccording to the **Terms used in this guideline** section of NICE NG136, the \nblood pressure thresholds defining Stage 1 and Stage 2 hypertension are:\n\n### **Stage 1 Hypertension**\n* **Clinic blood pressure:** Ranging from **140/90 mmHg to 159/99 mmHg** \n* **AND subsequent ABPM daytime average or HBPM average blood pressure:** \nRanging from **135/85 mmHg to 149/94 mmHg**\n\n---\n\n### **Stage 2 Hypertension**\n* **Clinic blood pressure:** **160/100 mmHg or higher**, but **less than \n180/120 mmHg** \n* **AND subsequent ABPM daytime average or HBPM average blood pressure:** \n**150/95 mmHg or higher**\n\n*(Note: A clinic systolic blood pressure of 180 mmHg or higher or a clinic \ndiastolic blood pressure of 120 mmHg or higher is defined as **Stage 3 or \nsevere hypertension**).*"
+  }
+]
