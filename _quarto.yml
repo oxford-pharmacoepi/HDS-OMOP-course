@@ -5,14 +5,14 @@ project:
 date: today
 
 website:
-  title: "OHDSI-US 2026 Phenotyping"
+  title: "HDS-OMOP-course"
   open-graph: true # https://quarto.org/docs/websites/website-tools.html#open-graph
-  repo-url: https://github.com/oxford-pharmacoepi/OHDSI-US-2026-Phenotyping
+  repo-url: https://github.com/oxford-pharmacoepi/HDS-OMOP-course
   repo-actions: [issue]
   page-footer:
     center: "Rendered on {{< meta date >}}"
     right:
-      - href: https://github.com/oxford-pharmacoepi/OHDSI-US-2026-Phenotyping
+      - href: https://github.com/oxford-pharmacoepi/HDS-OMOP-course
         icon: github
 
 format:
