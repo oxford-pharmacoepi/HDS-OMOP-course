@@ -14,6 +14,8 @@ website:
     right:
       - href: https://github.com/oxford-pharmacoepi/HDS-OMOP-course
         icon: github
+      - href: https://www.youtube.com/@oxinfer
+        icon: youtube
 
 format:
   html:
