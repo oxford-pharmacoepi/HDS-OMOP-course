@@ -121,6 +121,8 @@ page <- c(
   "Choose your GitHub username to see the reviewer information and download your codelist.",
   "",
   "::: {.panel-tabset}",
+  "",
+  "## &nbsp;",
   ""
 )
 
