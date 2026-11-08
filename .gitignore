@@ -11,3 +11,4 @@
 
 # Generated codelist folders are recreated during the Quarto pre-render.
 /Downloads/*/
+/Downloads/index.qmd
