@@ -18,9 +18,12 @@
 
 If you don't already have them, install R and RStudio. Open up RStudio where we'll do work.
 
-w)  Install R packages used throughout
+2)  Install R packages used throughout
 
 ```{r, eval=FALSE}
+# install pack if not installed
+install.packages("pak")
+
 options(repos = c(
   duckdb = "https://duckdb.r-universe.dev",
   CRAN = "https://cloud.r-project.org"
@@ -37,6 +40,3 @@ packages <- c(
 )
 pak::pkg_install(packages, ask = FALSE)
 ```
-
-
-
