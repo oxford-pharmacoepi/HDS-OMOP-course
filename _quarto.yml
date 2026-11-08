@@ -1,6 +1,7 @@
 project:
   type: website
   output-dir: _site
+  pre-render: Rscript Downloads/generateFiles.R
 
 date: today
 
@@ -9,6 +10,10 @@ website:
   open-graph: true # https://quarto.org/docs/websites/website-tools.html#open-graph
   repo-url: https://github.com/oxford-pharmacoepi/HDS-OMOP-course
   repo-actions: [issue]
+  navbar:
+    right:
+      - text: "Downloads"
+        href: Downloads/index.qmd
   page-footer:
     center: "Rendered on {{< meta date >}}"
     right:

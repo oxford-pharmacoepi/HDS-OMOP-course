@@ -1,0 +1,93 @@
+---
+title: "Welcome"
+format:
+  revealjs: 
+    theme: [simple, ../../styleSS25.scss]
+    incremental: true   
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    margin: 0.07
+    code-link: true
+    code-line-numbers: false
+    height: 900
+    width: 1600
+    footer: |
+      <div style="position: relative; width: 100%;">
+        <div style="text-align: center; font-weight: 500;">OHDSI-US 2026 PhenotypeR Workshop</div>
+        <div style="position: fixed; top: 20px; right: 20px;"><a href="../../index.html" style="text-decoration: none;">⬅ Back to Presentations</a></div>
+      </div>
+execute:
+  echo: true
+  eval: true
+editor: visual
+---
+
+## Welcome
+
+## Getting ready
+
+1. Install [R](https://cran.r-project.org)
+
+2. Install [RStudio](https://posit.co/products/open-source/rstudio)
+
+3. Open RStudio
+
+4. Install **pak**
+
+```{r, eval=FALSE}
+install.packages("pak")
+```
+
+5. Install **OmopTrainer**
+
+```{r, eval=FALSE}
+pak::pkg_install("oxford-pharmacoepi/OmopTrainer")
+```
+
+6. Check your setup
+
+```{r, eval=FALSE}
+OmopTrainer::validateSetup()
+```
+
+## Are you ready?
+
+```{r, eval=FALSE}
+OmopTrainer::validateSetup()
+```
+
+## What to expect this week
+
+The goal of this week is:
+
+- To introduce R, RStudio, GitHub, Quarto, Shiny Apps and basic functionality (This part is unrelated to OMOP CDM, but these are the tools that we use in the team to communicate and work collaboratively).
+
+- To introduce the OMOP CDM (briefly)
+
+- To learn how to create codelists, review them, identify the individuals that have them and validate the codelists against synthetic data.
+
+- To learn how to characterise individuals and extract their main characteristics.
+
+## Schedule
+
+| Day | Presentation | Link |
+|-----------------------|:------------------------|:------------------------|
+| Day 1: Tools for conducting studies: R | **R introduction** | [View Slides](../R_introduction/index.qmd) |
+| Day 1: Tools for conducting studies: GitHub | **GitHub training** | [View Slides](../GitHub/index.qmd) |
+| Day 1: Tools for conducting studies | **OmopStudyBuilder and OmopViewer** | [View Slides](../osb_ov/index.qmd) |
+| Day 2: OMOP phenotyping using R | **CodelistGenerator** | [View Slides](../CodelistGenerator/index.qmd) |
+| Day 2: OMOP phenotyping using R | **CohortConstructor** | [View Slides](../CohortConstructor/index.qmd) |
+| Day 2: OMOP phenotyping using R | **PhenotypeR** | [View Slides](../PhenotypeR/index.qmd) |
+| Day 3: Characterising a study population | **PatientProfiles** | [View Slides](../PatientProfiles/index.qmd) |
+| Day 3: Characterising a study population | **CohortCharacteristics** | [View Slides](../CohortCharacteristics/index.qmd) |
+
+## How we are going to work
+
+- All the material for this week can be seen in this website: <https://oxford-pharmacoepi.github.io/HDS-OMOP-course/>
+
+- The chunks of code that you see you will be able to copy them (show example).
+
+- The presentation will consist on two parts:
+  -  *Presentation* presentations will be given, you can follow copying and pasting the code to check that what we are presenting makes sense and works.
+  - *YOUR TURN* time for coding you will be given simple instructions and you will have to figure it out :)

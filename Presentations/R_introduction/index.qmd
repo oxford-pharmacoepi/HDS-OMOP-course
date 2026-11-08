@@ -1,0 +1,213 @@
+---
+title: "Introduction to R"
+format:
+  revealjs: 
+    theme: [simple, ../../styleSS25.scss]
+    incremental: true   
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    margin: 0.07
+    code-link: true
+    code-line-numbers: false
+    height: 900
+    width: 1600
+    footer: |
+      <div style="position: relative; width: 100%;">
+        <div style="text-align: center; font-weight: 500;">OHDSI-US 2026 PhenotypeR Workshop</div>
+        <div style="position: fixed; top: 20px; right: 20px;"><a href="../../index.html" style="text-decoration: none;">⬅ Back to Presentations</a></div>
+      </div>
+execute:
+  echo: true
+  eval: true
+editor: visual
+---
+
+## R programming language
+
+R first appeared in 1993 and is a programming language designed for working with data and statistics.
+
+R is usually interpreted: you write commands and R runs them directly, without a separate compile step.
+
+For example, ask R to do a calculation:
+
+```{r}
+2 + 2
+```
+
+## Functions in R
+
+You can define functions in R like:
+
+```{r}
+sumFun <- function(a, b) {
+  a + b
+}
+```
+
+And use them later as:
+
+```{r}
+sumFun(5, 6)
+```
+
+## Packages in R
+
+Packages are collections of functions and other tools that people develop and share for you to use.
+
+Many R packages are distributed through **CRAN** (the Comprehensive R Archive Network), a collection of servers that hosts R packages and checks submitted updates. Package authors maintain their packages; CRAN helps make them available to the R community.
+
+. . .
+
+To install a package you can just type:
+
+```{r, eval=FALSE}
+install.packages("tibble")
+# or, if you have pak installed
+pak::pkg_install("tibble")
+```
+
+. . .
+
+You can either call a function using `::`:
+
+```{r}
+tibble::tibble(a = 1)
+```
+
+. . .
+
+Or using `library()`, which makes the package's functions available:
+
+```{r}
+library(tibble)
+tibble(a = 1)
+```
+
+. . . 
+
+In general we will use the latter option (**library()**).
+
+## The pipe operator `|>`
+
+The pipe operator was introduced in R 4.1 and it is widely used in R. It concatenates the use of two functions, for example:
+
+```{r}
+library(dplyr)
+
+x <- tibble(a = 1)
+x
+x <- mutate(x, b = 1)
+x
+```
+
+. . .
+
+You can simplify this code with:
+
+```{r}
+x <- tibble(a = 1) |>
+  mutate(b = 1)
+```
+
+## Meet the tidyverse
+
+The **tidyverse** is a collection of R packages that work well together for common data tasks.
+
+- `dplyr`: wrangle data (filter, select, create columns, summarise)
+- `ggplot2`: make plots
+- `readr` and `tidyr`: read and reshape data
+- plus packages for strings, factors, iteration, and more
+
+## Some examples: a consistent way to work with data
+
+Tidyverse functions use a consistent style: give a data frame to a function, and get a data frame back.
+
+```{r}
+library(tibble)
+
+people <- tibble(
+  name = c("Alex", "Sam", "Jo"),
+  age = c(24, 31, 19),
+  group = c("A", "B", "A")
+)
+
+people
+```
+
+`tibble()` is the tidyverse's friendly take on a data frame. It prints a quick preview and keeps the data in a familiar rectangular format.
+
+## Read, transform, and summarise
+
+Use `|>` to read a data workflow from top to bottom. Here we keep adults, add a column, and count people in each group:
+
+```{r}
+library(dplyr)
+people |>
+  filter(age >= 18) |>
+  mutate(age_next_year = age + 1) |>
+  count(group)
+```
+
+. . .
+
+Some handy `dplyr` verbs:
+
+- `filter()` keeps rows
+- `select()` keeps columns
+- `mutate()` creates or changes columns
+- `summarise()` calculates a summary
+- `arrange()` sorts rows
+
+## What is an R Project?
+
+An R Project is a folder for one piece of work, with a small `.Rproj` file that lets RStudio recognise and reopen it.
+
+- Keep your scripts, notes, data, and results together
+- RStudio opens the project folder as the working directory
+- Use paths relative to the project, so your code is easier to share and rerun
+
+Think of it as a tidy home for an analysis. One project per workshop or analysis is a good place to start.
+
+## A simple project layout
+
+There is no single right layout. Start small and add folders when you need them:
+
+```text
+my-analysis/
+├── my-analysis.Rproj
+├── R/                 # scripts and functions
+├── data/              # input data (keep originals unchanged)
+└── Results/           # tables, plots, and other outputs
+```
+
+RStudio creates the `.Rproj` file for you. You create the folders that make sense for your work.
+
+## Let's create your first R Project
+
+In RStudio:
+
+1. Choose **File → New Project…**
+2. Choose **New Directory**, then **New Project**
+3. Give it a name, for example `r-introduction`, and choose where to save it
+4. Select **Create Project**
+
+You should now see the project name in the top-right of RStudio. Save this presentation's practice script inside the project, then make folders such as `data` and `Results` if you need them.
+
+
+## Find the project root with `here`
+
+```{r}
+library(here)
+here()
+```
+
+. . .
+
+```{r, eval=FALSE}
+dir.create(here("Results"))
+```
+
+That creates a `Results` folder in the project root. You can use the same idea to read or save files inside the project.
+
+- **We should always work within an R Project for each analysis.**
