@@ -1,0 +1,170 @@
+---
+title: "Introduction to Quarto"
+format:
+  revealjs: 
+    theme: [simple, ../../styleSS25.scss]
+    incremental: true   
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    margin: 0.07
+    code-link: true
+    code-line-numbers: false
+    height: 900
+    width: 1600
+    footer: |
+      <div style="position: relative; width: 100%;">
+        <div style="text-align: center; font-weight: 500;">OHDSI-US 2026 PhenotypeR Workshop</div>
+        <div style="position: fixed; top: 20px; right: 20px;"><a href="../../index.html" style="text-decoration: none;">⬅ Back to Presentations</a></div>
+      </div>
+execute:
+  echo: true
+  eval: true
+editor: visual
+---
+
+## Quarto
+
+minimal explanation of what is quarto (~2 slides)
+
+## How to create a quarto document
+
+Let's go to your R project that we created before. Open it.
+
++ Create new file -> Quarto document
+
+## Create quarto document
+
+![](Figures/new_quarto.png){fig-align="center"}
+
+## Create quarto document
+
+Let's start chosing a title and setting the output to html.
+
+- Render it
+
+- Do the same for PDF, repeat for word.
+
+- Explore the differences.
+
+- From now on we will work using the word option.
+
+## Quarto parts
+
+Quarto is divided into two parts:
+
+- metadata/yaml part: is the block of text between `---` on the top.
+
+- rendarable part: is the part that contains the content that will be rendered into text.
+
+## Write some text
+
+Start writing some text to the quarto, use `#` for headings and write some text, example:
+
+```text
+# Heading 1
+## Heading 2
+### Heading 3
+
+This is some code
+```
+
+Render it and see the result.
+
+## Add some code
+
+You can add a block of code and see the output, explain how to do it and show an example.
+
+## Eval/Echo
+
+Exaplin what eval, echo, messages and so mean, explain they can be set up block by block on all the block at the same time
+
+## `YOUR TURN`
+
+1. Go to the downloads section and download the set that says Data 1 it is a table with 4 columns:
+
+- database
+- condition
+- year
+- prevalence
+
+2. Read it in your quarto document (e.g copy it to a folder called `data` or something similar) and create a plot a table or some text. See example in text slide.
+
+## `YOUR TURN`
+
+```text
+
+The maximum prevalence in 2023 was `r max(data$prevalence)` for `r data$condition[data$prevalence == max(data$prevalence)]` in `r data$database[data$prevalence == max(data$prevalence)]`.
+
+Here you can see a plot of the prevalence:
+
+``{r, echo = FALSE}
+library(readr)
+library(ggplot2)
+library(here)
+
+data <- read_csv(file = here("data", "data1.csv"))
+
+ggplot(data = data, mapping = aes(x = year, y = prevalence, colour = condition)) +
+  geom_point() +
+  facet_grid(~database)
+``
+
+```
+
+## Spacing in Quarto
+
+You may have noticed that a single newline in the source does not create a line break in the rendered document. Markdown treats consecutive lines as part of the same paragraph.
+
+To start a new paragraph, leave a blank line between blocks of text.
+
+You can also insert a page break using `{{< pagebreak >}}`:
+
+{{< pagebreak >}}
+
+Adding several blank lines does not create extra vertical space: one or more blank lines simply separate paragraphs.
+
+If you want to force a line break without starting a new paragraph, end the line with `\`, as shown below.
+
+This is the first line.\
+This starts a new line within the same paragraph.
+
+If you want to add a visually empty line, place `&nbsp;` on its own line. Unlike additional blank lines in the source, it creates a paragraph containing a non-breaking space, which is preserved in the rendered document. The empty line before the next section is created in this way.
+
+## Use templates
+
+Explain the use of templates
+
+## Example of template
+
+To show them to download and use this template: https://github.com/darwin-eu/visOmopResults/blob/main/inst/quarto/darwinReportRef.docx
+
+## Show how to change the headings and things in template
+
+## Show how to a add a caption in the text as
+
+```text
+:::{custom-style="FigureCaption"}
+Figure 1. This is the title for figure 1.
+:::
+
+:::{custom-style="CaptionFooter"}
+CI = confidence interval
+:::
+```
+
+Show example how to modify the template so this would look diferent.
+
+## `YOUR TUNR`
+
+Why use quarto? Now last minute a new data partner submitted new results and two other updated their old results... No problem quarto is the solution!!
+
+1. Download the `Data 2` results.
+
+2. Replace the old results by the new ones
+
+3. Regenerate the document
+
+4. New report done :)
+
+## Final remarks

@@ -27,9 +27,9 @@ editor: visual
 
 Does everyone have a *GitHub* username?
 
-- Share your GitHub username please :)
+-   Share your GitHub username please :)
 
-- Have you been added to *oxford-pharmacoepi* organisation?
+-   Have you been added to *oxford-pharmacoepi* organisation?
 
 ## Git vs GitHub vs GitHub Desktop
 
@@ -61,34 +61,34 @@ A repository is essentially a **project's folder**. It contains all the project 
 
 A `README.md` is a useful front page for a repository. It can include:
 
-- A summary of the repository.
-- Instructions for installing a package, running code, or using a tool.
-- An overview of the repository folders.
-- How to contribute.
-- License information.
-- Acknowledgments.
-- Contact details.
-- Citation information.
+-   A summary of the repository.
+-   Instructions for installing a package, running code, or using a tool.
+-   An overview of the repository folders.
+-   How to contribute.
+-   License information.
+-   Acknowledgments.
+-   Contact details.
+-   Citation information.
 
 ## Formatting Markdown files
 
 You can use Markdown syntax to format a text file:
 
-- `#` to add a heading.
-- `---` on its own line to add a horizontal rule.
-- `- ` for bullet points.
-- `*text*` for italic text.
-- `**text**` for bold text.
+-   `#` to add a heading.
+-   `---` on its own line to add a horizontal rule.
+-   `-` for bullet points.
+-   `*text*` for italic text.
+-   `**text**` for bold text.
 
 ## `YOUR TURN` Let's create a repo in *oxford-pharmacoepi*
 
-1. In GitHub Desktop, choose **File → New Repository…**
+1.  In GitHub Desktop, choose **File → New Repository…**
 
-2. Give the repository a name, choose where to save it, and click **Create Repository**.
+2.  Give the repository a name, choose where to save it, and click **Create Repository**.
 
 The repository now exists on your computer only.
 
-3. Click **Publish repository**. In the dialog, choose **oxford-pharmacoepi** from the organization menu, then click **Publish Repository**.
+3.  Click **Publish repository**. In the dialog, choose **oxford-pharmacoepi** from the organization menu, then click **Publish Repository**.
 
 You now have a repository on GitHub. Open it on the website and have a look around.
 
@@ -96,33 +96,33 @@ You now have a repository on GitHub. Open it on the website and have a look arou
 
 Now go to the [Downloads](https://oxford-pharmacoepi.github.io/HDS-OMOP-course/Downloads) section of the course website and look for your username.
 
-- Download the codelist assigned to you.
+-   Download the codelist assigned to you.
 
-- Add it to the folder of your repo
+-   Add it to the folder of your repo
 
-- Let's see the changes
+-   Let's see the changes
 
 ## Commit
 
 A **commit** is a snapshot of your repository at a specific point in time. Commits are the building blocks of Git history.
 
-- Every commit has a unique ID (SHA), an author, a timestamp, and a **commit message** that explains *why* the change was made.
+-   Every commit has a unique ID (SHA), an author, a timestamp, and a **commit message** that explains *why* the change was made.
 
-- Commits are created *locally* with Git.
+-   Commits are created *locally* with Git.
 
 ## `YOUR TURN` Create a commit with the codelist
 
-- Add a message and click commit.
+-   Add a message and click commit.
 
-- The commit is still **local**. It will appear on GitHub after you push it.
+-   The commit is still **local**. It will appear on GitHub after you push it.
 
 ## Push & Pull
 
 These are the actions used to synchronise your local Git repository with the remote repository on GitHub:
 
-* **Push:** Send your committed changes from your computer to the remote repository on GitHub.
+-   **Push:** Send your committed changes from your computer to the remote repository on GitHub.
 
-* **Pull:** Fetch changes from GitHub and integrate them into your current local branch. We will practise this later.
+-   **Pull:** Fetch changes from GitHub and integrate them into your current local branch. We will practise this later.
 
 . . .
 
@@ -130,9 +130,9 @@ These are the actions used to synchronise your local Git repository with the rem
 
 ## `YOUR TURN` Push to GitHub
 
-- Push your changes to GitHub
+-   Push your changes to GitHub
 
-- Now you should see that the codelist appears in the GitHub website
+-   Now you should see that the codelist appears in the GitHub website
 
 ## Issues
 
@@ -146,17 +146,17 @@ An **issue** is a place to track a task, bug, or idea. It gives the team a place
 
 ## Issues
 
-- **Labels**: Labels are tags used to categorise and organise issues by topic, priority, or status.
+-   **Labels**: Labels are tags used to categorise and organise issues by topic, priority, or status.
 
-- **Assignee**: The assignee is the person responsible for handling or resolving the issue.
+-   **Assignee**: The assignee is the person responsible for handling or resolving the issue.
 
-- **Type**: The type describes the issue, for example a *bug*, *feature request*, or *task*.
+-   **Type**: The type describes the issue, for example a *bug*, *feature request*, or *task*.
 
 ## `YOUR TURN` Open an issue
 
-- Open an issue in your repo (you need to do that from the GitHub website)
+-   Open an issue in your repo (you need to do that from the GitHub website)
 
-- Ask a colleague to review your codelist. The Downloads page lists who you should ask. Tag that person in the issue and assign the issue to them.
+-   Ask a colleague to review your codelist. The Downloads page lists who you should ask. Tag that person in the issue and assign the issue to them.
 
 ## Inbox
 
@@ -178,9 +178,9 @@ Clone a repository to make a local copy on your computer. To make a copy in your
 
 A **branch** is an independent line of development.
 
-- The default and main line of development is typically called the **main** branch.
+-   The default and main line of development is typically called the **main** branch.
 
-- Branches allow developers to work on new features or bug fixes in **isolation** without affecting the stable, main code.
+-   Branches allow developers to work on new features or bug fixes in **isolation** without affecting the stable, main code.
 
 . . .
 
@@ -198,7 +198,7 @@ A **fork** is a copy of a repository in your GitHub account. You can change your
 
 A **pull request (PR)** proposes changes from one branch to another, usually so the team can discuss and review them before merging.
 
-- PRs are where discussion, code review, and automated testing happen before the code is integrated.
+-   PRs are where discussion, code review, and automated testing happen before the code is integrated.
 
 ## Our first PR
 
@@ -210,27 +210,27 @@ A **pull request (PR)** proposes changes from one branch to another, usually so 
 
 ## `YOUR TURN` Complete your review
 
-1. Clone your colleague’s repository if you have write access. If you do not, fork it and clone your fork.
+1.  Clone your colleague’s repository if you have write access. If you do not, fork it and clone your fork.
 
-2. Create a branch (for example, `review_codelist`).
+2.  Create a branch (for example, `review_codelist`).
 
-3. Review the codelist and make the agreed changes.
+3.  Review the codelist and make the agreed changes.
 
-4. Commit your changes.
+4.  Commit your changes.
 
-5. Push your branch to GitHub.
+5.  Push your branch to GitHub.
 
-6. Open a pull request targeting your colleague’s repository.
+6.  Open a pull request targeting your colleague’s repository.
 
-7. Link the pull request to the relevant issue.
+7.  Link the pull request to the relevant issue.
 
-8. Ask the colleague who assigned the review to review your pull request.
+8.  Ask the colleague who assigned the review to review your pull request.
 
 ## Merge
 
 A **merge** integrates changes from one branch into another. Once a pull request is approved, a repository maintainer can merge it into the target branch.
 
-- Let's merge your **Pull Requests**
+-   Let's merge your **Pull Requests**
 
 ## `YOUR TURN`
 
@@ -240,24 +240,24 @@ Review the pull request in your repository. Approve it or request changes, then 
 
 **Git**
 
-::: {.small-text}
-| Command | Description |
-|----------|--------------|
-| `git init` | Create a new local repository. |
-| `git clone <url>` | Copy a remote repository locally. |
-| `git remote add origin <url>` | Add a new remote repository. |
-| `git status` | Check status of changes and branch. |
-| `git add <file>` | Stage specific file(s) for commit. |
-| `git commit -m "message"` | Commit staged changes. |
-| `git log` | View commit history. |
-| `git diff` | Show unstaged changes. |
-| `git branch <name>` | Create a new branch. |
-| `git checkout <branch>` | Switch to a branch. |
-| `git merge <branch>` | Merge another branch into the current one. |
-| `git fetch` | Download updates from remote (no merge). |
-| `git pull` | Fetch and merge changes from remote. |
-| `git push` | Push local commits to remote. |
-| `git revert <commit>` | Revert a specific commit with a new one. |
+::: small-text
+| Command                       | Description                                |
+|-------------------------------|--------------------------------------------|
+| `git init`                    | Create a new local repository.             |
+| `git clone <url>`             | Copy a remote repository locally.          |
+| `git remote add origin <url>` | Add a new remote repository.               |
+| `git status`                  | Check status of changes and branch.        |
+| `git add <file>`              | Stage specific file(s) for commit.         |
+| `git commit -m "message"`     | Commit staged changes.                     |
+| `git log`                     | View commit history.                       |
+| `git diff`                    | Show unstaged changes.                     |
+| `git branch <name>`           | Create a new branch.                       |
+| `git checkout <branch>`       | Switch to a branch.                        |
+| `git merge <branch>`          | Merge another branch into the current one. |
+| `git fetch`                   | Download updates from remote (no merge).   |
+| `git pull`                    | Fetch and merge changes from remote.       |
+| `git push`                    | Push local commits to remote.              |
+| `git revert <commit>`         | Revert a specific commit with a new one.   |
 :::
 
 . . .
@@ -278,11 +278,11 @@ Review the pull request in your repository. Approve it or request changes, then 
 
 ## Update from main
 
-- Change to `your_branch` branch
+-   Change to `your_branch` branch
 
-- `Branch` > `Update from main`
+-   `Branch` \> `Update from main`
 
-- `Push`
+-   `Push`
 
 . . .
 
@@ -294,11 +294,11 @@ Review the pull request in your repository. Approve it or request changes, then 
 
 The `.gitignore` file tells **git** which files or folders to skip when tracking changes. It prevents temporary, sensitive, or unnecessary files from being added to a repository. Common examples include log files, build artifacts, and environment files. This keeps the repo clean and focused on essential code and assets.
 
-- To ignore a file, add its name, for example `my_file.txt`.
+-   To ignore a file, add its name, for example `my_file.txt`.
 
-- To ignore a folder, add its name followed by a slash, for example `folder/`.
+-   To ignore a folder, add its name followed by a slash, for example `folder/`.
 
-- Use patterns such as `*.txt` to ignore all `.txt` files.
+-   Use patterns such as `*.txt` to ignore all `.txt` files.
 
 ## Merge conflicts
 
@@ -312,19 +312,19 @@ The `.gitignore` file tells **git** which files or folders to skip when tracking
 
 A **merge conflict** happens when Git cannot automatically combine overlapping changes. Conflicts can be resolved; they are a normal part of working together.
 
-- Keep pull requests focused and reasonably small.
+-   Keep pull requests focused and reasonably small.
 
-- Update your branch from `main` regularly, especially before opening a pull request.
+-   Update your branch from `main` regularly, especially before opening a pull request.
 
-- If GitHub Desktop reports a conflict, review the conflicting changes and ask for help if you are unsure how to resolve them.
+-   If GitHub Desktop reports a conflict, review the conflicting changes and ask for help if you are unsure how to resolve them.
 
 ## Link a pull request to an issue
 
 To link an issue and close it when the pull request is merged into the repository’s default branch, put one of these keywords followed by the issue number in the pull request description:
 
-- `close #12` / `closes #12`
-- `resolve #12` / `resolves #12`
-- `fix #12` / `fixes #12`
+-   `close #12` / `closes #12`
+-   `resolve #12` / `resolves #12`
+-   `fix #12` / `fixes #12`
 
 . . .
 
@@ -338,6 +338,25 @@ Templates can be used to create new repositories:
 
 ![](Figures/template.png){fig-align="center"}
 
+## GitHub on the server
+
+When working with the rstudio server, you won't be able to access to GitHub Desktop, so the UI is going to be a bit more complicated.
+
+. . .
+
+First you will need to link your RStudio server with your github account, to do that you can follow this [Tutorial](https://github.com/oxford-pharmacoepi/ServerOnboarding/blob/main/2_SettingUp/Using%20Github%20with%20RStudio%20server.pdf).
+
+. . .
+
+Once done you will have to navigate trough the Git panel:
+
+![](Figures/git_panel.png){fig-align="center"}
+
+## Delete the mock repo
+
+For the sake of scalability and to know also how it is done please delete the toy repo you used in this session:
+
+- Find your repo in github.com -> Settings -> Danger Zone -> Delete this repository -> confirm
 
 ## You are ready
 

@@ -1,3 +1,11 @@
+data1 <- dplyr::tribble(
+
+)
+
+data2 <- dplyr::tribble(
+
+)
+
 download_dir <- here::here("Downloads")
 
 codelists <- list(
@@ -90,6 +98,14 @@ for (k in seq_along(users)) {
   readr::write_csv(
     codelists[[codelist_name]],
     file = file.path(user_dir, paste0(codelist_name, ".csv"))
+  )
+  readr::write_csv(
+    data1,
+    file = file.path(user_dir, "results.csv")
+  )
+  readr::write_csv(
+    data2,
+    file = file.path(user_dir, "results_new.csv")
   )
   writeLines(
     paste0("reviewer: ", reviewer[k]),
