@@ -1,5 +1,82 @@
 [
   {
+    "objectID": "Presentations/R_introduction/index.html#r-programming-language",
+    "href": "Presentations/R_introduction/index.html#r-programming-language",
+    "title": "Introduction to R",
+    "section": "R programming language",
+    "text": "R programming language\nR first appeared in 1993 and is a programming language designed for working with data and statistics.\nR is usually interpreted: you write commands and R runs them directly, without a separate compile step.\nFor example, ask R to do a calculation:\n\n2 + 2\n\n[1] 4"
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#functions-in-r",
+    "href": "Presentations/R_introduction/index.html#functions-in-r",
+    "title": "Introduction to R",
+    "section": "Functions in R",
+    "text": "Functions in R\nYou can define functions in R like:\n\nsumFun &lt;- function(a, b) {\n  a + b\n}\n\nAnd use them later as:\n\nsumFun(5, 6)\n\n[1] 11"
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#packages-in-r",
+    "href": "Presentations/R_introduction/index.html#packages-in-r",
+    "title": "Introduction to R",
+    "section": "Packages in R",
+    "text": "Packages in R\nPackages are collections of functions and other tools that people develop and share for you to use.\nMany R packages are distributed through CRAN (the Comprehensive R Archive Network), a collection of servers that hosts R packages and checks submitted updates. Package authors maintain their packages; CRAN helps make them available to the R community.\n\nTo install a package you can just type:\n\ninstall.packages(\"tibble\")\n# or, if you have pak installed\npak::pkg_install(\"tibble\")\n\n\n\nYou can either call a function using :::\n\ntibble::tibble(a = 1)\n\n# A tibble: 1 × 1\n      a\n  &lt;dbl&gt;\n1     1\n\n\n\n\nOr using library(), which makes the package’s functions available:\n\nlibrary(tibble)\ntibble(a = 1)\n\n# A tibble: 1 × 1\n      a\n  &lt;dbl&gt;\n1     1\n\n\n\n\nIn general we will use the latter option (library())."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#the-pipe-operator",
+    "href": "Presentations/R_introduction/index.html#the-pipe-operator",
+    "title": "Introduction to R",
+    "section": "The pipe operator |>\n",
+    "text": "The pipe operator |&gt;\n\nThe pipe operator was introduced in R 4.1 and it is widely used in R. It concatenates the use of two functions, for example:\n\nlibrary(dplyr)\n\nx &lt;- tibble(a = 1)\nx\n\n# A tibble: 1 × 1\n      a\n  &lt;dbl&gt;\n1     1\n\nx &lt;- mutate(x, b = 1)\nx\n\n# A tibble: 1 × 2\n      a     b\n  &lt;dbl&gt; &lt;dbl&gt;\n1     1     1\n\n\n\nYou can simplify this code with:\n\nx &lt;- tibble(a = 1) |&gt;\n  mutate(b = 1)"
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#meet-the-tidyverse",
+    "href": "Presentations/R_introduction/index.html#meet-the-tidyverse",
+    "title": "Introduction to R",
+    "section": "Meet the tidyverse",
+    "text": "Meet the tidyverse\nThe tidyverse is a collection of R packages that work well together for common data tasks.\n\n\ndplyr: wrangle data (filter, select, create columns, summarise)\n\nggplot2: make plots\n\nreadr and tidyr: read and reshape data\nplus packages for strings, factors, iteration, and more"
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#some-examples-a-consistent-way-to-work-with-data",
+    "href": "Presentations/R_introduction/index.html#some-examples-a-consistent-way-to-work-with-data",
+    "title": "Introduction to R",
+    "section": "Some examples: a consistent way to work with data",
+    "text": "Some examples: a consistent way to work with data\nTidyverse functions use a consistent style: give a data frame to a function, and get a data frame back.\n\nlibrary(tibble)\n\npeople &lt;- tibble(\n  name = c(\"Alex\", \"Sam\", \"Jo\"),\n  age = c(24, 31, 19),\n  group = c(\"A\", \"B\", \"A\")\n)\n\npeople\n\n# A tibble: 3 × 3\n  name    age group\n  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;\n1 Alex     24 A    \n2 Sam      31 B    \n3 Jo       19 A    \n\n\ntibble() is the tidyverse’s friendly take on a data frame. It prints a quick preview and keeps the data in a familiar rectangular format."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#read-transform-and-summarise",
+    "href": "Presentations/R_introduction/index.html#read-transform-and-summarise",
+    "title": "Introduction to R",
+    "section": "Read, transform, and summarise",
+    "text": "Read, transform, and summarise\nUse |&gt; to read a data workflow from top to bottom. Here we keep adults, add a column, and count people in each group:\n\nlibrary(dplyr)\npeople |&gt;\n  filter(age &gt;= 18) |&gt;\n  mutate(age_next_year = age + 1) |&gt;\n  count(group)\n\n# A tibble: 2 × 2\n  group     n\n  &lt;chr&gt; &lt;int&gt;\n1 A         2\n2 B         1\n\n\n\nSome handy dplyr verbs:\n\n\nfilter() keeps rows\n\nselect() keeps columns\n\nmutate() creates or changes columns\n\nsummarise() calculates a summary\n\narrange() sorts rows"
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#what-is-an-r-project",
+    "href": "Presentations/R_introduction/index.html#what-is-an-r-project",
+    "title": "Introduction to R",
+    "section": "What is an R Project?",
+    "text": "What is an R Project?\nAn R Project is a folder for one piece of work, with a small .Rproj file that lets RStudio recognise and reopen it.\n\nKeep your scripts, notes, data, and results together\nRStudio opens the project folder as the working directory\nUse paths relative to the project, so your code is easier to share and rerun\n\nThink of it as a tidy home for an analysis. One project per workshop or analysis is a good place to start."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#a-simple-project-layout",
+    "href": "Presentations/R_introduction/index.html#a-simple-project-layout",
+    "title": "Introduction to R",
+    "section": "A simple project layout",
+    "text": "A simple project layout\nThere is no single right layout. Start small and add folders when you need them:\nmy-analysis/\n├── my-analysis.Rproj\n├── R/                 # scripts and functions\n├── data/              # input data (keep originals unchanged)\n└── Results/           # tables, plots, and other outputs\nRStudio creates the .Rproj file for you. You create the folders that make sense for your work."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#lets-create-your-first-r-project",
+    "href": "Presentations/R_introduction/index.html#lets-create-your-first-r-project",
+    "title": "Introduction to R",
+    "section": "Let’s create your first R Project",
+    "text": "Let’s create your first R Project\nIn RStudio:\n\nChoose File → New Project…\n\nChoose New Directory, then New Project\n\nGive it a name, for example r-introduction, and choose where to save it\nSelect Create Project\n\n\nYou should now see the project name in the top-right of RStudio. Save this presentation’s practice script inside the project, then make folders such as data and Results if you need them."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#find-the-project-root-with-here",
+    "href": "Presentations/R_introduction/index.html#find-the-project-root-with-here",
+    "title": "Introduction to R",
+    "section": "Find the project root with here\n",
+    "text": "Find the project root with here\n\n\nlibrary(here)\nhere()\n\n[1] \"/home/runner/work/HDS-OMOP-course/HDS-OMOP-course\"\n\n\n\n\ndir.create(here(\"Results\"))\n\nThat creates a Results folder in the project root. You can use the same idea to read or save files inside the project.\n\nWe should always work within an R Project for each analysis."
+  },
+  {
     "objectID": "Presentations/PhenotypeR/index.html#introduction",
     "href": "Presentations/PhenotypeR/index.html#introduction",
     "title": "Creating cohorts from scratch using R",
@@ -39,7 +116,7 @@
     "href": "Presentations/PhenotypeR/index.html#create-cdm-reference-1",
     "title": "Creating cohorts from scratch using R",
     "section": "Create CDM reference",
-    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmpVR49Va/file1be37fc6edda.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
+    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmpgzCg2u/file1c9226438594.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist",
@@ -222,5 +299,292 @@
     "title": "Creating cohorts from scratch using R",
     "section": "PhenotypeR",
     "text": "PhenotypeR\n\n\n👉 Package website\n👉 CRAN link\n👉 GitHub link\n👉 Manual 📧"
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#lets-get-started",
+    "href": "Presentations/GitHub/index.html#lets-get-started",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Let’s get started",
+    "text": "Let’s get started\nDoes everyone have a GitHub username?\n\nShare your GitHub username please :)\nHave you been added to oxford-pharmacoepi organisation?"
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#git-vs-github-vs-github-desktop",
+    "href": "Presentations/GitHub/index.html#git-vs-github-vs-github-desktop",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Git vs GitHub vs GitHub Desktop",
+    "text": "Git vs GitHub vs GitHub Desktop\n\nGit is a distributed version control system that tracks changes in source code during software development and allows multiple developers to collaborate efficiently.\n\n\nGitHub is a web-based platform that provides hosting for Git repositories, along with collaborative features like issue tracking, pull requests, and project management.\n\n\nGitHub Desktop is a graphical user interface (GUI) application that simplifies the interaction with Git and GitHub, allowing users to perform common repository operations without using the command line."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#repository-repo",
+    "href": "Presentations/GitHub/index.html#repository-repo",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Repository (Repo)",
+    "text": "Repository (Repo)\nA repository is essentially a project’s folder. It contains all the project files, including code, documentation, images, and, most importantly, the entire history of every change made to those files."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#explore-repository",
+    "href": "Presentations/GitHub/index.html#explore-repository",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Explore repository",
+    "text": "Explore repository\nhttps://github.com/oxford-pharmacoepi/Tidy-R-programming-with-OMOP\n\nA README.md is a useful front page for a repository. It can include:\n\nA summary of the repository.\nInstructions for installing a package, running code, or using a tool.\nAn overview of the repository folders.\nHow to contribute.\nLicense information.\nAcknowledgments.\nContact details.\nCitation information."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#formatting-markdown-files",
+    "href": "Presentations/GitHub/index.html#formatting-markdown-files",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Formatting Markdown files",
+    "text": "Formatting Markdown files\nYou can use Markdown syntax to format a text file:\n\n# to add a heading.\n--- on its own line to add a horizontal rule.\n- for bullet points.\n*text* for italic text.\n**text** for bold text."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#your-turn-lets-create-a-repo-in-oxford-pharmacoepi",
+    "href": "Presentations/GitHub/index.html#your-turn-lets-create-a-repo-in-oxford-pharmacoepi",
+    "title": "GitHub and GitHub Desktop",
+    "section": "YOUR TURN Let’s create a repo in oxford-pharmacoepi",
+    "text": "YOUR TURN Let’s create a repo in oxford-pharmacoepi\n\nIn GitHub Desktop, choose File → New Repository…\nGive the repository a name, choose where to save it, and click Create Repository.\n\nThe repository now exists on your computer only.\n\nClick Publish repository. In the dialog, choose oxford-pharmacoepi from the organization menu, then click Publish Repository.\n\nYou now have a repository on GitHub. Open it on the website and have a look around."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#your-turn-download-the-codelist",
+    "href": "Presentations/GitHub/index.html#your-turn-download-the-codelist",
+    "title": "GitHub and GitHub Desktop",
+    "section": "YOUR TURN Download the codelist",
+    "text": "YOUR TURN Download the codelist\nNow go to the Downloads section of the course website and look for your username.\n\nDownload the codelist assigned to you.\nAdd it to the folder of your repo\nLet’s see the changes"
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#commit",
+    "href": "Presentations/GitHub/index.html#commit",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Commit",
+    "text": "Commit\nA commit is a snapshot of your repository at a specific point in time. Commits are the building blocks of Git history.\n\nEvery commit has a unique ID (SHA), an author, a timestamp, and a commit message that explains why the change was made.\nCommits are created locally with Git."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#your-turn-create-a-commit-with-the-codelist",
+    "href": "Presentations/GitHub/index.html#your-turn-create-a-commit-with-the-codelist",
+    "title": "GitHub and GitHub Desktop",
+    "section": "YOUR TURN Create a commit with the codelist",
+    "text": "YOUR TURN Create a commit with the codelist\n\nAdd a message and click commit.\nThe commit is still local. It will appear on GitHub after you push it."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#push-pull",
+    "href": "Presentations/GitHub/index.html#push-pull",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Push & Pull",
+    "text": "Push & Pull\nThese are the actions used to synchronise your local Git repository with the remote repository on GitHub:\n\nPush: Send your committed changes from your computer to the remote repository on GitHub.\nPull: Fetch changes from GitHub and integrate them into your current local branch. We will practise this later."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#your-turn-push-to-github",
+    "href": "Presentations/GitHub/index.html#your-turn-push-to-github",
+    "title": "GitHub and GitHub Desktop",
+    "section": "YOUR TURN Push to GitHub",
+    "text": "YOUR TURN Push to GitHub\n\nPush your changes to GitHub\nNow you should see that the codelist appears in the GitHub website"
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#issues",
+    "href": "Presentations/GitHub/index.html#issues",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Issues",
+    "text": "Issues\n\nAn issue is a place to track a task, bug, or idea. It gives the team a place to discuss the work, assign responsibility, and keep track of progress."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#issues-1",
+    "href": "Presentations/GitHub/index.html#issues-1",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Issues",
+    "text": "Issues\n\nLabels: Labels are tags used to categorise and organise issues by topic, priority, or status.\nAssignee: The assignee is the person responsible for handling or resolving the issue.\nType: The type describes the issue, for example a bug, feature request, or task."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#your-turn-open-an-issue",
+    "href": "Presentations/GitHub/index.html#your-turn-open-an-issue",
+    "title": "GitHub and GitHub Desktop",
+    "section": "YOUR TURN Open an issue",
+    "text": "YOUR TURN Open an issue\n\nOpen an issue in your repo (you need to do that from the GitHub website)\nAsk a colleague to review your codelist. The Downloads page lists who you should ask. Tag that person in the issue and assign the issue to them."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#inbox",
+    "href": "Presentations/GitHub/index.html#inbox",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Inbox",
+    "text": "Inbox\nCheck your GitHub inbox for the request to review a colleague’s codelist. Open the request and follow the link to the issue or pull request."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#clone",
+    "href": "Presentations/GitHub/index.html#clone",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Clone",
+    "text": "Clone\nClone a repository to make a local copy on your computer. To make a copy in your GitHub account, fork the repository."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#branch",
+    "href": "Presentations/GitHub/index.html#branch",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Branch",
+    "text": "Branch\nA branch is an independent line of development.\n\nThe default and main line of development is typically called the main branch.\nBranches allow developers to work on new features or bug fixes in isolation without affecting the stable, main code."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#fork",
+    "href": "Presentations/GitHub/index.html#fork",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Fork",
+    "text": "Fork\nA fork is a copy of a repository in your GitHub account. You can change your fork without changing the original, then propose your changes to the original project with a pull request. A fork is useful when you do not have write access to the original repository."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#pull-request-pr",
+    "href": "Presentations/GitHub/index.html#pull-request-pr",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Pull Request (PR)",
+    "text": "Pull Request (PR)\nA pull request (PR) proposes changes from one branch to another, usually so the team can discuss and review them before merging.\n\nPRs are where discussion, code review, and automated testing happen before the code is integrated."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#our-first-pr",
+    "href": "Presentations/GitHub/index.html#our-first-pr",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Our first PR",
+    "text": "Our first PR"
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#your-turn-complete-your-review",
+    "href": "Presentations/GitHub/index.html#your-turn-complete-your-review",
+    "title": "GitHub and GitHub Desktop",
+    "section": "YOUR TURN Complete your review",
+    "text": "YOUR TURN Complete your review\n\nClone your colleague’s repository if you have write access. If you do not, fork it and clone your fork.\nCreate a branch (for example, review_codelist).\nReview the codelist and make the agreed changes.\nCommit your changes.\nPush your branch to GitHub.\nOpen a pull request targeting your colleague’s repository.\nLink the pull request to the relevant issue.\nAsk the colleague who assigned the review to review your pull request."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#merge",
+    "href": "Presentations/GitHub/index.html#merge",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Merge",
+    "text": "Merge\nA merge integrates changes from one branch into another. Once a pull request is approved, a repository maintainer can merge it into the target branch.\n\nLet’s merge your Pull Requests"
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#your-turn",
+    "href": "Presentations/GitHub/index.html#your-turn",
+    "title": "GitHub and GitHub Desktop",
+    "section": "YOUR TURN",
+    "text": "YOUR TURN\nReview the pull request in your repository. Approve it or request changes, then merge it once you and the author agree it is ready."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#how-everything-works",
+    "href": "Presentations/GitHub/index.html#how-everything-works",
+    "title": "GitHub and GitHub Desktop",
+    "section": "How everything works",
+    "text": "How everything works\nGit\n\n\n\n\nCommand\nDescription\n\n\n\n\ngit init\nCreate a new local repository.\n\n\ngit clone &lt;url&gt;\nCopy a remote repository locally.\n\n\ngit remote add origin &lt;url&gt;\nAdd a new remote repository.\n\n\ngit status\nCheck status of changes and branch.\n\n\ngit add &lt;file&gt;\nStage specific file(s) for commit.\n\n\ngit commit -m \"message\"\nCommit staged changes.\n\n\ngit log\nView commit history.\n\n\ngit diff\nShow unstaged changes.\n\n\ngit branch &lt;name&gt;\nCreate a new branch.\n\n\ngit checkout &lt;branch&gt;\nSwitch to a branch.\n\n\ngit merge &lt;branch&gt;\nMerge another branch into the current one.\n\n\ngit fetch\nDownload updates from remote (no merge).\n\n\ngit pull\nFetch and merge changes from remote.\n\n\ngit push\nPush local commits to remote.\n\n\ngit revert &lt;commit&gt;\nRevert a specific commit with a new one.\n\n\n\n\n\nGitHub Desktop provides a graphical interface for working with Git and GitHub."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#workflow",
+    "href": "Presentations/GitHub/index.html#workflow",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Workflow",
+    "text": "Workflow"
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#need-to-update",
+    "href": "Presentations/GitHub/index.html#need-to-update",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Need to update",
+    "text": "Need to update"
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#update-from-main",
+    "href": "Presentations/GitHub/index.html#update-from-main",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Update from main",
+    "text": "Update from main"
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#update-from-main-1",
+    "href": "Presentations/GitHub/index.html#update-from-main-1",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Update from main",
+    "text": "Update from main\n\nChange to your_branch branch\nBranch &gt; Update from main\nPush"
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#gitignore",
+    "href": "Presentations/GitHub/index.html#gitignore",
+    "title": "GitHub and GitHub Desktop",
+    "section": ".gitignore",
+    "text": ".gitignore\n\nThe .gitignore file tells git which files or folders to skip when tracking changes. It prevents temporary, sensitive, or unnecessary files from being added to a repository. Common examples include log files, build artifacts, and environment files. This keeps the repo clean and focused on essential code and assets.\n\nTo ignore a file, add its name, for example my_file.txt.\nTo ignore a folder, add its name followed by a slash, for example folder/.\nUse patterns such as *.txt to ignore all .txt files."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#merge-conflicts",
+    "href": "Presentations/GitHub/index.html#merge-conflicts",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Merge conflicts",
+    "text": "Merge conflicts"
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#merge-conflicts-1",
+    "href": "Presentations/GitHub/index.html#merge-conflicts-1",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Merge conflicts",
+    "text": "Merge conflicts"
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#merge-conflicts-2",
+    "href": "Presentations/GitHub/index.html#merge-conflicts-2",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Merge conflicts",
+    "text": "Merge conflicts\nA merge conflict happens when Git cannot automatically combine overlapping changes. Conflicts can be resolved; they are a normal part of working together.\n\nKeep pull requests focused and reasonably small.\nUpdate your branch from main regularly, especially before opening a pull request.\nIf GitHub Desktop reports a conflict, review the conflicting changes and ask for help if you are unsure how to resolve them."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#link-a-pull-request-to-an-issue",
+    "href": "Presentations/GitHub/index.html#link-a-pull-request-to-an-issue",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Link a pull request to an issue",
+    "text": "Link a pull request to an issue\nTo link an issue and close it when the pull request is merged into the repository’s default branch, put one of these keywords followed by the issue number in the pull request description:\n\nclose #12 / closes #12\nresolve #12 / resolves #12\nfix #12 / fixes #12\n\n\nTo link an issue without using a closing keyword, link it manually from the Development section of the pull request sidebar."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#templates",
+    "href": "Presentations/GitHub/index.html#templates",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Templates",
+    "text": "Templates\n\nTemplates can be used to create new repositories:"
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#you-are-ready",
+    "href": "Presentations/GitHub/index.html#you-are-ready",
+    "title": "GitHub and GitHub Desktop",
+    "section": "You are ready",
+    "text": "You are ready"
+  },
+  {
+    "objectID": "Presentations/Welcome/index.html#welcome",
+    "href": "Presentations/Welcome/index.html#welcome",
+    "title": "Welcome",
+    "section": "Welcome",
+    "text": "Welcome"
+  },
+  {
+    "objectID": "Presentations/Welcome/index.html#getting-ready",
+    "href": "Presentations/Welcome/index.html#getting-ready",
+    "title": "Welcome",
+    "section": "Getting ready",
+    "text": "Getting ready\n\nInstall R\nInstall RStudio\nOpen RStudio\nInstall pak\n\n\ninstall.packages(\"pak\")\n\n\nInstall OmopTrainer\n\n\n\npak::pkg_install(\"oxford-pharmacoepi/OmopTrainer\")\n\n\nCheck your setup\n\n\nOmopTrainer::validateSetup()"
+  },
+  {
+    "objectID": "Presentations/Welcome/index.html#are-you-ready",
+    "href": "Presentations/Welcome/index.html#are-you-ready",
+    "title": "Welcome",
+    "section": "Are you ready?",
+    "text": "Are you ready?\n\nOmopTrainer::validateSetup()"
+  },
+  {
+    "objectID": "Presentations/Welcome/index.html#what-to-expect-this-week",
+    "href": "Presentations/Welcome/index.html#what-to-expect-this-week",
+    "title": "Welcome",
+    "section": "What to expect this week",
+    "text": "What to expect this week\nThe goal of this week is:\n\nTo introduce R, RStudio, GitHub, Quarto, Shiny Apps and basic functionality (This part is unrelated to OMOP CDM, but these are the tools that we use in the team to communicate and work collaboratively).\nTo introduce the OMOP CDM (briefly)\nTo learn how to create codelists, review them, identify the individuals that have them and validate the codelists against synthetic data.\nTo learn how to characterise individuals and extract their main characteristics."
+  },
+  {
+    "objectID": "Presentations/Welcome/index.html#schedule",
+    "href": "Presentations/Welcome/index.html#schedule",
+    "title": "Welcome",
+    "section": "Schedule",
+    "text": "Schedule\n\n\nDay\nPresentation\nLink\n\n\n\nDay 1: Tools for conducting studies: R\nR introduction\nView Slides\n\n\nDay 1: Tools for conducting studies: GitHub\nGitHub training\nView Slides\n\n\nDay 1: Tools for conducting studies\nOmopStudyBuilder and OmopViewer\nView Slides\n\n\nDay 2: OMOP phenotyping using R\nCodelistGenerator\nView Slides\n\n\nDay 2: OMOP phenotyping using R\nCohortConstructor\nView Slides\n\n\nDay 2: OMOP phenotyping using R\nPhenotypeR\nView Slides\n\n\nDay 3: Characterising a study population\nPatientProfiles\nView Slides\n\n\nDay 3: Characterising a study population\nCohortCharacteristics\nView Slides"
+  },
+  {
+    "objectID": "Presentations/Welcome/index.html#how-we-are-going-to-work",
+    "href": "Presentations/Welcome/index.html#how-we-are-going-to-work",
+    "title": "Welcome",
+    "section": "How we are going to work",
+    "text": "How we are going to work\n\nAll the material for this week can be seen in this website: https://oxford-pharmacoepi.github.io/HDS-OMOP-course/\nThe chunks of code that you see you will be able to copy them (show example).\n\nThe presentation will consist on two parts:\n\n\nPresentation presentations will be given, you can follow copying and pasting the code to check that what we are presenting makes sense and works.\n\nYOUR TURN time for coding you will be given simple instructions and you will have to figure it out :)"
   }
 ]

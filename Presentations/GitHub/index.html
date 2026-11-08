@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.11.9">
+
+  <meta name="dcterms.date" content="2026-11-08">
+  <title>HDS-OMOP-course – GitHub and GitHub Desktop</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-e6beccd3067aa6ca58895913f1130f0a.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+<meta property="og:title" content="GitHub and GitHub Desktop – HDS-OMOP-course">
+<meta property="og:site_name" content="HDS-OMOP-course">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">GitHub and GitHub Desktop</h1>
+
+<div class="quarto-title-authors">
+</div>
+
+  <p class="date">2026-11-08</p>
+</section>
+<section id="lets-get-started" class="slide level2">
+<h2>Let’s get started</h2>
+<p>Does everyone have a <em>GitHub</em> username?</p>
+<ul>
+<li class="fragment"><p>Share your GitHub username please :)</p></li>
+<li class="fragment"><p>Have you been added to <em>oxford-pharmacoepi</em> organisation?</p></li>
+</ul>
+</section>
+<section id="git-vs-github-vs-github-desktop" class="slide level2">
+<h2>Git vs GitHub vs GitHub Desktop</h2>
+<div class="fragment">
+<p><strong>Git</strong> is a distributed version control system that tracks changes in source code during software development and allows multiple developers to collaborate efficiently.</p>
+</div>
+<div class="fragment">
+<p><strong>GitHub</strong> is a web-based platform that provides hosting for Git repositories, along with collaborative features like issue tracking, pull requests, and project management.</p>
+</div>
+<div class="fragment">
+<p><strong>GitHub Desktop</strong> is a graphical user interface (GUI) application that simplifies the interaction with Git and GitHub, allowing users to perform common repository operations without using the command line.</p>
+</div>
+</section>
+<section>
+<section id="core-concepts" class="title-slide slide level1 center">
+<h1>Core Concepts</h1>
+
+</section>
+<section id="repository-repo" class="slide level2">
+<h2>Repository (Repo)</h2>
+<p>A repository is essentially a <strong>project’s folder</strong>. It contains all the project files, including code, documentation, images, and, most importantly, the <strong>entire history</strong> of every change made to those files.</p>
+
+<img data-src="Figures/repos.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="explore-repository" class="slide level2">
+<h2>Explore repository</h2>
+<p><a href="https://github.com/oxford-pharmacoepi/Tidy-R-programming-with-OMOP" class="uri">https://github.com/oxford-pharmacoepi/Tidy-R-programming-with-OMOP</a></p>
+<div class="fragment">
+<p>A <code>README.md</code> is a useful front page for a repository. It can include:</p>
+<ul>
+<li class="fragment">A summary of the repository.</li>
+<li class="fragment">Instructions for installing a package, running code, or using a tool.</li>
+<li class="fragment">An overview of the repository folders.</li>
+<li class="fragment">How to contribute.</li>
+<li class="fragment">License information.</li>
+<li class="fragment">Acknowledgments.</li>
+<li class="fragment">Contact details.</li>
+<li class="fragment">Citation information.</li>
+</ul>
+</div>
+</section>
+<section id="formatting-markdown-files" class="slide level2">
+<h2>Formatting Markdown files</h2>
+<p>You can use Markdown syntax to format a text file:</p>
+<ul>
+<li class="fragment"><code>#</code> to add a heading.</li>
+<li class="fragment"><code>---</code> on its own line to add a horizontal rule.</li>
+<li class="fragment"><code>-</code> for bullet points.</li>
+<li class="fragment"><code>*text*</code> for italic text.</li>
+<li class="fragment"><code>**text**</code> for bold text.</li>
+</ul>
+</section>
+<section id="your-turn-lets-create-a-repo-in-oxford-pharmacoepi" class="slide level2">
+<h2><code>YOUR TURN</code> Let’s create a repo in <em>oxford-pharmacoepi</em></h2>
+<ol type="1">
+<li class="fragment"><p>In GitHub Desktop, choose <strong>File → New Repository…</strong></p></li>
+<li class="fragment"><p>Give the repository a name, choose where to save it, and click <strong>Create Repository</strong>.</p></li>
+</ol>
+<p>The repository now exists on your computer only.</p>
+<ol start="3" type="1">
+<li class="fragment">Click <strong>Publish repository</strong>. In the dialog, choose <strong>oxford-pharmacoepi</strong> from the organization menu, then click <strong>Publish Repository</strong>.</li>
+</ol>
+<p>You now have a repository on GitHub. Open it on the website and have a look around.</p>
+</section>
+<section id="your-turn-download-the-codelist" class="slide level2">
+<h2><code>YOUR TURN</code> Download the codelist</h2>
+<p>Now go to the <a href="https://oxford-pharmacoepi.github.io/HDS-OMOP-course/Downloads">Downloads</a> section of the course website and look for your username.</p>
+<ul>
+<li class="fragment"><p>Download the codelist assigned to you.</p></li>
+<li class="fragment"><p>Add it to the folder of your repo</p></li>
+<li class="fragment"><p>Let’s see the changes</p></li>
+</ul>
+</section>
+<section id="commit" class="slide level2">
+<h2>Commit</h2>
+<p>A <strong>commit</strong> is a snapshot of your repository at a specific point in time. Commits are the building blocks of Git history.</p>
+<ul>
+<li class="fragment"><p>Every commit has a unique ID (SHA), an author, a timestamp, and a <strong>commit message</strong> that explains <em>why</em> the change was made.</p></li>
+<li class="fragment"><p>Commits are created <em>locally</em> with Git.</p></li>
+</ul>
+</section>
+<section id="your-turn-create-a-commit-with-the-codelist" class="slide level2">
+<h2><code>YOUR TURN</code> Create a commit with the codelist</h2>
+<ul>
+<li class="fragment"><p>Add a message and click commit.</p></li>
+<li class="fragment"><p>The commit is still <strong>local</strong>. It will appear on GitHub after you push it.</p></li>
+</ul>
+</section>
+<section id="push-pull" class="slide level2">
+<h2>Push &amp; Pull</h2>
+<p>These are the actions used to synchronise your local Git repository with the remote repository on GitHub:</p>
+<ul>
+<li class="fragment"><p><strong>Push:</strong> Send your committed changes from your computer to the remote repository on GitHub.</p></li>
+<li class="fragment"><p><strong>Pull:</strong> Fetch changes from GitHub and integrate them into your current local branch. We will practise this later.</p></li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Figures/push.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="your-turn-push-to-github" class="slide level2">
+<h2><code>YOUR TURN</code> Push to GitHub</h2>
+<ul>
+<li class="fragment"><p>Push your changes to GitHub</p></li>
+<li class="fragment"><p>Now you should see that the codelist appears in the GitHub website</p></li>
+</ul>
+</section>
+<section id="issues" class="slide level2">
+<h2>Issues</h2>
+<div class="fragment">
+<p>An <strong>issue</strong> is a place to track a task, bug, or idea. It gives the team a place to discuss the work, assign responsibility, and keep track of progress.</p>
+</div>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Figures/new_issue.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="issues-1" class="slide level2">
+<h2>Issues</h2>
+<ul>
+<li class="fragment"><p><strong>Labels</strong>: Labels are tags used to categorise and organise issues by topic, priority, or status.</p></li>
+<li class="fragment"><p><strong>Assignee</strong>: The assignee is the person responsible for handling or resolving the issue.</p></li>
+<li class="fragment"><p><strong>Type</strong>: The type describes the issue, for example a <em>bug</em>, <em>feature request</em>, or <em>task</em>.</p></li>
+</ul>
+</section>
+<section id="your-turn-open-an-issue" class="slide level2">
+<h2><code>YOUR TURN</code> Open an issue</h2>
+<ul>
+<li class="fragment"><p>Open an issue in your repo (you need to do that from the GitHub website)</p></li>
+<li class="fragment"><p>Ask a colleague to review your codelist. The Downloads page lists who you should ask. Tag that person in the issue and assign the issue to them.</p></li>
+</ul>
+</section>
+<section id="inbox" class="slide level2">
+<h2>Inbox</h2>
+<p>Check your GitHub inbox for the request to review a colleague’s codelist. Open the request and follow the link to the issue or pull request.</p>
+</section>
+<section id="clone" class="slide level2">
+<h2>Clone</h2>
+<p>Clone a repository to make a local copy on your computer. To make a copy in your GitHub account, fork the repository.</p>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Figures/clone.png" class="quarto-figure quarto-figure-center" height="250"></p>
+</figure>
+</div>
+</div>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Figures/clone2.png" class="quarto-figure quarto-figure-center" height="250"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="branch" class="slide level2">
+<h2>Branch</h2>
+<p>A <strong>branch</strong> is an independent line of development.</p>
+<ul>
+<li class="fragment"><p>The default and main line of development is typically called the <strong>main</strong> branch.</p></li>
+<li class="fragment"><p>Branches allow developers to work on new features or bug fixes in <strong>isolation</strong> without affecting the stable, main code.</p></li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Figures/branch1.png" class="quarto-figure quarto-figure-center" height="150"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Figures/branch2.png" class="quarto-figure quarto-figure-center" height="150"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Figures/branch3.png" class="quarto-figure quarto-figure-center" height="50"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="fork" class="slide level2">
+<h2>Fork</h2>
+<p>A <strong>fork</strong> is a copy of a repository in your GitHub account. You can change your fork without changing the original, then propose your changes to the original project with a pull request. A fork is useful when you do not have write access to the original repository.</p>
+</section>
+<section id="pull-request-pr" class="slide level2">
+<h2>Pull Request (PR)</h2>
+<p>A <strong>pull request (PR)</strong> proposes changes from one branch to another, usually so the team can discuss and review them before merging.</p>
+<ul>
+<li class="fragment">PRs are where discussion, code review, and automated testing happen before the code is integrated.</li>
+</ul>
+</section>
+<section id="our-first-pr" class="slide level2">
+<h2>Our first PR</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Figures/pr.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Figures/pr2.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="your-turn-complete-your-review" class="slide level2">
+<h2><code>YOUR TURN</code> Complete your review</h2>
+<ol type="1">
+<li class="fragment"><p>Clone your colleague’s repository if you have write access. If you do not, fork it and clone your fork.</p></li>
+<li class="fragment"><p>Create a branch (for example, <code>review_codelist</code>).</p></li>
+<li class="fragment"><p>Review the codelist and make the agreed changes.</p></li>
+<li class="fragment"><p>Commit your changes.</p></li>
+<li class="fragment"><p>Push your branch to GitHub.</p></li>
+<li class="fragment"><p>Open a pull request targeting your colleague’s repository.</p></li>
+<li class="fragment"><p>Link the pull request to the relevant issue.</p></li>
+<li class="fragment"><p>Ask the colleague who assigned the review to review your pull request.</p></li>
+</ol>
+</section>
+<section id="merge" class="slide level2">
+<h2>Merge</h2>
+<p>A <strong>merge</strong> integrates changes from one branch into another. Once a pull request is approved, a repository maintainer can merge it into the target branch.</p>
+<ul>
+<li class="fragment">Let’s merge your <strong>Pull Requests</strong></li>
+</ul>
+</section>
+<section id="your-turn" class="slide level2">
+<h2><code>YOUR TURN</code></h2>
+<p>Review the pull request in your repository. Approve it or request changes, then merge it once you and the author agree it is ready.</p>
+</section>
+<section id="how-everything-works" class="slide level2">
+<h2>How everything works</h2>
+<p><strong>Git</strong></p>
+<div class="small-text">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>git init</code></td>
+<td>Create a new local repository.</td>
+</tr>
+<tr class="even">
+<td><code>git clone &lt;url&gt;</code></td>
+<td>Copy a remote repository locally.</td>
+</tr>
+<tr class="odd">
+<td><code>git remote add origin &lt;url&gt;</code></td>
+<td>Add a new remote repository.</td>
+</tr>
+<tr class="even">
+<td><code>git status</code></td>
+<td>Check status of changes and branch.</td>
+</tr>
+<tr class="odd">
+<td><code>git add &lt;file&gt;</code></td>
+<td>Stage specific file(s) for commit.</td>
+</tr>
+<tr class="even">
+<td><code>git commit -m "message"</code></td>
+<td>Commit staged changes.</td>
+</tr>
+<tr class="odd">
+<td><code>git log</code></td>
+<td>View commit history.</td>
+</tr>
+<tr class="even">
+<td><code>git diff</code></td>
+<td>Show unstaged changes.</td>
+</tr>
+<tr class="odd">
+<td><code>git branch &lt;name&gt;</code></td>
+<td>Create a new branch.</td>
+</tr>
+<tr class="even">
+<td><code>git checkout &lt;branch&gt;</code></td>
+<td>Switch to a branch.</td>
+</tr>
+<tr class="odd">
+<td><code>git merge &lt;branch&gt;</code></td>
+<td>Merge another branch into the current one.</td>
+</tr>
+<tr class="even">
+<td><code>git fetch</code></td>
+<td>Download updates from remote (no merge).</td>
+</tr>
+<tr class="odd">
+<td><code>git pull</code></td>
+<td>Fetch and merge changes from remote.</td>
+</tr>
+<tr class="even">
+<td><code>git push</code></td>
+<td>Push local commits to remote.</td>
+</tr>
+<tr class="odd">
+<td><code>git revert &lt;commit&gt;</code></td>
+<td>Revert a specific commit with a new one.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment">
+<p><strong>GitHub Desktop</strong> provides a graphical interface for working with Git and GitHub.</p>
+</div>
+</section>
+<section id="workflow" class="slide level2">
+<h2>Workflow</h2>
+
+<img data-src="Figures/workflow.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="need-to-update" class="slide level2">
+<h2>Need to update</h2>
+
+<img data-src="Figures/need_update.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="update-from-main" class="slide level2">
+<h2>Update from main</h2>
+
+<img data-src="Figures/update_from_main.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="update-from-main-1" class="slide level2">
+<h2>Update from main</h2>
+<ul>
+<li class="fragment"><p>Change to <code>your_branch</code> branch</p></li>
+<li class="fragment"><p><code>Branch</code> &gt; <code>Update from main</code></p></li>
+<li class="fragment"><p><code>Push</code></p></li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Figures/update_main.png" class="quarto-figure quarto-figure-center" height="500"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="gitignore" class="slide level2">
+<h2>.gitignore</h2>
+<div class="fragment">
+<p>The <code>.gitignore</code> file tells <strong>git</strong> which files or folders to skip when tracking changes. It prevents temporary, sensitive, or unnecessary files from being added to a repository. Common examples include log files, build artifacts, and environment files. This keeps the repo clean and focused on essential code and assets.</p>
+<ul>
+<li class="fragment"><p>To ignore a file, add its name, for example <code>my_file.txt</code>.</p></li>
+<li class="fragment"><p>To ignore a folder, add its name followed by a slash, for example <code>folder/</code>.</p></li>
+<li class="fragment"><p>Use patterns such as <code>*.txt</code> to ignore all <code>.txt</code> files.</p></li>
+</ul>
+</div>
+</section>
+<section id="merge-conflicts" class="slide level2">
+<h2>Merge conflicts</h2>
+
+<img data-src="Figures/resolve.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="merge-conflicts-1" class="slide level2">
+<h2>Merge conflicts</h2>
+
+<img data-src="Figures/conflict.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="merge-conflicts-2" class="slide level2">
+<h2>Merge conflicts</h2>
+<p>A <strong>merge conflict</strong> happens when Git cannot automatically combine overlapping changes. Conflicts can be resolved; they are a normal part of working together.</p>
+<ul>
+<li class="fragment"><p>Keep pull requests focused and reasonably small.</p></li>
+<li class="fragment"><p>Update your branch from <code>main</code> regularly, especially before opening a pull request.</p></li>
+<li class="fragment"><p>If GitHub Desktop reports a conflict, review the conflicting changes and ask for help if you are unsure how to resolve them.</p></li>
+</ul>
+</section>
+<section id="link-a-pull-request-to-an-issue" class="slide level2">
+<h2>Link a pull request to an issue</h2>
+<p>To link an issue and close it when the pull request is merged into the repository’s default branch, put one of these keywords followed by the issue number in the pull request description:</p>
+<ul>
+<li class="fragment"><code>close #12</code> / <code>closes #12</code></li>
+<li class="fragment"><code>resolve #12</code> / <code>resolves #12</code></li>
+<li class="fragment"><code>fix #12</code> / <code>fixes #12</code></li>
+</ul>
+<div class="fragment">
+<p>To link an issue without using a closing keyword, link it manually from the <strong>Development</strong> section of the pull request sidebar.</p>
+</div>
+</section>
+<section id="templates" class="slide level2">
+<h2>Templates</h2>
+<div class="fragment">
+<p>Templates can be used to create new repositories:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Figures/template.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="you-are-ready" class="slide level2">
+<h2>You are ready</h2>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Figures/meme.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
+</div>
+
+
+</div>
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<div style="position: relative; width: 100%;">
+<div style="text-align: center; font-weight: 500;">
+OHDSI-US 2026 PhenotypeR Workshop
+</div>
+<div style="position: fixed; top: 20px; right: 20px;">
+<a href="../../index.html" style="text-decoration: none;">⬅ Back to Presentations</a>
+</div>
+</div>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"\u003ci class=\"fas fa-gear\">\u003c/i>","content":"\u003cul class=\"slide-menu-items\">\n\u003cli class=\"slide-tool-item active\" data-item=\"0\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\">\u003ckbd>f\u003c/kbd> Fullscreen\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"1\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\">\u003ckbd>s\u003c/kbd> Speaker View\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"2\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\">\u003ckbd>o\u003c/kbd> Slide Overview\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"3\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\">\u003ckbd>e\u003c/kbd> PDF Export Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"4\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\">\u003ckbd>r\u003c/kbd> Scroll View Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"5\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\">\u003ckbd>b\u003c/kbd> Toggle Chalkboard\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"6\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\">\u003ckbd>c\u003c/kbd> Toggle Notes Canvas\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"7\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\">\u003ckbd>d\u003c/kbd> Download Drawings\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"8\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\">\u003ckbd>?\u003c/kbd> Keyboard Help\u003c/a>\u003c/li>\n\u003c/ul>"}],"openButton":true,"openButtonLabel":"Slide menu"},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 7.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+          window.quartoDecorateExternalLinks = function (root) {
+         var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+              if (!link.classList.contains('no-external-icon')) {
+              }
+            }
+          }
+          };
+          window.quartoDecorateExternalLinks(window.document);
+        // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+        // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+        const hideOnEscAndFocusOut = {
+          name: 'hideOnEscAndFocusOut',
+          defaultValue: true,
+          fn(instance) {
+            const dismiss = () => {
+              // A show scheduled by the trigger delay would otherwise reopen it
+              instance.clearDelayTimeouts();
+              instance.hide();
+            };
+            const onKeyDown = (event) => {
+              if (event.key !== 'Escape') {
+                return;
+              }
+              // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+              // except an open reveal.js slide menu, which Esc should close too.
+              // The menu handles keys only when its keyboard option is on.
+              const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+                window.Reveal.getConfig().menu?.keyboard !== false;
+              if (!menuHandlesEsc) {
+                event.stopPropagation();
+              }
+              if (instance.popper.contains(window.document.activeElement)) {
+                // Disabled while refocusing so the focus trigger does not reopen it
+                instance.disable();
+                instance.reference.focus();
+                instance.enable();
+              }
+              dismiss();
+            };
+            const onFocusOut = (event) => {
+              const target = event.relatedTarget;
+              if (target && !instance.reference.contains(target) &&
+                  !instance.popper.contains(target)) {
+                dismiss();
+              }
+            };
+            // On the trigger too: a click trigger (code-annotations: select) has no
+            // blur handling. Attached for the instance's lifetime so leaving the
+            // trigger also cancels a show still pending on the trigger delay.
+            instance.reference.addEventListener('focusout', onFocusOut);
+            return {
+              onShow() {
+                window.document.addEventListener('keydown', onKeyDown, true);
+                instance.popper.addEventListener('focusout', onFocusOut);
+              },
+              onHide() {
+                window.document.removeEventListener('keydown', onKeyDown, true);
+                instance.popper.removeEventListener('focusout', onFocusOut);
+              },
+              onDestroy() {
+                instance.reference.removeEventListener('focusout', onFocusOut);
+              },
+            };
+          },
+        };
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+            plugins: [hideOnEscAndFocusOut],
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

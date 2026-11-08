@@ -1,0 +1,11 @@
+concept_id,concept_name,vocabulary_id
+37020832,My child coughed because of his or her asthma in past 7 days [PROMIS.PARENTPROXY],LOINC
+40764830,I felt scared that I might have trouble breathing because of my asthma in past 7 days [PROMIS],LOINC
+46272979,Recent asthma management,SNOMED
+44803915,Dementia monitoring second letter,SNOMED
+37395677,Telehealth asthma monitoring,SNOMED
+42535849,Use of asthma symptom diary,SNOMED
+44805526,Asthma review using Royal College of Physicians three questions,SNOMED
+35621931,Asthma monitoring declined,SNOMED
+44805087,Asthma causes night time symptoms 1 to 2 times per week,SNOMED
+1234567890,FAKE asthma,INVENTED
