@@ -1,0 +1,350 @@
+---
+title: "GitHub and GitHub desktop"
+format:
+  revealjs: 
+    theme: [simple, ../../styleSS25.scss]
+    incremental: true   
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    margin: 0.07
+    code-link: true
+    code-line-numbers: false
+    height: 900
+    width: 1600
+    footer: |
+      <div style="position: relative; width: 100%;">
+        <div style="text-align: center; font-weight: 500;">OHDSI-US 2026 PhenotypeR Workshop</div>
+        <div style="position: fixed; top: 20px; right: 20px;"><a href="../../index.qmd" style="text-decoration: none;">⬅ Back to Presentations</a></div>
+      </div>
+execute:
+  echo: true
+  eval: true
+editor: visual
+---
+
+## Let's get started
+
+Does everyone has a *GitHub* username?
+
+- Share your GitHub username please :)
+
+- Have you been added to *oxford-pharmacoepi* organisation?
+
+## Git vs GitHub vs GitHub Desktop
+
+. . .
+
+**Git** is a distributed version control system that tracks changes in source code during software development and allows multiple developers to collaborate efficiently.
+
+. . .
+
+**GitHub** is a web-based platform that provides hosting for Git repositories, along with collaborative features like issue tracking, pull requests, and project management.
+
+. . .
+
+**GitHub Desktop** is a graphical user interface (GUI) application that simplifies the interaction with Git and GitHub, allowing users to perform common repository operations without using the command line.
+
+# Core Concepts
+
+## Repository (Repo)
+
+A repository is essentially a **project's folder**. It contains all the project files, including code, documentation, images, and, most importantly, the **entire history** of every change made to those files.
+
+![](Figures/repos.png){fig-align="center"}
+
+## Explore repository
+
+<https://github.com/oxford-pharmacoepi/Tidy-R-programming-with-OMOP>
+
+. . .
+
+It is nice to include it in any repository a `README.md` document to:
+
+- Summarise the content of the repository.
+- Instructions how to install your package, run your code or use your tool.
+- Structure of the folders of the repository.
+- How to contribute, indicate people how to contribute to the project.
+- License 
+- Acknowledgments
+- Contact
+- Citation
+
+## Formatting `.md` file
+
+You can usually format
+
+- `#` to add titles.
+- `----` to add separator lines.
+- `- ` for bullet points.
+- `*text*` for italic text.
+- `**text**` for bold text.
+
+## `YOUR TURN` Let's create a repo in *oxford-pharmacoepi*
+
+1. click *Add* button -> *New repository*
+
+2. Give it a name and click *Create repository*
+
+The repo now still only exists locally
+
+3. Click push and select in organization **oxford-pharmacoepi**
+
+Congrats you have a repo, explore it in the website
+
+## `YOUR TURN` Download the codelist
+
+Now let's go to the [downloads](https://oxford-pharmacoepi.github.io/HDS-OMOP-course/Downloads) section in the website and search for your user name.
+
+- Download the codelist that you have been assigned.
+
+- Add it to the folder of your repo
+
+- Let's see the changes
+
+## Commit
+
+A **commit** is a snapshot of your repository at a specific point in time. It's the fundamental building block of Git's history.
+
+* Every commit has a unique ID (SHA), an author, a timestamp, and a **commit message** that explains *why* the change was made.
+
+* Commits are what you create *locally* with Git.
+
+## `YOUR TURN` Create a commit with the codelist
+
+- Add a message and click commit.
+
+- If you have done it correctly in the website you should see that nothing has changed, the commit is still only **LOCAL**.
+
+## Push & Pull
+
+These are the actions used to synchronise your local Git repository with the remote repository on GitHub:
+
+* **Push:** To **send** your local commits from your computer to the remote repository on GitHub.
+
+* **Pull:** To **fetch** and **download** changes (commits) from the remote repository on GitHub to your local computer. (*We will see it later*)
+
+. . .
+
+![](Figures/push.png){fig-align="center"}
+
+## `YOUR TURN` Push to GitHub
+
+- Push your changes to GitHub
+
+- Now you should see that the codelist appears in the GitHub website
+
+## Issues
+
+. . .
+
+An **issue** is a record used to track and manage tasks, bugs, or feature requests within a project. It serves as a central place for team members to describe a problem or idea, discuss potential solutions, assign responsibilities, and monitor progress. Issues often include details like titles, descriptions, labels, comments, and status updates, making it easier to collaborate, prioritise work, and maintain a clear overview of what needs to be done throughout the development process.
+
+. . .
+
+![](Figures/new_issue.png){fig-align="center"}
+
+## Issues
+
+- **Labels**: Labels are tags used to categorise and organise issues by topic, priority, or status.
+
+- **Assignee**: The assignee is the person responsible for handling or resolving the issue.
+
+- **Type**: The type indicates the nature of the issue, such as a *bug*, *feature request*, or *task*.
+
+## `YOUR TURN` Open an issue
+
+- Open an issue in your repo (you need to do that from the GitHub website)
+
+- Ask for a college to review your codelist (what college?) look at the downloads tab under your name it should tell you who do you have to ask for the review. Tag that person and assign the issue to that person.
+
+## Inbox
+
+In the GitHub inbox you should have a message where someone has asked you for a review too.
+
+TODO: add picture.
+
+## Clone
+
+Get a copy of a repository onto your local machine or GitHub account.
+
+. . .
+
+![](Figures/clone.png){fig-align="center" height="250px"}
+
+. . .
+
+![](Figures/clone2.png){fig-align="center" height="250px"}
+
+## Branch
+
+A **branch** is an independent line of development.
+
+- The default and main line of development is typically called the **main** branch.
+
+- Branches allow developers to work on new features or bug fixes in **isolation** without affecting the stable, main code.
+
+. . .
+
+![](Figures/branch1.png){fig-align="center" height="150px"}
+
+![](Figures/branch2.png){fig-align="center" height="150px"}
+
+![](Figures/branch3.png){fig-align="center" height="50px"}
+
+## Fork
+
+A **fork** is a personal copy of another user's repository. You can make changes to your copy without affecting the original. It's often the first step in contributing to a project you don't own.
+
+## Pull Request (PR)
+
+A **Pull Request** is a mechanism for a developer to propose their changes (commits from a branch) to be **merged** into another branch (usually the main branch of the original project).
+
+- PRs are where discussion, code review, and automated testing happen before the code is integrated.
+
+## Our first PR
+
+![](Figures/pr.png){fig-align="center"}
+
+. . .
+
+![](Figures/pr2.png){fig-align="center"}
+
+## `YOUR TURN` Complete your review
+
+1. Clone the repo of your college.
+
+2. Create a branch (e.g. `dev_mc`)
+
+3. Review the codelist (it should be quite easy, probably you just have to delete 2 codes)
+
+4. Commit the code
+
+5. Push the changes to github
+
+6. Open a Pull Request.
+
+7. Link the pull request to a certain issue
+
+8. Ask the person that assigned you to review the codelist for a review of your pull request.
+
+## Merge
+
+The **merge** operation integrates the changes from one branch into another. When a Pull Request is approved, the repository maintainer will **merge** the feature branch into the main branch.
+
+- Let's merge your **Pull Requests**
+
+## `YOUR TURN`
+
+Review the pull request to your repo and approve or ask for changes and then after agreement merge it.
+
+## How everything works
+
+**Git**
+
+::: {.small-text}
+| Command | Description |
+|----------|--------------|
+| `git init` | Create a new local repository. |
+| `git clone <url>` | Copy a remote repository locally. |
+| `git remote add origin <url>` | Add a new remote repository. |
+| `git status` | Check status of changes and branch. |
+| `git add <file>` | Stage specific file(s) for commit. |
+| `git commit -m "message"` | Commit staged changes. |
+| `git log` | View commit history. |
+| `git diff` | Show unstaged changes. |
+| `git branch <name>` | Create a new branch. |
+| `git checkout <branch>` | Switch to a branch. |
+| `git merge <branch>` | Merge another branch into the current one. |
+| `git fetch` | Download updates from remote (no merge). |
+| `git pull` | Fetch and merge changes from remote. |
+| `git push` | Push local commits to remote. |
+| `git revert <commit>` | Revert a specific commit with a new one. |
+:::
+
+. . .
+
+**GitHub Desktop**: provides the User Interface.
+
+## Workflow
+
+![](Figures/workflow.png){fig-align="center"}
+
+## Need to update
+
+![](Figures/need_update.png){fig-align="center"}
+
+## Update from main
+
+![](Figures/update_from_main.png){fig-align="center"}
+
+## Update from main
+
+- Change to `your_branch` branch
+
+- `Branch` > `Update from main`
+
+- `Push`
+
+. . .
+
+![](Figures/update_main.png){fig-align="center" height="500px"}
+
+## .gitignore
+
+. . .
+
+The `.gitignore` file tells **git** which files or folders to skip when tracking changes. It prevents temporary, sensitive, or unnecessary files from being added to a repository. Common examples include log files, build artifacts, and environment files. This keeps the repo clean and focused on essential code and assets.
+
+- You can ignore a file if you include the name on it `my_file.txt`.
+
+- You can ignore a folder if you include on it `folder/`.
+
+- You can ignore files using patterns (e.g. this would ignore all .txt files `*.txt`)
+
+## Merging conflicts
+
+![](Figures/resolve.png){fig-align="center"}
+
+## Merging conflicts
+
+![](Figures/conflict.png){fig-align="center"}
+
+## Merging conflicts
+
+A merging conflict can involve several files and folders, can be massive and sometimes unsolvable! Please follow the following tips to avoid merging conflicts:
+
+- Avoid renaming of files and folders.
+
+- Always **Update from main** before adding some changes to your branch.
+
+- Keep the changes the minimum possible time (<1 day).
+
+- Better 3 separated Pull Requests over 3 consecutive days than 1 merging conflict after 3 days!
+
+## Link an Pull Request to an issue
+
+You can use *'magical'* words to close an issue from a pull request:
+
+- close #12 / closes #12
+- resolve #12 / resolves #12
+- fix #12 / fixes #12
+
+. . .
+
+You can otherwise link issues manually using the *development* tab (as you should have done it before).
+
+## Templates
+
+. . .
+
+Templates can be used to create new repositories:
+
+![](Figures/template.png){fig-align="center"}
+
+
+## You are ready
+
+. . .
+
+![](Figures/meme.png){fig-align="center"}

@@ -4,6 +4,7 @@
 
 | Day | Presentation | Link |
 |-----------------------|:------------------------|:------------------------|
+| Day 1: Tools for conducting studies: R | **R introduction** | [View Slides](Presentations/R_introduction/index.qmd) |
 | Day 1: Tools for conducting studies | **R, quarto, and github** | [View Slides](Presentations/r_quarto_github/index.qmd) |
 | Day 1: Tools for conducting studies | **OmopStudyBuilder and OmopViewer** | [View Slides](Presentations/osb_ov/index.qmd) |
 | Day 2: OMOP phenotyping using R | **CodelistGenerator** | [View Slides](Presentations/CodelistGenerator/index.qmd) |
@@ -18,25 +19,12 @@
 
 If you don't already have them, install R and RStudio. Open up RStudio where we'll do work.
 
-w)  Install R packages used throughout
+2)  Install the needed packages, tools and download the desired datasets:
 
 ```{r, eval=FALSE}
-options(repos = c(
-  duckdb = "https://duckdb.r-universe.dev",
-  CRAN = "https://cloud.r-project.org"
-))
-packages <- c(
-  "duckdb", "dplyr", "dbplyr","here",
-  "omopgenerics", "omock", 
-  "PatientProfiles",
-  "OmopStudyBuilder", "OmopViewer",
-  "OmopConstructor", "CodelistGenerator",
-  "CohortCharacteristics", "CohortConstructor",
-  "PhenotypeR", "visOmopResults",
-  "gt", "ggplot2"
-)
-pak::pkg_install(packages, ask = FALSE)
+install.packages("pak")
+pak::pkg_install("oxford-pharmacoepi/OmopTrainer")
 ```
-
-
-
+```{r}
+OmopTrainer::validateSetup()
+```
