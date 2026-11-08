@@ -5,4 +5,9 @@
 
 /.quarto/
 
+/_site/
+
 **/*.quarto_ipynb
+
+# Generated codelist folders are recreated during the Quarto pre-render.
+/Downloads/*/
