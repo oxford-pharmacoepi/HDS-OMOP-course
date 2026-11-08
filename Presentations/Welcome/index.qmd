@@ -15,7 +15,7 @@ format:
     footer: |
       <div style="position: relative; width: 100%;">
         <div style="text-align: center; font-weight: 500;">OHDSI-US 2026 PhenotypeR Workshop</div>
-        <div style="position: fixed; top: 20px; right: 20px;"><a href="../../index.qmd" style="text-decoration: none;">⬅ Back to Presentations</a></div>
+        <div style="position: fixed; top: 20px; right: 20px;"><a href="../../index.html" style="text-decoration: none;">⬅ Back to Presentations</a></div>
       </div>
 execute:
   echo: true
@@ -42,7 +42,7 @@ install.packages("pak")
 5. Install **OmopTrainer**
 
 ```{r, eval=FALSE}
-pak::pkg_install("OmopTrainer")
+pak::pkg_install("oxford-pharmacoepi/OmopTrainer")
 ```
 
 6. Check your setup
@@ -53,7 +53,7 @@ OmopTrainer::validateSetup()
 
 ## Are you ready?
 
-```{r}
+```{r, eval=FALSE}
 OmopTrainer::validateSetup()
 ```
 
@@ -65,21 +65,22 @@ The goal of this week is:
 
 - To introduce the OMOP CDM (briefly)
 
-- To learn how to create codelists, review them, identify the individuals that have them and validate the codelists agains synthetic data.
+- To learn how to create codelists, review them, identify the individuals that have them and validate the codelists against synthetic data.
 
 - To learn how to characterise individuals and extract their main characteristics.
 
-## Schedulle
+## Schedule
 
 | Day | Presentation | Link |
 |-----------------------|:------------------------|:------------------------|
-| Day 1: Tools for conducting studies | **R, quarto, and github** | [View Slides](Presentations/GitHub/index.qmd) |
-| Day 1: Tools for conducting studies | **OmopStudyBuilder and OmopViewer** | [View Slides](Presentations/osb_ov/index.qmd) |
-| Day 2: OMOP phenotyping using R | **CodelistGenerator** | [View Slides](Presentations/CodelistGenerator/index.qmd) |
-| Day 2: OMOP phenotyping using R | **CohortConstructor** | [View Slides](Presentations/CohortConstructor/index.qmd) |
-| Day 2: OMOP phenotyping using R | **PhenotypeR** | [View Slides](Presentations/PhenotypeR/index.qmd) |
-| Day 3: Characterising a study population | **PatientProfiles** | [View Slides](Presentations/PhenotypeR/index.qmd) |
-| Day 3: Characterising a study population | **CohortCharacteristics** | [View Slides](Presentations/PhenotypeR/index.qmd) |
+| Day 1: Tools for conducting studies: R | **R introduction** | [View Slides](../R_introduction/index.qmd) |
+| Day 1: Tools for conducting studies: GitHub | **GitHub training** | [View Slides](../GitHub/index.qmd) |
+| Day 1: Tools for conducting studies | **OmopStudyBuilder and OmopViewer** | [View Slides](../osb_ov/index.qmd) |
+| Day 2: OMOP phenotyping using R | **CodelistGenerator** | [View Slides](../CodelistGenerator/index.qmd) |
+| Day 2: OMOP phenotyping using R | **CohortConstructor** | [View Slides](../CohortConstructor/index.qmd) |
+| Day 2: OMOP phenotyping using R | **PhenotypeR** | [View Slides](../PhenotypeR/index.qmd) |
+| Day 3: Characterising a study population | **PatientProfiles** | [View Slides](../PatientProfiles/index.qmd) |
+| Day 3: Characterising a study population | **CohortCharacteristics** | [View Slides](../CohortCharacteristics/index.qmd) |
 
 ## How we are going to work
 

@@ -31,8 +31,10 @@ jobs:
         shell: Rscript {0}
         run: |
           deps <- unique(renv::dependencies()$Package)
+          # OmopTrainer is hosted on GitHub rather than the configured package repositories.
+          deps <- setdiff(deps, "OmopTrainer")
           message("Installing dependencies: ", paste(deps, collapse = ", "))
-          pak::pak(deps, upgrade = FALSE)
+          pak::pak(c(deps, "github::oxford-pharmacoepi/OmopTrainer"), upgrade = FALSE)
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2

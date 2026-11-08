@@ -11,8 +11,8 @@
 | Day 2: OMOP phenotyping using R | **CodelistGenerator** | [View Slides](Presentations/CodelistGenerator/index.qmd) |
 | Day 2: OMOP phenotyping using R | **CohortConstructor** | [View Slides](Presentations/CohortConstructor/index.qmd) |
 | Day 2: OMOP phenotyping using R | **PhenotypeR** | [View Slides](Presentations/PhenotypeR/index.qmd) |
-| Day 3: Characterising a study population | **PatientProfiles** | [View Slides](Presentations/PhenotypeR/index.qmd) |
-| Day 3: Characterising a study population | **CohortCharacteristics** | [View Slides](Presentations/PhenotypeR/index.qmd) |
+| Day 3: Characterising a study population | **PatientProfiles** | [View Slides](Presentations/PatientProfiles/index.qmd) |
+| Day 3: Characterising a study population | **CohortCharacteristics** | [View Slides](Presentations/CohortCharacteristics/index.qmd) |
 
 ## Set up
 
@@ -26,6 +26,6 @@ If you don't already have them, install R and RStudio. Open up RStudio where we'
 install.packages("pak")
 pak::pkg_install("oxford-pharmacoepi/OmopTrainer")
 ```
-```{r}
+```{r, eval=FALSE}
 OmopTrainer::validateSetup()
 ```

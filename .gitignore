@@ -12,6 +12,6 @@
 
 **/*.quarto_ipynb
 
-# Generated codelist folders are recreated during the Quarto pre-render.
+# Download folders and the generated index are local/generated content.
 /Downloads/*/
 /Downloads/index.qmd

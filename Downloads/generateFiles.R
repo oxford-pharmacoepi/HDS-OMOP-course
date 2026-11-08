@@ -81,18 +81,10 @@ users <- c(
 codelist <- rep(names(codelists), length.out = length(users))
 reviewer <- c(users[length(users)], users[seq_len(length(users) - 1)])
 
-# Remove generated folders for users who are no longer assigned.
-existing_folders <- list.dirs(download_dir, recursive = FALSE, full.names = TRUE)
-stale_folders <- setdiff(basename(existing_folders), users)
-if (length(stale_folders) > 0) {
-  unlink(file.path(download_dir, stale_folders), recursive = TRUE)
-}
-
 # Generate each user's codelist and reviewer information.
 for (k in seq_along(users)) {
   user_dir <- file.path(download_dir, users[k])
-  unlink(user_dir, recursive = TRUE)
-  dir.create(user_dir, recursive = TRUE)
+  dir.create(user_dir, recursive = TRUE, showWarnings = FALSE)
 
   codelist_name <- codelist[k]
   readr::write_csv(
@@ -114,7 +106,7 @@ escape_html <- function(text) {
   text
 }
 
-# Build the tabset from the generated user folders.
+# Build the tabset from every folder currently available in Downloads.
 folders <- list.dirs(download_dir, recursive = FALSE, full.names = TRUE)
 folders <- folders[order(tolower(basename(folders)), basename(folders))]
 
