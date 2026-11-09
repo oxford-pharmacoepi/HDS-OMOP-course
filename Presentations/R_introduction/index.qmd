@@ -14,7 +14,7 @@ format:
     width: 1600
     footer: |
       <div style="position: relative; width: 100%;">
-        <div style="text-align: center; font-weight: 500;">OHDSI-US 2026 PhenotypeR Workshop</div>
+        <div style="text-align: center; font-weight: 500;">HDS OMOP Training</div>
         <div style="position: fixed; top: 20px; right: 20px;"><a href="../../index.html" style="text-decoration: none;">⬅ Back to Presentations</a></div>
       </div>
 execute:

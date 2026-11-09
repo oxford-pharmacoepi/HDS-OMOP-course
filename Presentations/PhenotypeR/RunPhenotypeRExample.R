@@ -2,9 +2,10 @@ library(omock)
 library(PhenotypeR)
 library(CodelistGenerator)
 library(CohortConstructor)
+library(OmopConstructor)
 
-cdm <- omock::mockCdmFromDataset(datasetName = "GiBleed", source = "duckdb")
-cdm <- OmopConstructor::buildAchillesTables(cdm)
+cdm <- mockCdmFromDataset(datasetName = "GiBleed", source = "duckdb")
+cdm <- buildAchillesTables(cdm)
 
 x <- c(list(anemia = 439777,
             rheumatoid_arthritis = 80809,
