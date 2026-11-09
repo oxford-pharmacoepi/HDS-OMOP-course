@@ -126,12 +126,21 @@ stopifnot(
 )
 
 users <- c(
-  "catalamarti",
   "aballvemartin-art",
   "arani11",
   "Mandickel",
   "mingyangligithub",
-  "yannaw-prog"
+  "yannaw-prog",
+  "wanningwang",
+  "lluiszacariaspons",
+  "matthewlewis123",
+  "jd-ndorms",
+  "jieying103048",
+  "genrmonaghan",
+  "foluwa",
+  "amysmlam",
+  "deflin29",
+  "khaynes001"
 )
 
 # Assign a codelist and reviewer to each user.
