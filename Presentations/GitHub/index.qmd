@@ -381,7 +381,7 @@ On RStudio Server, the files live on the server. GitHub Desktop on your laptop d
 
 . . .
 
-First, set up GitHub access on the server with the trainer, using this [tutorial](https://github.com/oxford-pharmacoepi/ServerOnboarding/blob/main/2_SettingUp/Using%20Github%20with%20RStudio%20server.pdf).
+First, set up GitHub access on the server using this [tutorial](https://github.com/oxford-pharmacoepi/ServerOnboarding/blob/main/2_SettingUp/Using%20Github%20with%20RStudio%20server.pdf). Ask for help if needed.
 
 . . .
 
@@ -391,7 +391,7 @@ The same ideas apply: edit, save, commit, push, and pull. The buttons are in the
 
 ## Clean up the practice repo
 
-Once **both reviews are finished** and the trainer confirms the exercise is complete, delete only the temporary **hds-test-yourusername** repository:
+Once **both reviews are finished**, ask for a quick check that the exercise is complete. Then delete only the temporary **hds-test-yourusername** repository:
 
 - On GitHub, open that repository's **Settings → Danger Zone → Delete this repository** and follow the confirmation steps.
 

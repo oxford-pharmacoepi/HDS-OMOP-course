@@ -124,7 +124,7 @@ Use the **whole study folder**, `hds-study-yourusername`, as the repository root
 4. Click **Publish repository**, choose **oxford-pharmacoepi** as the organisation, and publish it as a private repository.
 5. Open it on GitHub and check that the README and all four component folders are there.
 
-Use a unique repository name. Ask the trainer to check that your colleague can access this new repository too; access to the earlier practice repository does not automatically carry over.
+Use a unique repository name. Check that your colleague can access this new repository too, and ask for help if needed; access to the earlier practice repository does not automatically carry over.
 
 ## Keep the instructions with the code
 

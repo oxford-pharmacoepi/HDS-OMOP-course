@@ -28,7 +28,7 @@ Quarto is a free tool for creating documents from a plain-text source file. You 
 
 Use the same source to create reports, presentations, websites, and more. Quarto works with R, Python, Julia, and Observable.
 
-We will use **R** and return to the **r-introduction** project. By the end, you will have a report that updates when we replace its input data.
+We will use **R** and return to the initial project. By the end, you will have a report that updates when we replace its input data.
 
 ## What happens when you render?
 
@@ -42,7 +42,7 @@ Open **r-introduction.Rproj**. In RStudio, choose **File → New File → Quarto
 
 Choose HTML, give it a title, and save it as **my-report.qmd** in the project root, beside `practice.R`. Use the **Source** editor when typing the Markdown examples below.
 
-If the Quarto option is missing or RStudio asks to install a required package, ask the trainer to help before continuing.
+If the Quarto option is missing or RStudio asks to install a required package, ask for help before continuing.
 
 ## Create a Quarto document
 
@@ -235,9 +235,27 @@ As before, `aes()` connects columns to the axes and colours. `facet_wrap()` crea
 
 ## Spacing in Quarto
 
-Leave a blank line in the source to start a new paragraph. A single newline in the source may still appear as part of the same paragraph when rendered.
+Leave a blank line in the source to start a new paragraph. Extra empty lines in the source do not add extra space in the output.
 
-In a presentation, a new `##` heading starts a new slide. Keep headings short so the audience can see the main point at a glance.
+To add a blank line in your Word report, put `&nbsp;` (a non-breaking space) on its own line, with a blank line before and after it:
+
+```markdown
+Text before a blank line.
+
+&nbsp;
+
+Text after a blank line.
+```
+
+To insert a page break in Word, put this shortcode on its own line, with a blank line before and after it:
+
+```{=html}
+<pre><code>Text before the page break.
+
+&#123;&#123;&lt; pagebreak &gt;&#125;&#125;
+
+Text on the next page.</code></pre>
+```
 
 ## Optional: use a Word template
 
