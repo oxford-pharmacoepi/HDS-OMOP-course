@@ -29,9 +29,6 @@ We have saved an R script. Now let's practise keeping a history of a file and re
 
 - Sign in to **GitHub in your browser** and **GitHub Desktop**.
 - Share your username and accept your invitation to **oxford-pharmacoepi**.
-- The trainer will help check that you and your reviewer can access each other's practice repositories.
-
-We will create a separate folder called **hds-git-yourusername**. Keep your **r-introduction** project for the later sessions.
 
 ## Git vs GitHub vs GitHub Desktop
 
@@ -98,29 +95,20 @@ You can use Markdown syntax to format a text file:
 
 1.  In GitHub Desktop, choose **File → New Repository…**
 
-2.  Name it **hds-git-yourusername**, replacing `yourusername` with your own. Save it beside your R project, select **Initialize this repository with a README**, and click **Create Repository**.
+2.  Name it **hds-test-yourusername**, replacing `yourusername` with your own. Save it beside your R project, select **Initialize this repository with a README**, and click **Create Repository**.
 
 The repository now exists on your computer only.
 
 3.  Click **Publish repository**. Choose **oxford-pharmacoepi** from the organisation menu, keep the repository private, and click **Publish Repository**.
 
-Open it on GitHub. Ask the trainer to help give your reviewer write access if they do not already have it. Being in the organisation does not always give access to every repository.
+Open it on GitHub and check that the repo has been created.
 
 ## `YOUR TURN` Download the codelist
 
 Go to the course website's [Downloads](../../Downloads/index.qmd) tab and choose your GitHub username.
 
-- Click **Download codelist** and save the CSV inside **hds-git-yourusername**.
+- Click **Download codelist** and save the CSV inside **hds-test-yourusername**.
 - In GitHub Desktop, choose that repository and look at **Changes**.
-- Open the CSV in RStudio's text editor and look at the column names.
-
-## What are we reviewing?
-
-A **codelist** lists concept IDs and their descriptions. Our practice files contain some deliberately wrong rows, including a concept name starting with `FAKE`.
-
-For today's GitHub exercise, ask your reviewer to remove the **FAKE** row and explain the change. Keep the header and the remaining columns as they are.
-
-You can edit this CSV as text: remove the whole row and save the file. The deeper question of which real concepts belong in a clinical codelist is for Day 2.
 
 ## Commit
 
@@ -135,7 +123,7 @@ A **commit** records a version of the changes you choose to include. Give it a s
 1. In GitHub Desktop's **Changes** tab, tick the codelist file and inspect its contents.
 2. Write `Add practice codelist` in the **Summary** field and click **Commit to main**.
 
--   The commit is still **local**. It will appear on GitHub after you push it.
+-   The commit is still **local**. Check that in github, nothing changed.
 
 ## Push & Pull
 
@@ -181,7 +169,7 @@ An **issue** is a place to track a task, bug, or idea. It gives the team a place
 2. Give it a title such as `Remove the fake concept from my codelist` and describe the change you want.
 3. Your Downloads tab names your reviewer. Mention them with `@username` and assign the issue to them if they are available in the list.
 
-If they cannot open the repository or appear as an assignee, ask the trainer to check access. An issue describes the work; it does not change the CSV itself.
+If they cannot open the repository or appear as an assignee, we will have to give them access manually.
 
 ## Inbox
 
@@ -245,7 +233,7 @@ A **pull request (PR)** proposes changes from one branch to another, usually so 
 
 2.  Create a branch (for example, `review_codelist`).
 
-3.  Remove the agreed **FAKE** row from their CSV and save the file.
+3.  Remove the codelists that you think they are not part of the code are not correct. Hint: there are always two codes that should not be part of that codelist.
 
 4.  Commit your changes.
 
@@ -265,7 +253,7 @@ A **merge** integrates changes from one branch into another. Once a pull request
 
 ## `YOUR TURN` Review and merge
 
-Open the pull request **in your own repository** and look at **Files changed**. Does it remove the row you asked for, while keeping the header and other rows?
+Open the pull request **in your own repository** and look at **Files changed**. Does the changes look good?
 
 Leave a comment or approve the change. If something needs correcting, request changes and let the author update their branch. Merge once you both agree it is ready.
 
@@ -403,11 +391,9 @@ The same ideas apply: edit, save, commit, push, and pull. The buttons are in the
 
 ## Clean up the practice repo
 
-Once **both reviews are finished** and the trainer confirms the exercise is complete, delete only the temporary **hds-git-yourusername** repository:
+Once **both reviews are finished** and the trainer confirms the exercise is complete, delete only the temporary **hds-test-yourusername** repository:
 
 - On GitHub, open that repository's **Settings → Danger Zone → Delete this repository** and follow the confirmation steps.
-
-Keep **r-introduction** for Quarto and OmopViewer. Later we will create a separate **hds-study-yourusername** repository with OmopStudyBuilder.
 
 ## You are ready
 
