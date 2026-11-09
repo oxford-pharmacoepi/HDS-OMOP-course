@@ -25,51 +25,77 @@ editor: visual
 
 ## Welcome
 
-## Getting ready
+Welcome to the HDS OMOP training! We will write some code, share it with each other, and use it to explore study results.
 
-1. Install [R](https://cran.r-project.org)
+You do not need to know every tool already. We will build things step by step, and there will be time to try them yourself.
 
-2. Install [RStudio](https://posit.co/products/open-source/rstudio)
+Tell us your name, what you work on, and whether you have used R or GitHub before.
 
-3. Open RStudio
+## What are we working towards?
 
-4. Install **pak**
+-   **Day 1:** get comfortable with the tools for writing, sharing, and reporting our work.
+-   **Day 2:** define study populations with codelists and cohorts, then check them using synthetic data.
+-   **Day 3:** describe the people in those cohorts and explore their characteristics.
+
+Today we will work with practice files and supplied results. You do not need a connection to a patient database for the Day 1 exercises.
+
+## A few words we will use
+
+| Word | What we mean today |
+|-------------------|-----------------------------------------------------|
+| **OMOP CDM** | A common structure and vocabulary for health data, so the same analysis can be adapted across databases. |
+| **Codelist** | A list of concept IDs used to identify something, such as a condition or a medicine. |
+| **Cohort** | A group of people who meet a definition, with dates describing their membership. |
+| **Network study** | Several data partners running a shared study in their own databases. |
+
+We will spend more time on OMOP, concepts, and cohort definitions on Day 2. For today, these are the examples we will use while learning the tools.
+
+## How Day 1 fits together
+
+| Session | What you will practise |
+|---------------------|---------------------------------------------------|
+| **R** | Save a script, work with a small table, and make a plot. |
+| **GitHub** | Share a file, review a colleague's changes, and merge them. |
+| **Quarto** | Turn code and results into a report that you can update. |
+| **OmopStudyBuilder** | Create a study repository with a recognisable structure. |
+| **OmopViewer** | Explore results in an app and make a small change to it. |
+
+Each session adds something to the previous one. Keep the files you create so you can return to them later.
+
+## Before we start
+
+-   Open [RStudio](https://posit.co/download/rstudio-desktop/) with [R](https://cran.r-project.org/) installed. **R** runs the code; **RStudio** is where we write and organise it.
+-   Sign in to [GitHub](https://github.com/) and [GitHub Desktop](https://desktop.github.com/). Share your **username**.
+
+## Install the training tools
+
+In RStudio, find the **Console** tab. Run each command below separately and wait for the `>` prompt to return before continuing.
+
+Install **pak**:
 
 ```{r, eval=FALSE}
 install.packages("pak")
 ```
 
-5. Install **OmopTrainer**
+Install **OmopTrainer** from the team's GitHub repository:
 
 ```{r, eval=FALSE}
 pak::pkg_install("oxford-pharmacoepi/OmopTrainer")
 ```
 
-6. Check your setup
-
-```{r, eval=FALSE}
-OmopTrainer::validateSetup()
-```
-
 ## Are you ready?
 
+Run the setup check in the Console:
+
 ```{r, eval=FALSE}
 OmopTrainer::validateSetup()
 ```
 
-## What to expect this week
+Read the messages and fix any issue that arises, there should be some helpful messages. Package and dataset downloads can take a while, so this is a good time to sort out setup problems.
 
-The goal of this week is:
+Also check that you can sign in to GitHub Desktop.
 
-- To introduce R, RStudio, GitHub, Quarto, Shiny Apps and basic functionality (This part is unrelated to OMOP CDM, but these are the tools that we use in the team to communicate and work collaboratively).
-
-- To introduce the OMOP CDM (briefly)
-
-- To learn how to create codelists, review them, identify the individuals that have them and validate the codelists against synthetic data.
-
-- To learn how to characterise individuals and extract their main characteristics.
-
-## Schedule
+## Schedule {.smaller}
 
 | Day | Presentation | Link |
 |-----------------------|:------------------------|:------------------------|
@@ -86,10 +112,20 @@ The goal of this week is:
 
 ## How we are going to work
 
-- All the material for this week can be seen in this website: <https://oxford-pharmacoepi.github.io/HDS-OMOP-course/>
+-   We will demonstrate a small example, then pause for **YOUR TURN**.
+-   Copy code into your own script or document, run it, and change something small.
+-   Save your work as you go. We will say when you need to switch projects.
 
-- The chunks of code that you see you will be able to copy them (show example).
+Ask when something is unclear, including where to click. If you are stuck, show us the code and the full error message—we can work through it together :)
 
-- The presentation will consist on two parts:
-  -  *Presentation* presentations will be given, you can follow copying and pasting the code to check that what we are presenting makes sense and works.
-  - *YOUR TURN* time for coding you will be given simple instructions and you will have to figure it out :)
+## Where are the files?
+
+The [course website](https://oxford-pharmacoepi.github.io/HDS-OMOP-course/) has the slides.
+
+## What matters today?
+
+By the end, aim to be able to run your own code, find your saved files, share a change, and update a report.
+
+The command reference, PDF output, detailed Word styling, and extra app customisation are there to return to. We can treat them as optional if we need more practice with the basics.
+
+Let's start by opening RStudio.

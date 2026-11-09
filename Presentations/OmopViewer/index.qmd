@@ -34,15 +34,17 @@ A Shiny app has two main parts:
 
 Change an input and Shiny updates the outputs that depend on it. That is **reactivity**.
 
+Here, "server" means a function in our R code. The whole practice app can run on your own computer.
+
 ## Your first Shiny app
 
-Open your R Project. In RStudio, choose **File → New File → Shiny Web App…** and select a single-file app, `app.R`.
+Reopen **r-introduction.Rproj** after the OmopStudyBuilder session. In RStudio, choose **File → New File → Shiny Web App…**, name the app **first-shiny**, and select a single-file app, `app.R`.
 
 Click **Run App** and move the slider in the starter histogram example. What changes?
 
 . . .
 
-The next two slides show the UI and server for this example. Put them together in `app.R`.
+The next two slides show the complete code for the example. Put both blocks together in **first-shiny/app.R**, replacing the starter code, with `shinyApp()` at the end. Install `shiny` and `bslib` if RStudio reports that either is missing.
 
 The app keeps your R session busy while it runs. Click **Stop** in RStudio before running other code or restarting the app.
 
@@ -81,7 +83,9 @@ server <- function(input, output, session) {
 shinyApp(ui = ui, server = server)
 ```
 
-`input$bins` reads the slider. `renderPlot()` reruns when that value changes, and `output$distPlot` sends the new plot to the UI.
+`faithful` is a built-in dataset; the histogram groups its waiting times into bins. `input$bins` reads the slider, and `output$distPlot` sends the plot to the UI.
+
+Just as `$` picked a table column in R, here it picks a named input or output. `renderPlot()` reruns when the slider value changes.
 
 ## Give the UI a style with bslib
 
@@ -101,7 +105,7 @@ ui <- page_sidebar(
 )
 ```
 
-Run `shinyApp(ui, server)` again. The layout changes, but the matching IDs mean the slider and plot still work together.
+Put `library(bslib)` near the top of `app.R`, replace the `ui` block, save, and click **Run App** again. Keep `shinyApp(ui, server)` at the end. The IDs still connect the slider and plot.
 
 ## Meet OmopViewer
 
@@ -126,14 +130,16 @@ The settings help OmopViewer choose the appropriate panels for supported result 
 
 For this exercise, we will use cohort attrition and characteristics results from the reporting training, for **amoxicillin** and **metformin**.
 
+**Attrition** shows how cohort counts change as criteria are applied. **Characteristics** describe the people in the cohorts, such as their ages. We will learn to produce these results later in the course.
+
 Download **OmopViewer results** for this exercise. The four-column Data 1 and Data 2 files from the Quarto session are ordinary tables and cannot be used directly here.
 
 ## `YOUR TURN` Get the results
 
 1. Open the course website's [Downloads](../../Downloads/index.qmd) tab and choose your GitHub username.
 2. Click **Download OmopViewer results**.
-3. Save `omopviewer_results.csv` in the `data` folder of your R Project.
-4. Create an R script called `omopviewer.R` in your project. We will use it to explore and export an app.
+3. Save `omopviewer_results.csv` in **r-introduction/data**.
+4. Create an R script called `omopviewer.R` in **r-introduction**, beside `practice.R`. Keep the viewer code here and the simple histogram app in `first-shiny/app.R`.
 
 The code in these slides is for you to run in RStudio. It does not launch an app when we render the presentation.
 
@@ -146,6 +152,8 @@ launchDynamicApp()
 ```
 
 Upload `omopviewer_results.csv`, then use **Bind data and load shiny** to build the panels.
+
+The viewer starts without data. Choose the **OmopViewer results** CSV, not the codelist or Quarto Data 1/Data 2 files.
 
 . . .
 
@@ -199,6 +207,8 @@ OmopViewer creates a **shiny** folder inside `viewer`. Here, "static" means the 
 
 Stop the app, then open `viewer/shiny` in RStudio's Files pane.
 
+For this exercise, keep **r-introduction** as the active R Project. Browse the files without opening the generated `shiny.Rproj`, so the `here()` paths in our script stay the same.
+
 | File | What to look for |
 |------|------------------|
 | `global.R` | Packages and data loaded for the app. |
@@ -242,6 +252,23 @@ runApp(here("viewer_custom", "shiny"))
 ```
 
 Save your edits before restarting. Exporting again to the same location can overwrite the generated app, so use a new folder if you want to keep your manual changes.
+
+## If the app does not start
+
+- **R is still busy:** stop the previous app before running more code.
+- **Result object not found:** rerun the import step in `omopviewer.R`.
+- **Cannot find a file:** check that **r-introduction** is still the active project and that you saved the correct CSV in `data`.
+- **Package missing:** install the named package in the active project's library, then try again.
+
+If a small edit breaks the app, undo that edit and restart. Check labels and IDs carefully; changing the displayed text should not change the connection between UI and server.
+
+## How does this fit into a study?
+
+In our exercise, OmopViewer exports to **viewer/shiny** inside the practice project. OmopStudyBuilder's **studyShiny** folder is a place to organise the reporting app for a real study; the tools do not automatically connect these two folders.
+
+Later, the analysis code will produce the summary results that we import here.
+
+Running an app on your computer does not publish it for everyone else. Sharing the app files and hosting an app online are separate steps; deployment is beyond today's exercise.
 
 ## Final remarks
 
