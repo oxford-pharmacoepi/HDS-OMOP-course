@@ -28,7 +28,7 @@ Quarto is a free tool for creating documents from a plain-text source file. You 
 
 Use the same source to create reports, presentations, websites, and more. Quarto works with R, Python, Julia, and Observable.
 
-In this training we will use **R**.
+We will use **R** and return to the **r-introduction** project. By the end, you will have a report that updates when we replace its input data.
 
 ## What happens when you render?
 
@@ -38,9 +38,11 @@ That makes it easier to update a report when the data changes: update the data, 
 
 ## How to create a Quarto document
 
-Open the R Project you created earlier. In RStudio, choose **File → New File → Quarto Document…**.
+Open **r-introduction.Rproj**. In RStudio, choose **File → New File → Quarto Document…**.
 
-Give the document a name and save it inside your project. Keeping the document and its data together makes it easier to find and share your work.
+Choose HTML, give it a title, and save it as **my-report.qmd** in the project root, beside `practice.R`. Use the **Source** editor when typing the Markdown examples below.
+
+If the Quarto option is missing or RStudio asks to install a required package, ask the trainer to help before continuing.
 
 ## Create a Quarto document
 
@@ -50,12 +52,22 @@ Give the document a name and save it inside your project. Keeping the document a
 
 Start with **HTML** and click **Render**. Quarto will create a document you can open in your browser.
 
-- Try rendering the same source as Word and PDF, then compare the results.
-- For the template exercise, switch the output format to Word.
+- Render the starter document first. This checks that your setup works.
+- Then try Word by changing the YAML format to `docx` and rendering again.
+- PDF is optional: its usual LaTeX engine needs an extra installation. We can use HTML or Word for all the core exercises.
 
 . . .
 
 The writing and code stay in the `.qmd` source. You can render it again whenever you update the content or data.
+
+## Which file do I edit?
+
+- **my-report.qmd:** your editable source, containing writing and code.
+- **my-report.html** or **my-report.docx:** the output created by Render.
+
+Make changes in the `.qmd` file and render again. Changes made only in the output will not be carried back into your source.
+
+Save `my-report.qmd` before rendering. Keep the setup and analysis code in the document so someone else can recreate the report.
 
 ## Parts of a Quarto document
 
@@ -66,7 +78,7 @@ A `.qmd` file has two main parts:
 
 ## Write some text
 
-Quarto uses Markdown for headings and basic formatting. For example:
+This is the same Markdown we used in GitHub's README. For example:
 
 ```markdown
 # Main heading
@@ -84,7 +96,7 @@ Render the document and see how the source becomes a formatted page.
 
 ## Add some code
 
-Put R code in a code chunk. Quarto can run it and include the result in the document:
+Use RStudio's **Insert Code Chunk** control to insert an **R** chunk. Paste this code inside it, then render:
 
 ```{r}
 scores <- c(7, 8, 10)
@@ -95,7 +107,22 @@ mean(scores)
 
 The code and its result are connected: change the values and render again to update the result.
 
-## `echo`, `eval`, `messages`, and `warnings`
+## What does a chunk look like?
+
+In the Source editor, an executable R chunk has an opening line, the R code, and a closing line:
+
+```{=html}
+<pre><code>&#96;&#96;&#96;{r}
+scores &lt;- c(7, 8, 10)
+mean(scores)
+&#96;&#96;&#96;</code></pre>
+```
+
+The three backticks mark the boundaries. `{r}` says to run the contents as R code. Ordinary writing goes outside the chunk.
+
+You can use the chunk's green arrow to try it, but **Render** rebuilds the whole document.
+
+## `echo`, `eval`, `message`, and `warning`
 
 These options control what happens to code chunks:
 
@@ -105,11 +132,21 @@ These options control what happens to code chunks:
 
 . . .
 
-Set options in the chunk header, or set document-wide defaults in the YAML under `execute:`. For example, a chunk with `{r, echo=FALSE, message=FALSE}` runs `summary(scores)` but hides its code and messages while showing the result.
+Set options in the chunk header. For example, this runs the summary and shows its result while hiding its code and messages:
+
+```{=html}
+<pre><code>&#96;&#96;&#96;{r, echo=FALSE, message=FALSE}
+summary(scores)
+&#96;&#96;&#96;</code></pre>
+```
+
+Use `echo=FALSE` when you want results without the code. `eval=FALSE` means the code will not run, so it cannot create objects for later chunks.
+
+## Set defaults for the document
 
 . . .
 
-You can also change this options globaly with the initial block of yaml file, the following block for example will make all the code to be hidden but executed:
+Add an `execute:` section to the YAML at the top of your document. These defaults run the code but hide it in the output:
 
 ```text
 ---
@@ -119,45 +156,82 @@ execute:
 ---
 ```
 
-## `YOUR TURN`
+Keep your existing title and format. Add these options inside the same YAML block, keeping the indentation shown above. Individual chunks can override the defaults.
+
+## Render starts a fresh R session
+
+When you click Render, Quarto runs your document from the top in a fresh session. Objects you created only in the Console are not automatically available.
+
+Include the `library()` calls, file-reading code, and calculations in your `.qmd` file, in the order they are needed.
+
+If you see **object not found**, look for the earlier chunk that should create it. Check that it runs and that the object name is the same in both places.
+
+## `YOUR TURN` Get the data
 
 1. Open the course website’s **Downloads** tab and choose your GitHub username.
-2. Click **Download Data 1 results** and save `data1.csv` in a `data` folder inside your R Project.
+2. Click **Download Data 1 results** and save `data1.csv` in **r-introduction/data**.
 3. Read it into your Quarto document. Add a sentence, table, or plot that tells us something about the data.
 
-## `YOUR TURN` Read, summarise, and plot
+These are made-up prevalence percentages for five conditions. Each row describes a **database**, **condition**, **year**, and **prevalence**. For example, `8.4` means 8.4%.
 
-Read the CSV with `readr`, then find the row with the highest prevalence:
+## Read and inspect the data
+
+In `my-report.qmd`, add an R chunk and paste this code. Keep it above the chunks that use `data`:
 
 ```{r, eval=FALSE}
 library(readr)
 library(here)
-library(dplyr)
+
 data <- read_csv(here("data", "data1.csv"))
-highest_example <- data |>
-  filter(prevalence == max(prevalence))
+head(data)
 ```
 
-In your document, you could write this sentence using inline R:
+Render and check the column names. If the file cannot be found, check its name and make sure it is in this project's `data` folder.
+
+## Find a value to describe
+
+Add another R chunk below the data-reading chunk. Here we find the row with the highest prevalence across all years and databases:
+
+```{r, eval=FALSE}
+library(dplyr)
+
+highest_example <- data |>
+  filter(prevalence == max(prevalence))
+highest_example
+```
+
+`max()` finds the largest value; `filter()` keeps matching rows. This example dataset has one highest row. With other data, ties could give us several rows.
+
+## Put a result inside a sentence
+
+Below the previous chunk, paste this sentence as ordinary document text. The expressions between backticks are **inline R**:
 
 ```{=html}
-<pre><code>The highest prevalence is &#96;r highest_example$prevalence&#96;
+<pre><code>The highest prevalence is &#96;r highest_example$prevalence&#96;%
 for &#96;r highest_example$condition&#96;
 in &#96;r highest_example$database&#96; in &#96;r highest_example$year&#96;.</code></pre>
 ```
 
-For example, you could describe the highest value in a sentence, make a table, or plot prevalence by year and condition.
+Render the document. Quarto replaces each inline expression with its value, so the text updates with the data too.
 
-These chunks are examples for your own document.
+Here, `$` selects a column from `highest_example`, just as we used `people$age` in the R session.
+
+## Add a plot
+
+Add one more R chunk:
 
 ```{r, eval=FALSE}
 library(ggplot2)
 ggplot(data, aes(x = year, y = prevalence, colour = condition)) +
+  geom_line() +
   geom_point() +
-  facet_wrap(~database)
+  facet_wrap(~database) +
+  labs(y = "Prevalence (%)")
 ```
 
-Inline R expressions run when you render the document, just like code in a chunk.
+As before, `aes()` connects columns to the axes and colours. `facet_wrap()` creates a separate panel for each database.
+
+**YOUR TURN:** change the plot title or hide the code with `echo=FALSE`, then render again.
 
 ## Spacing in Quarto
 
@@ -165,7 +239,7 @@ Leave a blank line in the source to start a new paragraph. A single newline in t
 
 In a presentation, a new `##` heading starts a new slide. Keep headings short so the audience can see the main point at a glance.
 
-## Use templates
+## Optional: use a Word template
 
 A template gives documents a shared look and saves you from formatting every report by hand. For a Word report, a reference document can define headings, fonts, spacing, headers, footers, and caption styles.
 
@@ -175,9 +249,9 @@ Quarto uses the content and styles in your `.qmd` file; Word uses the matching s
 
 The [darwinReportRef.docx template](https://github.com/darwin-eu/visOmopResults/blob/main/inst/quarto/darwinReportRef.docx) is an example of a Word reference document.
 
-Download it and open it in Word to explore the styles. In your Quarto document, set it as the `reference-doc` for Word output, then render the report to apply those styles.
+On GitHub, use **Download raw file** to save the `.docx` file, then open it in Word to explore the styles. Save it beside `my-report.qmd`.
 
-For example, save the template in your project folder and add this to the document YAML:
+Replace your existing `format:` setting in the YAML with:
 
 ```yaml
 format:
@@ -191,7 +265,7 @@ You can give a block of text a style name that exists in the Word reference docu
 
 ```markdown
 :::{custom-style="FigureCaption"}
-Figure 1. The prevalence of the different condition over time.
+Figure 1. Prevalence of the different conditions over time.
 :::
 
 :::{custom-style="CaptionFooter"}
@@ -201,9 +275,9 @@ CI = confidence interval
 
 Create or change the `FigureCaption` and `CaptionFooter` styles in the Word template to control their appearance. The style names in the document and template need to match.
 
-## `YOUR TURN`
+## `YOUR TURN` Update the report
 
-A new data partner sends updated results at the last minute, and two other partners have updated their old results. No need to rebuild the report by hand:
+A new partner, **SIDI Or**, sends results at the last minute. **SIDI Plata** updates its results, while **SIDI Bronze** stays the same. Let's refresh our report:
 
 1. In your username tab on **Downloads**, click **Download Data 2 results** and save `data2.csv` in your `data` folder.
 2. Update your `read_csv()` line to read `data2.csv`.
@@ -212,6 +286,15 @@ A new data partner sends updated results at the last minute, and two other partn
 . . .
 
 The report is refreshed from the new data. Check what changed for SIDI Plata, notice the new SIDI Or results, and confirm that SIDI Bronze stayed the same.
+
+## If the report does not render
+
+- **Object or function not found:** include the data-reading code and `library()` calls in the document, above the analysis.
+- **File not found:** check the active project, the `data` folder, and the exact filename.
+- **YAML error:** check spaces and indentation at the top. Do not add a second `format:` key.
+- **PDF/LaTeX error:** continue with HTML or Word. PDF setup is optional today; see the [Quarto PDF guide](https://quarto.org/docs/output-formats/pdf-basics.html).
+
+Fix the first reported error and render again. Ask for help if the message does not make sense.
 
 ## Final remarks
 
@@ -222,3 +305,5 @@ The report is refreshed from the new data. Check what changed for SIDI Plata, no
 . . .
 
 That’s Quarto: write it once, render it when you need it, and let the code update the results.
+
+Save **my-report.qmd** in **r-introduction**. Next, OmopStudyBuilder will help us organise a bigger study into a shared repository.

@@ -50,7 +50,7 @@ Install the package from CRAN if you do not have it yet:
 install.packages("OmopStudyBuilder", dependencies = TRUE)
 ```
 
-From your current R Project, choose a new folder beside it. Replace `yourusername` with your GitHub username:
+Reopen **r-introduction.Rproj**. Choose a new folder beside it, replacing `yourusername` with your GitHub username:
 
 ```{r, eval=FALSE}
 library(OmopStudyBuilder)
@@ -66,6 +66,8 @@ initStudy(
 ```
 
 The destination must be new or empty. Let `initStudy()` create its contents before opening any of the generated R Projects.
+
+`dirname(here())` finds the folder containing your current project; `file.path()` builds the path to the new study folder.
 
 ## What did it create?
 
@@ -89,7 +91,9 @@ Both `diagnostics` and `study` default to `TRUE`. Set either to `FALSE` in `init
 
 Each of the four component folders contains an `.Rproj` file. Open the project for the part you are working on.
 
-For example, open **studyCode/studyCode.Rproj** for the main analysis. In that session, `here()` points to `studyCode`.
+For example, open **studyCode/studyCode.Rproj** for the main analysis. In that session, `here()` points to `studyCode`, not the whole repository.
+
+This still follows our "one project for one piece of work" approach: the repository groups several separate components together.
 
 . . .
 
@@ -115,12 +119,12 @@ For now, explore the scripts rather than sourcing them: the database connection 
 Use the **whole study folder**, `hds-study-yourusername`, as the repository root.
 
 1. In GitHub Desktop, choose **File → Add Local Repository…** and select that folder.
-2. If Desktop says it is not a Git repository, follow **create a repository here**. Use the existing folder and keep the README created by OmopStudyBuilder.
+2. If Desktop says it is not a Git repository, follow **create a repository here**. Keep the existing README and select **R** in the Git ignore options to exclude local R session files.
 3. Review the files and commit any pending changes with a message such as `Add study structure`.
 4. Click **Publish repository**, choose **oxford-pharmacoepi** as the organisation, and publish it as a private repository.
 5. Open it on GitHub and check that the README and all four component folders are there.
 
-Use a unique repository name. If you cannot select the organisation, ask the trainer to check your access.
+Use a unique repository name. Ask the trainer to check that your colleague can access this new repository too; access to the earlier practice repository does not automatically carry over.
 
 ## Keep the instructions with the code
 
@@ -131,6 +135,8 @@ Then use the workflow from the GitHub session:
 - Create a branch for your changes.
 - Commit and push them.
 - Open a pull request and ask a colleague whether the instructions are clear.
+
+After merging, switch to `main` in Desktop and **Fetch origin → Pull origin** to update your local copy.
 
 OmopStudyBuilder can also create a GitHub repository through `initStudy()` or `linkGitHub()` when R authentication is configured. See the [CRAN reference manual](https://cran.r-project.org/web/packages/OmopStudyBuilder/refman/OmopStudyBuilder.html) for that route.
 
@@ -146,9 +152,9 @@ The same code can behave differently when people have different package versions
 
 The generated study folders do not yet contain a lockfile. Prepare `renv` in each component R Project that you use, after deciding which packages its code needs.
 
-## renv: the basic workflow {.smaller}
+## renv: the basic workflow (demo) {.smaller}
 
-Open **studyCode/studyCode.Rproj** before setting up its environment. Install `renv` if needed, then initialise it once:
+Watch this first; setting up the full template's packages can take time. Open **studyCode/studyCode.Rproj**, install `renv` if needed, and initialise it once:
 
 ```{r, eval=FALSE}
 install.packages("renv")
@@ -181,7 +187,7 @@ library(here)
 reviewStudy(dir = here(), dependencies = FALSE)
 ```
 
-This prints a summary of the R scripts and JSON, CSV, and Excel files. We skip the dependency review here because the fresh template has no `renv.lock` yet.
+This prints a summary of the R scripts and JSON, CSV, and Excel files. `dependencies = FALSE` lets everyone try it, including those who have not set up `renv` yet.
 
 It gives us a starting point for review; we still need to read the code and check that it answers the study question.
 
@@ -206,7 +212,7 @@ Run the review in the component folder containing the lockfile. A review of the 
 1. Run `reviewStudy(dir = here(), dependencies = FALSE)` from **studyCode**.
 2. Find the entry script and the analysis scripts in the output. Which are still empty?
 3. If you have prepared a lockfile, run the dependency review too. Pick one package and find its recorded version.
-4. Add a note to your pull request describing what still needs to be completed before the study can run.
+4. Add a note to your pull request, or a new issue if it has already been merged, describing what still needs to be completed before the study can run.
 
 Discuss the review with your colleague. A common folder structure makes it easier to find things, but the code and instructions still need a human review.
 
@@ -217,7 +223,7 @@ Discuss the review with your colleague. A common folder structure makes it easie
 - Use `renv` to record and restore package versions.
 - Use `reviewStudy()` to help you inspect the project before sharing it.
 
-Next, we will see how **OmopViewer** helps us build apps to explore study results.
+Next, we will see how **OmopViewer** helps us build apps to explore study results. Reopen **r-introduction.Rproj** for that exercise so we use the same practice project and `data` folder as in Quarto.
 
 ## Useful links
 

@@ -25,31 +25,45 @@ editor: visual
 
 ## Let's get started
 
-Does everyone have a *GitHub* username?
+We have saved an R script. Now let's practise keeping a history of a file and reviewing someone else's changes.
 
--   Share your GitHub username please :)
+- Sign in to **GitHub in your browser** and **GitHub Desktop**.
+- Share your username and accept your invitation to **oxford-pharmacoepi**.
+- The trainer will help check that you and your reviewer can access each other's practice repositories.
 
--   Have you been added to *oxford-pharmacoepi* organisation?
+We will create a separate folder called **hds-git-yourusername**. Keep your **r-introduction** project for the later sessions.
 
 ## Git vs GitHub vs GitHub Desktop
 
 . . .
 
-**Git** is a distributed version control system that tracks changes in source code during software development and allows multiple developers to collaborate efficiently.
+**Git** records versions of files on your computer. We can see what changed and return to earlier versions.
 
 . . .
 
-**GitHub** is a web-based platform that provides hosting for Git repositories, along with collaborative features like issue tracking, pull requests, and project management.
+**GitHub** stores a shared copy online. We use its website to discuss work and review changes.
 
 . . .
 
-**GitHub Desktop** is a graphical user interface (GUI) application that simplifies the interaction with Git and GitHub, allowing users to perform common repository operations without using the command line.
+**GitHub Desktop** is the app we will use to send and receive changes using buttons.
+
+## Which window should I use?
+
+| Task | Where? |
+|------|--------|
+| Edit a script or CSV | RStudio or a text editor, then save the file. |
+| Check changed files, commit, push, or pull | GitHub Desktop. |
+| Open an issue, discuss a change, or review a pull request | GitHub in your browser. |
+
+**Local** means on your computer. **Remote** means the shared copy on GitHub. Saving a file locally does not automatically send it to GitHub.
 
 # Core Concepts
 
 ## Repository (Repo)
 
-A repository is essentially a **project's folder**. It contains all the project files, including code, documentation, images, and, most importantly, the **entire history** of every change made to those files.
+A repository, or **repo**, is a folder with Git tracking enabled. It holds the files we choose to track and the history of their committed changes.
+
+An R Project helps RStudio organise your work. A Git repository records its history. A folder can be both, but they do different jobs.
 
 ![](Figures/repos.png){fig-align="center"}
 
@@ -84,35 +98,42 @@ You can use Markdown syntax to format a text file:
 
 1.  In GitHub Desktop, choose **File → New Repository…**
 
-2.  Give the repository a name, choose where to save it, and click **Create Repository**.
+2.  Name it **hds-git-yourusername**, replacing `yourusername` with your own. Save it beside your R project, select **Initialize this repository with a README**, and click **Create Repository**.
 
 The repository now exists on your computer only.
 
-3.  Click **Publish repository**. In the dialog, choose **oxford-pharmacoepi** from the organization menu, then click **Publish Repository**.
+3.  Click **Publish repository**. Choose **oxford-pharmacoepi** from the organisation menu, keep the repository private, and click **Publish Repository**.
 
-You now have a repository on GitHub. Open it on the website and have a look around.
+Open it on GitHub. Ask the trainer to help give your reviewer write access if they do not already have it. Being in the organisation does not always give access to every repository.
 
 ## `YOUR TURN` Download the codelist
 
-Now go to the [Downloads](https://oxford-pharmacoepi.github.io/HDS-OMOP-course/Downloads) section of the course website and look for your username.
+Go to the course website's [Downloads](../../Downloads/index.qmd) tab and choose your GitHub username.
 
--   Download the codelist assigned to you.
+- Click **Download codelist** and save the CSV inside **hds-git-yourusername**.
+- In GitHub Desktop, choose that repository and look at **Changes**.
+- Open the CSV in RStudio's text editor and look at the column names.
 
--   Add it to the folder of your repo
+## What are we reviewing?
 
--   Let's see the changes
+A **codelist** lists concept IDs and their descriptions. Our practice files contain some deliberately wrong rows, including a concept name starting with `FAKE`.
+
+For today's GitHub exercise, ask your reviewer to remove the **FAKE** row and explain the change. Keep the header and the remaining columns as they are.
+
+You can edit this CSV as text: remove the whole row and save the file. The deeper question of which real concepts belong in a clinical codelist is for Day 2.
 
 ## Commit
 
-A **commit** is a snapshot of your repository at a specific point in time. Commits are the building blocks of Git history.
+A **commit** records a version of the changes you choose to include. Give it a short message so someone else can understand what you did.
 
--   Every commit has a unique ID (SHA), an author, a timestamp, and a **commit message** that explains *why* the change was made.
+- Every commit has an ID, an author, a time, and a message.
 
 -   Commits are created *locally* with Git.
 
 ## `YOUR TURN` Create a commit with the codelist
 
--   Add a message and click commit.
+1. In GitHub Desktop's **Changes** tab, tick the codelist file and inspect its contents.
+2. Write `Add practice codelist` in the **Summary** field and click **Commit to main**.
 
 -   The commit is still **local**. It will appear on GitHub after you push it.
 
@@ -130,9 +151,11 @@ These are the actions used to synchronise your local Git repository with the rem
 
 ## `YOUR TURN` Push to GitHub
 
--   Push your changes to GitHub
+- Click **Push origin** in GitHub Desktop.
 
--   Now you should see that the codelist appears in the GitHub website
+- Refresh the repository page in your browser. The codelist should now be there.
+
+Remember the three steps: **save the file → commit the change → push it to GitHub**.
 
 ## Issues
 
@@ -150,21 +173,27 @@ An **issue** is a place to track a task, bug, or idea. It gives the team a place
 
 -   **Assignee**: The assignee is the person responsible for handling or resolving the issue.
 
--   **Type**: The type describes the issue, for example a *bug*, *feature request*, or *task*.
+-   **Type**, when available: describes the issue as a bug, feature, or task.
 
 ## `YOUR TURN` Open an issue
 
--   Open an issue in your repo (you need to do that from the GitHub website)
+1. On your repository's GitHub page, open **Issues → New issue**.
+2. Give it a title such as `Remove the fake concept from my codelist` and describe the change you want.
+3. Your Downloads tab names your reviewer. Mention them with `@username` and assign the issue to them if they are available in the list.
 
--   Ask a colleague to review your codelist. The Downloads page lists who you should ask. Tag that person in the issue and assign the issue to them.
+If they cannot open the repository or appear as an assignee, ask the trainer to check access. An issue describes the work; it does not change the CSV itself.
 
 ## Inbox
 
-Check your GitHub inbox for the request to review a colleague’s codelist. Open the request and follow the link to the issue or pull request.
+Check your GitHub notifications for the request to review a colleague's codelist. If the notification has not arrived, ask them to share the issue link.
+
+You will do two jobs: review someone else's file, then review the change someone proposes to your own file. The two colleagues may be different people.
 
 ## Clone
 
-Clone a repository to make a local copy on your computer. To make a copy in your GitHub account, fork the repository.
+**Clone** means download a repository and its history to your computer. In GitHub Desktop, choose **File → Clone Repository…** and select your colleague's repository or paste its URL.
+
+Choose a folder beside your own practice repository. Check **Current repository** before editing so you are working on your colleague's file.
 
 . . .
 
@@ -176,11 +205,11 @@ Clone a repository to make a local copy on your computer. To make a copy in your
 
 ## Branch
 
-A **branch** is an independent line of development.
+A **branch** lets us work on a proposed change before it is added to the main version.
 
 -   The default and main line of development is typically called the **main** branch.
 
--   Branches allow developers to work on new features or bug fixes in **isolation** without affecting the stable, main code.
+- In GitHub Desktop, use **Current branch → New branch**. Name it `review_codelist`.
 
 . . .
 
@@ -192,7 +221,9 @@ A **branch** is an independent line of development.
 
 ## Fork
 
-A **fork** is a copy of a repository in your GitHub account. You can change your fork without changing the original, then propose your changes to the original project with a pull request. A fork is useful when you do not have write access to the original repository.
+A **fork** is a copy of a repository in your GitHub account. You can propose changes from it with a pull request when the repository's permissions allow this.
+
+For this exercise, we will use write access to each other's repositories and work on branches. Private organisation repositories may not allow forks, so ask for help with access rather than assuming you can fork one.
 
 ## Pull Request (PR)
 
@@ -210,19 +241,19 @@ A **pull request (PR)** proposes changes from one branch to another, usually so 
 
 ## `YOUR TURN` Complete your review
 
-1.  Clone your colleague’s repository if you have write access. If you do not, fork it and clone your fork.
+1.  Clone your colleague's repository once you have write access.
 
 2.  Create a branch (for example, `review_codelist`).
 
-3.  Review the codelist and make the agreed changes.
+3.  Remove the agreed **FAKE** row from their CSV and save the file.
 
 4.  Commit your changes.
 
-5.  Push your branch to GitHub.
+5.  Click **Publish branch** for its first push, or **Push origin** if it is already published.
 
-6.  Open a pull request targeting your colleague’s repository.
+6.  Click **Create Pull Request** and target `main` in your colleague's repository. Check the changed lines before submitting it.
 
-7.  Link the pull request to the relevant issue.
+7.  Describe your change and add `Closes #1`, replacing `1` with the issue number in that repository.
 
 8.  Ask the colleague who assigned the review to review your pull request.
 
@@ -232,11 +263,29 @@ A **merge** integrates changes from one branch into another. Once a pull request
 
 -   Let's merge your **Pull Requests**
 
-## `YOUR TURN`
+## `YOUR TURN` Review and merge
 
-Review the pull request in your repository. Approve it or request changes, then merge it once you and the author agree it is ready.
+Open the pull request **in your own repository** and look at **Files changed**. Does it remove the row you asked for, while keeping the header and other rows?
 
-## How everything works
+Leave a comment or approve the change. If something needs correcting, request changes and let the author update their branch. Merge once you both agree it is ready.
+
+## `YOUR TURN` Bring the change back to your computer
+
+The merge happened on GitHub. Now update your local copy:
+
+1. In GitHub Desktop, select **your own repository** and switch to **main**.
+2. Click **Fetch origin**, then **Pull origin** if changes are available.
+3. Open your local CSV and check that the fake row has gone.
+
+**Fetch** checks for remote updates. **Pull** brings those changes into your local branch. Start a new branch from an up-to-date `main` for your next change.
+
+## Core exercise complete
+
+You have saved, committed, pushed, reviewed, merged, and pulled a change. That is the workflow we will use again with OmopStudyBuilder.
+
+The next slides are reference material and extra practice. We can return to them when we need them.
+
+## Optional reference: Git commands
 
 **Git**
 
@@ -278,11 +327,9 @@ Review the pull request in your repository. Approve it or request changes, then 
 
 ## Update from main
 
--   Change to `your_branch` branch
-
--   `Branch` \> `Update from main`
-
--   `Push`
+- First switch to `main`, then **Fetch origin** and **Pull origin**.
+- Switch back to your working branch.
+- Choose **Branch → Update from main**, then push your branch.
 
 . . .
 
@@ -292,13 +339,15 @@ Review the pull request in your repository. Approve it or request changes, then 
 
 . . .
 
-The `.gitignore` file tells **git** which files or folders to skip when tracking changes. It prevents temporary, sensitive, or unnecessary files from being added to a repository. Common examples include log files, build artifacts, and environment files. This keeps the repo clean and focused on essential code and assets.
+The `.gitignore` file lists files and folders that Git should leave untracked, such as local R session files or generated outputs.
 
 -   To ignore a file, add its name, for example `my_file.txt`.
 
 -   To ignore a folder, add its name followed by a slash, for example `folder/`.
 
 -   Use patterns such as `*.txt` to ignore all `.txt` files.
+
+It does not remove files that Git already tracks. Before committing, look at the file list; real patient data and passwords do not belong in this exercise repository.
 
 ## Merge conflicts
 
@@ -340,23 +389,25 @@ Templates can be used to create new repositories:
 
 ## GitHub on the server
 
-When working with the rstudio server, you won't be able to access to GitHub Desktop, so the UI is going to be a bit more complicated.
+On RStudio Server, the files live on the server. GitHub Desktop on your laptop does not manage that copy directly, so use RStudio's **Git** pane there.
 
 . . .
 
-First you will need to link your RStudio server with your github account, to do that you can follow this [Tutorial](https://github.com/oxford-pharmacoepi/ServerOnboarding/blob/main/2_SettingUp/Using%20Github%20with%20RStudio%20server.pdf).
+First, set up GitHub access on the server with the trainer, using this [tutorial](https://github.com/oxford-pharmacoepi/ServerOnboarding/blob/main/2_SettingUp/Using%20Github%20with%20RStudio%20server.pdf).
 
 . . .
 
-Once done you will have to navigate trough the Git panel:
+The same ideas apply: edit, save, commit, push, and pull. The buttons are in the Git pane:
 
 ![](Figures/git_panel.png){fig-align="center"}
 
-## Delete the mock repo
+## Clean up the practice repo
 
-For the sake of scalability and to know also how it is done please delete the toy repo you used in this session:
+Once **both reviews are finished** and the trainer confirms the exercise is complete, delete only the temporary **hds-git-yourusername** repository:
 
-- Find your repo in github.com -> Settings -> Danger Zone -> Delete this repository -> confirm
+- On GitHub, open that repository's **Settings → Danger Zone → Delete this repository** and follow the confirmation steps.
+
+Keep **r-introduction** for Quarto and OmopViewer. Later we will create a separate **hds-study-yourusername** repository with OmopStudyBuilder.
 
 ## You are ready
 

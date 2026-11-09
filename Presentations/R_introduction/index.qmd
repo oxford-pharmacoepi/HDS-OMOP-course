@@ -25,189 +25,277 @@ editor: visual
 
 ## R programming language
 
-R first appeared in 1993 and is a programming language designed for working with data and statistics.
+R first appeared in 1993. It is a programming language designed for working with data and statistics.
 
-R is usually interpreted: you write commands and R runs them directly, without a separate compile step.
-
-For example, ask R to do a calculation:
+R is usually interpreted: we write commands and R runs them without a separate compile step.
 
 ```{r}
 2 + 2
 ```
 
-## Functions in R
+## Find your way around RStudio
 
-You can define functions in R like:
+**R** does the calculations. **RStudio** gives us places to write code and see what happened.
+
+-   **Source:** write and save a script. This pane appears when you open a file.
+-   **Console:** run commands and read their output or errors.
+-   **Environment:** see objects created in the current R session.
+-   **Files, Plots, and Help:** find files, see figures, and read documentation.
+
+The panels can be arranged differently on your computer. Look for their names rather than their position.
+
+## What is an R Project?
+
+An R Project is a folder for one piece of work, with a small `.Rproj` file that RStudio uses to reopen it.
+
+-   Keep scripts, data, and results together.
+-   Open the `.Rproj` file to return to the project.
+-   Use paths relative to that folder so your code is easier to share.
+
+Think of it as a home for the exercise.
+
+## `YOUR TURN` Create your first project
+
+In RStudio:
+
+1.  Choose **File → New Project… → New Directory → New Project**.
+2.  Give it a name and choose a folder you can find again.
+3.  Click **Create Project**. Check the project name at the top-right of RStudio.
+4.  Choose **File → New File → R Script** and save it as `practice.R` inside the project.
+
+Use the Files panel to create folders called `data` and `Results`. The names and capital letters should match the examples.
+
+## A simple project layout
+
+``` text
+your_project/
+├── your_project.Rproj
+├── practice.R
+├── data/
+└── Results/
+```
+
+Save input files in `data` and things you create in `Results`. Bigger projects often have an `R` folder for scripts too.
+
+The `.Rproj` file helps RStudio open the project. Your `.R` script contains the code you want to keep.
+
+## Write, run, save
+
+Type `2 + 2` into `practice.R`, place the cursor on that line, and click **Run**. You can also use **Ctrl+Enter** on Windows/Linux or **Cmd+Enter** on Mac.
+
+The command is sent to the Console and the answer appears there. Select several lines to run them together.
+
+. . .
+
+**Saving** stores your code in a file. **Running** asks R to execute it. Save and run after changing an example so the file and the result agree.
+
+A Console `>` means R is ready. If you see `+`, it is usually waiting for something such as a closing bracket or quote; press **Esc** and check the command.
+
+## Use a function
+
+A **function** does a job. Put the inputs, called **arguments**, inside its brackets:
+
+```{r}
+mean(ages)
+length(ages)
+```
+
+Missing values are written as `NA`. Some functions need us to decide how to handle them:
+
+```{r}
+scores <- c(7, 8, NA)
+mean(scores, na.rm = TRUE)
+```
+
+Here, `na.rm = TRUE` asks `mean()` to leave missing values out of the calculation. Use `?mean` in the Console to read its help page.
+
+## You can write a function too
 
 ```{r}
 sumFun <- function(a, b) {
   a + b
 }
-```
 
-And use them later as:
-
-```{r}
 sumFun(5, 6)
 ```
 
+`a` and `b` are the inputs. The code between `{` and `}` says what to do with them.
+
+For now, most of our work will use functions that other people have already written. You do not need to memorise how to write your own before continuing.
+
 ## Packages in R
 
-Packages are collections of functions and other tools that people develop and share for you to use.
+A **package** is a collection of functions, documentation, and sometimes data that people develop and share.
 
-Many R packages are distributed through **CRAN** (the Comprehensive R Archive Network), a collection of servers that hosts R packages and checks submitted updates. Package authors maintain their packages; CRAN helps make them available to the R community.
+Many packages are distributed through **CRAN**, the Comprehensive R Archive Network. CRAN hosts packages and checks submitted updates; package authors maintain the packages themselves.
 
-. . .
-
-To install a package you can just type:
+Install a package into your R library when you first need it:
 
 ```{r, eval=FALSE}
 install.packages("tibble")
-# or, if you have pak installed
+# Or, if pak is installed:
 pak::pkg_install("tibble")
 ```
 
-. . .
+You normally do not need to reinstall it each time you open RStudio.
 
-You can either call a function using `::`:
+## Load a package when you use it
 
-```{r}
-tibble::tibble(a = 1)
-```
-
-. . .
-
-Or using `library()`, which makes the package's functions available:
+`library()` makes a package's functions available in the current session:
 
 ```{r}
 library(tibble)
 tibble(a = 1)
 ```
 
-. . . 
-
-In general we will use the latter option (**library()**).
-
-## The pipe operator `|>`
-
-The pipe operator was introduced in R 4.1 and it is widely used in R. It concatenates the use of two functions, for example:
+You can also call a function with its package name:
 
 ```{r}
-library(dplyr)
-
-x <- tibble(a = 1)
-x
-x <- mutate(x, b = 1)
-x
+tibble::tibble(a = 1)
 ```
 
-. . .
+In this training, we will usually use **library()** at the start of a script. Short, one-off calls may use `::`.
 
-You can simplify this code with:
-
-```{r}
-x <- tibble(a = 1) |>
-  mutate(b = 1)
-```
+Put the `library()` calls in your saved code too. A new R session needs to load the packages again.
 
 ## Meet the tidyverse
 
-The **tidyverse** is a collection of R packages that work well together for common data tasks.
+The **tidyverse** is a collection of packages that work well together for common data tasks:
 
-- `dplyr`: wrangle data (filter, select, create columns, summarise)
-- `ggplot2`: make plots
-- `readr` and `tidyr`: read and reshape data
-- plus packages for strings, factors, iteration, and more
+-   `tibble`: create and display tables.
+-   `dplyr`: filter rows, change columns, and summarise data.
+-   `readr`: read files such as CSVs.
+-   `tidyr`: reshape tables.
+-   `ggplot2`: make plots.
 
-## Some examples: a consistent way to work with data
+We will load the packages we need for each example. The functions often take a table as their first input.
 
-Tidyverse functions use a consistent style: give a data frame to a function, and get a data frame back.
+## Our first table
 
 ```{r}
 library(tibble)
 
 people <- tibble(
   name = c("Alex", "Sam", "Jo"),
-  age = c(24, 31, 19),
+  age = c(24, 31, 17),
   group = c("A", "B", "A")
 )
-
 people
 ```
 
-`tibble()` is the tidyverse's friendly take on a data frame. It prints a quick preview and keeps the data in a familiar rectangular format.
+Each **row** describes one person. Each **column** holds one type of information.
 
-## Read, transform, and summarise
+A tibble is a type of data frame. Think of both as tables with named columns.
 
-Use `|>` to read a data workflow from top to bottom. Here we keep adults, add a column, and count people in each group:
+## Pick a column or inspect the table
+
+```{r}
+people$age
+mean(people$age)
+nrow(people)
+```
+
+`$` selects a named column. `nrow()` counts rows.
+
+```{r}
+names(people)
+```
+
+`names()` shows column names. This is useful if a later example says that a column cannot be found.
+
+## Filter and change a table
 
 ```{r}
 library(dplyr)
+
+adults <- filter(people, age >= 18)
+adults <- mutate(adults, age_next_year = age + 1)
+adults
+```
+
+`filter()` keeps the rows that match a condition. `mutate()` creates or changes columns.
+
+Inside these functions, we can write `age` directly because they look for columns in the supplied table.
+
+## The pipe operator `|>`
+
+The pipe passes the result on its left into the function on its right, usually as the first argument.
+
+We can write the previous example as a sequence of steps:
+
+```{r}
+adults <- people |>
+  filter(age >= 18) |>
+  mutate(age_next_year = age + 1)
+adults
+```
+
+Read it as "take people, keep adults, then add their age next year". The pipe is built into R from version 4.1 onwards.
+
+## Summarise a table
+
+```{r}
 people |>
   filter(age >= 18) |>
-  mutate(age_next_year = age + 1) |>
   count(group)
 ```
 
-. . .
+Some verbs you will see again:
 
-Some handy `dplyr` verbs:
+-   `filter()`: keep rows.
+-   `select()`: keep columns.
+-   `mutate()`: create or change columns.
+-   `summarise()`: calculate summaries, such as a mean.
+-   `arrange()`: sort rows.
 
-- `filter()` keeps rows
-- `select()` keeps columns
-- `mutate()` creates or changes columns
-- `summarise()` calculates a summary
-- `arrange()` sorts rows
+## The dbplyr package
 
-## What is an R Project?
+Our packages use the [dbplyr](https://dbplyr.tidyverse.org) package to translate R code into SQL, the following book should give you the main basis of how our ecosystem of packages work:
 
-An R Project is a folder for one piece of work, with a small `.Rproj` file that lets RStudio recognise and reopen it.
+https://ohdsi.github.io/Tidy-R-programming-with-OMOP/
 
-- Keep your scripts, notes, data, and results together
-- RStudio opens the project folder as the working directory
-- Use paths relative to the project, so your code is easier to share and rerun
-
-Think of it as a tidy home for an analysis. One project per workshop or analysis is a good place to start.
-
-## A simple project layout
-
-There is no single right layout. Start small and add folders when you need them:
-
-```text
-my-analysis/
-├── my-analysis.Rproj
-├── R/                 # scripts and functions
-├── data/              # input data (keep originals unchanged)
-└── Results/           # tables, plots, and other outputs
-```
-
-RStudio creates the `.Rproj` file for you. You create the folders that make sense for your work.
-
-## Let's create your first R Project
-
-In RStudio:
-
-1. Choose **File → New Project…**
-2. Choose **New Directory**, then **New Project**
-3. Give it a name, for example `r-introduction`, and choose where to save it
-4. Select **Create Project**
-
-You should now see the project name in the top-right of RStudio. Save this presentation's practice script inside the project, then make folders such as `data` and `Results` if you need them.
-
-
-## Find the project root with `here`
+## Find files with here
 
 ```{r}
 library(here)
 here()
 ```
 
-. . .
+`here()` finds the project root. We can build paths from it without typing a computer-specific address:
 
 ```{r, eval=FALSE}
-dir.create(here("Results"))
+here("data", "data1.csv")
 ```
 
-That creates a `Results` folder in the project root. You can use the same idea to read or save files inside the project.
+This points to `data/data1.csv` inside your project. It does not create the file: we will download it in the Quarto session.
 
-- **We should always work within an R Project for each analysis.**
+## Reading a CSV: a preview
+
+A **CSV** stores a table as plain text. The first line usually contains column names.
+
+After downloading `data1.csv` in the Quarto session, we can read it with:
+
+```{r, eval=FALSE}
+library(readr)
+library(here)
+
+data <- read_csv(here("data", "data1.csv"))
+head(data)
+```
+
+Keep this example for later. `read_csv()` brings the file into R; `head()` displays the first few rows.
+
+## If something goes wrong
+
+-   **Object not found:** check the spelling and run the line that creates the object first.
+-   **Could not find function:** load its package with `library()`.
+-   **No such file:** check the active project, folder, filename, and capital letters.
+-   **Unexpected symbol:** check quotes, commas, and brackets near the reported line.
+
+Start at the first error, fix it, and rerun that part. A message or warning is not always an error; read what it says before moving on.
+
+## Ready for the next session
+
+You now have a project, a saved script, and some code you can rerun.
+
+Objects in the Environment belong to the current R session. Your saved script is how you recreate them after restarting R.

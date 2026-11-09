@@ -22,6 +22,8 @@
 
 If you don't already have them, install R and RStudio. Open up RStudio where we'll do work.
 
+For Day 1, also sign in to GitHub and GitHub Desktop, accept your organisation invitation, and check that Quarto is available in RStudio. The [Welcome slides](Presentations/Welcome/index.qmd) walk through setup and explain which files to use for each exercise.
+
 2)  Install the needed packages, tools and download the desired datasets:
 
 ```{r, eval=FALSE}
