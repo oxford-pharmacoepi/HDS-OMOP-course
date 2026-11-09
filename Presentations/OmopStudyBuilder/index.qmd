@@ -44,12 +44,6 @@ The package also has Docker tools for running studies in containers. Today we wi
 
 ## Create a study
 
-Install the package from CRAN if you do not have it yet:
-
-```{r, eval=FALSE}
-install.packages("OmopStudyBuilder", dependencies = TRUE)
-```
-
 Reopen **practical.Rproj**. Choose a new folder beside it, replacing `yourusername` with your GitHub username:
 
 ```{r, eval=FALSE}
@@ -61,7 +55,8 @@ initStudy(
   directory = study_dir,
   studyTitle = "My HDS practice study",
   studyLeads = "Your name",
-  studyDescription = "Practising a shared OMOP study structure."
+  studyDescription = "Practising a shared OMOP study structure.",
+  organisation = "oxford-pharmacoepi"
 )
 ```
 
@@ -81,8 +76,8 @@ hds-study-yourusername/
 └── studyShiny/
 ```
 
-- **diagnosticsCode:** prepare checks before the main analysis.
-- **studyCode:** define cohorts and run the study analyses.
+- **diagnosticsCode:** diagnostics of phenotypes.
+- **studyCode:** run the study analyses.
 - **diagnosticsShiny** and **studyShiny:** places for apps that explore the results.
 
 Both `diagnostics` and `study` default to `TRUE`. Set either to `FALSE` in `initStudy()` if you do not need that pair of folders.
@@ -114,17 +109,11 @@ This still follows our "one project for one piece of work" approach: the reposit
 
 For now, explore the scripts rather than sourcing them: the database connection and study-specific code are still to be filled in.
 
-## `YOUR TURN` Put the study on GitHub {.smaller}
+## `YOUR TURN` Link the repository to GitHub Desktop
 
-Use the **whole study folder**, `hds-study-yourusername`, as the repository root.
+1. Check that the repo exists online.
 
-1. In GitHub Desktop, choose **File → Add Local Repository…** and select that folder.
-2. If Desktop says it is not a Git repository, follow **create a repository here**. Keep the existing README and select **R** in the Git ignore options to exclude local R session files.
-3. Review the files and commit any pending changes with a message such as `Add study structure`.
-4. Click **Publish repository**, choose **oxford-pharmacoepi** as the organisation, and publish it as a private repository.
-5. Open it on GitHub and check that the README and all four component folders are there.
-
-Use a unique repository name. Check that your colleague can access this new repository too, and ask for help if needed; access to the earlier practice repository does not automatically carry over.
+2. Link it to GitHub desktop with the option `Add...` -> `Add existing repository`
 
 ## Keep the instructions with the code
 
@@ -137,8 +126,6 @@ Then use the workflow from the GitHub session:
 - Open a pull request and ask a colleague whether the instructions are clear.
 
 After merging, switch to `main` in Desktop and **Fetch origin → Pull origin** to update your local copy.
-
-OmopStudyBuilder can also create a GitHub repository through `initStudy()` or `linkGitHub()` when R authentication is configured. See the [CRAN reference manual](https://cran.r-project.org/web/packages/OmopStudyBuilder/refman/OmopStudyBuilder.html) for that route.
 
 ## Why use renv?
 
@@ -169,6 +156,8 @@ init()
 | `snapshot()` | Record the package versions after changing and checking the code. |
 | `restore()` | Install the versions recorded in an existing lockfile. |
 | `status()` | Check whether the project library and lockfile agree. |
+| `activate()` | Activate `renv` in a project. |
+| `deactivate()` | Deactivate `renv` in a project. |
 
 Commit `renv.lock` and the activation files created by `renv`; its `.gitignore` excludes the local package library. `renv` records the R version but does not install R itself.
 
