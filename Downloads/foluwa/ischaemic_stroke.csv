@@ -1,0 +1,11 @@
+concept_id,concept_name,vocabulary_id
+4337830,Claude's syndrome,SNOMED
+372924,Cerebral artery occlusion,SNOMED
+381316,Cerebrovascular accident,SNOMED
+1234567890,FAKE ischaemic_stroke,INVENTED
+4045734,CVA - cerebrovascular accident due to cerebral artery occlusion,SNOMED
+4043731,Infarction - precerebral,SNOMED
+201826,Type 2 diabetes mellitus,SNOMED
+4045735,Anterior cerebral circulation infarction,SNOMED
+4046358,Total anterior cerebral circulation infarction,SNOMED
+4046359,Partial anterior cerebral circulation infarction,SNOMED

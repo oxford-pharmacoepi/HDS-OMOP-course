@@ -1,0 +1,11 @@
+concept_id,concept_name,vocabulary_id
+37166322,Primary infiltrating duct carcinoma of female breast,SNOMED
+44803643,Dementia monitoring first letter,SNOMED
+37166341,Primary infiltrating ductal carcinoma of central portion of left female breast,SNOMED
+37166342,Primary infiltrating ductal carcinoma of central portion of right female breast,SNOMED
+1234567890,FAKE cancer,INVENTED
+37166344,Primary infiltrating ductal carcinoma of upper outer quadrant of left female breast,SNOMED
+37166346,Primary infiltrating ductal carcinoma of upper outer quadrant of right female breast,SNOMED
+37166348,Primary infiltrating ductal carcinoma of upper inner quadrant of right female breast,SNOMED
+37166349,Primary infiltrating ductal carcinoma of upper inner quadrant of left female breast,SNOMED
+37166350,Primary infiltrating lobular carcinoma of left female breast,SNOMED

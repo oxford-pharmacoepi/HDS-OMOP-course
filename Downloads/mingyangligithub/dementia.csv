@@ -1,0 +1,11 @@
+concept_id,concept_name,vocabulary_id
+44804339,Dementia monitoring invitation,SNOMED
+37166341,Primary infiltrating ductal carcinoma of central portion of left female breast,SNOMED
+44803643,Dementia monitoring first letter,SNOMED
+44803706,Dementia monitoring verbal invitation,SNOMED
+44803781,Dementia monitoring third letter,SNOMED
+44803843,Dementia monitoring telephone invitation,SNOMED
+44803915,Dementia monitoring second letter,SNOMED
+36714514,Shared care prescribing of drug for dementia,SNOMED
+36714691,Shared care prescribing of drugs for dementia declined,SNOMED
+1234567890,FAKE dementia,INVENTED
