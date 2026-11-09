@@ -36,7 +36,7 @@ It helps if everyone knows where to find the code, the instructions, and the res
 ## What will we do?
 
 1. Create the study structure with `initStudy()`.
-2. Explore the generated files and publish the repository on GitHub.
+2. Explore the generated files and create a private repository on GitHub.
 3. See how `renv` records the packages a project uses.
 4. Use `reviewStudy()` to get an overview of the code and dependencies.
 
@@ -57,13 +57,16 @@ initStudy(
   studyLeads = "Your name",
   studyDescription = "Practising a shared OMOP study structure.",
   repository = study,
-  organisation = "oxford-pharmacoepi"
+  organisation = "oxford-pharmacoepi",
+  private = TRUE
 )
 ```
 
 The destination must be new or empty. Let `initStudy()` create its contents before opening any of the generated R Projects.
 
 `dirname(here())` finds the folder containing your current project; `file.path()` builds the path to the new study folder.
+
+Unlike the first public practice repository, this study repository is **private**. Only people and teams given access can view or clone it. `private = TRUE` makes that choice explicit, although it is also the function's default.
 
 ## What did it create?
 
@@ -112,7 +115,7 @@ For now, explore the scripts rather than sourcing them: the database connection 
 
 ## `YOUR TURN` Link the repository to GitHub Desktop
 
-1. Check that the repo exists online.
+1. Check that the repo exists online and is labelled **Private**.
 
 2. Link it to GitHub desktop with the option `Add...` -> `Add existing repository`
 

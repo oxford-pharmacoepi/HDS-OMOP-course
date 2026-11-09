@@ -91,6 +91,14 @@ You can use Markdown syntax to format a text file:
 -   `*text*` for italic text.
 -   `**text**` for bold text.
 
+## Public and private repositories
+
+- A **public repository** can be viewed and cloned by anyone, including people without access to our organisation. Only people with the appropriate permission can push changes to it.
+
+- A **private repository** can only be viewed or cloned by people and teams who have been given access. Use this for study code or other work that is not ready to be shared publicly.
+
+Repository visibility is not a safe place for secrets or patient data. Do not commit passwords, access tokens, credentials, or identifiable patient data to either type of repository.
+
 ## `YOUR TURN` Let's create a repo in *oxford-pharmacoepi*
 
 1.  In GitHub Desktop, choose **File → New Repository…**
@@ -99,9 +107,9 @@ You can use Markdown syntax to format a text file:
 
 The repository now exists on your computer only.
 
-3.  Click **Publish repository**. Choose **oxford-pharmacoepi** from the organisation menu, keep the repository private, and click **Publish Repository**.
+3.  Click **Publish repository**. Choose **oxford-pharmacoepi** from the organisation menu, **untick “Keep this code private”** so this first practice repository is public, and click **Publish Repository**.
 
-Open it on GitHub and check that the repo has been created.
+Open it on GitHub and check that the repo has been created and is labelled **Public**.
 
 ## `YOUR TURN` Download the codelist
 
@@ -211,7 +219,7 @@ A **branch** lets us work on a proposed change before it is added to the main ve
 
 A **fork** is a copy of a repository in your GitHub account. You can propose changes from it with a pull request when the repository's permissions allow this.
 
-For this exercise, we will use write access to each other's repositories and work on branches. Private organisation repositories may not allow forks, so ask for help with access rather than assuming you can fork one.
+Because this practice repository is public, anyone can view, clone, or fork it, but public visibility does not give them permission to push changes. For this exercise, we will use write access to each other's repositories and work on branches.
 
 ## Pull Request (PR)
 
