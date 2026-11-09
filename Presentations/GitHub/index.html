@@ -233,6 +233,14 @@
 <li class="fragment"><code>**text**</code> for bold text.</li>
 </ul>
 </section>
+<section id="public-and-private-repositories" class="slide level2">
+<h2>Public and private repositories</h2>
+<ul>
+<li class="fragment"><p>A <strong>public repository</strong> can be viewed and cloned by anyone, including people without access to our organisation. Only people with the appropriate permission can push changes to it.</p></li>
+<li class="fragment"><p>A <strong>private repository</strong> can only be viewed or cloned by people and teams who have been given access. Use this for study code or other work that is not ready to be shared publicly.</p></li>
+</ul>
+<p>Repository visibility is not a safe place for secrets or patient data. Do not commit passwords, access tokens, credentials, or identifiable patient data to either type of repository.</p>
+</section>
 <section id="your-turn-lets-create-a-repo-in-oxford-pharmacoepi" class="slide level2">
 <h2><code>YOUR TURN</code> Let’s create a repo in <em>oxford-pharmacoepi</em></h2>
 <ol type="1">
@@ -241,9 +249,9 @@
 </ol>
 <p>The repository now exists on your computer only.</p>
 <ol start="3" type="1">
-<li class="fragment">Click <strong>Publish repository</strong>. Choose <strong>oxford-pharmacoepi</strong> from the organisation menu, keep the repository private, and click <strong>Publish Repository</strong>.</li>
+<li class="fragment">Click <strong>Publish repository</strong>. Choose <strong>oxford-pharmacoepi</strong> from the organisation menu, <strong>untick “Keep this code private”</strong> so this first practice repository is public, and click <strong>Publish Repository</strong>.</li>
 </ol>
-<p>Open it on GitHub and check that the repo has been created.</p>
+<p>Open it on GitHub and check that the repo has been created and is labelled <strong>Public</strong>.</p>
 </section>
 <section id="your-turn-download-the-codelist" class="slide level2">
 <h2><code>YOUR TURN</code> Download the codelist</h2>
@@ -376,7 +384,7 @@
 <section id="fork" class="slide level2">
 <h2>Fork</h2>
 <p>A <strong>fork</strong> is a copy of a repository in your GitHub account. You can propose changes from it with a pull request when the repository’s permissions allow this.</p>
-<p>For this exercise, we will use write access to each other’s repositories and work on branches. Private organisation repositories may not allow forks, so ask for help with access rather than assuming you can fork one.</p>
+<p>Because this practice repository is public, anyone can view, clone, or fork it, but public visibility does not give them permission to push changes. For this exercise, we will use write access to each other’s repositories and work on branches.</p>
 </section>
 <section id="pull-request-pr" class="slide level2">
 <h2>Pull Request (PR)</h2>

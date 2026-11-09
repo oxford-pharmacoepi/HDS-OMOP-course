@@ -186,7 +186,7 @@
     "href": "Presentations/PhenotypeR/index.html#create-cdm-reference-1",
     "title": "Creating cohorts from scratch using R",
     "section": "Create CDM reference",
-    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmpcx0xuK/file214246630d3d.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
+    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmpOtTIC5/file21ad679a71b3.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist",
@@ -413,11 +413,18 @@
     "text": "Formatting Markdown files\nYou can use Markdown syntax to format a text file:\n\n# to add a heading.\n--- on its own line to add a horizontal rule.\n- for bullet points.\n*text* for italic text.\n**text** for bold text."
   },
   {
+    "objectID": "Presentations/GitHub/index.html#public-and-private-repositories",
+    "href": "Presentations/GitHub/index.html#public-and-private-repositories",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Public and private repositories",
+    "text": "Public and private repositories\n\nA public repository can be viewed and cloned by anyone, including people without access to our organisation. Only people with the appropriate permission can push changes to it.\nA private repository can only be viewed or cloned by people and teams who have been given access. Use this for study code or other work that is not ready to be shared publicly.\n\nRepository visibility is not a safe place for secrets or patient data. Do not commit passwords, access tokens, credentials, or identifiable patient data to either type of repository."
+  },
+  {
     "objectID": "Presentations/GitHub/index.html#your-turn-lets-create-a-repo-in-oxford-pharmacoepi",
     "href": "Presentations/GitHub/index.html#your-turn-lets-create-a-repo-in-oxford-pharmacoepi",
     "title": "GitHub and GitHub Desktop",
     "section": "YOUR TURN Let’s create a repo in oxford-pharmacoepi",
-    "text": "YOUR TURN Let’s create a repo in oxford-pharmacoepi\n\nIn GitHub Desktop, choose File → New Repository…\nName it hds-test-yourusername, replacing yourusername with your own. Save it beside your R project, select Initialize this repository with a README, and click Create Repository.\n\nThe repository now exists on your computer only.\n\nClick Publish repository. Choose oxford-pharmacoepi from the organisation menu, keep the repository private, and click Publish Repository.\n\nOpen it on GitHub and check that the repo has been created."
+    "text": "YOUR TURN Let’s create a repo in oxford-pharmacoepi\n\nIn GitHub Desktop, choose File → New Repository…\nName it hds-test-yourusername, replacing yourusername with your own. Save it beside your R project, select Initialize this repository with a README, and click Create Repository.\n\nThe repository now exists on your computer only.\n\nClick Publish repository. Choose oxford-pharmacoepi from the organisation menu, untick “Keep this code private” so this first practice repository is public, and click Publish Repository.\n\nOpen it on GitHub and check that the repo has been created and is labelled Public."
   },
   {
     "objectID": "Presentations/GitHub/index.html#your-turn-download-the-codelist",
@@ -501,7 +508,7 @@
     "href": "Presentations/GitHub/index.html#fork",
     "title": "GitHub and GitHub Desktop",
     "section": "Fork",
-    "text": "Fork\nA fork is a copy of a repository in your GitHub account. You can propose changes from it with a pull request when the repository’s permissions allow this.\nFor this exercise, we will use write access to each other’s repositories and work on branches. Private organisation repositories may not allow forks, so ask for help with access rather than assuming you can fork one."
+    "text": "Fork\nA fork is a copy of a repository in your GitHub account. You can propose changes from it with a pull request when the repository’s permissions allow this.\nBecause this practice repository is public, anyone can view, clone, or fork it, but public visibility does not give them permission to push changes. For this exercise, we will use write access to each other’s repositories and work on branches."
   },
   {
     "objectID": "Presentations/GitHub/index.html#pull-request-pr",
@@ -795,21 +802,21 @@
     "href": "Presentations/OmopStudyBuilder/index.html#what-will-we-do",
     "title": "OmopStudyBuilder",
     "section": "What will we do?",
-    "text": "What will we do?\n\nCreate the study structure with initStudy().\nExplore the generated files and publish the repository on GitHub.\nSee how renv records the packages a project uses.\nUse reviewStudy() to get an overview of the code and dependencies.\n\nThe package also has Docker tools for running studies in containers. Today we will focus on setting up and reviewing a study."
+    "text": "What will we do?\n\nCreate the study structure with initStudy().\nExplore the generated files and create a private repository on GitHub.\nSee how renv records the packages a project uses.\nUse reviewStudy() to get an overview of the code and dependencies.\n\nThe package also has Docker tools for running studies in containers. Today we will focus on setting up and reviewing a study."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#create-a-study",
     "href": "Presentations/OmopStudyBuilder/index.html#create-a-study",
     "title": "OmopStudyBuilder",
     "section": "Create a study",
-    "text": "Create a study\nInstall the package from CRAN if you do not have it yet:\n\ninstall.packages(\"OmopStudyBuilder\", dependencies = TRUE)\n\nReopen practical.Rproj. Choose a new folder beside it, replacing yourusername with your GitHub username:\n\nlibrary(OmopStudyBuilder)\nlibrary(here)\n\nstudy_dir &lt;- file.path(dirname(here()), \"hds-study-yourusername\")\ninitStudy(\n  directory = study_dir,\n  studyTitle = \"My HDS practice study\",\n  studyLeads = \"Your name\",\n  studyDescription = \"Practising a shared OMOP study structure.\"\n)\n\nThe destination must be new or empty. Let initStudy() create its contents before opening any of the generated R Projects.\ndirname(here()) finds the folder containing your current project; file.path() builds the path to the new study folder."
+    "text": "Create a study\nReopen practical.Rproj. Choose a new folder beside it, replacing yourusername with your GitHub username:\n\nlibrary(OmopStudyBuilder)\nlibrary(here)\n\nstudy &lt;- \"hds-study-yourusername\"\ninitStudy(\n  directory = file.path(dirname(here()), study),\n  studyTitle = \"My HDS practice study\",\n  studyLeads = \"Your name\",\n  studyDescription = \"Practising a shared OMOP study structure.\",\n  repository = study,\n  organisation = \"oxford-pharmacoepi\",\n  private = TRUE\n)\n\nThe destination must be new or empty. Let initStudy() create its contents before opening any of the generated R Projects.\ndirname(here()) finds the folder containing your current project; file.path() builds the path to the new study folder.\nUnlike the first public practice repository, this study repository is private. Only people and teams given access can view or clone it. private = TRUE makes that choice explicit, although it is also the function’s default."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#what-did-it-create",
     "href": "Presentations/OmopStudyBuilder/index.html#what-did-it-create",
     "title": "OmopStudyBuilder",
     "section": "What did it create?",
-    "text": "What did it create?\nhds-study-yourusername/\n├── README.md\n├── INSTRUCTIONS.md\n├── diagnosticsCode/\n├── diagnosticsShiny/\n├── studyCode/\n└── studyShiny/\n\n\ndiagnosticsCode: prepare checks before the main analysis.\n\nstudyCode: define cohorts and run the study analyses.\n\ndiagnosticsShiny and studyShiny: places for apps that explore the results.\n\nBoth diagnostics and study default to TRUE. Set either to FALSE in initStudy() if you do not need that pair of folders."
+    "text": "What did it create?\nhds-study-yourusername/\n├── README.md\n├── INSTRUCTIONS.md\n├── diagnosticsCode/\n├── diagnosticsShiny/\n├── studyCode/\n└── studyShiny/\n\n\ndiagnosticsCode: diagnostics of phenotypes.\n\nstudyCode: run the study analyses.\n\ndiagnosticsShiny and studyShiny: places for apps that explore the results.\n\nBoth diagnostics and study default to TRUE. Set either to FALSE in initStudy() if you do not need that pair of folders."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#one-repository-several-r-projects",
@@ -826,18 +833,18 @@
     "text": "YOUR TURN Explore the template\n\nRun the initStudy() example with your own folder name and study details.\nRead the root README.md and INSTRUCTIONS.md. Which parts would you update for a real study?\nOpen studyCode/studyCode.Rproj, then look at codeToRun.R and runStudy.R.\nFind where you would add cohort definitions and an analysis.\n\nFor now, explore the scripts rather than sourcing them: the database connection and study-specific code are still to be filled in."
   },
   {
-    "objectID": "Presentations/OmopStudyBuilder/index.html#your-turn-put-the-study-on-github",
-    "href": "Presentations/OmopStudyBuilder/index.html#your-turn-put-the-study-on-github",
+    "objectID": "Presentations/OmopStudyBuilder/index.html#your-turn-link-the-repository-to-github-desktop",
+    "href": "Presentations/OmopStudyBuilder/index.html#your-turn-link-the-repository-to-github-desktop",
     "title": "OmopStudyBuilder",
-    "section": "\nYOUR TURN Put the study on GitHub",
-    "text": "YOUR TURN Put the study on GitHub\nUse the whole study folder, hds-study-yourusername, as the repository root.\n\nIn GitHub Desktop, choose File → Add Local Repository… and select that folder.\nIf Desktop says it is not a Git repository, follow create a repository here. Keep the existing README and select R in the Git ignore options to exclude local R session files.\nReview the files and commit any pending changes with a message such as Add study structure.\nClick Publish repository, choose oxford-pharmacoepi as the organisation, and publish it as a private repository.\nOpen it on GitHub and check that the README and all four component folders are there.\n\nUse a unique repository name. Check that your colleague can access this new repository too, and ask for help if needed; access to the earlier practice repository does not automatically carry over."
+    "section": "\nYOUR TURN Link the repository to GitHub Desktop",
+    "text": "YOUR TURN Link the repository to GitHub Desktop\n\nCheck that the repo exists online and is labelled Private.\nLink it to GitHub desktop with the option Add... -&gt; Add existing repository"
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#keep-the-instructions-with-the-code",
     "href": "Presentations/OmopStudyBuilder/index.html#keep-the-instructions-with-the-code",
     "title": "OmopStudyBuilder",
     "section": "Keep the instructions with the code",
-    "text": "Keep the instructions with the code\nIn the root README, write a short description of your practice study. For example: which population would you study, and what would you measure?\nThen use the workflow from the GitHub session:\n\nCreate a branch for your changes.\nCommit and push them.\nOpen a pull request and ask a colleague whether the instructions are clear.\n\nAfter merging, switch to main in Desktop and Fetch origin → Pull origin to update your local copy.\nOmopStudyBuilder can also create a GitHub repository through initStudy() or linkGitHub() when R authentication is configured. See the CRAN reference manual for that route."
+    "text": "Keep the instructions with the code\nIn the root README, write a short description of your practice study. For example: which population would you study, and what would you measure?\nThen use the workflow from the GitHub session:\n\nCreate a branch for your changes.\nCommit and push them.\nOpen a pull request and ask a colleague whether the instructions are clear.\n\nAfter merging, switch to main in Desktop and Fetch origin → Pull origin to update your local copy."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#why-use-renv",
@@ -851,7 +858,7 @@
     "href": "Presentations/OmopStudyBuilder/index.html#renv-the-basic-workflow-demo",
     "title": "OmopStudyBuilder",
     "section": "renv: the basic workflow (demo)",
-    "text": "renv: the basic workflow (demo)\nWatch this first; setting up the full template’s packages can take time. Open studyCode/studyCode.Rproj, install renv if needed, and initialise it once:\n\ninstall.packages(\"renv\")\nlibrary(renv)\ninit()\n\ninit() scans the project and prepares its package library and lockfile. It may need to install packages referenced by the template.\n\n\n\n\n\n\nFunction\nWhen would we use it?\n\n\n\nsnapshot()\nRecord the package versions after changing and checking the code.\n\n\nrestore()\nInstall the versions recorded in an existing lockfile.\n\n\nstatus()\nCheck whether the project library and lockfile agree.\n\n\n\nCommit renv.lock and the activation files created by renv; its .gitignore excludes the local package library. renv records the R version but does not install R itself.\nMore detail: Introduction to renv."
+    "text": "renv: the basic workflow (demo)\nWatch this first; setting up the full template’s packages can take time. Open studyCode/studyCode.Rproj, install renv if needed, and initialise it once:\n\ninstall.packages(\"renv\")\nlibrary(renv)\ninit()\n\ninit() scans the project and prepares its package library and lockfile. It may need to install packages referenced by the template.\n\n\n\n\n\n\nFunction\nWhen would we use it?\n\n\n\nsnapshot()\nRecord the package versions after changing and checking the code.\n\n\nrestore()\nInstall the versions recorded in an existing lockfile.\n\n\nstatus()\nCheck whether the project library and lockfile agree.\n\n\nactivate()\nActivate renv in a project.\n\n\ndeactivate()\nDeactivate renv in a project.\n\n\n\nCommit renv.lock and the activation files created by renv; its .gitignore excludes the local package library. renv records the R version but does not install R itself.\nMore detail: Introduction to renv."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#get-an-overview-with-reviewstudy",
