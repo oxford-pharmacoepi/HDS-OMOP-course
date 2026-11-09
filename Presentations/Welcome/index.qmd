@@ -73,9 +73,11 @@ The goal of this week is:
 
 | Day | Presentation | Link |
 |-----------------------|:------------------------|:------------------------|
-| Day 1: Tools for conducting studies: R | **R introduction** | [View Slides](../R_introduction/index.qmd) |
-| Day 1: Tools for conducting studies: GitHub | **GitHub training** | [View Slides](../GitHub/index.qmd) |
-| Day 1: Tools for conducting studies | **OmopStudyBuilder and OmopViewer** | [View Slides](../osb_ov/index.qmd) |
+| Day 1: Tools for conducting studies | **R** | [View Slides](../R_introduction/index.qmd) |
+| Day 1: Tools for conducting studies | **GitHub** | [View Slides](../GitHub/index.qmd) |
+| Day 1: Tools for conducting studies | **Quarto** | [View Slides](../Quarto/index.qmd) |
+| Day 1: Tools for conducting studies | **OmopStudyBuilder** | [View Slides](../OmopStudyBuilder/index.qmd) |
+| Day 1: Tools for conducting studies | **OmopViewer** | [View Slides](../OmopViewer/index.qmd) |
 | Day 2: OMOP phenotyping using R | **CodelistGenerator** | [View Slides](../CodelistGenerator/index.qmd) |
 | Day 2: OMOP phenotyping using R | **CohortConstructor** | [View Slides](../CohortConstructor/index.qmd) |
 | Day 2: OMOP phenotyping using R | **PhenotypeR** | [View Slides](../PhenotypeR/index.qmd) |
