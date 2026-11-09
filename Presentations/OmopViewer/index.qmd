@@ -1,5 +1,5 @@
 ---
-title: "Presentation"
+title: "OmopViewer"
 format:
   revealjs: 
     theme: [simple, ../../styleSS25.scss]
@@ -23,3 +23,238 @@ execute:
 editor: visual
 ---
 
+## From reports to apps
+
+In Quarto we wrote a report and rendered it. With **Shiny**, we can let someone explore the results themselves: choose a database, change a filter, or switch between plots.
+
+A Shiny app has two main parts:
+
+- **UI (user interface):** what you see, such as buttons, sliders, and spaces for plots.
+- **Server:** the R code that responds to inputs and creates the outputs.
+
+Change an input and Shiny updates the outputs that depend on it. That is **reactivity**.
+
+## Your first Shiny app
+
+Open your R Project. In RStudio, choose **File → New File → Shiny Web App…** and select a single-file app, `app.R`.
+
+Click **Run App** and move the slider in the starter histogram example. What changes?
+
+. . .
+
+The next two slides show the UI and server for this example. Put them together in `app.R`.
+
+The app keeps your R session busy while it runs. Click **Stop** in RStudio before running other code or restarting the app.
+
+## The UI: what goes where?
+
+```{r, eval=FALSE}
+library(shiny)
+
+ui <- fluidPage(
+  titlePanel("Hello Shiny!"),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("bins", "Number of bins:",
+                  min = 1, max = 50, value = 30)
+    ),
+    mainPanel(plotOutput("distPlot"))
+  )
+)
+```
+
+`bins` is the slider's ID. `distPlot` is the space where the server will put the plot. These IDs connect the two parts of the app.
+
+## The server: make the plot
+
+```{r, eval=FALSE}
+server <- function(input, output, session) {
+  output$distPlot <- renderPlot({
+    x <- faithful$waiting
+    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    hist(x, breaks = bins, col = "steelblue", border = "white",
+         xlab = "Waiting time to next eruption (minutes)",
+         main = "Old Faithful")
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+`input$bins` reads the slider. `renderPlot()` reruns when that value changes, and `output$distPlot` sends the new plot to the UI.
+
+## Give the UI a style with bslib
+
+**bslib** gives us layouts, cards, sidebars, and themes. Replace the previous `ui` block with this one and keep the same server:
+
+```{r, eval=FALSE}
+library(bslib)
+
+ui <- page_sidebar(
+  title = "My first app",
+  theme = bs_theme(bootswatch = "flatly"),
+  sidebar = sidebar(
+    sliderInput("bins", "Number of bins:",
+                min = 1, max = 50, value = 30)
+  ),
+  card(plotOutput("distPlot"))
+)
+```
+
+Run `shinyApp(ui, server)` again. The layout changes, but the matching IDs mean the slider and plot still work together.
+
+## Meet OmopViewer
+
+Building every filter, table, and plot by hand takes time. **OmopViewer creates a Shiny app for us** from supported OMOP study results.
+
+It prepares the panels and code. We can then make small changes to fit our study.
+
+. . .
+
+Two ways to use it:
+
+- `launchDynamicApp()`: open a viewer and upload results to explore.
+- `exportStaticApp()`: create app files that we can inspect, edit, and share.
+
+## What data does it need?
+
+OmopViewer works with **summarised_result** objects: summary estimates together with settings that describe the analyses that produced them.
+
+The settings help OmopViewer choose the appropriate panels for supported result types.
+
+. . .
+
+For this exercise, we will use cohort attrition and characteristics results from the reporting training, for **amoxicillin** and **metformin**.
+
+Download **OmopViewer results** for this exercise. The four-column Data 1 and Data 2 files from the Quarto session are ordinary tables and cannot be used directly here.
+
+## `YOUR TURN` Get the results
+
+1. Open the course website's [Downloads](../../Downloads/index.qmd) tab and choose your GitHub username.
+2. Click **Download OmopViewer results**.
+3. Save `omopviewer_results.csv` in the `data` folder of your R Project.
+4. Create an R script called `omopviewer.R` in your project. We will use it to explore and export an app.
+
+The code in these slides is for you to run in RStudio. It does not launch an app when we render the presentation.
+
+## Open the dynamic viewer
+
+```{r, eval=FALSE}
+library(OmopViewer)
+
+launchDynamicApp()
+```
+
+Upload `omopviewer_results.csv`, then use **Bind data and load shiny** to build the panels.
+
+. . .
+
+This is a quick way to look at results without creating an app project. Stop the app in RStudio when you want to continue coding.
+
+## `YOUR TURN` Explore the results
+
+- Find the cohort characteristics and attrition panels.
+- Switch between amoxicillin and metformin. What changes?
+- Try a filter or a table option, then update the output if the panel has an update button.
+- Pick one result you would want to show in a report.
+
+Think about the UI and server we just saw: which controls are inputs, and which tables or plots are outputs?
+
+## Import the results in R
+
+Stop the dynamic app and return to `omopviewer.R`.
+
+```{r, eval=FALSE}
+library(OmopViewer)
+library(omopgenerics)
+library(here)
+library(shiny)
+
+result <- importSummarisedResult(
+  here("data", "omopviewer_results.csv")
+)
+settings(result)
+```
+
+Use `importSummarisedResult()` to restore the results and their settings. `read_csv()` alone does not reconstruct this object.
+
+## Export an app we can edit
+
+```{r, eval=FALSE}
+exportStaticApp(
+  result = result,
+  directory = here("viewer"),
+  title = "My study results",
+  background = TRUE,
+  summary = TRUE,
+  open = FALSE
+)
+
+runApp(here("viewer", "shiny"))
+```
+
+OmopViewer creates a **shiny** folder inside `viewer`. Here, "static" means the results are supplied when we generate the app; the app itself is still interactive and needs R to run.
+
+## What did OmopViewer create?
+
+Stop the app, then open `viewer/shiny` in RStudio's Files pane.
+
+| File | What to look for |
+|------|------------------|
+| `global.R` | Packages and data loaded for the app. |
+| `ui.R` | Layout, panels, labels, and input controls. |
+| `server.R` | Code that responds to inputs and builds outputs. |
+| `background.md` | Text for the background panel. |
+| `rawData/` and `data/` | Original results, preparation code, and prepared app data. |
+
+Our first app had UI and server together in `app.R`. This app keeps them in separate files so they are easier to explore.
+
+## Start with the export options
+
+Before editing the generated files, try changing the title and hiding the summary panel:
+
+```{r, eval=FALSE}
+exportStaticApp(
+  result = result,
+  directory = here("viewer_custom"),
+  title = "Exploring our cohorts",
+  background = TRUE,
+  summary = FALSE,
+  open = FALSE
+)
+
+runApp(here("viewer_custom", "shiny"))
+```
+
+We use a second folder so we can compare the two apps. There are also options for themes, logos, and organising panels.
+
+## `YOUR TURN` Make it yours
+
+Stop the app and work in **viewer_custom/shiny**:
+
+1. Edit `background.md`: add a heading and two sentences explaining what someone can explore.
+2. Open `ui.R`. Find a visible label and change its text. Keep input and output IDs the same so their connections still work.
+3. Find the corresponding input or output in `server.R`. Can you follow what it does?
+4. Run the app again and check your changes.
+
+```{r, eval=FALSE}
+runApp(here("viewer_custom", "shiny"))
+```
+
+Save your edits before restarting. Exporting again to the same location can overwrite the generated app, so use a new folder if you want to keep your manual changes.
+
+## Final remarks
+
+- **Shiny:** the UI collects inputs and displays outputs; the server connects them with R code.
+- **OmopViewer:** creates the app structure and result panels for us.
+- Use the dynamic viewer to explore, or export an app when you want to customise it.
+
+Start with a small change, run the app, and see what happens :)
+
+## Useful links
+
+- [OmopViewer documentation](https://ohdsi.github.io/OmopViewer/)
+- [Shiny: your first app](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/)
+- [bslib layouts and themes](https://rstudio.github.io/bslib/)
+
+Adapted from the [HDS reporting training](https://github.com/oxford-pharmacoepi/HDS_training_reporting/blob/main/Presentation/hds_training.qmd).

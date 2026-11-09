@@ -159,6 +159,11 @@ for (k in seq_along(users)) {
     data2,
     file = file.path(user_dir, "data2.csv")
   )
+  file.copy(
+    from = here::here("Presentations", "OmopViewer", "data", "omopviewer_results.csv"),
+    to = file.path(user_dir, "omopviewer_results.csv"),
+    overwrite = TRUE
+  )
   writeLines(
     paste0("reviewer: ", reviewer[k]),
     file.path(user_dir, "info.txt")
@@ -214,6 +219,8 @@ for (folder in folders) {
         "Download Data 1 results"
       } else if (csv_file == "data2.csv") {
         "Download Data 2 results"
+      } else if (csv_file == "omopviewer_results.csv") {
+        "Download OmopViewer results"
       } else {
         "Download codelist"
       }

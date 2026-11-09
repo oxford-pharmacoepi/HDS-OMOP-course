@@ -1,5 +1,5 @@
 ---
-title: "Presentation"
+title: "OmopStudyBuilder"
 format:
   revealjs: 
     theme: [simple, ../../styleSS25.scss]
@@ -23,3 +23,207 @@ execute:
 editor: visual
 ---
 
+## Why OmopStudyBuilder?
+
+We have seen how an R Project keeps our work together and how GitHub helps us share it. Now imagine several teams running the same study in different OMOP databases.
+
+It helps if everyone knows where to find the code, the instructions, and the results.
+
+. . .
+
+**OmopStudyBuilder** gives us a common starting structure for study projects and repositories. We add the study-specific code and documentation.
+
+## What will we do?
+
+1. Create the study structure with `initStudy()`.
+2. Explore the generated files and publish the repository on GitHub.
+3. See how `renv` records the packages a project uses.
+4. Use `reviewStudy()` to get an overview of the code and dependencies.
+
+The package also has Docker tools for running studies in containers. Today we will focus on setting up and reviewing a study.
+
+## Create a study
+
+Install the package from CRAN if you do not have it yet:
+
+```{r, eval=FALSE}
+install.packages("OmopStudyBuilder", dependencies = TRUE)
+```
+
+From your current R Project, choose a new folder beside it. Replace `yourusername` with your GitHub username:
+
+```{r, eval=FALSE}
+library(OmopStudyBuilder)
+library(here)
+
+study_dir <- file.path(dirname(here()), "hds-study-yourusername")
+initStudy(
+  directory = study_dir,
+  studyTitle = "My HDS practice study",
+  studyLeads = "Your name",
+  studyDescription = "Practising a shared OMOP study structure."
+)
+```
+
+The destination must be new or empty. Let `initStudy()` create its contents before opening any of the generated R Projects.
+
+## What did it create?
+
+```text
+hds-study-yourusername/
+├── README.md
+├── INSTRUCTIONS.md
+├── diagnosticsCode/
+├── diagnosticsShiny/
+├── studyCode/
+└── studyShiny/
+```
+
+- **diagnosticsCode:** prepare checks before the main analysis.
+- **studyCode:** define cohorts and run the study analyses.
+- **diagnosticsShiny** and **studyShiny:** places for apps that explore the results.
+
+Both `diagnostics` and `study` default to `TRUE`. Set either to `FALSE` in `initStudy()` if you do not need that pair of folders.
+
+## One repository, several R Projects
+
+Each of the four component folders contains an `.Rproj` file. Open the project for the part you are working on.
+
+For example, open **studyCode/studyCode.Rproj** for the main analysis. In that session, `here()` points to `studyCode`.
+
+. . .
+
+| File or folder inside `studyCode` | What goes there? |
+|---------------------------------|------------------|
+| `codeToRun.R` | The entry script, including database-specific settings. |
+| `runStudy.R` | The sequence of study steps. |
+| `codelist/` and `cohorts/` | Code to define the study population. |
+| `analyses/` | Code for the analyses. |
+| `Results/` | Output from the study. |
+
+## `YOUR TURN` Explore the template
+
+1. Run the `initStudy()` example with your own folder name and study details.
+2. Read the root `README.md` and `INSTRUCTIONS.md`. Which parts would you update for a real study?
+3. Open **studyCode/studyCode.Rproj**, then look at `codeToRun.R` and `runStudy.R`.
+4. Find where you would add cohort definitions and an analysis.
+
+For now, explore the scripts rather than sourcing them: the database connection and study-specific code are still to be filled in.
+
+## `YOUR TURN` Put the study on GitHub {.smaller}
+
+Use the **whole study folder**, `hds-study-yourusername`, as the repository root.
+
+1. In GitHub Desktop, choose **File → Add Local Repository…** and select that folder.
+2. If Desktop says it is not a Git repository, follow **create a repository here**. Use the existing folder and keep the README created by OmopStudyBuilder.
+3. Review the files and commit any pending changes with a message such as `Add study structure`.
+4. Click **Publish repository**, choose **oxford-pharmacoepi** as the organisation, and publish it as a private repository.
+5. Open it on GitHub and check that the README and all four component folders are there.
+
+Use a unique repository name. If you cannot select the organisation, ask the trainer to check your access.
+
+## Keep the instructions with the code
+
+In the root README, write a short description of your practice study. For example: which population would you study, and what would you measure?
+
+Then use the workflow from the GitHub session:
+
+- Create a branch for your changes.
+- Commit and push them.
+- Open a pull request and ask a colleague whether the instructions are clear.
+
+OmopStudyBuilder can also create a GitHub repository through `initStudy()` or `linkGitHub()` when R authentication is configured. See the [CRAN reference manual](https://cran.r-project.org/web/packages/OmopStudyBuilder/refman/OmopStudyBuilder.html) for that route.
+
+## Why use renv?
+
+The same code can behave differently when people have different package versions. **renv** gives an R Project its own package library and records package versions in **renv.lock**.
+
+. . .
+
+- The study developer prepares the environment and records it.
+- A colleague restores that environment when they run the study.
+- The lockfile is committed alongside the code, so changes can be reviewed in GitHub.
+
+The generated study folders do not yet contain a lockfile. Prepare `renv` in each component R Project that you use, after deciding which packages its code needs.
+
+## renv: the basic workflow {.smaller}
+
+Open **studyCode/studyCode.Rproj** before setting up its environment. Install `renv` if needed, then initialise it once:
+
+```{r, eval=FALSE}
+install.packages("renv")
+library(renv)
+init()
+```
+
+`init()` scans the project and prepares its package library and lockfile. It may need to install packages referenced by the template.
+
+| Function | When would we use it? |
+|----------|----------------------|
+| `snapshot()` | Record the package versions after changing and checking the code. |
+| `restore()` | Install the versions recorded in an existing lockfile. |
+| `status()` | Check whether the project library and lockfile agree. |
+
+Commit `renv.lock` and the activation files created by `renv`; its `.gitignore` excludes the local package library. `renv` records the R version but does not install R itself.
+
+More detail: [Introduction to renv](https://rstudio.github.io/renv/articles/renv.html).
+
+## Get an overview with reviewStudy()
+
+Before sharing code with a data partner, it is useful to see what is in the project.
+
+From the **studyCode** R Project, install OmopStudyBuilder there if it is missing from your new `renv` library, then run:
+
+```{r, eval=FALSE}
+library(OmopStudyBuilder)
+library(here)
+
+reviewStudy(dir = here(), dependencies = FALSE)
+```
+
+This prints a summary of the R scripts and JSON, CSV, and Excel files. We skip the dependency review here because the fresh template has no `renv.lock` yet.
+
+It gives us a starting point for review; we still need to read the code and check that it answers the study question.
+
+## Review the dependencies too
+
+Once **studyCode/renv.lock** exists, run:
+
+```{r, eval=FALSE}
+reviewStudy(dir = here(), type = "analysis")
+```
+
+By default, both `code` and `dependencies` are `TRUE`. The dependency review uses the lockfile and reports on package versions and sources.
+
+. . .
+
+For a reporting or app project, open that component's R Project and use `type = "reporting"`.
+
+Run the review in the component folder containing the lockfile. A review of the repository root will not automatically review every component's environment.
+
+## `YOUR TURN` Review your study
+
+1. Run `reviewStudy(dir = here(), dependencies = FALSE)` from **studyCode**.
+2. Find the entry script and the analysis scripts in the output. Which are still empty?
+3. If you have prepared a lockfile, run the dependency review too. Pick one package and find its recorded version.
+4. Add a note to your pull request describing what still needs to be completed before the study can run.
+
+Discuss the review with your colleague. A common folder structure makes it easier to find things, but the code and instructions still need a human review.
+
+## Final remarks
+
+- Start with `initStudy()` so everyone recognises the study layout.
+- Keep the instructions and code together in GitHub.
+- Use `renv` to record and restore package versions.
+- Use `reviewStudy()` to help you inspect the project before sharing it.
+
+Next, we will see how **OmopViewer** helps us build apps to explore study results.
+
+## Useful links
+
+- [OmopStudyBuilder on CRAN](https://cran.r-project.org/package=OmopStudyBuilder)
+- [CRAN reference manual](https://cran.r-project.org/web/packages/OmopStudyBuilder/refman/OmopStudyBuilder.html)
+- [Package guides and examples](https://oxford-pharmacoepi.github.io/OmopStudyBuilder/)
+- [Introduction to renv](https://rstudio.github.io/renv/articles/renv.html)
+
+Examples follow the CRAN release of OmopStudyBuilder, **0.1.1**.
