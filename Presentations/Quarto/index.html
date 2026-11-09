@@ -210,24 +210,35 @@
 </section><section id="quarto" class="slide level2"><h2>Quarto</h2>
 <p>Quarto is a free tool for creating documents from a plain-text source file. You can combine writing, code, and the results of that code in one place.</p>
 <p>Use the same source to create reports, presentations, websites, and more. Quarto works with R, Python, Julia, and Observable.</p>
-<p>In this training we will use <strong>R</strong>.</p>
+<p>We will use <strong>R</strong> and return to the <strong>r-introduction</strong> project. By the end, you will have a report that updates when we replace its input data.</p>
 </section><section id="what-happens-when-you-render" class="slide level2"><h2>What happens when you render?</h2>
 <p>You write your content in a <code>.qmd</code> file. When you render it, Quarto runs the code, adds its output to your writing, and creates the finished document.</p>
 <p>That makes it easier to update a report when the data changes: update the data, render again, and the numbers and figures are refreshed from the code.</p>
 </section><section id="how-to-create-a-quarto-document" class="slide level2"><h2>How to create a Quarto document</h2>
-<p>Open the R Project you created earlier. In RStudio, choose <strong>File → New File → Quarto Document…</strong>.</p>
-<p>Give the document a name and save it inside your project. Keeping the document and its data together makes it easier to find and share your work.</p>
+<p>Open <strong>r-introduction.Rproj</strong>. In RStudio, choose <strong>File → New File → Quarto Document…</strong>.</p>
+<p>Choose HTML, give it a title, and save it as <strong>my-report.qmd</strong> in the project root, beside <code>practice.R</code>. Use the <strong>Source</strong> editor when typing the Markdown examples below.</p>
+<p>If the Quarto option is missing or RStudio asks to install a required package, ask the trainer to help before continuing.</p>
 </section><section id="create-a-quarto-document" class="slide level2"><h2>Create a Quarto document</h2>
 
 <img data-src="Figures/new_quarto.png" class="quarto-figure quarto-figure-center r-stretch"></section><section id="choose-a-format-and-render" class="slide level2"><h2>Choose a format and render</h2>
 <p>Start with <strong>HTML</strong> and click <strong>Render</strong>. Quarto will create a document you can open in your browser.</p>
 <ul>
-<li class="fragment">Try rendering the same source as Word and PDF, then compare the results.</li>
-<li class="fragment">For the template exercise, switch the output format to Word.</li>
+<li class="fragment">Render the starter document first. This checks that your setup works.</li>
+<li class="fragment">Then try Word by changing the YAML format to <code>docx</code> and rendering again.</li>
+<li class="fragment">PDF is optional: its usual LaTeX engine needs an extra installation. We can use HTML or Word for all the core exercises.</li>
 </ul>
 <div class="fragment">
 <p>The writing and code stay in the <code>.qmd</code> source. You can render it again whenever you update the content or data.</p>
 </div>
+</section><section id="which-file-do-i-edit" class="slide level2"><h2>Which file do I edit?</h2>
+<ul>
+<li class="fragment">
+<strong>my-report.qmd:</strong> your editable source, containing writing and code.</li>
+<li class="fragment">
+<strong>my-report.html</strong> or <strong>my-report.docx:</strong> the output created by Render.</li>
+</ul>
+<p>Make changes in the <code>.qmd</code> file and render again. Changes made only in the output will not be carried back into your source.</p>
+<p>Save <code>my-report.qmd</code> before rendering. Keep the setup and analysis code in the document so someone else can recreate the report.</p>
 </section><section id="parts-of-a-quarto-document" class="slide level2"><h2>Parts of a Quarto document</h2>
 <p>A <code>.qmd</code> file has two main parts:</p>
 <ul>
@@ -236,7 +247,7 @@
 <li class="fragment">
 <strong>Document body</strong> below the metadata. This contains your text, headings, code, and other content to render.</li>
 </ul></section><section id="write-some-text" class="slide level2"><h2>Write some text</h2>
-<p>Quarto uses Markdown for headings and basic formatting. For example:</p>
+<p>This is the same Markdown we used in GitHub’s README. For example:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu"># Main heading</span></span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">## Smaller heading</span></span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a></span>
@@ -248,7 +259,7 @@
 <p>Render the document and see how the source becomes a formatted page.</p>
 </div>
 </section><section id="add-some-code" class="slide level2"><h2>Add some code</h2>
-<p>Put R code in a code chunk. Quarto can run it and include the result in the document:</p>
+<p>Use RStudio’s <strong>Insert Code Chunk</strong> control to insert an <strong>R</strong> chunk. Paste this code inside it, then render:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">scores</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -259,8 +270,16 @@
 <div class="fragment">
 <p>The code and its result are connected: change the values and render again to update the result.</p>
 </div>
-</section><section id="echo-eval-messages-and-warnings" class="slide level2"><h2>
-<code>echo</code>, <code>eval</code>, <code>messages</code>, and <code>warnings</code>
+</section><section id="what-does-a-chunk-look-like" class="slide level2"><h2>What does a chunk look like?</h2>
+<p>In the Source editor, an executable R chunk has an opening line, the R code, and a closing line:</p>
+<pre><code>```{r}
+scores &lt;- c(7, 8, 10)
+mean(scores)
+```</code></pre>
+<p>The three backticks mark the boundaries. <code>{r}</code> says to run the contents as R code. Ordinary writing goes outside the chunk.</p>
+<p>You can use the chunk’s green arrow to try it, but <strong>Render</strong> rebuilds the whole document.</p>
+</section><section id="echo-eval-message-and-warning" class="slide level2"><h2>
+<code>echo</code>, <code>eval</code>, <code>message</code>, and <code>warning</code>
 </h2>
 <p>These options control what happens to code chunks:</p>
 <ul>
@@ -272,70 +291,99 @@
 <code>message</code> and <code>warning</code>: show or hide messages and warnings produced by the code.</li>
 </ul>
 <div class="fragment">
-<p>Set options in the chunk header, or set document-wide defaults in the YAML under <code>execute:</code>. For example, a chunk with <code>{r, echo=FALSE, message=FALSE}</code> runs <code>summary(scores)</code> but hides its code and messages while showing the result.</p>
+<p>Set options in the chunk header. For example, this runs the summary and shows its result while hiding its code and messages:</p>
+<pre><code>```{r, echo=FALSE, message=FALSE}
+summary(scores)
+```</code></pre>
+<p>Use <code>echo=FALSE</code> when you want results without the code. <code>eval=FALSE</code> means the code will not run, so it cannot create objects for later chunks.</p>
 </div>
+</section><section id="set-defaults-for-the-document" class="slide level2"><h2>Set defaults for the document</h2>
 <div class="fragment">
-<p>You can also change this options globaly with the initial block of yaml file, the following block for example will make all the code to be hidden but executed:</p>
+<p>Add an <code>execute:</code> section to the YAML at the top of your document. These defaults run the code but hide it in the output:</p>
 <pre class="text"><code>---
 execute:
   echo: false
   eval: true
 ---</code></pre>
+<p>Keep your existing title and format. Add these options inside the same YAML block, keeping the indentation shown above. Individual chunks can override the defaults.</p>
 </div>
-</section><section id="your-turn" class="slide level2"><h2><code>YOUR TURN</code></h2>
+</section><section id="render-starts-a-fresh-r-session" class="slide level2"><h2>Render starts a fresh R session</h2>
+<p>When you click Render, Quarto runs your document from the top in a fresh session. Objects you created only in the Console are not automatically available.</p>
+<p>Include the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> calls, file-reading code, and calculations in your <code>.qmd</code> file, in the order they are needed.</p>
+<p>If you see <strong>object not found</strong>, look for the earlier chunk that should create it. Check that it runs and that the object name is the same in both places.</p>
+</section><section id="your-turn-get-the-data" class="slide level2"><h2>
+<code>YOUR TURN</code> Get the data</h2>
 <ol type="1">
 <li class="fragment">Open the course website’s <strong>Downloads</strong> tab and choose your GitHub username.</li>
-<li class="fragment">Click <strong>Download Data 1 results</strong> and save <code>data1.csv</code> in a <code>data</code> folder inside your R Project.</li>
+<li class="fragment">Click <strong>Download Data 1 results</strong> and save <code>data1.csv</code> in <strong>r-introduction/data</strong>.</li>
 <li class="fragment">Read it into your Quarto document. Add a sentence, table, or plot that tells us something about the data.</li>
-</ol></section><section id="your-turn-read-summarise-and-plot" class="slide level2"><h2>
-<code>YOUR TURN</code> Read, summarise, and plot</h2>
-<p>Read the CSV with <code>readr</code>, then find the row with the highest prevalence:</p>
+</ol>
+<p>These are made-up prevalence percentages for five conditions. Each row describes a <strong>database</strong>, <strong>condition</strong>, <strong>year</strong>, and <strong>prevalence</strong>. For example, <code>8.4</code> means 8.4%.</p>
+</section><section id="read-and-inspect-the-data" class="slide level2"><h2>Read and inspect the data</h2>
+<p>In <code>my-report.qmd</code>, add an R chunk and paste this code. Keep it above the chunks that use <code>data</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"data1.csv"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">highest_example</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">prevalence</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">prevalence</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>In your document, you could write this sentence using inline R:</p>
-<pre><code>The highest prevalence is `r highest_example$prevalence`
+<p>Render and check the column names. If the file cannot be found, check its name and make sure it is in this project’s <code>data</code> folder.</p>
+</section><section id="find-a-value-to-describe" class="slide level2"><h2>Find a value to describe</h2>
+<p>Add another R chunk below the data-reading chunk. Here we find the row with the highest prevalence across all years and databases:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">highest_example</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">prevalence</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">prevalence</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">highest_example</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code> finds the largest value; <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> keeps matching rows. This example dataset has one highest row. With other data, ties could give us several rows.</p>
+</section><section id="put-a-result-inside-a-sentence" class="slide level2"><h2>Put a result inside a sentence</h2>
+<p>Below the previous chunk, paste this sentence as ordinary document text. The expressions between backticks are <strong>inline R</strong>:</p>
+<pre><code>The highest prevalence is `r highest_example$prevalence`%
 for `r highest_example$condition`
 in `r highest_example$database` in `r highest_example$year`.</code></pre>
-<p>For example, you could describe the highest value in a sentence, make a table, or plot prevalence by year and condition.</p>
-<p>These chunks are examples for your own document.</p>
+<p>Render the document. Quarto replaces each inline expression with its value, so the text updates with the data too.</p>
+<p>Here, <code>$</code> selects a column from <code>highest_example</code>, just as we used <code>people$age</code> in the R session.</p>
+</section><section id="add-a-plot" class="slide level2"><h2>Add a plot</h2>
+<p>Add one more R chunk:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="fu">ggplot</span><span class="op">(</span><span class="va">data</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">prevalence</span>, colour <span class="op">=</span> <span class="va">condition</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">database</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span>  <span class="fu">facet_wrap</span><span class="op">(</span><span class="op">~</span><span class="va">database</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>y <span class="op">=</span> <span class="st">"Prevalence (%)"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Inline R expressions run when you render the document, just like code in a chunk.</p>
+<p>As before, <code>aes()</code> connects columns to the axes and colours. <code>facet_wrap()</code> creates a separate panel for each database.</p>
+<p><strong>YOUR TURN:</strong> change the plot title or hide the code with <code>echo=FALSE</code>, then render again.</p>
 </section><section id="spacing-in-quarto" class="slide level2"><h2>Spacing in Quarto</h2>
 <p>Leave a blank line in the source to start a new paragraph. A single newline in the source may still appear as part of the same paragraph when rendered.</p>
 <p>In a presentation, a new <code>##</code> heading starts a new slide. Keep headings short so the audience can see the main point at a glance.</p>
-</section><section id="use-templates" class="slide level2"><h2>Use templates</h2>
+</section><section id="optional-use-a-word-template" class="slide level2"><h2>Optional: use a Word template</h2>
 <p>A template gives documents a shared look and saves you from formatting every report by hand. For a Word report, a reference document can define headings, fonts, spacing, headers, footers, and caption styles.</p>
 <p>Quarto uses the content and styles in your <code>.qmd</code> file; Word uses the matching styles in the reference document to decide how those parts look.</p>
 </section><section id="example-of-a-word-template" class="slide level2"><h2>Example of a Word template</h2>
 <p>The <a href="https://github.com/darwin-eu/visOmopResults/blob/main/inst/quarto/darwinReportRef.docx">darwinReportRef.docx template</a> is an example of a Word reference document.</p>
-<p>Download it and open it in Word to explore the styles. In your Quarto document, set it as the <code>reference-doc</code> for Word output, then render the report to apply those styles.</p>
-<p>For example, save the template in your project folder and add this to the document YAML:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span></span>
-<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">reference-doc</span><span class="kw">:</span><span class="at"> </span><span class="st">"darwinReportRef.docx"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>On GitHub, use <strong>Download raw file</strong> to save the <code>.docx</code> file, then open it in Word to explore the styles. Save it beside <code>my-report.qmd</code>.</p>
+<p>Replace your existing <code>format:</code> setting in the YAML with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span></span>
+<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">reference-doc</span><span class="kw">:</span><span class="at"> </span><span class="st">"darwinReportRef.docx"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section><section id="custom-styles-for-captions" class="slide level2"><h2>Custom styles for captions</h2>
 <p>You can give a block of text a style name that exists in the Word reference document:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>:::{custom-style="FigureCaption"}</span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>Figure 1. The prevalence of the different condition over time.</span>
-<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a>:::{custom-style="CaptionFooter"}</span>
-<span id="cb8-6"><a aria-hidden="true" tabindex="-1"></a>CI = confidence interval</span>
-<span id="cb8-7"><a aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>:::{custom-style="FigureCaption"}</span>
+<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>Figure 1. Prevalence of the different conditions over time.</span>
+<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a>:::{custom-style="CaptionFooter"}</span>
+<span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a>CI = confidence interval</span>
+<span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create or change the <code>FigureCaption</code> and <code>CaptionFooter</code> styles in the Word template to control their appearance. The style names in the document and template need to match.</p>
-</section><section id="your-turn-1" class="slide level2"><h2><code>YOUR TURN</code></h2>
-<p>A new data partner sends updated results at the last minute, and two other partners have updated their old results. No need to rebuild the report by hand:</p>
+</section><section id="your-turn-update-the-report" class="slide level2"><h2>
+<code>YOUR TURN</code> Update the report</h2>
+<p>A new partner, <strong>SIDI Or</strong>, sends results at the last minute. <strong>SIDI Plata</strong> updates its results, while <strong>SIDI Bronze</strong> stays the same. Let’s refresh our report:</p>
 <ol type="1">
 <li class="fragment">In your username tab on <strong>Downloads</strong>, click <strong>Download Data 2 results</strong> and save <code>data2.csv</code> in your <code>data</code> folder.</li>
 <li class="fragment">Update your <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> line to read <code>data2.csv</code>.</li>
@@ -344,6 +392,18 @@ in `r highest_example$database` in `r highest_example$year`.</code></pre>
 <div class="fragment">
 <p>The report is refreshed from the new data. Check what changed for SIDI Plata, notice the new SIDI Or results, and confirm that SIDI Bronze stayed the same.</p>
 </div>
+</section><section id="if-the-report-does-not-render" class="slide level2"><h2>If the report does not render</h2>
+<ul>
+<li class="fragment">
+<strong>Object or function not found:</strong> include the data-reading code and <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> calls in the document, above the analysis.</li>
+<li class="fragment">
+<strong>File not found:</strong> check the active project, the <code>data</code> folder, and the exact filename.</li>
+<li class="fragment">
+<strong>YAML error:</strong> check spaces and indentation at the top. Do not add a second <code>format:</code> key.</li>
+<li class="fragment">
+<strong>PDF/LaTeX error:</strong> continue with HTML or Word. PDF setup is optional today; see the <a href="https://quarto.org/docs/output-formats/pdf-basics.html">Quarto PDF guide</a>.</li>
+</ul>
+<p>Fix the first reported error and render again. Ask for help if the message does not make sense.</p>
 </section><section id="final-remarks" class="slide level2"><h2>Final remarks</h2>
 <ul>
 <li class="fragment">Keep the writing, code, and results together in the <code>.qmd</code> source.</li>
@@ -352,6 +412,7 @@ in `r highest_example$database` in `r highest_example$year`.</code></pre>
 </ul>
 <div class="fragment">
 <p>That’s Quarto: write it once, render it when you need it, and let the code update the results.</p>
+<p>Save <strong>my-report.qmd</strong> in <strong>r-introduction</strong>. Next, OmopStudyBuilder will help us organise a bigger study into a shared repository.</p>
 
 
 </div>

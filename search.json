@@ -4,77 +4,147 @@
     "href": "Presentations/R_introduction/index.html#r-programming-language",
     "title": "Introduction to R",
     "section": "R programming language",
-    "text": "R programming language\nR first appeared in 1993 and is a programming language designed for working with data and statistics.\nR is usually interpreted: you write commands and R runs them directly, without a separate compile step.\nFor example, ask R to do a calculation:\n\n2 + 2\n\n[1] 4"
+    "text": "R programming language\nR first appeared in 1993. It is a programming language designed for working with data and statistics.\nR is usually interpreted: we write commands and R runs them without a separate compile step.\n\n2 + 2\n\n[1] 4"
   },
   {
-    "objectID": "Presentations/R_introduction/index.html#functions-in-r",
-    "href": "Presentations/R_introduction/index.html#functions-in-r",
+    "objectID": "Presentations/R_introduction/index.html#find-your-way-around-rstudio",
+    "href": "Presentations/R_introduction/index.html#find-your-way-around-rstudio",
     "title": "Introduction to R",
-    "section": "Functions in R",
-    "text": "Functions in R\nYou can define functions in R like:\n\nsumFun &lt;- function(a, b) {\n  a + b\n}\n\nAnd use them later as:\n\nsumFun(5, 6)\n\n[1] 11"
-  },
-  {
-    "objectID": "Presentations/R_introduction/index.html#packages-in-r",
-    "href": "Presentations/R_introduction/index.html#packages-in-r",
-    "title": "Introduction to R",
-    "section": "Packages in R",
-    "text": "Packages in R\nPackages are collections of functions and other tools that people develop and share for you to use.\nMany R packages are distributed through CRAN (the Comprehensive R Archive Network), a collection of servers that hosts R packages and checks submitted updates. Package authors maintain their packages; CRAN helps make them available to the R community.\n\nTo install a package you can just type:\n\ninstall.packages(\"tibble\")\n# or, if you have pak installed\npak::pkg_install(\"tibble\")\n\n\n\nYou can either call a function using :::\n\ntibble::tibble(a = 1)\n\n# A tibble: 1 × 1\n      a\n  &lt;dbl&gt;\n1     1\n\n\n\n\nOr using library(), which makes the package’s functions available:\n\nlibrary(tibble)\ntibble(a = 1)\n\n# A tibble: 1 × 1\n      a\n  &lt;dbl&gt;\n1     1\n\n\n\n\nIn general we will use the latter option (library())."
-  },
-  {
-    "objectID": "Presentations/R_introduction/index.html#the-pipe-operator",
-    "href": "Presentations/R_introduction/index.html#the-pipe-operator",
-    "title": "Introduction to R",
-    "section": "The pipe operator |>\n",
-    "text": "The pipe operator |&gt;\n\nThe pipe operator was introduced in R 4.1 and it is widely used in R. It concatenates the use of two functions, for example:\n\nlibrary(dplyr)\n\nx &lt;- tibble(a = 1)\nx\n\n# A tibble: 1 × 1\n      a\n  &lt;dbl&gt;\n1     1\n\nx &lt;- mutate(x, b = 1)\nx\n\n# A tibble: 1 × 2\n      a     b\n  &lt;dbl&gt; &lt;dbl&gt;\n1     1     1\n\n\n\nYou can simplify this code with:\n\nx &lt;- tibble(a = 1) |&gt;\n  mutate(b = 1)"
-  },
-  {
-    "objectID": "Presentations/R_introduction/index.html#meet-the-tidyverse",
-    "href": "Presentations/R_introduction/index.html#meet-the-tidyverse",
-    "title": "Introduction to R",
-    "section": "Meet the tidyverse",
-    "text": "Meet the tidyverse\nThe tidyverse is a collection of R packages that work well together for common data tasks.\n\n\ndplyr: wrangle data (filter, select, create columns, summarise)\n\nggplot2: make plots\n\nreadr and tidyr: read and reshape data\nplus packages for strings, factors, iteration, and more"
-  },
-  {
-    "objectID": "Presentations/R_introduction/index.html#some-examples-a-consistent-way-to-work-with-data",
-    "href": "Presentations/R_introduction/index.html#some-examples-a-consistent-way-to-work-with-data",
-    "title": "Introduction to R",
-    "section": "Some examples: a consistent way to work with data",
-    "text": "Some examples: a consistent way to work with data\nTidyverse functions use a consistent style: give a data frame to a function, and get a data frame back.\n\nlibrary(tibble)\n\npeople &lt;- tibble(\n  name = c(\"Alex\", \"Sam\", \"Jo\"),\n  age = c(24, 31, 19),\n  group = c(\"A\", \"B\", \"A\")\n)\n\npeople\n\n# A tibble: 3 × 3\n  name    age group\n  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;\n1 Alex     24 A    \n2 Sam      31 B    \n3 Jo       19 A    \n\n\ntibble() is the tidyverse’s friendly take on a data frame. It prints a quick preview and keeps the data in a familiar rectangular format."
-  },
-  {
-    "objectID": "Presentations/R_introduction/index.html#read-transform-and-summarise",
-    "href": "Presentations/R_introduction/index.html#read-transform-and-summarise",
-    "title": "Introduction to R",
-    "section": "Read, transform, and summarise",
-    "text": "Read, transform, and summarise\nUse |&gt; to read a data workflow from top to bottom. Here we keep adults, add a column, and count people in each group:\n\nlibrary(dplyr)\npeople |&gt;\n  filter(age &gt;= 18) |&gt;\n  mutate(age_next_year = age + 1) |&gt;\n  count(group)\n\n# A tibble: 2 × 2\n  group     n\n  &lt;chr&gt; &lt;int&gt;\n1 A         2\n2 B         1\n\n\n\nSome handy dplyr verbs:\n\n\nfilter() keeps rows\n\nselect() keeps columns\n\nmutate() creates or changes columns\n\nsummarise() calculates a summary\n\narrange() sorts rows"
+    "section": "Find your way around RStudio",
+    "text": "Find your way around RStudio\nR does the calculations. RStudio gives us places to write code and see what happened.\n\n\nSource: write and save a script. This pane appears when you open a file.\n\nConsole: run commands and read their output or errors.\n\nEnvironment: see objects created in the current R session.\n\nFiles, Plots, and Help: find files, see figures, and read documentation.\n\nThe panels can be arranged differently on your computer. Look for their names rather than their position."
   },
   {
     "objectID": "Presentations/R_introduction/index.html#what-is-an-r-project",
     "href": "Presentations/R_introduction/index.html#what-is-an-r-project",
     "title": "Introduction to R",
     "section": "What is an R Project?",
-    "text": "What is an R Project?\nAn R Project is a folder for one piece of work, with a small .Rproj file that lets RStudio recognise and reopen it.\n\nKeep your scripts, notes, data, and results together\nRStudio opens the project folder as the working directory\nUse paths relative to the project, so your code is easier to share and rerun\n\nThink of it as a tidy home for an analysis. One project per workshop or analysis is a good place to start."
+    "text": "What is an R Project?\nAn R Project is a folder for one piece of work, with a small .Rproj file that RStudio uses to reopen it.\n\nKeep scripts, data, and results together.\nOpen the .Rproj file to return to the project.\nUse paths relative to that folder so your code is easier to share.\n\nThink of it as a home for the exercise."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#your-turn-create-your-first-project",
+    "href": "Presentations/R_introduction/index.html#your-turn-create-your-first-project",
+    "title": "Introduction to R",
+    "section": "\nYOUR TURN Create your first project",
+    "text": "YOUR TURN Create your first project\nIn RStudio:\n\nChoose File → New Project… → New Directory → New Project.\nGive it a name and choose a folder you can find again.\nClick Create Project. Check the project name at the top-right of RStudio.\nChoose File → New File → R Script and save it as practice.R inside the project.\n\nUse the Files panel to create folders called data and Results. The names and capital letters should match the examples."
   },
   {
     "objectID": "Presentations/R_introduction/index.html#a-simple-project-layout",
     "href": "Presentations/R_introduction/index.html#a-simple-project-layout",
     "title": "Introduction to R",
     "section": "A simple project layout",
-    "text": "A simple project layout\nThere is no single right layout. Start small and add folders when you need them:\nmy-analysis/\n├── my-analysis.Rproj\n├── R/                 # scripts and functions\n├── data/              # input data (keep originals unchanged)\n└── Results/           # tables, plots, and other outputs\nRStudio creates the .Rproj file for you. You create the folders that make sense for your work."
+    "text": "A simple project layout\nyour_project/\n├── your_project.Rproj\n├── practice.R\n├── data/\n└── Results/\nSave input files in data and things you create in Results. Bigger projects often have an R folder for scripts too.\nThe .Rproj file helps RStudio open the project. Your .R script contains the code you want to keep."
   },
   {
-    "objectID": "Presentations/R_introduction/index.html#lets-create-your-first-r-project",
-    "href": "Presentations/R_introduction/index.html#lets-create-your-first-r-project",
+    "objectID": "Presentations/R_introduction/index.html#write-run-save",
+    "href": "Presentations/R_introduction/index.html#write-run-save",
     "title": "Introduction to R",
-    "section": "Let’s create your first R Project",
-    "text": "Let’s create your first R Project\nIn RStudio:\n\nChoose File → New Project…\n\nChoose New Directory, then New Project\n\nGive it a name, for example r-introduction, and choose where to save it\nSelect Create Project\n\n\nYou should now see the project name in the top-right of RStudio. Save this presentation’s practice script inside the project, then make folders such as data and Results if you need them."
+    "section": "Write, run, save",
+    "text": "Write, run, save\nType 2 + 2 into practice.R, place the cursor on that line, and click Run. You can also use Ctrl+Enter on Windows/Linux or Cmd+Enter on Mac.\nThe command is sent to the Console and the answer appears there. Select several lines to run them together.\n\nSaving stores your code in a file. Running asks R to execute it. Save and run after changing an example so the file and the result agree.\nA Console &gt; means R is ready. If you see +, it is usually waiting for something such as a closing bracket or quote; press Esc and check the command."
   },
   {
-    "objectID": "Presentations/R_introduction/index.html#find-the-project-root-with-here",
-    "href": "Presentations/R_introduction/index.html#find-the-project-root-with-here",
+    "objectID": "Presentations/R_introduction/index.html#use-a-function",
+    "href": "Presentations/R_introduction/index.html#use-a-function",
     "title": "Introduction to R",
-    "section": "Find the project root with here\n",
-    "text": "Find the project root with here\n\n\nlibrary(here)\nhere()\n\n[1] \"/home/runner/work/HDS-OMOP-course/HDS-OMOP-course\"\n\n\n\n\ndir.create(here(\"Results\"))\n\nThat creates a Results folder in the project root. You can use the same idea to read or save files inside the project.\n\nWe should always work within an R Project for each analysis."
+    "section": "Use a function",
+    "text": "Use a function\nA function does a job. Put the inputs, called arguments, inside its brackets:\n\nages &lt;- c(23, 35, 41, 52)\nmean(ages)\n\n[1] 37.75\n\nlength(ages)\n\n[1] 4\n\n\nMissing values are written as NA. Some functions need us to decide how to handle them:\n\nscores &lt;- c(7, 8, NA)\nmean(scores, na.rm = TRUE)\n\n[1] 7.5\n\n\nHere, na.rm = TRUE asks mean() to leave missing values out of the calculation. Use ?mean in the Console to read its help page."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#you-can-write-a-function-too",
+    "href": "Presentations/R_introduction/index.html#you-can-write-a-function-too",
+    "title": "Introduction to R",
+    "section": "You can write a function too",
+    "text": "You can write a function too\n\nsumFun &lt;- function(a, b) {\n  a + b\n}\n\nsumFun(5, 6)\n\n[1] 11\n\n\na and b are the inputs. The code between { and } says what to do with them.\nFor now, most of our work will use functions that other people have already written. You do not need to memorise how to write your own before continuing."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#packages-in-r",
+    "href": "Presentations/R_introduction/index.html#packages-in-r",
+    "title": "Introduction to R",
+    "section": "Packages in R",
+    "text": "Packages in R\nA package is a collection of functions, documentation, and sometimes data that people develop and share.\nMany packages are distributed through CRAN, the Comprehensive R Archive Network. CRAN hosts packages and checks submitted updates; package authors maintain the packages themselves.\nInstall a package into your R library when you first need it:\n\ninstall.packages(\"tibble\")\n# Or, if pak is installed:\npak::pkg_install(\"tibble\")\n\nYou normally do not need to reinstall it each time you open RStudio."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#load-a-package-when-you-use-it",
+    "href": "Presentations/R_introduction/index.html#load-a-package-when-you-use-it",
+    "title": "Introduction to R",
+    "section": "Load a package when you use it",
+    "text": "Load a package when you use it\nlibrary() makes a package’s functions available in the current session:\n\nlibrary(tibble)\ntibble(a = 1)\n\n# A tibble: 1 × 1\n      a\n  &lt;dbl&gt;\n1     1\n\n\nYou can also call a function with its package name:\n\ntibble::tibble(a = 1)\n\n# A tibble: 1 × 1\n      a\n  &lt;dbl&gt;\n1     1\n\n\nIn this training, we will usually use library() at the start of a script. Short, one-off calls may use ::.\nPut the library() calls in your saved code too. A new R session needs to load the packages again."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#meet-the-tidyverse",
+    "href": "Presentations/R_introduction/index.html#meet-the-tidyverse",
+    "title": "Introduction to R",
+    "section": "Meet the tidyverse",
+    "text": "Meet the tidyverse\nThe tidyverse is a collection of packages that work well together for common data tasks:\n\n\ntibble: create and display tables.\n\ndplyr: filter rows, change columns, and summarise data.\n\nreadr: read files such as CSVs.\n\ntidyr: reshape tables.\n\nggplot2: make plots.\n\nWe will load the packages we need for each example. The functions often take a table as their first input."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#our-first-table",
+    "href": "Presentations/R_introduction/index.html#our-first-table",
+    "title": "Introduction to R",
+    "section": "Our first table",
+    "text": "Our first table\n\nlibrary(tibble)\n\npeople &lt;- tibble(\n  name = c(\"Alex\", \"Sam\", \"Jo\"),\n  age = c(24, 31, 17),\n  group = c(\"A\", \"B\", \"A\")\n)\npeople\n\n# A tibble: 3 × 3\n  name    age group\n  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;\n1 Alex     24 A    \n2 Sam      31 B    \n3 Jo       17 A    \n\n\nEach row describes one person. Each column holds one type of information.\nA tibble is a type of data frame. Think of both as tables with named columns."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#pick-a-column-or-inspect-the-table",
+    "href": "Presentations/R_introduction/index.html#pick-a-column-or-inspect-the-table",
+    "title": "Introduction to R",
+    "section": "Pick a column or inspect the table",
+    "text": "Pick a column or inspect the table\n\npeople$age\n\n[1] 24 31 17\n\nmean(people$age)\n\n[1] 24\n\nnrow(people)\n\n[1] 3\n\n\n$ selects a named column. nrow() counts rows.\n\nnames(people)\n\n[1] \"name\"  \"age\"   \"group\"\n\n\nnames() shows column names. This is useful if a later example says that a column cannot be found."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#filter-and-change-a-table",
+    "href": "Presentations/R_introduction/index.html#filter-and-change-a-table",
+    "title": "Introduction to R",
+    "section": "Filter and change a table",
+    "text": "Filter and change a table\n\nlibrary(dplyr)\n\nadults &lt;- filter(people, age &gt;= 18)\nadults &lt;- mutate(adults, age_next_year = age + 1)\nadults\n\n# A tibble: 2 × 4\n  name    age group age_next_year\n  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n1 Alex     24 A                25\n2 Sam      31 B                32\n\n\nfilter() keeps the rows that match a condition. mutate() creates or changes columns.\nInside these functions, we can write age directly because they look for columns in the supplied table."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#the-pipe-operator",
+    "href": "Presentations/R_introduction/index.html#the-pipe-operator",
+    "title": "Introduction to R",
+    "section": "The pipe operator |>\n",
+    "text": "The pipe operator |&gt;\n\nThe pipe passes the result on its left into the function on its right, usually as the first argument.\nWe can write the previous example as a sequence of steps:\n\nadults &lt;- people |&gt;\n  filter(age &gt;= 18) |&gt;\n  mutate(age_next_year = age + 1)\nadults\n\n# A tibble: 2 × 4\n  name    age group age_next_year\n  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n1 Alex     24 A                25\n2 Sam      31 B                32\n\n\nRead it as “take people, keep adults, then add their age next year”. The pipe is built into R from version 4.1 onwards."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#summarise-a-table",
+    "href": "Presentations/R_introduction/index.html#summarise-a-table",
+    "title": "Introduction to R",
+    "section": "Summarise a table",
+    "text": "Summarise a table\n\npeople |&gt;\n  filter(age &gt;= 18) |&gt;\n  count(group)\n\n# A tibble: 2 × 2\n  group     n\n  &lt;chr&gt; &lt;int&gt;\n1 A         1\n2 B         1\n\n\nSome verbs you will see again:\n\n\nfilter(): keep rows.\n\nselect(): keep columns.\n\nmutate(): create or change columns.\n\nsummarise(): calculate summaries, such as a mean.\n\narrange(): sort rows."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#the-dbplyr-package",
+    "href": "Presentations/R_introduction/index.html#the-dbplyr-package",
+    "title": "Introduction to R",
+    "section": "The dbplyr package",
+    "text": "The dbplyr package\nOur packages use the dbplyr package to translate R code into SQL, the following book should give you the main basis of how our ecosystem of packages work:\nhttps://ohdsi.github.io/Tidy-R-programming-with-OMOP/"
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#find-files-with-here",
+    "href": "Presentations/R_introduction/index.html#find-files-with-here",
+    "title": "Introduction to R",
+    "section": "Find files with here",
+    "text": "Find files with here\n\nlibrary(here)\nhere()\n\n[1] \"/home/runner/work/HDS-OMOP-course/HDS-OMOP-course\"\n\n\nhere() finds the project root. We can build paths from it without typing a computer-specific address:\n\nhere(\"data\", \"data1.csv\")\n\nThis points to data/data1.csv inside your project. It does not create the file: we will download it in the Quarto session."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#reading-a-csv-a-preview",
+    "href": "Presentations/R_introduction/index.html#reading-a-csv-a-preview",
+    "title": "Introduction to R",
+    "section": "Reading a CSV: a preview",
+    "text": "Reading a CSV: a preview\nA CSV stores a table as plain text. The first line usually contains column names.\nAfter downloading data1.csv in the Quarto session, we can read it with:\n\nlibrary(readr)\nlibrary(here)\n\ndata &lt;- read_csv(here(\"data\", \"data1.csv\"))\nhead(data)\n\nKeep this example for later. read_csv() brings the file into R; head() displays the first few rows."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#if-something-goes-wrong",
+    "href": "Presentations/R_introduction/index.html#if-something-goes-wrong",
+    "title": "Introduction to R",
+    "section": "If something goes wrong",
+    "text": "If something goes wrong\n\n\nObject not found: check the spelling and run the line that creates the object first.\n\nCould not find function: load its package with library().\n\nNo such file: check the active project, folder, filename, and capital letters.\n\nUnexpected symbol: check quotes, commas, and brackets near the reported line.\n\nStart at the first error, fix it, and rerun that part. A message or warning is not always an error; read what it says before moving on."
+  },
+  {
+    "objectID": "Presentations/R_introduction/index.html#ready-for-the-next-session",
+    "href": "Presentations/R_introduction/index.html#ready-for-the-next-session",
+    "title": "Introduction to R",
+    "section": "Ready for the next session",
+    "text": "Ready for the next session\nYou now have a project, a saved script, and some code you can rerun.\nObjects in the Environment belong to the current R session. Your saved script is how you recreate them after restarting R."
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#introduction",
@@ -116,7 +186,7 @@
     "href": "Presentations/PhenotypeR/index.html#create-cdm-reference-1",
     "title": "Creating cohorts from scratch using R",
     "section": "Create CDM reference",
-    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp39pwZX/file21396ac8254f.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
+    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmpjHOsuG/file20f3515c978a.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist",
@@ -305,21 +375,28 @@
     "href": "Presentations/GitHub/index.html#lets-get-started",
     "title": "GitHub and GitHub Desktop",
     "section": "Let’s get started",
-    "text": "Let’s get started\nDoes everyone have a GitHub username?\n\nShare your GitHub username please :)\nHave you been added to oxford-pharmacoepi organisation?"
+    "text": "Let’s get started\nWe have saved an R script. Now let’s practise keeping a history of a file and reviewing someone else’s changes.\n\nSign in to GitHub in your browser and GitHub Desktop.\nShare your username and accept your invitation to oxford-pharmacoepi."
   },
   {
     "objectID": "Presentations/GitHub/index.html#git-vs-github-vs-github-desktop",
     "href": "Presentations/GitHub/index.html#git-vs-github-vs-github-desktop",
     "title": "GitHub and GitHub Desktop",
     "section": "Git vs GitHub vs GitHub Desktop",
-    "text": "Git vs GitHub vs GitHub Desktop\n\nGit is a distributed version control system that tracks changes in source code during software development and allows multiple developers to collaborate efficiently.\n\n\nGitHub is a web-based platform that provides hosting for Git repositories, along with collaborative features like issue tracking, pull requests, and project management.\n\n\nGitHub Desktop is a graphical user interface (GUI) application that simplifies the interaction with Git and GitHub, allowing users to perform common repository operations without using the command line."
+    "text": "Git vs GitHub vs GitHub Desktop\n\nGit records versions of files on your computer. We can see what changed and return to earlier versions.\n\n\nGitHub stores a shared copy online. We use its website to discuss work and review changes.\n\n\nGitHub Desktop is the app we will use to send and receive changes using buttons."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#which-window-should-i-use",
+    "href": "Presentations/GitHub/index.html#which-window-should-i-use",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Which window should I use?",
+    "text": "Which window should I use?\n\n\n\n\n\n\n\nTask\nWhere?\n\n\n\n\nEdit a script or CSV\nRStudio or a text editor, then save the file.\n\n\nCheck changed files, commit, push, or pull\nGitHub Desktop.\n\n\nOpen an issue, discuss a change, or review a pull request\nGitHub in your browser.\n\n\n\nLocal means on your computer. Remote means the shared copy on GitHub. Saving a file locally does not automatically send it to GitHub."
   },
   {
     "objectID": "Presentations/GitHub/index.html#repository-repo",
     "href": "Presentations/GitHub/index.html#repository-repo",
     "title": "GitHub and GitHub Desktop",
     "section": "Repository (Repo)",
-    "text": "Repository (Repo)\nA repository is essentially a project’s folder. It contains all the project files, including code, documentation, images, and, most importantly, the entire history of every change made to those files."
+    "text": "Repository (Repo)\nA repository, or repo, is a folder with Git tracking enabled. It holds the files we choose to track and the history of their committed changes.\nAn R Project helps RStudio organise your work. A Git repository records its history. A folder can be both, but they do different jobs."
   },
   {
     "objectID": "Presentations/GitHub/index.html#explore-repository",
@@ -340,28 +417,28 @@
     "href": "Presentations/GitHub/index.html#your-turn-lets-create-a-repo-in-oxford-pharmacoepi",
     "title": "GitHub and GitHub Desktop",
     "section": "YOUR TURN Let’s create a repo in oxford-pharmacoepi",
-    "text": "YOUR TURN Let’s create a repo in oxford-pharmacoepi\n\nIn GitHub Desktop, choose File → New Repository…\nGive the repository a name, choose where to save it, and click Create Repository.\n\nThe repository now exists on your computer only.\n\nClick Publish repository. In the dialog, choose oxford-pharmacoepi from the organization menu, then click Publish Repository.\n\nYou now have a repository on GitHub. Open it on the website and have a look around."
+    "text": "YOUR TURN Let’s create a repo in oxford-pharmacoepi\n\nIn GitHub Desktop, choose File → New Repository…\nName it hds-test-yourusername, replacing yourusername with your own. Save it beside your R project, select Initialize this repository with a README, and click Create Repository.\n\nThe repository now exists on your computer only.\n\nClick Publish repository. Choose oxford-pharmacoepi from the organisation menu, keep the repository private, and click Publish Repository.\n\nOpen it on GitHub and check that the repo has been created."
   },
   {
     "objectID": "Presentations/GitHub/index.html#your-turn-download-the-codelist",
     "href": "Presentations/GitHub/index.html#your-turn-download-the-codelist",
     "title": "GitHub and GitHub Desktop",
     "section": "YOUR TURN Download the codelist",
-    "text": "YOUR TURN Download the codelist\nNow go to the Downloads section of the course website and look for your username.\n\nDownload the codelist assigned to you.\nAdd it to the folder of your repo\nLet’s see the changes"
+    "text": "YOUR TURN Download the codelist\nGo to the course website’s Downloads tab and choose your GitHub username.\n\nClick Download codelist and save the CSV inside hds-test-yourusername.\nIn GitHub Desktop, choose that repository and look at Changes."
   },
   {
     "objectID": "Presentations/GitHub/index.html#commit",
     "href": "Presentations/GitHub/index.html#commit",
     "title": "GitHub and GitHub Desktop",
     "section": "Commit",
-    "text": "Commit\nA commit is a snapshot of your repository at a specific point in time. Commits are the building blocks of Git history.\n\nEvery commit has a unique ID (SHA), an author, a timestamp, and a commit message that explains why the change was made.\nCommits are created locally with Git."
+    "text": "Commit\nA commit records a version of the changes you choose to include. Give it a short message so someone else can understand what you did.\n\nEvery commit has an ID, an author, a time, and a message.\nCommits are created locally with Git."
   },
   {
     "objectID": "Presentations/GitHub/index.html#your-turn-create-a-commit-with-the-codelist",
     "href": "Presentations/GitHub/index.html#your-turn-create-a-commit-with-the-codelist",
     "title": "GitHub and GitHub Desktop",
     "section": "YOUR TURN Create a commit with the codelist",
-    "text": "YOUR TURN Create a commit with the codelist\n\nAdd a message and click commit.\nThe commit is still local. It will appear on GitHub after you push it."
+    "text": "YOUR TURN Create a commit with the codelist\n\nIn GitHub Desktop’s Changes tab, tick the codelist file and inspect its contents.\nWrite Add practice codelist in the Summary field and click Commit to main.\n\n\nThe commit is still local. Check that in github, nothing changed."
   },
   {
     "objectID": "Presentations/GitHub/index.html#push-pull",
@@ -375,7 +452,7 @@
     "href": "Presentations/GitHub/index.html#your-turn-push-to-github",
     "title": "GitHub and GitHub Desktop",
     "section": "YOUR TURN Push to GitHub",
-    "text": "YOUR TURN Push to GitHub\n\nPush your changes to GitHub\nNow you should see that the codelist appears in the GitHub website"
+    "text": "YOUR TURN Push to GitHub\n\nClick Push origin in GitHub Desktop.\nRefresh the repository page in your browser. The codelist should now be there.\n\nRemember the three steps: save the file → commit the change → push it to GitHub."
   },
   {
     "objectID": "Presentations/GitHub/index.html#issues",
@@ -389,42 +466,42 @@
     "href": "Presentations/GitHub/index.html#issues-1",
     "title": "GitHub and GitHub Desktop",
     "section": "Issues",
-    "text": "Issues\n\nLabels: Labels are tags used to categorise and organise issues by topic, priority, or status.\nAssignee: The assignee is the person responsible for handling or resolving the issue.\nType: The type describes the issue, for example a bug, feature request, or task."
+    "text": "Issues\n\nLabels: Labels are tags used to categorise and organise issues by topic, priority, or status.\nAssignee: The assignee is the person responsible for handling or resolving the issue.\nType, when available: describes the issue as a bug, feature, or task."
   },
   {
     "objectID": "Presentations/GitHub/index.html#your-turn-open-an-issue",
     "href": "Presentations/GitHub/index.html#your-turn-open-an-issue",
     "title": "GitHub and GitHub Desktop",
     "section": "YOUR TURN Open an issue",
-    "text": "YOUR TURN Open an issue\n\nOpen an issue in your repo (you need to do that from the GitHub website)\nAsk a colleague to review your codelist. The Downloads page lists who you should ask. Tag that person in the issue and assign the issue to them."
+    "text": "YOUR TURN Open an issue\n\nOn your repository’s GitHub page, open Issues → New issue.\nGive it a title such as Remove the fake concept from my codelist and describe the change you want.\nYour Downloads tab names your reviewer. Mention them with @username and assign the issue to them if they are available in the list.\n\nIf they cannot open the repository or appear as an assignee, we will have to give them access manually."
   },
   {
     "objectID": "Presentations/GitHub/index.html#inbox",
     "href": "Presentations/GitHub/index.html#inbox",
     "title": "GitHub and GitHub Desktop",
     "section": "Inbox",
-    "text": "Inbox\nCheck your GitHub inbox for the request to review a colleague’s codelist. Open the request and follow the link to the issue or pull request."
+    "text": "Inbox\nCheck your GitHub notifications for the request to review a colleague’s codelist. If the notification has not arrived, ask them to share the issue link.\nYou will do two jobs: review someone else’s file, then review the change someone proposes to your own file. The two colleagues may be different people."
   },
   {
     "objectID": "Presentations/GitHub/index.html#clone",
     "href": "Presentations/GitHub/index.html#clone",
     "title": "GitHub and GitHub Desktop",
     "section": "Clone",
-    "text": "Clone\nClone a repository to make a local copy on your computer. To make a copy in your GitHub account, fork the repository."
+    "text": "Clone\nClone means download a repository and its history to your computer. In GitHub Desktop, choose File → Clone Repository… and select your colleague’s repository or paste its URL.\nChoose a folder beside your own practice repository. Check Current repository before editing so you are working on your colleague’s file."
   },
   {
     "objectID": "Presentations/GitHub/index.html#branch",
     "href": "Presentations/GitHub/index.html#branch",
     "title": "GitHub and GitHub Desktop",
     "section": "Branch",
-    "text": "Branch\nA branch is an independent line of development.\n\nThe default and main line of development is typically called the main branch.\nBranches allow developers to work on new features or bug fixes in isolation without affecting the stable, main code."
+    "text": "Branch\nA branch lets us work on a proposed change before it is added to the main version.\n\nThe default and main line of development is typically called the main branch.\nIn GitHub Desktop, use Current branch → New branch. Name it review_codelist."
   },
   {
     "objectID": "Presentations/GitHub/index.html#fork",
     "href": "Presentations/GitHub/index.html#fork",
     "title": "GitHub and GitHub Desktop",
     "section": "Fork",
-    "text": "Fork\nA fork is a copy of a repository in your GitHub account. You can change your fork without changing the original, then propose your changes to the original project with a pull request. A fork is useful when you do not have write access to the original repository."
+    "text": "Fork\nA fork is a copy of a repository in your GitHub account. You can propose changes from it with a pull request when the repository’s permissions allow this.\nFor this exercise, we will use write access to each other’s repositories and work on branches. Private organisation repositories may not allow forks, so ask for help with access rather than assuming you can fork one."
   },
   {
     "objectID": "Presentations/GitHub/index.html#pull-request-pr",
@@ -445,7 +522,7 @@
     "href": "Presentations/GitHub/index.html#your-turn-complete-your-review",
     "title": "GitHub and GitHub Desktop",
     "section": "YOUR TURN Complete your review",
-    "text": "YOUR TURN Complete your review\n\nClone your colleague’s repository if you have write access. If you do not, fork it and clone your fork.\nCreate a branch (for example, review_codelist).\nReview the codelist and make the agreed changes.\nCommit your changes.\nPush your branch to GitHub.\nOpen a pull request targeting your colleague’s repository.\nLink the pull request to the relevant issue.\nAsk the colleague who assigned the review to review your pull request."
+    "text": "YOUR TURN Complete your review\n\nClone your colleague’s repository once you have write access.\nCreate a branch (for example, review_codelist).\nRemove the codelists that you think they are not part of the code are not correct. Hint: there are always two codes that should not be part of that codelist.\nCommit your changes.\nClick Publish branch for its first push, or Push origin if it is already published.\nClick Create Pull Request and target main in your colleague’s repository. Check the changed lines before submitting it.\nDescribe your change and add Closes #1, replacing 1 with the issue number in that repository.\nAsk the colleague who assigned the review to review your pull request."
   },
   {
     "objectID": "Presentations/GitHub/index.html#merge",
@@ -455,18 +532,32 @@
     "text": "Merge\nA merge integrates changes from one branch into another. Once a pull request is approved, a repository maintainer can merge it into the target branch.\n\nLet’s merge your Pull Requests"
   },
   {
-    "objectID": "Presentations/GitHub/index.html#your-turn",
-    "href": "Presentations/GitHub/index.html#your-turn",
+    "objectID": "Presentations/GitHub/index.html#your-turn-review-and-merge",
+    "href": "Presentations/GitHub/index.html#your-turn-review-and-merge",
     "title": "GitHub and GitHub Desktop",
-    "section": "YOUR TURN",
-    "text": "YOUR TURN\nReview the pull request in your repository. Approve it or request changes, then merge it once you and the author agree it is ready."
+    "section": "YOUR TURN Review and merge",
+    "text": "YOUR TURN Review and merge\nOpen the pull request in your own repository and look at Files changed. Does the changes look good?\nLeave a comment or approve the change. If something needs correcting, request changes and let the author update their branch. Merge once you both agree it is ready."
   },
   {
-    "objectID": "Presentations/GitHub/index.html#how-everything-works",
-    "href": "Presentations/GitHub/index.html#how-everything-works",
+    "objectID": "Presentations/GitHub/index.html#your-turn-bring-the-change-back-to-your-computer",
+    "href": "Presentations/GitHub/index.html#your-turn-bring-the-change-back-to-your-computer",
     "title": "GitHub and GitHub Desktop",
-    "section": "How everything works",
-    "text": "How everything works\nGit\n\n\n\n\n\n\n\n\nCommand\nDescription\n\n\n\n\ngit init\nCreate a new local repository.\n\n\ngit clone &lt;url&gt;\nCopy a remote repository locally.\n\n\ngit remote add origin &lt;url&gt;\nAdd a new remote repository.\n\n\ngit status\nCheck status of changes and branch.\n\n\ngit add &lt;file&gt;\nStage specific file(s) for commit.\n\n\ngit commit -m \"message\"\nCommit staged changes.\n\n\ngit log\nView commit history.\n\n\ngit diff\nShow unstaged changes.\n\n\ngit branch &lt;name&gt;\nCreate a new branch.\n\n\ngit checkout &lt;branch&gt;\nSwitch to a branch.\n\n\ngit merge &lt;branch&gt;\nMerge another branch into the current one.\n\n\ngit fetch\nDownload updates from remote (no merge).\n\n\ngit pull\nFetch and merge changes from remote.\n\n\ngit push\nPush local commits to remote.\n\n\ngit revert &lt;commit&gt;\nRevert a specific commit with a new one.\n\n\n\n\n\nGitHub Desktop provides a graphical interface for working with Git and GitHub."
+    "section": "YOUR TURN Bring the change back to your computer",
+    "text": "YOUR TURN Bring the change back to your computer\nThe merge happened on GitHub. Now update your local copy:\n\nIn GitHub Desktop, select your own repository and switch to main.\nClick Fetch origin, then Pull origin if changes are available.\nOpen your local CSV and check that the fake row has gone.\n\nFetch checks for remote updates. Pull brings those changes into your local branch. Start a new branch from an up-to-date main for your next change."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#core-exercise-complete",
+    "href": "Presentations/GitHub/index.html#core-exercise-complete",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Core exercise complete",
+    "text": "Core exercise complete\nYou have saved, committed, pushed, reviewed, merged, and pulled a change. That is the workflow we will use again with OmopStudyBuilder.\nThe next slides are reference material and extra practice. We can return to them when we need them."
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#optional-reference-git-commands",
+    "href": "Presentations/GitHub/index.html#optional-reference-git-commands",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Optional reference: Git commands",
+    "text": "Optional reference: Git commands\nGit\n\n\n\n\n\n\n\n\nCommand\nDescription\n\n\n\n\ngit init\nCreate a new local repository.\n\n\ngit clone &lt;url&gt;\nCopy a remote repository locally.\n\n\ngit remote add origin &lt;url&gt;\nAdd a new remote repository.\n\n\ngit status\nCheck status of changes and branch.\n\n\ngit add &lt;file&gt;\nStage specific file(s) for commit.\n\n\ngit commit -m \"message\"\nCommit staged changes.\n\n\ngit log\nView commit history.\n\n\ngit diff\nShow unstaged changes.\n\n\ngit branch &lt;name&gt;\nCreate a new branch.\n\n\ngit checkout &lt;branch&gt;\nSwitch to a branch.\n\n\ngit merge &lt;branch&gt;\nMerge another branch into the current one.\n\n\ngit fetch\nDownload updates from remote (no merge).\n\n\ngit pull\nFetch and merge changes from remote.\n\n\ngit push\nPush local commits to remote.\n\n\ngit revert &lt;commit&gt;\nRevert a specific commit with a new one.\n\n\n\n\n\nGitHub Desktop provides a graphical interface for working with Git and GitHub."
   },
   {
     "objectID": "Presentations/GitHub/index.html#workflow",
@@ -494,14 +585,14 @@
     "href": "Presentations/GitHub/index.html#update-from-main-1",
     "title": "GitHub and GitHub Desktop",
     "section": "Update from main",
-    "text": "Update from main\n\nChange to your_branch branch\nBranch &gt; Update from main\nPush"
+    "text": "Update from main\n\nFirst switch to main, then Fetch origin and Pull origin.\nSwitch back to your working branch.\nChoose Branch → Update from main, then push your branch."
   },
   {
     "objectID": "Presentations/GitHub/index.html#gitignore",
     "href": "Presentations/GitHub/index.html#gitignore",
     "title": "GitHub and GitHub Desktop",
     "section": ".gitignore",
-    "text": ".gitignore\n\nThe .gitignore file tells git which files or folders to skip when tracking changes. It prevents temporary, sensitive, or unnecessary files from being added to a repository. Common examples include log files, build artifacts, and environment files. This keeps the repo clean and focused on essential code and assets.\n\nTo ignore a file, add its name, for example my_file.txt.\nTo ignore a folder, add its name followed by a slash, for example folder/.\nUse patterns such as *.txt to ignore all .txt files."
+    "text": ".gitignore\n\nThe .gitignore file lists files and folders that Git should leave untracked, such as local R session files or generated outputs.\n\nTo ignore a file, add its name, for example my_file.txt.\nTo ignore a folder, add its name followed by a slash, for example folder/.\nUse patterns such as *.txt to ignore all .txt files.\n\nIt does not remove files that Git already tracks. Before committing, look at the file list; real patient data and passwords do not belong in this exercise repository."
   },
   {
     "objectID": "Presentations/GitHub/index.html#merge-conflicts",
@@ -543,14 +634,14 @@
     "href": "Presentations/GitHub/index.html#github-on-the-server",
     "title": "GitHub and GitHub Desktop",
     "section": "GitHub on the server",
-    "text": "GitHub on the server\nWhen working with the rstudio server, you won’t be able to access to GitHub Desktop, so the UI is going to be a bit more complicated.\n\nFirst you will need to link your RStudio server with your github account, to do that you can follow this Tutorial.\n\n\nOnce done you will have to navigate trough the Git panel:"
+    "text": "GitHub on the server\nOn RStudio Server, the files live on the server. GitHub Desktop on your laptop does not manage that copy directly, so use RStudio’s Git pane there.\n\nFirst, set up GitHub access on the server with the trainer, using this tutorial.\n\n\nThe same ideas apply: edit, save, commit, push, and pull. The buttons are in the Git pane:"
   },
   {
-    "objectID": "Presentations/GitHub/index.html#delete-the-mock-repo",
-    "href": "Presentations/GitHub/index.html#delete-the-mock-repo",
+    "objectID": "Presentations/GitHub/index.html#clean-up-the-practice-repo",
+    "href": "Presentations/GitHub/index.html#clean-up-the-practice-repo",
     "title": "GitHub and GitHub Desktop",
-    "section": "Delete the mock repo",
-    "text": "Delete the mock repo\nFor the sake of scalability and to know also how it is done please delete the toy repo you used in this session:\n\nFind your repo in github.com -&gt; Settings -&gt; Danger Zone -&gt; Delete this repository -&gt; confirm"
+    "section": "Clean up the practice repo",
+    "text": "Clean up the practice repo\nOnce both reviews are finished and the trainer confirms the exercise is complete, delete only the temporary hds-test-yourusername repository:\n\nOn GitHub, open that repository’s Settings → Danger Zone → Delete this repository and follow the confirmation steps."
   },
   {
     "objectID": "Presentations/GitHub/index.html#you-are-ready",
@@ -564,14 +655,14 @@
     "href": "Presentations/OmopViewer/index.html#from-reports-to-apps",
     "title": "OmopViewer",
     "section": "From reports to apps",
-    "text": "From reports to apps\nIn Quarto we wrote a report and rendered it. With Shiny, we can let someone explore the results themselves: choose a database, change a filter, or switch between plots.\nA Shiny app has two main parts:\n\n\nUI (user interface): what you see, such as buttons, sliders, and spaces for plots.\n\nServer: the R code that responds to inputs and creates the outputs.\n\nChange an input and Shiny updates the outputs that depend on it. That is reactivity."
+    "text": "From reports to apps\nIn Quarto we wrote a report and rendered it. With Shiny, we can let someone explore the results themselves: choose a database, change a filter, or switch between plots.\nA Shiny app has two main parts:\n\n\nUI (user interface): what you see, such as buttons, sliders, and spaces for plots.\n\nServer: the R code that responds to inputs and creates the outputs.\n\nChange an input and Shiny updates the outputs that depend on it. That is reactivity.\nHere, “server” means a function in our R code. The whole practice app can run on your own computer."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#your-first-shiny-app",
     "href": "Presentations/OmopViewer/index.html#your-first-shiny-app",
     "title": "OmopViewer",
     "section": "Your first Shiny app",
-    "text": "Your first Shiny app\nOpen your R Project. In RStudio, choose File → New File → Shiny Web App… and select a single-file app, app.R.\nClick Run App and move the slider in the starter histogram example. What changes?\n\nThe next two slides show the UI and server for this example. Put them together in app.R.\nThe app keeps your R session busy while it runs. Click Stop in RStudio before running other code or restarting the app."
+    "text": "Your first Shiny app\nReopen r-introduction.Rproj after the OmopStudyBuilder session. In RStudio, choose File → New File → Shiny Web App…, name the app first-shiny, and select a single-file app, app.R.\nClick Run App and move the slider in the starter histogram example. What changes?\n\nThe next two slides show the complete code for the example. Put both blocks together in first-shiny/app.R, replacing the starter code, with shinyApp() at the end. Install shiny and bslib if RStudio reports that either is missing.\nThe app keeps your R session busy while it runs. Click Stop in RStudio before running other code or restarting the app."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#the-ui-what-goes-where",
@@ -585,14 +676,14 @@
     "href": "Presentations/OmopViewer/index.html#the-server-make-the-plot",
     "title": "OmopViewer",
     "section": "The server: make the plot",
-    "text": "The server: make the plot\n\nserver &lt;- function(input, output, session) {\n  output$distPlot &lt;- renderPlot({\n    x &lt;- faithful$waiting\n    bins &lt;- seq(min(x), max(x), length.out = input$bins + 1)\n    hist(x, breaks = bins, col = \"steelblue\", border = \"white\",\n         xlab = \"Waiting time to next eruption (minutes)\",\n         main = \"Old Faithful\")\n  })\n}\n\nshinyApp(ui = ui, server = server)\n\ninput$bins reads the slider. renderPlot() reruns when that value changes, and output$distPlot sends the new plot to the UI."
+    "text": "The server: make the plot\n\nserver &lt;- function(input, output, session) {\n  output$distPlot &lt;- renderPlot({\n    x &lt;- faithful$waiting\n    bins &lt;- seq(min(x), max(x), length.out = input$bins + 1)\n    hist(x, breaks = bins, col = \"steelblue\", border = \"white\",\n         xlab = \"Waiting time to next eruption (minutes)\",\n         main = \"Old Faithful\")\n  })\n}\n\nshinyApp(ui = ui, server = server)\n\nfaithful is a built-in dataset; the histogram groups its waiting times into bins. input$bins reads the slider, and output$distPlot sends the plot to the UI.\nJust as $ picked a table column in R, here it picks a named input or output. renderPlot() reruns when the slider value changes."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#give-the-ui-a-style-with-bslib",
     "href": "Presentations/OmopViewer/index.html#give-the-ui-a-style-with-bslib",
     "title": "OmopViewer",
     "section": "Give the UI a style with bslib",
-    "text": "Give the UI a style with bslib\nbslib gives us layouts, cards, sidebars, and themes. Replace the previous ui block with this one and keep the same server:\n\nlibrary(bslib)\n\nui &lt;- page_sidebar(\n  title = \"My first app\",\n  theme = bs_theme(bootswatch = \"flatly\"),\n  sidebar = sidebar(\n    sliderInput(\"bins\", \"Number of bins:\",\n                min = 1, max = 50, value = 30)\n  ),\n  card(plotOutput(\"distPlot\"))\n)\n\nRun shinyApp(ui, server) again. The layout changes, but the matching IDs mean the slider and plot still work together."
+    "text": "Give the UI a style with bslib\nbslib gives us layouts, cards, sidebars, and themes. Replace the previous ui block with this one and keep the same server:\n\nlibrary(bslib)\n\nui &lt;- page_sidebar(\n  title = \"My first app\",\n  theme = bs_theme(bootswatch = \"flatly\"),\n  sidebar = sidebar(\n    sliderInput(\"bins\", \"Number of bins:\",\n                min = 1, max = 50, value = 30)\n  ),\n  card(plotOutput(\"distPlot\"))\n)\n\nPut library(bslib) near the top of app.R, replace the ui block, save, and click Run App again. Keep shinyApp(ui, server) at the end. The IDs still connect the slider and plot."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#meet-omopviewer",
@@ -606,21 +697,21 @@
     "href": "Presentations/OmopViewer/index.html#what-data-does-it-need",
     "title": "OmopViewer",
     "section": "What data does it need?",
-    "text": "What data does it need?\nOmopViewer works with summarised_result objects: summary estimates together with settings that describe the analyses that produced them.\nThe settings help OmopViewer choose the appropriate panels for supported result types.\n\nFor this exercise, we will use cohort attrition and characteristics results from the reporting training, for amoxicillin and metformin.\nDownload OmopViewer results for this exercise. The four-column Data 1 and Data 2 files from the Quarto session are ordinary tables and cannot be used directly here."
+    "text": "What data does it need?\nOmopViewer works with summarised_result objects: summary estimates together with settings that describe the analyses that produced them.\nThe settings help OmopViewer choose the appropriate panels for supported result types.\n\nFor this exercise, we will use cohort attrition and characteristics results from the reporting training, for amoxicillin and metformin.\nAttrition shows how cohort counts change as criteria are applied. Characteristics describe the people in the cohorts, such as their ages. We will learn to produce these results later in the course.\nDownload OmopViewer results for this exercise. The four-column Data 1 and Data 2 files from the Quarto session are ordinary tables and cannot be used directly here."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#your-turn-get-the-results",
     "href": "Presentations/OmopViewer/index.html#your-turn-get-the-results",
     "title": "OmopViewer",
     "section": "\nYOUR TURN Get the results",
-    "text": "YOUR TURN Get the results\n\nOpen the course website’s Downloads tab and choose your GitHub username.\nClick Download OmopViewer results.\nSave omopviewer_results.csv in the data folder of your R Project.\nCreate an R script called omopviewer.R in your project. We will use it to explore and export an app.\n\nThe code in these slides is for you to run in RStudio. It does not launch an app when we render the presentation."
+    "text": "YOUR TURN Get the results\n\nOpen the course website’s Downloads tab and choose your GitHub username.\nClick Download OmopViewer results.\nSave omopviewer_results.csv in r-introduction/data.\nCreate an R script called omopviewer.R in r-introduction, beside practice.R. Keep the viewer code here and the simple histogram app in first-shiny/app.R.\n\nThe code in these slides is for you to run in RStudio. It does not launch an app when we render the presentation."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#open-the-dynamic-viewer",
     "href": "Presentations/OmopViewer/index.html#open-the-dynamic-viewer",
     "title": "OmopViewer",
     "section": "Open the dynamic viewer",
-    "text": "Open the dynamic viewer\n\nlibrary(OmopViewer)\n\nlaunchDynamicApp()\n\nUpload omopviewer_results.csv, then use Bind data and load shiny to build the panels.\n\nThis is a quick way to look at results without creating an app project. Stop the app in RStudio when you want to continue coding."
+    "text": "Open the dynamic viewer\n\nlibrary(OmopViewer)\n\nlaunchDynamicApp()\n\nUpload omopviewer_results.csv, then use Bind data and load shiny to build the panels.\nThe viewer starts without data. Choose the OmopViewer results CSV, not the codelist or Quarto Data 1/Data 2 files.\n\nThis is a quick way to look at results without creating an app project. Stop the app in RStudio when you want to continue coding."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#your-turn-explore-the-results",
@@ -648,7 +739,7 @@
     "href": "Presentations/OmopViewer/index.html#what-did-omopviewer-create",
     "title": "OmopViewer",
     "section": "What did OmopViewer create?",
-    "text": "What did OmopViewer create?\nStop the app, then open viewer/shiny in RStudio’s Files pane.\n\n\n\n\n\n\nFile\nWhat to look for\n\n\n\nglobal.R\nPackages and data loaded for the app.\n\n\nui.R\nLayout, panels, labels, and input controls.\n\n\nserver.R\nCode that responds to inputs and builds outputs.\n\n\nbackground.md\nText for the background panel.\n\n\n\nrawData/ and data/\n\nOriginal results, preparation code, and prepared app data.\n\n\n\nOur first app had UI and server together in app.R. This app keeps them in separate files so they are easier to explore."
+    "text": "What did OmopViewer create?\nStop the app, then open viewer/shiny in RStudio’s Files pane.\nFor this exercise, keep r-introduction as the active R Project. Browse the files without opening the generated shiny.Rproj, so the here() paths in our script stay the same.\n\n\n\n\n\n\nFile\nWhat to look for\n\n\n\nglobal.R\nPackages and data loaded for the app.\n\n\nui.R\nLayout, panels, labels, and input controls.\n\n\nserver.R\nCode that responds to inputs and builds outputs.\n\n\nbackground.md\nText for the background panel.\n\n\n\nrawData/ and data/\n\nOriginal results, preparation code, and prepared app data.\n\n\n\nOur first app had UI and server together in app.R. This app keeps them in separate files so they are easier to explore."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#start-with-the-export-options",
@@ -663,6 +754,20 @@
     "title": "OmopViewer",
     "section": "\nYOUR TURN Make it yours",
     "text": "YOUR TURN Make it yours\nStop the app and work in viewer_custom/shiny:\n\nEdit background.md: add a heading and two sentences explaining what someone can explore.\nOpen ui.R. Find a visible label and change its text. Keep input and output IDs the same so their connections still work.\nFind the corresponding input or output in server.R. Can you follow what it does?\nRun the app again and check your changes.\n\n\nrunApp(here(\"viewer_custom\", \"shiny\"))\n\nSave your edits before restarting. Exporting again to the same location can overwrite the generated app, so use a new folder if you want to keep your manual changes."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#if-the-app-does-not-start",
+    "href": "Presentations/OmopViewer/index.html#if-the-app-does-not-start",
+    "title": "OmopViewer",
+    "section": "If the app does not start",
+    "text": "If the app does not start\n\n\nR is still busy: stop the previous app before running more code.\n\nResult object not found: rerun the import step in omopviewer.R.\n\nCannot find a file: check that r-introduction is still the active project and that you saved the correct CSV in data.\n\nPackage missing: install the named package in the active project’s library, then try again.\n\nIf a small edit breaks the app, undo that edit and restart. Check labels and IDs carefully; changing the displayed text should not change the connection between UI and server."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#how-does-this-fit-into-a-study",
+    "href": "Presentations/OmopViewer/index.html#how-does-this-fit-into-a-study",
+    "title": "OmopViewer",
+    "section": "How does this fit into a study?",
+    "text": "How does this fit into a study?\nIn our exercise, OmopViewer exports to viewer/shiny inside the practice project. OmopStudyBuilder’s studyShiny folder is a place to organise the reporting app for a real study; the tools do not automatically connect these two folders.\nLater, the analysis code will produce the summary results that we import here.\nRunning an app on your computer does not publish it for everyone else. Sharing the app files and hosting an app online are separate steps; deployment is beyond today’s exercise."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#final-remarks",
@@ -697,7 +802,7 @@
     "href": "Presentations/OmopStudyBuilder/index.html#create-a-study",
     "title": "OmopStudyBuilder",
     "section": "Create a study",
-    "text": "Create a study\nInstall the package from CRAN if you do not have it yet:\n\ninstall.packages(\"OmopStudyBuilder\", dependencies = TRUE)\n\nFrom your current R Project, choose a new folder beside it. Replace yourusername with your GitHub username:\n\nlibrary(OmopStudyBuilder)\nlibrary(here)\n\nstudy_dir &lt;- file.path(dirname(here()), \"hds-study-yourusername\")\ninitStudy(\n  directory = study_dir,\n  studyTitle = \"My HDS practice study\",\n  studyLeads = \"Your name\",\n  studyDescription = \"Practising a shared OMOP study structure.\"\n)\n\nThe destination must be new or empty. Let initStudy() create its contents before opening any of the generated R Projects."
+    "text": "Create a study\nInstall the package from CRAN if you do not have it yet:\n\ninstall.packages(\"OmopStudyBuilder\", dependencies = TRUE)\n\nReopen r-introduction.Rproj. Choose a new folder beside it, replacing yourusername with your GitHub username:\n\nlibrary(OmopStudyBuilder)\nlibrary(here)\n\nstudy_dir &lt;- file.path(dirname(here()), \"hds-study-yourusername\")\ninitStudy(\n  directory = study_dir,\n  studyTitle = \"My HDS practice study\",\n  studyLeads = \"Your name\",\n  studyDescription = \"Practising a shared OMOP study structure.\"\n)\n\nThe destination must be new or empty. Let initStudy() create its contents before opening any of the generated R Projects.\ndirname(here()) finds the folder containing your current project; file.path() builds the path to the new study folder."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#what-did-it-create",
@@ -711,7 +816,7 @@
     "href": "Presentations/OmopStudyBuilder/index.html#one-repository-several-r-projects",
     "title": "OmopStudyBuilder",
     "section": "One repository, several R Projects",
-    "text": "One repository, several R Projects\nEach of the four component folders contains an .Rproj file. Open the project for the part you are working on.\nFor example, open studyCode/studyCode.Rproj for the main analysis. In that session, here() points to studyCode.\n\n\n\n\n\n\n\nFile or folder inside studyCode\n\nWhat goes there?\n\n\n\ncodeToRun.R\nThe entry script, including database-specific settings.\n\n\nrunStudy.R\nThe sequence of study steps.\n\n\n\ncodelist/ and cohorts/\n\nCode to define the study population.\n\n\nanalyses/\nCode for the analyses.\n\n\nResults/\nOutput from the study."
+    "text": "One repository, several R Projects\nEach of the four component folders contains an .Rproj file. Open the project for the part you are working on.\nFor example, open studyCode/studyCode.Rproj for the main analysis. In that session, here() points to studyCode, not the whole repository.\nThis still follows our “one project for one piece of work” approach: the repository groups several separate components together.\n\n\n\n\n\n\n\nFile or folder inside studyCode\n\nWhat goes there?\n\n\n\ncodeToRun.R\nThe entry script, including database-specific settings.\n\n\nrunStudy.R\nThe sequence of study steps.\n\n\n\ncodelist/ and cohorts/\n\nCode to define the study population.\n\n\nanalyses/\nCode for the analyses.\n\n\nResults/\nOutput from the study."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#your-turn-explore-the-template",
@@ -725,14 +830,14 @@
     "href": "Presentations/OmopStudyBuilder/index.html#your-turn-put-the-study-on-github",
     "title": "OmopStudyBuilder",
     "section": "\nYOUR TURN Put the study on GitHub",
-    "text": "YOUR TURN Put the study on GitHub\nUse the whole study folder, hds-study-yourusername, as the repository root.\n\nIn GitHub Desktop, choose File → Add Local Repository… and select that folder.\nIf Desktop says it is not a Git repository, follow create a repository here. Use the existing folder and keep the README created by OmopStudyBuilder.\nReview the files and commit any pending changes with a message such as Add study structure.\nClick Publish repository, choose oxford-pharmacoepi as the organisation, and publish it as a private repository.\nOpen it on GitHub and check that the README and all four component folders are there.\n\nUse a unique repository name. If you cannot select the organisation, ask the trainer to check your access."
+    "text": "YOUR TURN Put the study on GitHub\nUse the whole study folder, hds-study-yourusername, as the repository root.\n\nIn GitHub Desktop, choose File → Add Local Repository… and select that folder.\nIf Desktop says it is not a Git repository, follow create a repository here. Keep the existing README and select R in the Git ignore options to exclude local R session files.\nReview the files and commit any pending changes with a message such as Add study structure.\nClick Publish repository, choose oxford-pharmacoepi as the organisation, and publish it as a private repository.\nOpen it on GitHub and check that the README and all four component folders are there.\n\nUse a unique repository name. Ask the trainer to check that your colleague can access this new repository too; access to the earlier practice repository does not automatically carry over."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#keep-the-instructions-with-the-code",
     "href": "Presentations/OmopStudyBuilder/index.html#keep-the-instructions-with-the-code",
     "title": "OmopStudyBuilder",
     "section": "Keep the instructions with the code",
-    "text": "Keep the instructions with the code\nIn the root README, write a short description of your practice study. For example: which population would you study, and what would you measure?\nThen use the workflow from the GitHub session:\n\nCreate a branch for your changes.\nCommit and push them.\nOpen a pull request and ask a colleague whether the instructions are clear.\n\nOmopStudyBuilder can also create a GitHub repository through initStudy() or linkGitHub() when R authentication is configured. See the CRAN reference manual for that route."
+    "text": "Keep the instructions with the code\nIn the root README, write a short description of your practice study. For example: which population would you study, and what would you measure?\nThen use the workflow from the GitHub session:\n\nCreate a branch for your changes.\nCommit and push them.\nOpen a pull request and ask a colleague whether the instructions are clear.\n\nAfter merging, switch to main in Desktop and Fetch origin → Pull origin to update your local copy.\nOmopStudyBuilder can also create a GitHub repository through initStudy() or linkGitHub() when R authentication is configured. See the CRAN reference manual for that route."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#why-use-renv",
@@ -742,18 +847,18 @@
     "text": "Why use renv?\nThe same code can behave differently when people have different package versions. renv gives an R Project its own package library and records package versions in renv.lock.\n\n\nThe study developer prepares the environment and records it.\nA colleague restores that environment when they run the study.\nThe lockfile is committed alongside the code, so changes can be reviewed in GitHub.\n\nThe generated study folders do not yet contain a lockfile. Prepare renv in each component R Project that you use, after deciding which packages its code needs."
   },
   {
-    "objectID": "Presentations/OmopStudyBuilder/index.html#renv-the-basic-workflow",
-    "href": "Presentations/OmopStudyBuilder/index.html#renv-the-basic-workflow",
+    "objectID": "Presentations/OmopStudyBuilder/index.html#renv-the-basic-workflow-demo",
+    "href": "Presentations/OmopStudyBuilder/index.html#renv-the-basic-workflow-demo",
     "title": "OmopStudyBuilder",
-    "section": "renv: the basic workflow",
-    "text": "renv: the basic workflow\nOpen studyCode/studyCode.Rproj before setting up its environment. Install renv if needed, then initialise it once:\n\ninstall.packages(\"renv\")\nlibrary(renv)\ninit()\n\ninit() scans the project and prepares its package library and lockfile. It may need to install packages referenced by the template.\n\n\n\n\n\n\nFunction\nWhen would we use it?\n\n\n\nsnapshot()\nRecord the package versions after changing and checking the code.\n\n\nrestore()\nInstall the versions recorded in an existing lockfile.\n\n\nstatus()\nCheck whether the project library and lockfile agree.\n\n\n\nCommit renv.lock and the activation files created by renv; its .gitignore excludes the local package library. renv records the R version but does not install R itself.\nMore detail: Introduction to renv."
+    "section": "renv: the basic workflow (demo)",
+    "text": "renv: the basic workflow (demo)\nWatch this first; setting up the full template’s packages can take time. Open studyCode/studyCode.Rproj, install renv if needed, and initialise it once:\n\ninstall.packages(\"renv\")\nlibrary(renv)\ninit()\n\ninit() scans the project and prepares its package library and lockfile. It may need to install packages referenced by the template.\n\n\n\n\n\n\nFunction\nWhen would we use it?\n\n\n\nsnapshot()\nRecord the package versions after changing and checking the code.\n\n\nrestore()\nInstall the versions recorded in an existing lockfile.\n\n\nstatus()\nCheck whether the project library and lockfile agree.\n\n\n\nCommit renv.lock and the activation files created by renv; its .gitignore excludes the local package library. renv records the R version but does not install R itself.\nMore detail: Introduction to renv."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#get-an-overview-with-reviewstudy",
     "href": "Presentations/OmopStudyBuilder/index.html#get-an-overview-with-reviewstudy",
     "title": "OmopStudyBuilder",
     "section": "Get an overview with reviewStudy()",
-    "text": "Get an overview with reviewStudy()\nBefore sharing code with a data partner, it is useful to see what is in the project.\nFrom the studyCode R Project, install OmopStudyBuilder there if it is missing from your new renv library, then run:\n\nlibrary(OmopStudyBuilder)\nlibrary(here)\n\nreviewStudy(dir = here(), dependencies = FALSE)\n\nThis prints a summary of the R scripts and JSON, CSV, and Excel files. We skip the dependency review here because the fresh template has no renv.lock yet.\nIt gives us a starting point for review; we still need to read the code and check that it answers the study question."
+    "text": "Get an overview with reviewStudy()\nBefore sharing code with a data partner, it is useful to see what is in the project.\nFrom the studyCode R Project, install OmopStudyBuilder there if it is missing from your new renv library, then run:\n\nlibrary(OmopStudyBuilder)\nlibrary(here)\n\nreviewStudy(dir = here(), dependencies = FALSE)\n\nThis prints a summary of the R scripts and JSON, CSV, and Excel files. dependencies = FALSE lets everyone try it, including those who have not set up renv yet.\nIt gives us a starting point for review; we still need to read the code and check that it answers the study question."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#review-the-dependencies-too",
@@ -767,14 +872,14 @@
     "href": "Presentations/OmopStudyBuilder/index.html#your-turn-review-your-study",
     "title": "OmopStudyBuilder",
     "section": "\nYOUR TURN Review your study",
-    "text": "YOUR TURN Review your study\n\nRun reviewStudy(dir = here(), dependencies = FALSE) from studyCode.\nFind the entry script and the analysis scripts in the output. Which are still empty?\nIf you have prepared a lockfile, run the dependency review too. Pick one package and find its recorded version.\nAdd a note to your pull request describing what still needs to be completed before the study can run.\n\nDiscuss the review with your colleague. A common folder structure makes it easier to find things, but the code and instructions still need a human review."
+    "text": "YOUR TURN Review your study\n\nRun reviewStudy(dir = here(), dependencies = FALSE) from studyCode.\nFind the entry script and the analysis scripts in the output. Which are still empty?\nIf you have prepared a lockfile, run the dependency review too. Pick one package and find its recorded version.\nAdd a note to your pull request, or a new issue if it has already been merged, describing what still needs to be completed before the study can run.\n\nDiscuss the review with your colleague. A common folder structure makes it easier to find things, but the code and instructions still need a human review."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#final-remarks",
     "href": "Presentations/OmopStudyBuilder/index.html#final-remarks",
     "title": "OmopStudyBuilder",
     "section": "Final remarks",
-    "text": "Final remarks\n\nStart with initStudy() so everyone recognises the study layout.\nKeep the instructions and code together in GitHub.\nUse renv to record and restore package versions.\nUse reviewStudy() to help you inspect the project before sharing it.\n\nNext, we will see how OmopViewer helps us build apps to explore study results."
+    "text": "Final remarks\n\nStart with initStudy() so everyone recognises the study layout.\nKeep the instructions and code together in GitHub.\nUse renv to record and restore package versions.\nUse reviewStudy() to help you inspect the project before sharing it.\n\nNext, we will see how OmopViewer helps us build apps to explore study results. Reopen r-introduction.Rproj for that exercise so we use the same practice project and data folder as in Quarto."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#useful-links",
@@ -788,7 +893,7 @@
     "href": "Presentations/Quarto/index.html#quarto",
     "title": "Introduction to Quarto",
     "section": "Quarto",
-    "text": "Quarto\nQuarto is a free tool for creating documents from a plain-text source file. You can combine writing, code, and the results of that code in one place.\nUse the same source to create reports, presentations, websites, and more. Quarto works with R, Python, Julia, and Observable.\nIn this training we will use R."
+    "text": "Quarto\nQuarto is a free tool for creating documents from a plain-text source file. You can combine writing, code, and the results of that code in one place.\nUse the same source to create reports, presentations, websites, and more. Quarto works with R, Python, Julia, and Observable.\nWe will use R and return to the r-introduction project. By the end, you will have a report that updates when we replace its input data."
   },
   {
     "objectID": "Presentations/Quarto/index.html#what-happens-when-you-render",
@@ -802,7 +907,7 @@
     "href": "Presentations/Quarto/index.html#how-to-create-a-quarto-document",
     "title": "Introduction to Quarto",
     "section": "How to create a Quarto document",
-    "text": "How to create a Quarto document\nOpen the R Project you created earlier. In RStudio, choose File → New File → Quarto Document….\nGive the document a name and save it inside your project. Keeping the document and its data together makes it easier to find and share your work."
+    "text": "How to create a Quarto document\nOpen r-introduction.Rproj. In RStudio, choose File → New File → Quarto Document….\nChoose HTML, give it a title, and save it as my-report.qmd in the project root, beside practice.R. Use the Source editor when typing the Markdown examples below.\nIf the Quarto option is missing or RStudio asks to install a required package, ask the trainer to help before continuing."
   },
   {
     "objectID": "Presentations/Quarto/index.html#create-a-quarto-document",
@@ -816,7 +921,14 @@
     "href": "Presentations/Quarto/index.html#choose-a-format-and-render",
     "title": "Introduction to Quarto",
     "section": "Choose a format and render",
-    "text": "Choose a format and render\nStart with HTML and click Render. Quarto will create a document you can open in your browser.\n\nTry rendering the same source as Word and PDF, then compare the results.\nFor the template exercise, switch the output format to Word.\n\n\nThe writing and code stay in the .qmd source. You can render it again whenever you update the content or data."
+    "text": "Choose a format and render\nStart with HTML and click Render. Quarto will create a document you can open in your browser.\n\nRender the starter document first. This checks that your setup works.\nThen try Word by changing the YAML format to docx and rendering again.\nPDF is optional: its usual LaTeX engine needs an extra installation. We can use HTML or Word for all the core exercises.\n\n\nThe writing and code stay in the .qmd source. You can render it again whenever you update the content or data."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#which-file-do-i-edit",
+    "href": "Presentations/Quarto/index.html#which-file-do-i-edit",
+    "title": "Introduction to Quarto",
+    "section": "Which file do I edit?",
+    "text": "Which file do I edit?\n\n\nmy-report.qmd: your editable source, containing writing and code.\n\nmy-report.html or my-report.docx: the output created by Render.\n\nMake changes in the .qmd file and render again. Changes made only in the output will not be carried back into your source.\nSave my-report.qmd before rendering. Keep the setup and analysis code in the document so someone else can recreate the report."
   },
   {
     "objectID": "Presentations/Quarto/index.html#parts-of-a-quarto-document",
@@ -830,35 +942,77 @@
     "href": "Presentations/Quarto/index.html#write-some-text",
     "title": "Introduction to Quarto",
     "section": "Write some text",
-    "text": "Write some text\nQuarto uses Markdown for headings and basic formatting. For example:\n# Main heading\n## Smaller heading\n\nThis is a paragraph with **bold text**.\n\n- This is a list item.\n- And another one.\n\nRender the document and see how the source becomes a formatted page."
+    "text": "Write some text\nThis is the same Markdown we used in GitHub’s README. For example:\n# Main heading\n## Smaller heading\n\nThis is a paragraph with **bold text**.\n\n- This is a list item.\n- And another one.\n\nRender the document and see how the source becomes a formatted page."
   },
   {
     "objectID": "Presentations/Quarto/index.html#add-some-code",
     "href": "Presentations/Quarto/index.html#add-some-code",
     "title": "Introduction to Quarto",
     "section": "Add some code",
-    "text": "Add some code\nPut R code in a code chunk. Quarto can run it and include the result in the document:\n\nscores &lt;- c(7, 8, 10)\nmean(scores)\n\n[1] 8.333333\n\n\n\nThe code and its result are connected: change the values and render again to update the result."
+    "text": "Add some code\nUse RStudio’s Insert Code Chunk control to insert an R chunk. Paste this code inside it, then render:\n\nscores &lt;- c(7, 8, 10)\nmean(scores)\n\n[1] 8.333333\n\n\n\nThe code and its result are connected: change the values and render again to update the result."
   },
   {
-    "objectID": "Presentations/Quarto/index.html#echo-eval-messages-and-warnings",
-    "href": "Presentations/Quarto/index.html#echo-eval-messages-and-warnings",
+    "objectID": "Presentations/Quarto/index.html#what-does-a-chunk-look-like",
+    "href": "Presentations/Quarto/index.html#what-does-a-chunk-look-like",
     "title": "Introduction to Quarto",
-    "section": "\necho, eval, messages, and warnings\n",
-    "text": "echo, eval, messages, and warnings\n\nThese options control what happens to code chunks:\n\n\necho: show (TRUE) or hide (FALSE) the code in the rendered document.\n\neval: run (TRUE) or skip (FALSE) the code.\n\nmessage and warning: show or hide messages and warnings produced by the code.\n\n\nSet options in the chunk header, or set document-wide defaults in the YAML under execute:. For example, a chunk with {r, echo=FALSE, message=FALSE} runs summary(scores) but hides its code and messages while showing the result.\n\n\nYou can also change this options globaly with the initial block of yaml file, the following block for example will make all the code to be hidden but executed:\n---\nexecute:\n  echo: false\n  eval: true\n---"
+    "section": "What does a chunk look like?",
+    "text": "What does a chunk look like?\nIn the Source editor, an executable R chunk has an opening line, the R code, and a closing line:\n```{r}\nscores &lt;- c(7, 8, 10)\nmean(scores)\n```\nThe three backticks mark the boundaries. {r} says to run the contents as R code. Ordinary writing goes outside the chunk.\nYou can use the chunk’s green arrow to try it, but Render rebuilds the whole document."
   },
   {
-    "objectID": "Presentations/Quarto/index.html#your-turn",
-    "href": "Presentations/Quarto/index.html#your-turn",
+    "objectID": "Presentations/Quarto/index.html#echo-eval-message-and-warning",
+    "href": "Presentations/Quarto/index.html#echo-eval-message-and-warning",
     "title": "Introduction to Quarto",
-    "section": "YOUR TURN",
-    "text": "YOUR TURN\n\nOpen the course website’s Downloads tab and choose your GitHub username.\nClick Download Data 1 results and save data1.csv in a data folder inside your R Project.\nRead it into your Quarto document. Add a sentence, table, or plot that tells us something about the data."
+    "section": "\necho, eval, message, and warning\n",
+    "text": "echo, eval, message, and warning\n\nThese options control what happens to code chunks:\n\n\necho: show (TRUE) or hide (FALSE) the code in the rendered document.\n\neval: run (TRUE) or skip (FALSE) the code.\n\nmessage and warning: show or hide messages and warnings produced by the code.\n\n\nSet options in the chunk header. For example, this runs the summary and shows its result while hiding its code and messages:\n```{r, echo=FALSE, message=FALSE}\nsummary(scores)\n```\nUse echo=FALSE when you want results without the code. eval=FALSE means the code will not run, so it cannot create objects for later chunks."
   },
   {
-    "objectID": "Presentations/Quarto/index.html#your-turn-read-summarise-and-plot",
-    "href": "Presentations/Quarto/index.html#your-turn-read-summarise-and-plot",
+    "objectID": "Presentations/Quarto/index.html#set-defaults-for-the-document",
+    "href": "Presentations/Quarto/index.html#set-defaults-for-the-document",
     "title": "Introduction to Quarto",
-    "section": "\nYOUR TURN Read, summarise, and plot",
-    "text": "YOUR TURN Read, summarise, and plot\nRead the CSV with readr, then find the row with the highest prevalence:\n\nlibrary(readr)\nlibrary(here)\nlibrary(dplyr)\ndata &lt;- read_csv(here(\"data\", \"data1.csv\"))\nhighest_example &lt;- data |&gt;\n  filter(prevalence == max(prevalence))\n\nIn your document, you could write this sentence using inline R:\nThe highest prevalence is `r highest_example$prevalence`\nfor `r highest_example$condition`\nin `r highest_example$database` in `r highest_example$year`.\nFor example, you could describe the highest value in a sentence, make a table, or plot prevalence by year and condition.\nThese chunks are examples for your own document.\n\nlibrary(ggplot2)\nggplot(data, aes(x = year, y = prevalence, colour = condition)) +\n  geom_point() +\n  facet_wrap(~database)\n\nInline R expressions run when you render the document, just like code in a chunk."
+    "section": "Set defaults for the document",
+    "text": "Set defaults for the document\n\nAdd an execute: section to the YAML at the top of your document. These defaults run the code but hide it in the output:\n---\nexecute:\n  echo: false\n  eval: true\n---\nKeep your existing title and format. Add these options inside the same YAML block, keeping the indentation shown above. Individual chunks can override the defaults."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#render-starts-a-fresh-r-session",
+    "href": "Presentations/Quarto/index.html#render-starts-a-fresh-r-session",
+    "title": "Introduction to Quarto",
+    "section": "Render starts a fresh R session",
+    "text": "Render starts a fresh R session\nWhen you click Render, Quarto runs your document from the top in a fresh session. Objects you created only in the Console are not automatically available.\nInclude the library() calls, file-reading code, and calculations in your .qmd file, in the order they are needed.\nIf you see object not found, look for the earlier chunk that should create it. Check that it runs and that the object name is the same in both places."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#your-turn-get-the-data",
+    "href": "Presentations/Quarto/index.html#your-turn-get-the-data",
+    "title": "Introduction to Quarto",
+    "section": "\nYOUR TURN Get the data",
+    "text": "YOUR TURN Get the data\n\nOpen the course website’s Downloads tab and choose your GitHub username.\nClick Download Data 1 results and save data1.csv in r-introduction/data.\nRead it into your Quarto document. Add a sentence, table, or plot that tells us something about the data.\n\nThese are made-up prevalence percentages for five conditions. Each row describes a database, condition, year, and prevalence. For example, 8.4 means 8.4%."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#read-and-inspect-the-data",
+    "href": "Presentations/Quarto/index.html#read-and-inspect-the-data",
+    "title": "Introduction to Quarto",
+    "section": "Read and inspect the data",
+    "text": "Read and inspect the data\nIn my-report.qmd, add an R chunk and paste this code. Keep it above the chunks that use data:\n\nlibrary(readr)\nlibrary(here)\n\ndata &lt;- read_csv(here(\"data\", \"data1.csv\"))\nhead(data)\n\nRender and check the column names. If the file cannot be found, check its name and make sure it is in this project’s data folder."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#find-a-value-to-describe",
+    "href": "Presentations/Quarto/index.html#find-a-value-to-describe",
+    "title": "Introduction to Quarto",
+    "section": "Find a value to describe",
+    "text": "Find a value to describe\nAdd another R chunk below the data-reading chunk. Here we find the row with the highest prevalence across all years and databases:\n\nlibrary(dplyr)\n\nhighest_example &lt;- data |&gt;\n  filter(prevalence == max(prevalence))\nhighest_example\n\nmax() finds the largest value; filter() keeps matching rows. This example dataset has one highest row. With other data, ties could give us several rows."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#put-a-result-inside-a-sentence",
+    "href": "Presentations/Quarto/index.html#put-a-result-inside-a-sentence",
+    "title": "Introduction to Quarto",
+    "section": "Put a result inside a sentence",
+    "text": "Put a result inside a sentence\nBelow the previous chunk, paste this sentence as ordinary document text. The expressions between backticks are inline R:\nThe highest prevalence is `r highest_example$prevalence`%\nfor `r highest_example$condition`\nin `r highest_example$database` in `r highest_example$year`.\nRender the document. Quarto replaces each inline expression with its value, so the text updates with the data too.\nHere, $ selects a column from highest_example, just as we used people$age in the R session."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#add-a-plot",
+    "href": "Presentations/Quarto/index.html#add-a-plot",
+    "title": "Introduction to Quarto",
+    "section": "Add a plot",
+    "text": "Add a plot\nAdd one more R chunk:\n\nlibrary(ggplot2)\nggplot(data, aes(x = year, y = prevalence, colour = condition)) +\n  geom_line() +\n  geom_point() +\n  facet_wrap(~database) +\n  labs(y = \"Prevalence (%)\")\n\nAs before, aes() connects columns to the axes and colours. facet_wrap() creates a separate panel for each database.\nYOUR TURN: change the plot title or hide the code with echo=FALSE, then render again."
   },
   {
     "objectID": "Presentations/Quarto/index.html#spacing-in-quarto",
@@ -868,67 +1022,95 @@
     "text": "Spacing in Quarto\nLeave a blank line in the source to start a new paragraph. A single newline in the source may still appear as part of the same paragraph when rendered.\nIn a presentation, a new ## heading starts a new slide. Keep headings short so the audience can see the main point at a glance."
   },
   {
-    "objectID": "Presentations/Quarto/index.html#use-templates",
-    "href": "Presentations/Quarto/index.html#use-templates",
+    "objectID": "Presentations/Quarto/index.html#optional-use-a-word-template",
+    "href": "Presentations/Quarto/index.html#optional-use-a-word-template",
     "title": "Introduction to Quarto",
-    "section": "Use templates",
-    "text": "Use templates\nA template gives documents a shared look and saves you from formatting every report by hand. For a Word report, a reference document can define headings, fonts, spacing, headers, footers, and caption styles.\nQuarto uses the content and styles in your .qmd file; Word uses the matching styles in the reference document to decide how those parts look."
+    "section": "Optional: use a Word template",
+    "text": "Optional: use a Word template\nA template gives documents a shared look and saves you from formatting every report by hand. For a Word report, a reference document can define headings, fonts, spacing, headers, footers, and caption styles.\nQuarto uses the content and styles in your .qmd file; Word uses the matching styles in the reference document to decide how those parts look."
   },
   {
     "objectID": "Presentations/Quarto/index.html#example-of-a-word-template",
     "href": "Presentations/Quarto/index.html#example-of-a-word-template",
     "title": "Introduction to Quarto",
     "section": "Example of a Word template",
-    "text": "Example of a Word template\nThe darwinReportRef.docx template is an example of a Word reference document.\nDownload it and open it in Word to explore the styles. In your Quarto document, set it as the reference-doc for Word output, then render the report to apply those styles.\nFor example, save the template in your project folder and add this to the document YAML:\nformat:\n  docx:\n    reference-doc: \"darwinReportRef.docx\""
+    "text": "Example of a Word template\nThe darwinReportRef.docx template is an example of a Word reference document.\nOn GitHub, use Download raw file to save the .docx file, then open it in Word to explore the styles. Save it beside my-report.qmd.\nReplace your existing format: setting in the YAML with:\nformat:\n  docx:\n    reference-doc: \"darwinReportRef.docx\""
   },
   {
     "objectID": "Presentations/Quarto/index.html#custom-styles-for-captions",
     "href": "Presentations/Quarto/index.html#custom-styles-for-captions",
     "title": "Introduction to Quarto",
     "section": "Custom styles for captions",
-    "text": "Custom styles for captions\nYou can give a block of text a style name that exists in the Word reference document:\n:::{custom-style=\"FigureCaption\"}\nFigure 1. The prevalence of the different condition over time.\n:::\n\n:::{custom-style=\"CaptionFooter\"}\nCI = confidence interval\n:::\nCreate or change the FigureCaption and CaptionFooter styles in the Word template to control their appearance. The style names in the document and template need to match."
+    "text": "Custom styles for captions\nYou can give a block of text a style name that exists in the Word reference document:\n:::{custom-style=\"FigureCaption\"}\nFigure 1. Prevalence of the different conditions over time.\n:::\n\n:::{custom-style=\"CaptionFooter\"}\nCI = confidence interval\n:::\nCreate or change the FigureCaption and CaptionFooter styles in the Word template to control their appearance. The style names in the document and template need to match."
   },
   {
-    "objectID": "Presentations/Quarto/index.html#your-turn-1",
-    "href": "Presentations/Quarto/index.html#your-turn-1",
+    "objectID": "Presentations/Quarto/index.html#your-turn-update-the-report",
+    "href": "Presentations/Quarto/index.html#your-turn-update-the-report",
     "title": "Introduction to Quarto",
-    "section": "YOUR TURN",
-    "text": "YOUR TURN\nA new data partner sends updated results at the last minute, and two other partners have updated their old results. No need to rebuild the report by hand:\n\nIn your username tab on Downloads, click Download Data 2 results and save data2.csv in your data folder.\nUpdate your read_csv() line to read data2.csv.\nRender the Quarto document again and compare the results.\n\n\nThe report is refreshed from the new data. Check what changed for SIDI Plata, notice the new SIDI Or results, and confirm that SIDI Bronze stayed the same."
+    "section": "\nYOUR TURN Update the report",
+    "text": "YOUR TURN Update the report\nA new partner, SIDI Or, sends results at the last minute. SIDI Plata updates its results, while SIDI Bronze stays the same. Let’s refresh our report:\n\nIn your username tab on Downloads, click Download Data 2 results and save data2.csv in your data folder.\nUpdate your read_csv() line to read data2.csv.\nRender the Quarto document again and compare the results.\n\n\nThe report is refreshed from the new data. Check what changed for SIDI Plata, notice the new SIDI Or results, and confirm that SIDI Bronze stayed the same."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#if-the-report-does-not-render",
+    "href": "Presentations/Quarto/index.html#if-the-report-does-not-render",
+    "title": "Introduction to Quarto",
+    "section": "If the report does not render",
+    "text": "If the report does not render\n\n\nObject or function not found: include the data-reading code and library() calls in the document, above the analysis.\n\nFile not found: check the active project, the data folder, and the exact filename.\n\nYAML error: check spaces and indentation at the top. Do not add a second format: key.\n\nPDF/LaTeX error: continue with HTML or Word. PDF setup is optional today; see the Quarto PDF guide.\n\nFix the first reported error and render again. Ask for help if the message does not make sense."
   },
   {
     "objectID": "Presentations/Quarto/index.html#final-remarks",
     "href": "Presentations/Quarto/index.html#final-remarks",
     "title": "Introduction to Quarto",
     "section": "Final remarks",
-    "text": "Final remarks\n\nKeep the writing, code, and results together in the .qmd source.\nUse a template when reports need a consistent look.\nWhen the data changes, update the input files and render again.\n\n\nThat’s Quarto: write it once, render it when you need it, and let the code update the results."
+    "text": "Final remarks\n\nKeep the writing, code, and results together in the .qmd source.\nUse a template when reports need a consistent look.\nWhen the data changes, update the input files and render again.\n\n\nThat’s Quarto: write it once, render it when you need it, and let the code update the results.\nSave my-report.qmd in r-introduction. Next, OmopStudyBuilder will help us organise a bigger study into a shared repository."
   },
   {
     "objectID": "Presentations/Welcome/index.html#welcome",
     "href": "Presentations/Welcome/index.html#welcome",
     "title": "Welcome",
     "section": "Welcome",
-    "text": "Welcome"
+    "text": "Welcome\nWelcome to the HDS OMOP training! We will write some code, share it with each other, and use it to explore study results.\nYou do not need to know every tool already. We will build things step by step, and there will be time to try them yourself.\nTell us your name, what you work on, and whether you have used R or GitHub before."
   },
   {
-    "objectID": "Presentations/Welcome/index.html#getting-ready",
-    "href": "Presentations/Welcome/index.html#getting-ready",
+    "objectID": "Presentations/Welcome/index.html#what-are-we-working-towards",
+    "href": "Presentations/Welcome/index.html#what-are-we-working-towards",
     "title": "Welcome",
-    "section": "Getting ready",
-    "text": "Getting ready\n\nInstall R\nInstall RStudio\nOpen RStudio\nInstall pak\n\n\ninstall.packages(\"pak\")\n\n\nInstall OmopTrainer\n\n\n\npak::pkg_install(\"oxford-pharmacoepi/OmopTrainer\")\n\n\nCheck your setup\n\n\nOmopTrainer::validateSetup()"
+    "section": "What are we working towards?",
+    "text": "What are we working towards?\n\n\nDay 1: get comfortable with the tools for writing, sharing, and reporting our work.\n\nDay 2: define study populations with codelists and cohorts, then check them using synthetic data.\n\nDay 3: describe the people in those cohorts and explore their characteristics.\n\nToday we will work with practice files and supplied results. You do not need a connection to a patient database for the Day 1 exercises."
+  },
+  {
+    "objectID": "Presentations/Welcome/index.html#a-few-words-we-will-use",
+    "href": "Presentations/Welcome/index.html#a-few-words-we-will-use",
+    "title": "Welcome",
+    "section": "A few words we will use",
+    "text": "A few words we will use\n\n\n\n\n\n\nWord\nWhat we mean today\n\n\n\nOMOP CDM\nA common structure and vocabulary for health data, so the same analysis can be adapted across databases.\n\n\nCodelist\nA list of concept IDs used to identify something, such as a condition or a medicine.\n\n\nCohort\nA group of people who meet a definition, with dates describing their membership.\n\n\nNetwork study\nSeveral data partners running a shared study in their own databases.\n\n\n\nWe will spend more time on OMOP, concepts, and cohort definitions on Day 2. For today, these are the examples we will use while learning the tools."
+  },
+  {
+    "objectID": "Presentations/Welcome/index.html#how-day-1-fits-together",
+    "href": "Presentations/Welcome/index.html#how-day-1-fits-together",
+    "title": "Welcome",
+    "section": "How Day 1 fits together",
+    "text": "How Day 1 fits together\n\n\n\n\n\n\nSession\nWhat you will practise\n\n\n\nR\nSave a script, work with a small table, and make a plot.\n\n\nGitHub\nShare a file, review a colleague’s changes, and merge them.\n\n\nQuarto\nTurn code and results into a report that you can update.\n\n\nOmopStudyBuilder\nCreate a study repository with a recognisable structure.\n\n\nOmopViewer\nExplore results in an app and make a small change to it.\n\n\n\nEach session adds something to the previous one. Keep the files you create so you can return to them later."
+  },
+  {
+    "objectID": "Presentations/Welcome/index.html#before-we-start",
+    "href": "Presentations/Welcome/index.html#before-we-start",
+    "title": "Welcome",
+    "section": "Before we start",
+    "text": "Before we start\n\nOpen RStudio with R installed. R runs the code; RStudio is where we write and organise it.\nSign in to GitHub and GitHub Desktop. Share your username."
+  },
+  {
+    "objectID": "Presentations/Welcome/index.html#install-the-training-tools",
+    "href": "Presentations/Welcome/index.html#install-the-training-tools",
+    "title": "Welcome",
+    "section": "Install the training tools",
+    "text": "Install the training tools\nIn RStudio, find the Console tab. Run each command below separately and wait for the &gt; prompt to return before continuing.\nInstall pak:\n\ninstall.packages(\"pak\")\n\nInstall OmopTrainer from the team’s GitHub repository:\n\npak::pkg_install(\"oxford-pharmacoepi/OmopTrainer\")"
   },
   {
     "objectID": "Presentations/Welcome/index.html#are-you-ready",
     "href": "Presentations/Welcome/index.html#are-you-ready",
     "title": "Welcome",
     "section": "Are you ready?",
-    "text": "Are you ready?\n\nOmopTrainer::validateSetup()"
-  },
-  {
-    "objectID": "Presentations/Welcome/index.html#what-to-expect-this-week",
-    "href": "Presentations/Welcome/index.html#what-to-expect-this-week",
-    "title": "Welcome",
-    "section": "What to expect this week",
-    "text": "What to expect this week\nThe goal of this week is:\n\nTo introduce R, RStudio, GitHub, Quarto, Shiny Apps and basic functionality (This part is unrelated to OMOP CDM, but these are the tools that we use in the team to communicate and work collaboratively).\nTo introduce the OMOP CDM (briefly)\nTo learn how to create codelists, review them, identify the individuals that have them and validate the codelists against synthetic data.\nTo learn how to characterise individuals and extract their main characteristics."
+    "text": "Are you ready?\nRun the setup check in the Console:\n\nOmopTrainer::validateSetup()\n\nRead the messages and fix any issue that arises, there should be some helpful messages. Package and dataset downloads can take a while, so this is a good time to sort out setup problems.\nAlso check that you can sign in to GitHub Desktop."
   },
   {
     "objectID": "Presentations/Welcome/index.html#schedule",
@@ -942,6 +1124,20 @@
     "href": "Presentations/Welcome/index.html#how-we-are-going-to-work",
     "title": "Welcome",
     "section": "How we are going to work",
-    "text": "How we are going to work\n\nAll the material for this week can be seen in this website: https://oxford-pharmacoepi.github.io/HDS-OMOP-course/\nThe chunks of code that you see you will be able to copy them (show example).\n\nThe presentation will consist on two parts:\n\n\nPresentation presentations will be given, you can follow copying and pasting the code to check that what we are presenting makes sense and works.\n\nYOUR TURN time for coding you will be given simple instructions and you will have to figure it out :)"
+    "text": "How we are going to work\n\nWe will demonstrate a small example, then pause for YOUR TURN.\nCopy code into your own script or document, run it, and change something small.\nSave your work as you go. We will say when you need to switch projects.\n\nAsk when something is unclear, including where to click. If you are stuck, show us the code and the full error message—we can work through it together :)"
+  },
+  {
+    "objectID": "Presentations/Welcome/index.html#where-are-the-files",
+    "href": "Presentations/Welcome/index.html#where-are-the-files",
+    "title": "Welcome",
+    "section": "Where are the files?",
+    "text": "Where are the files?\nThe course website has the slides."
+  },
+  {
+    "objectID": "Presentations/Welcome/index.html#what-matters-today",
+    "href": "Presentations/Welcome/index.html#what-matters-today",
+    "title": "Welcome",
+    "section": "What matters today?",
+    "text": "What matters today?\nBy the end, aim to be able to run your own code, find your saved files, share a change, and update a report.\nThe command reference, PDF output, detailed Word styling, and extra app customisation are there to return to. We can treat them as optional if we need more practice with the basics.\nLet’s start by opening RStudio."
   }
 ]

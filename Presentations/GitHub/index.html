@@ -146,23 +146,53 @@
 </section>
 <section id="lets-get-started" class="slide level2">
 <h2>Let’s get started</h2>
-<p>Does everyone have a <em>GitHub</em> username?</p>
+<p>We have saved an R script. Now let’s practise keeping a history of a file and reviewing someone else’s changes.</p>
 <ul>
-<li class="fragment"><p>Share your GitHub username please :)</p></li>
-<li class="fragment"><p>Have you been added to <em>oxford-pharmacoepi</em> organisation?</p></li>
+<li class="fragment">Sign in to <strong>GitHub in your browser</strong> and <strong>GitHub Desktop</strong>.</li>
+<li class="fragment">Share your username and accept your invitation to <strong>oxford-pharmacoepi</strong>.</li>
 </ul>
 </section>
 <section id="git-vs-github-vs-github-desktop" class="slide level2">
 <h2>Git vs GitHub vs GitHub Desktop</h2>
 <div class="fragment">
-<p><strong>Git</strong> is a distributed version control system that tracks changes in source code during software development and allows multiple developers to collaborate efficiently.</p>
+<p><strong>Git</strong> records versions of files on your computer. We can see what changed and return to earlier versions.</p>
 </div>
 <div class="fragment">
-<p><strong>GitHub</strong> is a web-based platform that provides hosting for Git repositories, along with collaborative features like issue tracking, pull requests, and project management.</p>
+<p><strong>GitHub</strong> stores a shared copy online. We use its website to discuss work and review changes.</p>
 </div>
 <div class="fragment">
-<p><strong>GitHub Desktop</strong> is a graphical user interface (GUI) application that simplifies the interaction with Git and GitHub, allowing users to perform common repository operations without using the command line.</p>
+<p><strong>GitHub Desktop</strong> is the app we will use to send and receive changes using buttons.</p>
 </div>
+</section>
+<section id="which-window-should-i-use" class="slide level2">
+<h2>Which window should I use?</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Where?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Edit a script or CSV</td>
+<td>RStudio or a text editor, then save the file.</td>
+</tr>
+<tr class="even">
+<td>Check changed files, commit, push, or pull</td>
+<td>GitHub Desktop.</td>
+</tr>
+<tr class="odd">
+<td>Open an issue, discuss a change, or review a pull request</td>
+<td>GitHub in your browser.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Local</strong> means on your computer. <strong>Remote</strong> means the shared copy on GitHub. Saving a file locally does not automatically send it to GitHub.</p>
 </section>
 <section>
 <section id="core-concepts" class="title-slide slide level1 center">
@@ -171,7 +201,8 @@
 </section>
 <section id="repository-repo" class="slide level2">
 <h2>Repository (Repo)</h2>
-<p>A repository is essentially a <strong>project’s folder</strong>. It contains all the project files, including code, documentation, images, and, most importantly, the <strong>entire history</strong> of every change made to those files.</p>
+<p>A repository, or <strong>repo</strong>, is a folder with Git tracking enabled. It holds the files we choose to track and the history of their committed changes.</p>
+<p>An R Project helps RStudio organise your work. A Git repository records its history. A folder can be both, but they do different jobs.</p>
 
 <img data-src="Figures/repos.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="explore-repository" class="slide level2">
@@ -206,36 +237,38 @@
 <h2><code>YOUR TURN</code> Let’s create a repo in <em>oxford-pharmacoepi</em></h2>
 <ol type="1">
 <li class="fragment"><p>In GitHub Desktop, choose <strong>File → New Repository…</strong></p></li>
-<li class="fragment"><p>Give the repository a name, choose where to save it, and click <strong>Create Repository</strong>.</p></li>
+<li class="fragment"><p>Name it <strong>hds-test-yourusername</strong>, replacing <code>yourusername</code> with your own. Save it beside your R project, select <strong>Initialize this repository with a README</strong>, and click <strong>Create Repository</strong>.</p></li>
 </ol>
 <p>The repository now exists on your computer only.</p>
 <ol start="3" type="1">
-<li class="fragment">Click <strong>Publish repository</strong>. In the dialog, choose <strong>oxford-pharmacoepi</strong> from the organization menu, then click <strong>Publish Repository</strong>.</li>
+<li class="fragment">Click <strong>Publish repository</strong>. Choose <strong>oxford-pharmacoepi</strong> from the organisation menu, keep the repository private, and click <strong>Publish Repository</strong>.</li>
 </ol>
-<p>You now have a repository on GitHub. Open it on the website and have a look around.</p>
+<p>Open it on GitHub and check that the repo has been created.</p>
 </section>
 <section id="your-turn-download-the-codelist" class="slide level2">
 <h2><code>YOUR TURN</code> Download the codelist</h2>
-<p>Now go to the <a href="https://oxford-pharmacoepi.github.io/HDS-OMOP-course/Downloads">Downloads</a> section of the course website and look for your username.</p>
+<p>Go to the course website’s <a href="../../Downloads/index.html">Downloads</a> tab and choose your GitHub username.</p>
 <ul>
-<li class="fragment"><p>Download the codelist assigned to you.</p></li>
-<li class="fragment"><p>Add it to the folder of your repo</p></li>
-<li class="fragment"><p>Let’s see the changes</p></li>
+<li class="fragment">Click <strong>Download codelist</strong> and save the CSV inside <strong>hds-test-yourusername</strong>.</li>
+<li class="fragment">In GitHub Desktop, choose that repository and look at <strong>Changes</strong>.</li>
 </ul>
 </section>
 <section id="commit" class="slide level2">
 <h2>Commit</h2>
-<p>A <strong>commit</strong> is a snapshot of your repository at a specific point in time. Commits are the building blocks of Git history.</p>
+<p>A <strong>commit</strong> records a version of the changes you choose to include. Give it a short message so someone else can understand what you did.</p>
 <ul>
-<li class="fragment"><p>Every commit has a unique ID (SHA), an author, a timestamp, and a <strong>commit message</strong> that explains <em>why</em> the change was made.</p></li>
+<li class="fragment"><p>Every commit has an ID, an author, a time, and a message.</p></li>
 <li class="fragment"><p>Commits are created <em>locally</em> with Git.</p></li>
 </ul>
 </section>
 <section id="your-turn-create-a-commit-with-the-codelist" class="slide level2">
 <h2><code>YOUR TURN</code> Create a commit with the codelist</h2>
+<ol type="1">
+<li class="fragment">In GitHub Desktop’s <strong>Changes</strong> tab, tick the codelist file and inspect its contents.</li>
+<li class="fragment">Write <code>Add practice codelist</code> in the <strong>Summary</strong> field and click <strong>Commit to main</strong>.</li>
+</ol>
 <ul>
-<li class="fragment"><p>Add a message and click commit.</p></li>
-<li class="fragment"><p>The commit is still <strong>local</strong>. It will appear on GitHub after you push it.</p></li>
+<li class="fragment">The commit is still <strong>local</strong>. Check that in github, nothing changed.</li>
 </ul>
 </section>
 <section id="push-pull" class="slide level2">
@@ -256,9 +289,10 @@
 <section id="your-turn-push-to-github" class="slide level2">
 <h2><code>YOUR TURN</code> Push to GitHub</h2>
 <ul>
-<li class="fragment"><p>Push your changes to GitHub</p></li>
-<li class="fragment"><p>Now you should see that the codelist appears in the GitHub website</p></li>
+<li class="fragment"><p>Click <strong>Push origin</strong> in GitHub Desktop.</p></li>
+<li class="fragment"><p>Refresh the repository page in your browser. The codelist should now be there.</p></li>
 </ul>
+<p>Remember the three steps: <strong>save the file → commit the change → push it to GitHub</strong>.</p>
 </section>
 <section id="issues" class="slide level2">
 <h2>Issues</h2>
@@ -278,23 +312,27 @@
 <ul>
 <li class="fragment"><p><strong>Labels</strong>: Labels are tags used to categorise and organise issues by topic, priority, or status.</p></li>
 <li class="fragment"><p><strong>Assignee</strong>: The assignee is the person responsible for handling or resolving the issue.</p></li>
-<li class="fragment"><p><strong>Type</strong>: The type describes the issue, for example a <em>bug</em>, <em>feature request</em>, or <em>task</em>.</p></li>
+<li class="fragment"><p><strong>Type</strong>, when available: describes the issue as a bug, feature, or task.</p></li>
 </ul>
 </section>
 <section id="your-turn-open-an-issue" class="slide level2">
 <h2><code>YOUR TURN</code> Open an issue</h2>
-<ul>
-<li class="fragment"><p>Open an issue in your repo (you need to do that from the GitHub website)</p></li>
-<li class="fragment"><p>Ask a colleague to review your codelist. The Downloads page lists who you should ask. Tag that person in the issue and assign the issue to them.</p></li>
-</ul>
+<ol type="1">
+<li class="fragment">On your repository’s GitHub page, open <strong>Issues → New issue</strong>.</li>
+<li class="fragment">Give it a title such as <code>Remove the fake concept from my codelist</code> and describe the change you want.</li>
+<li class="fragment">Your Downloads tab names your reviewer. Mention them with <code>@username</code> and assign the issue to them if they are available in the list.</li>
+</ol>
+<p>If they cannot open the repository or appear as an assignee, we will have to give them access manually.</p>
 </section>
 <section id="inbox" class="slide level2">
 <h2>Inbox</h2>
-<p>Check your GitHub inbox for the request to review a colleague’s codelist. Open the request and follow the link to the issue or pull request.</p>
+<p>Check your GitHub notifications for the request to review a colleague’s codelist. If the notification has not arrived, ask them to share the issue link.</p>
+<p>You will do two jobs: review someone else’s file, then review the change someone proposes to your own file. The two colleagues may be different people.</p>
 </section>
 <section id="clone" class="slide level2">
 <h2>Clone</h2>
-<p>Clone a repository to make a local copy on your computer. To make a copy in your GitHub account, fork the repository.</p>
+<p><strong>Clone</strong> means download a repository and its history to your computer. In GitHub Desktop, choose <strong>File → Clone Repository…</strong> and select your colleague’s repository or paste its URL.</p>
+<p>Choose a folder beside your own practice repository. Check <strong>Current repository</strong> before editing so you are working on your colleague’s file.</p>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -312,10 +350,10 @@
 </section>
 <section id="branch" class="slide level2">
 <h2>Branch</h2>
-<p>A <strong>branch</strong> is an independent line of development.</p>
+<p>A <strong>branch</strong> lets us work on a proposed change before it is added to the main version.</p>
 <ul>
 <li class="fragment"><p>The default and main line of development is typically called the <strong>main</strong> branch.</p></li>
-<li class="fragment"><p>Branches allow developers to work on new features or bug fixes in <strong>isolation</strong> without affecting the stable, main code.</p></li>
+<li class="fragment"><p>In GitHub Desktop, use <strong>Current branch → New branch</strong>. Name it <code>review_codelist</code>.</p></li>
 </ul>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
@@ -337,7 +375,8 @@
 </section>
 <section id="fork" class="slide level2">
 <h2>Fork</h2>
-<p>A <strong>fork</strong> is a copy of a repository in your GitHub account. You can change your fork without changing the original, then propose your changes to the original project with a pull request. A fork is useful when you do not have write access to the original repository.</p>
+<p>A <strong>fork</strong> is a copy of a repository in your GitHub account. You can propose changes from it with a pull request when the repository’s permissions allow this.</p>
+<p>For this exercise, we will use write access to each other’s repositories and work on branches. Private organisation repositories may not allow forks, so ask for help with access rather than assuming you can fork one.</p>
 </section>
 <section id="pull-request-pr" class="slide level2">
 <h2>Pull Request (PR)</h2>
@@ -364,13 +403,13 @@
 <section id="your-turn-complete-your-review" class="slide level2">
 <h2><code>YOUR TURN</code> Complete your review</h2>
 <ol type="1">
-<li class="fragment"><p>Clone your colleague’s repository if you have write access. If you do not, fork it and clone your fork.</p></li>
+<li class="fragment"><p>Clone your colleague’s repository once you have write access.</p></li>
 <li class="fragment"><p>Create a branch (for example, <code>review_codelist</code>).</p></li>
-<li class="fragment"><p>Review the codelist and make the agreed changes.</p></li>
+<li class="fragment"><p>Remove the codelists that you think they are not part of the code are not correct. Hint: there are always two codes that should not be part of that codelist.</p></li>
 <li class="fragment"><p>Commit your changes.</p></li>
-<li class="fragment"><p>Push your branch to GitHub.</p></li>
-<li class="fragment"><p>Open a pull request targeting your colleague’s repository.</p></li>
-<li class="fragment"><p>Link the pull request to the relevant issue.</p></li>
+<li class="fragment"><p>Click <strong>Publish branch</strong> for its first push, or <strong>Push origin</strong> if it is already published.</p></li>
+<li class="fragment"><p>Click <strong>Create Pull Request</strong> and target <code>main</code> in your colleague’s repository. Check the changed lines before submitting it.</p></li>
+<li class="fragment"><p>Describe your change and add <code>Closes #1</code>, replacing <code>1</code> with the issue number in that repository.</p></li>
 <li class="fragment"><p>Ask the colleague who assigned the review to review your pull request.</p></li>
 </ol>
 </section>
@@ -381,12 +420,28 @@
 <li class="fragment">Let’s merge your <strong>Pull Requests</strong></li>
 </ul>
 </section>
-<section id="your-turn" class="slide level2">
-<h2><code>YOUR TURN</code></h2>
-<p>Review the pull request in your repository. Approve it or request changes, then merge it once you and the author agree it is ready.</p>
+<section id="your-turn-review-and-merge" class="slide level2">
+<h2><code>YOUR TURN</code> Review and merge</h2>
+<p>Open the pull request <strong>in your own repository</strong> and look at <strong>Files changed</strong>. Does the changes look good?</p>
+<p>Leave a comment or approve the change. If something needs correcting, request changes and let the author update their branch. Merge once you both agree it is ready.</p>
 </section>
-<section id="how-everything-works" class="slide level2">
-<h2>How everything works</h2>
+<section id="your-turn-bring-the-change-back-to-your-computer" class="slide level2">
+<h2><code>YOUR TURN</code> Bring the change back to your computer</h2>
+<p>The merge happened on GitHub. Now update your local copy:</p>
+<ol type="1">
+<li class="fragment">In GitHub Desktop, select <strong>your own repository</strong> and switch to <strong>main</strong>.</li>
+<li class="fragment">Click <strong>Fetch origin</strong>, then <strong>Pull origin</strong> if changes are available.</li>
+<li class="fragment">Open your local CSV and check that the fake row has gone.</li>
+</ol>
+<p><strong>Fetch</strong> checks for remote updates. <strong>Pull</strong> brings those changes into your local branch. Start a new branch from an up-to-date <code>main</code> for your next change.</p>
+</section>
+<section id="core-exercise-complete" class="slide level2">
+<h2>Core exercise complete</h2>
+<p>You have saved, committed, pushed, reviewed, merged, and pulled a change. That is the workflow we will use again with OmopStudyBuilder.</p>
+<p>The next slides are reference material and extra practice. We can return to them when we need them.</p>
+</section>
+<section id="optional-reference-git-commands" class="slide level2">
+<h2>Optional reference: Git commands</h2>
 <p><strong>Git</strong></p>
 <div class="small-text">
 <table class="caption-top">
@@ -483,9 +538,9 @@
 <section id="update-from-main-1" class="slide level2">
 <h2>Update from main</h2>
 <ul>
-<li class="fragment"><p>Change to <code>your_branch</code> branch</p></li>
-<li class="fragment"><p><code>Branch</code> &gt; <code>Update from main</code></p></li>
-<li class="fragment"><p><code>Push</code></p></li>
+<li class="fragment">First switch to <code>main</code>, then <strong>Fetch origin</strong> and <strong>Pull origin</strong>.</li>
+<li class="fragment">Switch back to your working branch.</li>
+<li class="fragment">Choose <strong>Branch → Update from main</strong>, then push your branch.</li>
 </ul>
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
@@ -498,12 +553,13 @@
 <section id="gitignore" class="slide level2">
 <h2>.gitignore</h2>
 <div class="fragment">
-<p>The <code>.gitignore</code> file tells <strong>git</strong> which files or folders to skip when tracking changes. It prevents temporary, sensitive, or unnecessary files from being added to a repository. Common examples include log files, build artifacts, and environment files. This keeps the repo clean and focused on essential code and assets.</p>
+<p>The <code>.gitignore</code> file lists files and folders that Git should leave untracked, such as local R session files or generated outputs.</p>
 <ul>
 <li class="fragment"><p>To ignore a file, add its name, for example <code>my_file.txt</code>.</p></li>
 <li class="fragment"><p>To ignore a folder, add its name followed by a slash, for example <code>folder/</code>.</p></li>
 <li class="fragment"><p>Use patterns such as <code>*.txt</code> to ignore all <code>.txt</code> files.</p></li>
 </ul>
+<p>It does not remove files that Git already tracks. Before committing, look at the file list; real patient data and passwords do not belong in this exercise repository.</p>
 </div>
 </section>
 <section id="merge-conflicts" class="slide level2">
@@ -548,12 +604,12 @@
 </section>
 <section id="github-on-the-server" class="slide level2">
 <h2>GitHub on the server</h2>
-<p>When working with the rstudio server, you won’t be able to access to GitHub Desktop, so the UI is going to be a bit more complicated.</p>
+<p>On RStudio Server, the files live on the server. GitHub Desktop on your laptop does not manage that copy directly, so use RStudio’s <strong>Git</strong> pane there.</p>
 <div class="fragment">
-<p>First you will need to link your RStudio server with your github account, to do that you can follow this <a href="https://github.com/oxford-pharmacoepi/ServerOnboarding/blob/main/2_SettingUp/Using%20Github%20with%20RStudio%20server.pdf">Tutorial</a>.</p>
+<p>First, set up GitHub access on the server with the trainer, using this <a href="https://github.com/oxford-pharmacoepi/ServerOnboarding/blob/main/2_SettingUp/Using%20Github%20with%20RStudio%20server.pdf">tutorial</a>.</p>
 </div>
 <div class="fragment">
-<p>Once done you will have to navigate trough the Git panel:</p>
+<p>The same ideas apply: edit, save, commit, push, and pull. The buttons are in the Git pane:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="Figures/git_panel.png" class="quarto-figure quarto-figure-center"></p>
@@ -561,11 +617,11 @@
 </div>
 </div>
 </section>
-<section id="delete-the-mock-repo" class="slide level2">
-<h2>Delete the mock repo</h2>
-<p>For the sake of scalability and to know also how it is done please delete the toy repo you used in this session:</p>
+<section id="clean-up-the-practice-repo" class="slide level2">
+<h2>Clean up the practice repo</h2>
+<p>Once <strong>both reviews are finished</strong> and the trainer confirms the exercise is complete, delete only the temporary <strong>hds-test-yourusername</strong> repository:</p>
 <ul>
-<li class="fragment">Find your repo in github.com -&gt; Settings -&gt; Danger Zone -&gt; Delete this repository -&gt; confirm</li>
+<li class="fragment">On GitHub, open that repository’s <strong>Settings → Danger Zone → Delete this repository</strong> and follow the confirmation steps.</li>
 </ul>
 </section>
 <section id="you-are-ready" class="slide level2">

@@ -208,56 +208,109 @@
 
   <p class="date">2026-11-09</p>
 </section><section id="r-programming-language" class="slide level2"><h2>R programming language</h2>
-<p>R first appeared in 1993 and is a programming language designed for working with data and statistics.</p>
-<p>R is usually interpreted: you write commands and R runs them directly, without a separate compile step.</p>
-<p>For example, ask R to do a calculation:</p>
+<p>R first appeared in 1993. It is a programming language designed for working with data and statistics.</p>
+<p>R is usually interpreted: we write commands and R runs them without a separate compile step.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">+</span> <span class="fl">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
-</section><section id="functions-in-r" class="slide level2"><h2>Functions in R</h2>
-<p>You can define functions in R like:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sumFun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">a</span> <span class="op">+</span> <span class="va">b</span></span>
-<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section><section id="find-your-way-around-rstudio" class="slide level2"><h2>Find your way around RStudio</h2>
+<p><strong>R</strong> does the calculations. <strong>RStudio</strong> gives us places to write code and see what happened.</p>
+<ul>
+<li class="fragment">
+<strong>Source:</strong> write and save a script. This pane appears when you open a file.</li>
+<li class="fragment">
+<strong>Console:</strong> run commands and read their output or errors.</li>
+<li class="fragment">
+<strong>Environment:</strong> see objects created in the current R session.</li>
+<li class="fragment">
+<strong>Files, Plots, and Help:</strong> find files, see figures, and read documentation.</li>
+</ul>
+<p>The panels can be arranged differently on your computer. Look for their names rather than their position.</p>
+</section><section id="what-is-an-r-project" class="slide level2"><h2>What is an R Project?</h2>
+<p>An R Project is a folder for one piece of work, with a small <code>.Rproj</code> file that RStudio uses to reopen it.</p>
+<ul>
+<li class="fragment">Keep scripts, data, and results together.</li>
+<li class="fragment">Open the <code>.Rproj</code> file to return to the project.</li>
+<li class="fragment">Use paths relative to that folder so your code is easier to share.</li>
+</ul>
+<p>Think of it as a home for the exercise.</p>
+</section><section id="your-turn-create-your-first-project" class="slide level2"><h2>
+<code>YOUR TURN</code> Create your first project</h2>
+<p>In RStudio:</p>
+<ol type="1">
+<li class="fragment">Choose <strong>File → New Project… → New Directory → New Project</strong>.</li>
+<li class="fragment">Give it a name and choose a folder you can find again.</li>
+<li class="fragment">Click <strong>Create Project</strong>. Check the project name at the top-right of RStudio.</li>
+<li class="fragment">Choose <strong>File → New File → R Script</strong> and save it as <code>practice.R</code> inside the project.</li>
+</ol>
+<p>Use the Files panel to create folders called <code>data</code> and <code>Results</code>. The names and capital letters should match the examples.</p>
+</section><section id="a-simple-project-layout" class="slide level2"><h2>A simple project layout</h2>
+<pre class="text"><code>your_project/
+├── your_project.Rproj
+├── practice.R
+├── data/
+└── Results/</code></pre>
+<p>Save input files in <code>data</code> and things you create in <code>Results</code>. Bigger projects often have an <code>R</code> folder for scripts too.</p>
+<p>The <code>.Rproj</code> file helps RStudio open the project. Your <code>.R</code> script contains the code you want to keep.</p>
+</section><section id="write-run-save" class="slide level2"><h2>Write, run, save</h2>
+<p>Type <code>2 + 2</code> into <code>practice.R</code>, place the cursor on that line, and click <strong>Run</strong>. You can also use <strong>Ctrl+Enter</strong> on Windows/Linux or <strong>Cmd+Enter</strong> on Mac.</p>
+<p>The command is sent to the Console and the answer appears there. Select several lines to run them together.</p>
+<div class="fragment">
+<p><strong>Saving</strong> stores your code in a file. <strong>Running</strong> asks R to execute it. Save and run after changing an example so the file and the result agree.</p>
+<p>A Console <code>&gt;</code> means R is ready. If you see <code>+</code>, it is usually waiting for something such as a closing bracket or quote; press <strong>Esc</strong> and check the command.</p>
 </div>
-<p>And use them later as:</p>
+</section><section id="use-a-function" class="slide level2"><h2>Use a function</h2>
+<p>A <strong>function</strong> does a job. Put the inputs, called <strong>arguments</strong>, inside its brackets:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sumFun</span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ages</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">23</span>, <span class="fl">35</span>, <span class="fl">41</span>, <span class="fl">52</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">ages</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 37.75</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">ages</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>Missing values are written as <code>NA</code>. Some functions need us to decide how to handle them:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">8</span>, <span class="cn">NA</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">scores</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.5</code></pre>
+</div>
+</div>
+<p>Here, <code>na.rm = TRUE</code> asks <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> to leave missing values out of the calculation. Use <code><a href="https://rdrr.io/r/base/mean.html">?mean</a></code> in the Console to read its help page.</p>
+</section><section id="you-can-write-a-function-too" class="slide level2"><h2>You can write a function too</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sumFun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">a</span> <span class="op">+</span> <span class="va">b</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">sumFun</span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11</code></pre>
 </div>
 </div>
+<p><code>a</code> and <code>b</code> are the inputs. The code between <code>{</code> and <code>}</code> says what to do with them.</p>
+<p>For now, most of our work will use functions that other people have already written. You do not need to memorise how to write your own before continuing.</p>
 </section><section id="packages-in-r" class="slide level2"><h2>Packages in R</h2>
-<p>Packages are collections of functions and other tools that people develop and share for you to use.</p>
-<p>Many R packages are distributed through <strong>CRAN</strong> (the Comprehensive R Archive Network), a collection of servers that hosts R packages and checks submitted updates. Package authors maintain their packages; CRAN helps make them available to the R community.</p>
-<div class="fragment">
-<p>To install a package you can just type:</p>
+<p>A <strong>package</strong> is a collection of functions, documentation, and sometimes data that people develop and share.</p>
+<p>Many packages are distributed through <strong>CRAN</strong>, the Comprehensive R Archive Network. CRAN hosts packages and checks submitted updates; package authors maintain the packages themselves.</p>
+<p>Install a package into your R library when you first need it:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tibble"</span><span class="op">)</span></span>
-<span><span class="co"># or, if you have pak installed</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tibble"</span><span class="op">)</span></span>
+<span><span class="co"># Or, if pak is installed:</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pkg_install.html">pkg_install</a></span><span class="op">(</span><span class="st">"tibble"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-<div class="fragment">
-<p>You can either call a function using <code>::</code>:</p>
+<p>You normally do not need to reinstall it each time you open RStudio.</p>
+</section><section id="load-a-package-when-you-use-it" class="slide level2"><h2>Load a package when you use it</h2>
+<p><code><a href="https://rdrr.io/r/base/library.html">library()</a></code> makes a package’s functions available in the current session:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-      a
-  &lt;dbl&gt;
-1     1</code></pre>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p>Or using <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>, which makes the package’s functions available:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
@@ -266,61 +319,42 @@
 1     1</code></pre>
 </div>
 </div>
-</div>
-<div class="fragment">
-<p>In general we will use the latter option (<strong>library()</strong>).</p>
-</div>
-</section><section id="the-pipe-operator" class="slide level2"><h2>The pipe operator <code>|&gt;</code>
-</h2>
-<p>The pipe operator was introduced in R 4.1 and it is widely used in R. It concatenates the use of two functions, for example:</p>
+<p>You can also call a function with its package name:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">x</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
       a
   &lt;dbl&gt;
 1     1</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">x</span>, b <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">x</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 2
-      a     b
-  &lt;dbl&gt; &lt;dbl&gt;
-1     1     1</code></pre>
 </div>
-</div>
-<div class="fragment">
-<p>You can simplify this code with:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>b <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
+<p>In this training, we will usually use <strong>library()</strong> at the start of a script. Short, one-off calls may use <code>::</code>.</p>
+<p>Put the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> calls in your saved code too. A new R session needs to load the packages again.</p>
 </section><section id="meet-the-tidyverse" class="slide level2"><h2>Meet the tidyverse</h2>
-<p>The <strong>tidyverse</strong> is a collection of R packages that work well together for common data tasks.</p>
+<p>The <strong>tidyverse</strong> is a collection of packages that work well together for common data tasks:</p>
 <ul>
 <li class="fragment">
-<code>dplyr</code>: wrangle data (filter, select, create columns, summarise)</li>
+<code>tibble</code>: create and display tables.</li>
 <li class="fragment">
-<code>ggplot2</code>: make plots</li>
+<code>dplyr</code>: filter rows, change columns, and summarise data.</li>
 <li class="fragment">
-<code>readr</code> and <code>tidyr</code>: read and reshape data</li>
-<li class="fragment">plus packages for strings, factors, iteration, and more</li>
-</ul></section><section id="some-examples-a-consistent-way-to-work-with-data" class="slide level2"><h2>Some examples: a consistent way to work with data</h2>
-<p>Tidyverse functions use a consistent style: give a data frame to a function, and get a data frame back.</p>
+<code>readr</code>: read files such as CSVs.</li>
+<li class="fragment">
+<code>tidyr</code>: reshape tables.</li>
+<li class="fragment">
+<code>ggplot2</code>: make plots.</li>
+</ul>
+<p>We will load the packages we need for each example. The functions often take a table as their first input.</p>
+</section><section id="our-first-table" class="slide level2"><h2>Our first table</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">people</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Alex"</span>, <span class="st">"Sam"</span>, <span class="st">"Jo"</span><span class="op">)</span>,</span>
-<span>  age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">24</span>, <span class="fl">31</span>, <span class="fl">19</span><span class="op">)</span>,</span>
+<span>  age <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">24</span>, <span class="fl">31</span>, <span class="fl">17</span><span class="op">)</span>,</span>
 <span>  group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"A"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span></span>
 <span><span class="va">people</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
@@ -328,89 +362,138 @@
   &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;
 1 Alex     24 A    
 2 Sam      31 B    
-3 Jo       19 A    </code></pre>
+3 Jo       17 A    </code></pre>
 </div>
 </div>
-<p><code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code> is the tidyverse’s friendly take on a data frame. It prints a quick preview and keeps the data in a familiar rectangular format.</p>
-</section><section id="read-transform-and-summarise" class="slide level2"><h2>Read, transform, and summarise</h2>
-<p>Use <code>|&gt;</code> to read a data workflow from top to bottom. Here we keep adults, add a column, and count people in each group:</p>
+<p>Each <strong>row</strong> describes one person. Each <strong>column</strong> holds one type of information.</p>
+<p>A tibble is a type of data frame. Think of both as tables with named columns.</p>
+</section><section id="pick-a-column-or-inspect-the-table" class="slide level2"><h2>Pick a column or inspect the table</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
-<span><span class="va">people</span> <span class="op">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">people</span><span class="op">$</span><span class="va">age</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 24 31 17</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">people</span><span class="op">$</span><span class="va">age</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 24</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">people</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<p><code>$</code> selects a named column. <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> counts rows.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">people</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "name"  "age"   "group"</code></pre>
+</div>
+</div>
+<p><code><a href="https://rdrr.io/r/base/names.html">names()</a></code> shows column names. This is useful if a later example says that a column cannot be found.</p>
+</section><section id="filter-and-change-a-table" class="slide level2"><h2>Filter and change a table</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">adults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">people</span>, <span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span></span>
+<span><span class="va">adults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">adults</span>, age_next_year <span class="op">=</span> <span class="va">age</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">adults</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  name    age group age_next_year
+  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+1 Alex     24 A                25
+2 Sam      31 B                32</code></pre>
+</div>
+</div>
+<p><code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> keeps the rows that match a condition. <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> creates or changes columns.</p>
+<p>Inside these functions, we can write <code>age</code> directly because they look for columns in the supplied table.</p>
+</section><section id="the-pipe-operator" class="slide level2"><h2>The pipe operator <code>|&gt;</code>
+</h2>
+<p>The pipe passes the result on its left into the function on its right, usually as the first argument.</p>
+<p>We can write the previous example as a sequence of steps:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">adults</span> <span class="op">&lt;-</span> <span class="va">people</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>age_next_year <span class="op">=</span> <span class="va">age</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>age_next_year <span class="op">=</span> <span class="va">age</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">adults</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  name    age group age_next_year
+  &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+1 Alex     24 A                25
+2 Sam      31 B                32</code></pre>
+</div>
+</div>
+<p>Read it as “take people, keep adults, then add their age next year”. The pipe is built into R from version 4.1 onwards.</p>
+</section><section id="summarise-a-table" class="slide level2"><h2>Summarise a table</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">people</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">age</span> <span class="op">&gt;=</span> <span class="fl">18</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   group     n
   &lt;chr&gt; &lt;int&gt;
-1 A         2
+1 A         1
 2 B         1</code></pre>
 </div>
 </div>
-<div class="fragment">
-<p>Some handy <code>dplyr</code> verbs:</p>
+<p>Some verbs you will see again:</p>
 <ul>
 <li class="fragment">
-<code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> keeps rows</li>
+<code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>: keep rows.</li>
 <li class="fragment">
-<code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> keeps columns</li>
+<code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code>: keep columns.</li>
 <li class="fragment">
-<code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code> creates or changes columns</li>
+<code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>: create or change columns.</li>
 <li class="fragment">
-<code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code> calculates a summary</li>
+<code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise()</a></code>: calculate summaries, such as a mean.</li>
 <li class="fragment">
-<code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code> sorts rows</li>
-</ul>
-</div>
-</section><section id="what-is-an-r-project" class="slide level2"><h2>What is an R Project?</h2>
-<p>An R Project is a folder for one piece of work, with a small <code>.Rproj</code> file that lets RStudio recognise and reopen it.</p>
-<ul>
-<li class="fragment">Keep your scripts, notes, data, and results together</li>
-<li class="fragment">RStudio opens the project folder as the working directory</li>
-<li class="fragment">Use paths relative to the project, so your code is easier to share and rerun</li>
-</ul>
-<p>Think of it as a tidy home for an analysis. One project per workshop or analysis is a good place to start.</p>
-</section><section id="a-simple-project-layout" class="slide level2"><h2>A simple project layout</h2>
-<p>There is no single right layout. Start small and add folders when you need them:</p>
-<pre class="text"><code>my-analysis/
-├── my-analysis.Rproj
-├── R/                 # scripts and functions
-├── data/              # input data (keep originals unchanged)
-└── Results/           # tables, plots, and other outputs</code></pre>
-<p>RStudio creates the <code>.Rproj</code> file for you. You create the folders that make sense for your work.</p>
-</section><section id="lets-create-your-first-r-project" class="slide level2"><h2>Let’s create your first R Project</h2>
-<p>In RStudio:</p>
-<ol type="1">
-<li class="fragment">Choose <strong>File → New Project…</strong>
-</li>
-<li class="fragment">Choose <strong>New Directory</strong>, then <strong>New Project</strong>
-</li>
-<li class="fragment">Give it a name, for example <code>r-introduction</code>, and choose where to save it</li>
-<li class="fragment">Select <strong>Create Project</strong>
-</li>
-</ol>
-<p>You should now see the project name in the top-right of RStudio. Save this presentation’s practice script inside the project, then make folders such as <code>data</code> and <code>Results</code> if you need them.</p>
-</section><section id="find-the-project-root-with-here" class="slide level2"><h2>Find the project root with <code>here</code>
-</h2>
+<code><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange()</a></code>: sort rows.</li>
+</ul></section><section id="the-dbplyr-package" class="slide level2"><h2>The dbplyr package</h2>
+<p>Our packages use the <a href="https://dbplyr.tidyverse.org">dbplyr</a> package to translate R code into SQL, the following book should give you the main basis of how our ecosystem of packages work:</p>
+<p>https://ohdsi.github.io/Tidy-R-programming-with-OMOP/</p>
+</section><section id="find-files-with-here" class="slide level2"><h2>Find files with here</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "/home/runner/work/HDS-OMOP-course/HDS-OMOP-course"</code></pre>
 </div>
 </div>
-<div class="fragment">
+<p><code><a href="https://here.r-lib.org/reference/here.html">here()</a></code> finds the project root. We can build paths from it without typing a computer-specific address:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"Results"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"data1.csv"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>That creates a <code>Results</code> folder in the project root. You can use the same idea to read or save files inside the project.</p>
+<p>This points to <code>data/data1.csv</code> inside your project. It does not create the file: we will download it in the Quarto session.</p>
+</section><section id="reading-a-csv-a-preview" class="slide level2"><h2>Reading a CSV: a preview</h2>
+<p>A <strong>CSV</strong> stores a table as plain text. The first line usually contains column names.</p>
+<p>After downloading <code>data1.csv</code> in the Quarto session, we can read it with:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"data1.csv"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Keep this example for later. <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> brings the file into R; <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> displays the first few rows.</p>
+</section><section id="if-something-goes-wrong" class="slide level2"><h2>If something goes wrong</h2>
 <ul>
-<li class="fragment"><strong>We should always work within an R Project for each analysis.</strong></li>
+<li class="fragment">
+<strong>Object not found:</strong> check the spelling and run the line that creates the object first.</li>
+<li class="fragment">
+<strong>Could not find function:</strong> load its package with <code><a href="https://rdrr.io/r/base/library.html">library()</a></code>.</li>
+<li class="fragment">
+<strong>No such file:</strong> check the active project, folder, filename, and capital letters.</li>
+<li class="fragment">
+<strong>Unexpected symbol:</strong> check quotes, commas, and brackets near the reported line.</li>
 </ul>
+<p>Start at the first error, fix it, and rerun that part. A message or warning is not always an error; read what it says before moving on.</p>
+</section><section id="ready-for-the-next-session" class="slide level2"><h2>Ready for the next session</h2>
+<p>You now have a project, a saved script, and some code you can rerun.</p>
+<p>Objects in the Environment belong to the current R session. Your saved script is how you recreate them after restarting R.</p>
 
 
-</div>
 </section>
 </div>
   <div class="quarto-auto-generated-content" style="display: none;">

@@ -217,11 +217,12 @@
 <strong>Server:</strong> the R code that responds to inputs and creates the outputs.</li>
 </ul>
 <p>Change an input and Shiny updates the outputs that depend on it. That is <strong>reactivity</strong>.</p>
+<p>Here, “server” means a function in our R code. The whole practice app can run on your own computer.</p>
 </section><section id="your-first-shiny-app" class="slide level2"><h2>Your first Shiny app</h2>
-<p>Open your R Project. In RStudio, choose <strong>File → New File → Shiny Web App…</strong> and select a single-file app, <code>app.R</code>.</p>
+<p>Reopen <strong>r-introduction.Rproj</strong> after the OmopStudyBuilder session. In RStudio, choose <strong>File → New File → Shiny Web App…</strong>, name the app <strong>first-shiny</strong>, and select a single-file app, <code>app.R</code>.</p>
 <p>Click <strong>Run App</strong> and move the slider in the starter histogram example. What changes?</p>
 <div class="fragment">
-<p>The next two slides show the UI and server for this example. Put them together in <code>app.R</code>.</p>
+<p>The next two slides show the complete code for the example. Put both blocks together in <strong>first-shiny/app.R</strong>, replacing the starter code, with <code><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp()</a></code> at the end. Install <code>shiny</code> and <code>bslib</code> if RStudio reports that either is missing.</p>
 <p>The app keeps your R session busy while it runs. Click <strong>Stop</strong> in RStudio before running other code or restarting the app.</p>
 </div>
 </section><section id="the-ui-what-goes-where" class="slide level2"><h2>The UI: what goes where?</h2>
@@ -254,7 +255,8 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><code>input$bins</code> reads the slider. <code><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot()</a></code> reruns when that value changes, and <code>output$distPlot</code> sends the new plot to the UI.</p>
+<p><code>faithful</code> is a built-in dataset; the histogram groups its waiting times into bins. <code>input$bins</code> reads the slider, and <code>output$distPlot</code> sends the plot to the UI.</p>
+<p>Just as <code>$</code> picked a table column in R, here it picks a named input or output. <code><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot()</a></code> reruns when the slider value changes.</p>
 </section><section id="give-the-ui-a-style-with-bslib" class="slide level2"><h2>Give the UI a style with bslib</h2>
 <p><strong>bslib</strong> gives us layouts, cards, sidebars, and themes. Replace the previous <code>ui</code> block with this one and keep the same server:</p>
 <div class="cell">
@@ -270,7 +272,7 @@
 <span>  <span class="fu"><a href="https://rstudio.github.io/bslib/reference/card.html">card</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">"distPlot"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Run <code>shinyApp(ui, server)</code> again. The layout changes, but the matching IDs mean the slider and plot still work together.</p>
+<p>Put <code><a href="https://rstudio.github.io/bslib/">library(bslib)</a></code> near the top of <code>app.R</code>, replace the <code>ui</code> block, save, and click <strong>Run App</strong> again. Keep <code>shinyApp(ui, server)</code> at the end. The IDs still connect the slider and plot.</p>
 </section><section id="meet-omopviewer" class="slide level2"><h2>Meet OmopViewer</h2>
 <p>Building every filter, table, and plot by hand takes time. <strong>OmopViewer creates a Shiny app for us</strong> from supported OMOP study results.</p>
 <p>It prepares the panels and code. We can then make small changes to fit our study.</p>
@@ -288,6 +290,7 @@
 <p>The settings help OmopViewer choose the appropriate panels for supported result types.</p>
 <div class="fragment">
 <p>For this exercise, we will use cohort attrition and characteristics results from the reporting training, for <strong>amoxicillin</strong> and <strong>metformin</strong>.</p>
+<p><strong>Attrition</strong> shows how cohort counts change as criteria are applied. <strong>Characteristics</strong> describe the people in the cohorts, such as their ages. We will learn to produce these results later in the course.</p>
 <p>Download <strong>OmopViewer results</strong> for this exercise. The four-column Data 1 and Data 2 files from the Quarto session are ordinary tables and cannot be used directly here.</p>
 </div>
 </section><section id="your-turn-get-the-results" class="slide level2"><h2>
@@ -295,8 +298,8 @@
 <ol type="1">
 <li class="fragment">Open the course website’s <a href="../../Downloads/index.html">Downloads</a> tab and choose your GitHub username.</li>
 <li class="fragment">Click <strong>Download OmopViewer results</strong>.</li>
-<li class="fragment">Save <code>omopviewer_results.csv</code> in the <code>data</code> folder of your R Project.</li>
-<li class="fragment">Create an R script called <code>omopviewer.R</code> in your project. We will use it to explore and export an app.</li>
+<li class="fragment">Save <code>omopviewer_results.csv</code> in <strong>r-introduction/data</strong>.</li>
+<li class="fragment">Create an R script called <code>omopviewer.R</code> in <strong>r-introduction</strong>, beside <code>practice.R</code>. Keep the viewer code here and the simple histogram app in <code>first-shiny/app.R</code>.</li>
 </ol>
 <p>The code in these slides is for you to run in RStudio. It does not launch an app when we render the presentation.</p>
 </section><section id="open-the-dynamic-viewer" class="slide level2"><h2>Open the dynamic viewer</h2>
@@ -306,6 +309,7 @@
 <span><span class="fu">launchDynamicApp</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Upload <code>omopviewer_results.csv</code>, then use <strong>Bind data and load shiny</strong> to build the panels.</p>
+<p>The viewer starts without data. Choose the <strong>OmopViewer results</strong> CSV, not the codelist or Quarto Data 1/Data 2 files.</p>
 <div class="fragment">
 <p>This is a quick way to look at results without creating an app project. Stop the app in RStudio when you want to continue coding.</p>
 </div>
@@ -348,6 +352,7 @@
 <p>OmopViewer creates a <strong>shiny</strong> folder inside <code>viewer</code>. Here, “static” means the results are supplied when we generate the app; the app itself is still interactive and needs R to run.</p>
 </section><section id="what-did-omopviewer-create" class="slide level2"><h2>What did OmopViewer create?</h2>
 <p>Stop the app, then open <code>viewer/shiny</code> in RStudio’s Files pane.</p>
+<p>For this exercise, keep <strong>r-introduction</strong> as the active R Project. Browse the files without opening the generated <code>shiny.Rproj</code>, so the <code><a href="https://here.r-lib.org/reference/here.html">here()</a></code> paths in our script stay the same.</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 25%">
@@ -411,6 +416,22 @@
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/runApp.html">runApp</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"viewer_custom"</span>, <span class="st">"shiny"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Save your edits before restarting. Exporting again to the same location can overwrite the generated app, so use a new folder if you want to keep your manual changes.</p>
+</section><section id="if-the-app-does-not-start" class="slide level2"><h2>If the app does not start</h2>
+<ul>
+<li class="fragment">
+<strong>R is still busy:</strong> stop the previous app before running more code.</li>
+<li class="fragment">
+<strong>Result object not found:</strong> rerun the import step in <code>omopviewer.R</code>.</li>
+<li class="fragment">
+<strong>Cannot find a file:</strong> check that <strong>r-introduction</strong> is still the active project and that you saved the correct CSV in <code>data</code>.</li>
+<li class="fragment">
+<strong>Package missing:</strong> install the named package in the active project’s library, then try again.</li>
+</ul>
+<p>If a small edit breaks the app, undo that edit and restart. Check labels and IDs carefully; changing the displayed text should not change the connection between UI and server.</p>
+</section><section id="how-does-this-fit-into-a-study" class="slide level2"><h2>How does this fit into a study?</h2>
+<p>In our exercise, OmopViewer exports to <strong>viewer/shiny</strong> inside the practice project. OmopStudyBuilder’s <strong>studyShiny</strong> folder is a place to organise the reporting app for a real study; the tools do not automatically connect these two folders.</p>
+<p>Later, the analysis code will produce the summary results that we import here.</p>
+<p>Running an app on your computer does not publish it for everyone else. Sharing the app files and hosting an app online are separate steps; deployment is beyond today’s exercise.</p>
 </section><section id="final-remarks" class="slide level2"><h2>Final remarks</h2>
 <ul>
 <li class="fragment">
