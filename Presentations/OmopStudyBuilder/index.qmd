@@ -50,12 +50,13 @@ Reopen **practical.Rproj**. Choose a new folder beside it, replacing `youruserna
 library(OmopStudyBuilder)
 library(here)
 
-study_dir <- file.path(dirname(here()), "hds-study-yourusername")
+study <- "hds-study-yourusername"
 initStudy(
-  directory = study_dir,
+  directory = file.path(dirname(here()), study),
   studyTitle = "My HDS practice study",
   studyLeads = "Your name",
   studyDescription = "Practising a shared OMOP study structure.",
+  repository = study,
   organisation = "oxford-pharmacoepi"
 )
 ```
