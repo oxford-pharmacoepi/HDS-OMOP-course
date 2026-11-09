@@ -25,14 +25,14 @@
     "href": "Presentations/R_introduction/index.html#your-turn-create-your-first-project",
     "title": "Introduction to R",
     "section": "\nYOUR TURN Create your first project",
-    "text": "YOUR TURN Create your first project\nIn RStudio:\n\nChoose File → New Project… → New Directory → New Project.\nGive it a name and choose a folder you can find again.\nClick Create Project. Check the project name at the top-right of RStudio.\nChoose File → New File → R Script and save it as practice.R inside the project.\n\nUse the Files panel to create folders called data and Results. The names and capital letters should match the examples."
+    "text": "YOUR TURN Create your first project\nIn RStudio:\n\nChoose File → New Project… → New Directory → New Project.\nName it practical and choose a folder you can find again.\nClick Create Project. Check the project name at the top-right of RStudio.\nChoose File → New File → R Script and save it as practice.R inside the project.\n\nUse the Files panel to create folders called data and Results. The names and capital letters should match the examples."
   },
   {
     "objectID": "Presentations/R_introduction/index.html#a-simple-project-layout",
     "href": "Presentations/R_introduction/index.html#a-simple-project-layout",
     "title": "Introduction to R",
     "section": "A simple project layout",
-    "text": "A simple project layout\nyour_project/\n├── your_project.Rproj\n├── practice.R\n├── data/\n└── Results/\nSave input files in data and things you create in Results. Bigger projects often have an R folder for scripts too.\nThe .Rproj file helps RStudio open the project. Your .R script contains the code you want to keep."
+    "text": "A simple project layout\npractical/\n├── practical.Rproj\n├── practice.R\n├── data/\n└── Results/\nSave input files in data and things you create in Results. Bigger projects often have an R folder for scripts too.\nThe .Rproj file helps RStudio open the project. Your .R script contains the code you want to keep."
   },
   {
     "objectID": "Presentations/R_introduction/index.html#write-run-save",
@@ -186,7 +186,7 @@
     "href": "Presentations/PhenotypeR/index.html#create-cdm-reference-1",
     "title": "Creating cohorts from scratch using R",
     "section": "Create CDM reference",
-    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmpjHOsuG/file20f3515c978a.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
+    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmpcx0xuK/file214246630d3d.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist",
@@ -634,14 +634,14 @@
     "href": "Presentations/GitHub/index.html#github-on-the-server",
     "title": "GitHub and GitHub Desktop",
     "section": "GitHub on the server",
-    "text": "GitHub on the server\nOn RStudio Server, the files live on the server. GitHub Desktop on your laptop does not manage that copy directly, so use RStudio’s Git pane there.\n\nFirst, set up GitHub access on the server with the trainer, using this tutorial.\n\n\nThe same ideas apply: edit, save, commit, push, and pull. The buttons are in the Git pane:"
+    "text": "GitHub on the server\nOn RStudio Server, the files live on the server. GitHub Desktop on your laptop does not manage that copy directly, so use RStudio’s Git pane there.\n\nFirst, set up GitHub access on the server using this tutorial. Ask for help if needed.\n\n\nThe same ideas apply: edit, save, commit, push, and pull. The buttons are in the Git pane:"
   },
   {
     "objectID": "Presentations/GitHub/index.html#clean-up-the-practice-repo",
     "href": "Presentations/GitHub/index.html#clean-up-the-practice-repo",
     "title": "GitHub and GitHub Desktop",
     "section": "Clean up the practice repo",
-    "text": "Clean up the practice repo\nOnce both reviews are finished and the trainer confirms the exercise is complete, delete only the temporary hds-test-yourusername repository:\n\nOn GitHub, open that repository’s Settings → Danger Zone → Delete this repository and follow the confirmation steps."
+    "text": "Clean up the practice repo\nOnce both reviews are finished, ask for a quick check that the exercise is complete. Then delete only the temporary hds-test-yourusername repository:\n\nOn GitHub, open that repository’s Settings → Danger Zone → Delete this repository and follow the confirmation steps."
   },
   {
     "objectID": "Presentations/GitHub/index.html#you-are-ready",
@@ -662,7 +662,7 @@
     "href": "Presentations/OmopViewer/index.html#your-first-shiny-app",
     "title": "OmopViewer",
     "section": "Your first Shiny app",
-    "text": "Your first Shiny app\nReopen r-introduction.Rproj after the OmopStudyBuilder session. In RStudio, choose File → New File → Shiny Web App…, name the app first-shiny, and select a single-file app, app.R.\nClick Run App and move the slider in the starter histogram example. What changes?\n\nThe next two slides show the complete code for the example. Put both blocks together in first-shiny/app.R, replacing the starter code, with shinyApp() at the end. Install shiny and bslib if RStudio reports that either is missing.\nThe app keeps your R session busy while it runs. Click Stop in RStudio before running other code or restarting the app."
+    "text": "Your first Shiny app\nReopen practical.Rproj after the OmopStudyBuilder session. In RStudio, choose File → New File → Shiny Web App…, name the app first-shiny, and select a single-file app, app.R.\nClick Run App and move the slider in the starter histogram example. What changes?\n\nThe next two slides show the complete code for the example. Put both blocks together in first-shiny/app.R, replacing the starter code, with shinyApp() at the end. Install shiny and bslib if RStudio reports that either is missing.\nThe app keeps your R session busy while it runs. Click Stop in RStudio before running other code or restarting the app."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#the-ui-what-goes-where",
@@ -704,7 +704,7 @@
     "href": "Presentations/OmopViewer/index.html#your-turn-get-the-results",
     "title": "OmopViewer",
     "section": "\nYOUR TURN Get the results",
-    "text": "YOUR TURN Get the results\n\nOpen the course website’s Downloads tab and choose your GitHub username.\nClick Download OmopViewer results.\nSave omopviewer_results.csv in r-introduction/data.\nCreate an R script called omopviewer.R in r-introduction, beside practice.R. Keep the viewer code here and the simple histogram app in first-shiny/app.R.\n\nThe code in these slides is for you to run in RStudio. It does not launch an app when we render the presentation."
+    "text": "YOUR TURN Get the results\n\nOpen the course website’s Downloads tab and choose your GitHub username.\nClick Download OmopViewer results.\nSave omopviewer_results.csv in practical/data.\nCreate an R script called omopviewer.R in practical, beside practice.R. Keep the viewer code here and the simple histogram app in first-shiny/app.R.\n\nThe code in these slides is for you to run in RStudio. It does not launch an app when we render the presentation."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#open-the-dynamic-viewer",
@@ -739,7 +739,7 @@
     "href": "Presentations/OmopViewer/index.html#what-did-omopviewer-create",
     "title": "OmopViewer",
     "section": "What did OmopViewer create?",
-    "text": "What did OmopViewer create?\nStop the app, then open viewer/shiny in RStudio’s Files pane.\nFor this exercise, keep r-introduction as the active R Project. Browse the files without opening the generated shiny.Rproj, so the here() paths in our script stay the same.\n\n\n\n\n\n\nFile\nWhat to look for\n\n\n\nglobal.R\nPackages and data loaded for the app.\n\n\nui.R\nLayout, panels, labels, and input controls.\n\n\nserver.R\nCode that responds to inputs and builds outputs.\n\n\nbackground.md\nText for the background panel.\n\n\n\nrawData/ and data/\n\nOriginal results, preparation code, and prepared app data.\n\n\n\nOur first app had UI and server together in app.R. This app keeps them in separate files so they are easier to explore."
+    "text": "What did OmopViewer create?\nStop the app, then open viewer/shiny in RStudio’s Files pane.\nFor this exercise, keep practical as the active R Project. Browse the files without opening the generated shiny.Rproj, so the here() paths in our script stay the same.\n\n\n\n\n\n\nFile\nWhat to look for\n\n\n\nglobal.R\nPackages and data loaded for the app.\n\n\nui.R\nLayout, panels, labels, and input controls.\n\n\nserver.R\nCode that responds to inputs and builds outputs.\n\n\nbackground.md\nText for the background panel.\n\n\n\nrawData/ and data/\n\nOriginal results, preparation code, and prepared app data.\n\n\n\nOur first app had UI and server together in app.R. This app keeps them in separate files so they are easier to explore."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#start-with-the-export-options",
@@ -760,7 +760,7 @@
     "href": "Presentations/OmopViewer/index.html#if-the-app-does-not-start",
     "title": "OmopViewer",
     "section": "If the app does not start",
-    "text": "If the app does not start\n\n\nR is still busy: stop the previous app before running more code.\n\nResult object not found: rerun the import step in omopviewer.R.\n\nCannot find a file: check that r-introduction is still the active project and that you saved the correct CSV in data.\n\nPackage missing: install the named package in the active project’s library, then try again.\n\nIf a small edit breaks the app, undo that edit and restart. Check labels and IDs carefully; changing the displayed text should not change the connection between UI and server."
+    "text": "If the app does not start\n\n\nR is still busy: stop the previous app before running more code.\n\nResult object not found: rerun the import step in omopviewer.R.\n\nCannot find a file: check that practical is still the active project and that you saved the correct CSV in data.\n\nPackage missing: install the named package in the active project’s library, then try again.\n\nIf a small edit breaks the app, undo that edit and restart. Check labels and IDs carefully; changing the displayed text should not change the connection between UI and server."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#how-does-this-fit-into-a-study",
@@ -802,7 +802,7 @@
     "href": "Presentations/OmopStudyBuilder/index.html#create-a-study",
     "title": "OmopStudyBuilder",
     "section": "Create a study",
-    "text": "Create a study\nInstall the package from CRAN if you do not have it yet:\n\ninstall.packages(\"OmopStudyBuilder\", dependencies = TRUE)\n\nReopen r-introduction.Rproj. Choose a new folder beside it, replacing yourusername with your GitHub username:\n\nlibrary(OmopStudyBuilder)\nlibrary(here)\n\nstudy_dir &lt;- file.path(dirname(here()), \"hds-study-yourusername\")\ninitStudy(\n  directory = study_dir,\n  studyTitle = \"My HDS practice study\",\n  studyLeads = \"Your name\",\n  studyDescription = \"Practising a shared OMOP study structure.\"\n)\n\nThe destination must be new or empty. Let initStudy() create its contents before opening any of the generated R Projects.\ndirname(here()) finds the folder containing your current project; file.path() builds the path to the new study folder."
+    "text": "Create a study\nInstall the package from CRAN if you do not have it yet:\n\ninstall.packages(\"OmopStudyBuilder\", dependencies = TRUE)\n\nReopen practical.Rproj. Choose a new folder beside it, replacing yourusername with your GitHub username:\n\nlibrary(OmopStudyBuilder)\nlibrary(here)\n\nstudy_dir &lt;- file.path(dirname(here()), \"hds-study-yourusername\")\ninitStudy(\n  directory = study_dir,\n  studyTitle = \"My HDS practice study\",\n  studyLeads = \"Your name\",\n  studyDescription = \"Practising a shared OMOP study structure.\"\n)\n\nThe destination must be new or empty. Let initStudy() create its contents before opening any of the generated R Projects.\ndirname(here()) finds the folder containing your current project; file.path() builds the path to the new study folder."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#what-did-it-create",
@@ -830,7 +830,7 @@
     "href": "Presentations/OmopStudyBuilder/index.html#your-turn-put-the-study-on-github",
     "title": "OmopStudyBuilder",
     "section": "\nYOUR TURN Put the study on GitHub",
-    "text": "YOUR TURN Put the study on GitHub\nUse the whole study folder, hds-study-yourusername, as the repository root.\n\nIn GitHub Desktop, choose File → Add Local Repository… and select that folder.\nIf Desktop says it is not a Git repository, follow create a repository here. Keep the existing README and select R in the Git ignore options to exclude local R session files.\nReview the files and commit any pending changes with a message such as Add study structure.\nClick Publish repository, choose oxford-pharmacoepi as the organisation, and publish it as a private repository.\nOpen it on GitHub and check that the README and all four component folders are there.\n\nUse a unique repository name. Ask the trainer to check that your colleague can access this new repository too; access to the earlier practice repository does not automatically carry over."
+    "text": "YOUR TURN Put the study on GitHub\nUse the whole study folder, hds-study-yourusername, as the repository root.\n\nIn GitHub Desktop, choose File → Add Local Repository… and select that folder.\nIf Desktop says it is not a Git repository, follow create a repository here. Keep the existing README and select R in the Git ignore options to exclude local R session files.\nReview the files and commit any pending changes with a message such as Add study structure.\nClick Publish repository, choose oxford-pharmacoepi as the organisation, and publish it as a private repository.\nOpen it on GitHub and check that the README and all four component folders are there.\n\nUse a unique repository name. Check that your colleague can access this new repository too, and ask for help if needed; access to the earlier practice repository does not automatically carry over."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#keep-the-instructions-with-the-code",
@@ -879,7 +879,7 @@
     "href": "Presentations/OmopStudyBuilder/index.html#final-remarks",
     "title": "OmopStudyBuilder",
     "section": "Final remarks",
-    "text": "Final remarks\n\nStart with initStudy() so everyone recognises the study layout.\nKeep the instructions and code together in GitHub.\nUse renv to record and restore package versions.\nUse reviewStudy() to help you inspect the project before sharing it.\n\nNext, we will see how OmopViewer helps us build apps to explore study results. Reopen r-introduction.Rproj for that exercise so we use the same practice project and data folder as in Quarto."
+    "text": "Final remarks\n\nStart with initStudy() so everyone recognises the study layout.\nKeep the instructions and code together in GitHub.\nUse renv to record and restore package versions.\nUse reviewStudy() to help you inspect the project before sharing it.\n\nNext, we will see how OmopViewer helps us build apps to explore study results. Reopen practical.Rproj for that exercise so we use the same practice project and data folder as in Quarto."
   },
   {
     "objectID": "Presentations/OmopStudyBuilder/index.html#useful-links",
@@ -893,7 +893,7 @@
     "href": "Presentations/Quarto/index.html#quarto",
     "title": "Introduction to Quarto",
     "section": "Quarto",
-    "text": "Quarto\nQuarto is a free tool for creating documents from a plain-text source file. You can combine writing, code, and the results of that code in one place.\nUse the same source to create reports, presentations, websites, and more. Quarto works with R, Python, Julia, and Observable.\nWe will use R and return to the r-introduction project. By the end, you will have a report that updates when we replace its input data."
+    "text": "Quarto\nQuarto is a free tool for creating documents from a plain-text source file. You can combine writing, code, and the results of that code in one place.\nUse the same source to create reports, presentations, websites, and more. Quarto works with R, Python, Julia, and Observable.\nWe will use R and return to the practical project. By the end, you will have a report that updates when we replace its input data."
   },
   {
     "objectID": "Presentations/Quarto/index.html#what-happens-when-you-render",
@@ -907,7 +907,7 @@
     "href": "Presentations/Quarto/index.html#how-to-create-a-quarto-document",
     "title": "Introduction to Quarto",
     "section": "How to create a Quarto document",
-    "text": "How to create a Quarto document\nOpen r-introduction.Rproj. In RStudio, choose File → New File → Quarto Document….\nChoose HTML, give it a title, and save it as my-report.qmd in the project root, beside practice.R. Use the Source editor when typing the Markdown examples below.\nIf the Quarto option is missing or RStudio asks to install a required package, ask the trainer to help before continuing."
+    "text": "How to create a Quarto document\nOpen practical.Rproj. In RStudio, choose File → New File → Quarto Document….\nChoose HTML, give it a title, and save it as my-report.qmd in the project root, beside practice.R. Use the Source editor when typing the Markdown examples below.\nIf the Quarto option is missing or RStudio asks to install a required package, ask for help before continuing."
   },
   {
     "objectID": "Presentations/Quarto/index.html#create-a-quarto-document",
@@ -984,7 +984,7 @@
     "href": "Presentations/Quarto/index.html#your-turn-get-the-data",
     "title": "Introduction to Quarto",
     "section": "\nYOUR TURN Get the data",
-    "text": "YOUR TURN Get the data\n\nOpen the course website’s Downloads tab and choose your GitHub username.\nClick Download Data 1 results and save data1.csv in r-introduction/data.\nRead it into your Quarto document. Add a sentence, table, or plot that tells us something about the data.\n\nThese are made-up prevalence percentages for five conditions. Each row describes a database, condition, year, and prevalence. For example, 8.4 means 8.4%."
+    "text": "YOUR TURN Get the data\n\nOpen the course website’s Downloads tab and choose your GitHub username.\nClick Download Data 1 results and save data1.csv in practical/data.\nRead it into your Quarto document. Add a sentence, table, or plot that tells us something about the data.\n\nThese are made-up prevalence percentages for five conditions. Each row describes a database, condition, year, and prevalence. For example, 8.4 means 8.4%."
   },
   {
     "objectID": "Presentations/Quarto/index.html#read-and-inspect-the-data",
@@ -1019,7 +1019,7 @@
     "href": "Presentations/Quarto/index.html#spacing-in-quarto",
     "title": "Introduction to Quarto",
     "section": "Spacing in Quarto",
-    "text": "Spacing in Quarto\nLeave a blank line in the source to start a new paragraph. A single newline in the source may still appear as part of the same paragraph when rendered.\nIn a presentation, a new ## heading starts a new slide. Keep headings short so the audience can see the main point at a glance."
+    "text": "Spacing in Quarto\nLeave a blank line in the source to start a new paragraph. Extra empty lines in the source do not add extra space in the output.\nTo add a blank line in your Word report, put &nbsp; (a non-breaking space) on its own line, with a blank line before and after it:\nText before a blank line.\n\n&nbsp;\n\nText after a blank line.\nTo insert a page break in Word, put this shortcode on its own line, with a blank line before and after it:\nText before the page break.\n\n{{&lt; pagebreak &gt;}}\n\nText on the next page."
   },
   {
     "objectID": "Presentations/Quarto/index.html#optional-use-a-word-template",
@@ -1061,7 +1061,7 @@
     "href": "Presentations/Quarto/index.html#final-remarks",
     "title": "Introduction to Quarto",
     "section": "Final remarks",
-    "text": "Final remarks\n\nKeep the writing, code, and results together in the .qmd source.\nUse a template when reports need a consistent look.\nWhen the data changes, update the input files and render again.\n\n\nThat’s Quarto: write it once, render it when you need it, and let the code update the results.\nSave my-report.qmd in r-introduction. Next, OmopStudyBuilder will help us organise a bigger study into a shared repository."
+    "text": "Final remarks\n\nKeep the writing, code, and results together in the .qmd source.\nUse a template when reports need a consistent look.\nWhen the data changes, update the input files and render again.\n\n\nThat’s Quarto: write it once, render it when you need it, and let the code update the results.\nSave my-report.qmd in practical. Next, OmopStudyBuilder will help us organise a bigger study into a shared repository."
   },
   {
     "objectID": "Presentations/Welcome/index.html#welcome",

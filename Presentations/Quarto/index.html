@@ -210,14 +210,14 @@
 </section><section id="quarto" class="slide level2"><h2>Quarto</h2>
 <p>Quarto is a free tool for creating documents from a plain-text source file. You can combine writing, code, and the results of that code in one place.</p>
 <p>Use the same source to create reports, presentations, websites, and more. Quarto works with R, Python, Julia, and Observable.</p>
-<p>We will use <strong>R</strong> and return to the <strong>r-introduction</strong> project. By the end, you will have a report that updates when we replace its input data.</p>
+<p>We will use <strong>R</strong> and return to the <strong>practical</strong> project. By the end, you will have a report that updates when we replace its input data.</p>
 </section><section id="what-happens-when-you-render" class="slide level2"><h2>What happens when you render?</h2>
 <p>You write your content in a <code>.qmd</code> file. When you render it, Quarto runs the code, adds its output to your writing, and creates the finished document.</p>
 <p>That makes it easier to update a report when the data changes: update the data, render again, and the numbers and figures are refreshed from the code.</p>
 </section><section id="how-to-create-a-quarto-document" class="slide level2"><h2>How to create a Quarto document</h2>
-<p>Open <strong>r-introduction.Rproj</strong>. In RStudio, choose <strong>File → New File → Quarto Document…</strong>.</p>
+<p>Open <strong>practical.Rproj</strong>. In RStudio, choose <strong>File → New File → Quarto Document…</strong>.</p>
 <p>Choose HTML, give it a title, and save it as <strong>my-report.qmd</strong> in the project root, beside <code>practice.R</code>. Use the <strong>Source</strong> editor when typing the Markdown examples below.</p>
-<p>If the Quarto option is missing or RStudio asks to install a required package, ask the trainer to help before continuing.</p>
+<p>If the Quarto option is missing or RStudio asks to install a required package, ask for help before continuing.</p>
 </section><section id="create-a-quarto-document" class="slide level2"><h2>Create a Quarto document</h2>
 
 <img data-src="Figures/new_quarto.png" class="quarto-figure quarto-figure-center r-stretch"></section><section id="choose-a-format-and-render" class="slide level2"><h2>Choose a format and render</h2>
@@ -315,7 +315,7 @@ execute:
 <code>YOUR TURN</code> Get the data</h2>
 <ol type="1">
 <li class="fragment">Open the course website’s <strong>Downloads</strong> tab and choose your GitHub username.</li>
-<li class="fragment">Click <strong>Download Data 1 results</strong> and save <code>data1.csv</code> in <strong>r-introduction/data</strong>.</li>
+<li class="fragment">Click <strong>Download Data 1 results</strong> and save <code>data1.csv</code> in <strong>practical/data</strong>.</li>
 <li class="fragment">Read it into your Quarto document. Add a sentence, table, or plot that tells us something about the data.</li>
 </ol>
 <p>These are made-up prevalence percentages for five conditions. Each row describes a <strong>database</strong>, <strong>condition</strong>, <strong>year</strong>, and <strong>prevalence</strong>. For example, <code>8.4</code> means 8.4%.</p>
@@ -359,8 +359,19 @@ in `r highest_example$database` in `r highest_example$year`.</code></pre>
 <p>As before, <code>aes()</code> connects columns to the axes and colours. <code>facet_wrap()</code> creates a separate panel for each database.</p>
 <p><strong>YOUR TURN:</strong> change the plot title or hide the code with <code>echo=FALSE</code>, then render again.</p>
 </section><section id="spacing-in-quarto" class="slide level2"><h2>Spacing in Quarto</h2>
-<p>Leave a blank line in the source to start a new paragraph. A single newline in the source may still appear as part of the same paragraph when rendered.</p>
-<p>In a presentation, a new <code>##</code> heading starts a new slide. Keep headings short so the audience can see the main point at a glance.</p>
+<p>Leave a blank line in the source to start a new paragraph. Extra empty lines in the source do not add extra space in the output.</p>
+<p>To add a blank line in your Word report, put <code>&amp;nbsp;</code> (a non-breaking space) on its own line, with a blank line before and after it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>Text before a blank line.</span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;nbsp;</span></span>
+<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a>Text after a blank line.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To insert a page break in Word, put this shortcode on its own line, with a blank line before and after it:</p>
+<pre><code>Text before the page break.
+
+{{&lt; pagebreak &gt;}}
+
+Text on the next page.</code></pre>
 </section><section id="optional-use-a-word-template" class="slide level2"><h2>Optional: use a Word template</h2>
 <p>A template gives documents a shared look and saves you from formatting every report by hand. For a Word report, a reference document can define headings, fonts, spacing, headers, footers, and caption styles.</p>
 <p>Quarto uses the content and styles in your <code>.qmd</code> file; Word uses the matching styles in the reference document to decide how those parts look.</p>
@@ -368,18 +379,18 @@ in `r highest_example$database` in `r highest_example$year`.</code></pre>
 <p>The <a href="https://github.com/darwin-eu/visOmopResults/blob/main/inst/quarto/darwinReportRef.docx">darwinReportRef.docx template</a> is an example of a Word reference document.</p>
 <p>On GitHub, use <strong>Download raw file</strong> to save the <code>.docx</code> file, then open it in Word to explore the styles. Save it beside <code>my-report.qmd</code>.</p>
 <p>Replace your existing <code>format:</code> setting in the YAML with:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span></span>
-<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">reference-doc</span><span class="kw">:</span><span class="at"> </span><span class="st">"darwinReportRef.docx"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span></span>
+<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">reference-doc</span><span class="kw">:</span><span class="at"> </span><span class="st">"darwinReportRef.docx"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section><section id="custom-styles-for-captions" class="slide level2"><h2>Custom styles for captions</h2>
 <p>You can give a block of text a style name that exists in the Word reference document:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>:::{custom-style="FigureCaption"}</span>
-<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>Figure 1. Prevalence of the different conditions over time.</span>
-<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a>:::{custom-style="CaptionFooter"}</span>
-<span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a>CI = confidence interval</span>
-<span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a>:::{custom-style="FigureCaption"}</span>
+<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>Figure 1. Prevalence of the different conditions over time.</span>
+<span id="cb10-3"><a aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-4"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a aria-hidden="true" tabindex="-1"></a>:::{custom-style="CaptionFooter"}</span>
+<span id="cb10-6"><a aria-hidden="true" tabindex="-1"></a>CI = confidence interval</span>
+<span id="cb10-7"><a aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Create or change the <code>FigureCaption</code> and <code>CaptionFooter</code> styles in the Word template to control their appearance. The style names in the document and template need to match.</p>
 </section><section id="your-turn-update-the-report" class="slide level2"><h2>
 <code>YOUR TURN</code> Update the report</h2>
@@ -412,7 +423,7 @@ in `r highest_example$database` in `r highest_example$year`.</code></pre>
 </ul>
 <div class="fragment">
 <p>That’s Quarto: write it once, render it when you need it, and let the code update the results.</p>
-<p>Save <strong>my-report.qmd</strong> in <strong>r-introduction</strong>. Next, OmopStudyBuilder will help us organise a bigger study into a shared repository.</p>
+<p>Save <strong>my-report.qmd</strong> in <strong>practical</strong>. Next, OmopStudyBuilder will help us organise a bigger study into a shared repository.</p>
 
 
 </div>
