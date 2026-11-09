@@ -14,7 +14,7 @@ format:
     width: 1600
     footer: |
       <div style="position: relative; width: 100%;">
-        <div style="text-align: center; font-weight: 500;">OHDSI-US 2026 PhenotypeR Workshop</div>
+        <div style="text-align: center; font-weight: 500;">HDS OMOP Training</div>
         <div style="position: fixed; top: 20px; right: 20px;"><a href="../../index.html" style="text-decoration: none;">⬅ Back to Presentations</a></div>
       </div>
 execute:
@@ -22,130 +22,170 @@ execute:
   eval: true
 editor: visual
 ---
-
 ## Quarto
 
-minimal explanation of what is quarto (~2 slides)
+Quarto is a free tool for creating documents from a plain-text source file. You can combine writing, code, and the results of that code in one place.
 
-## How to create a quarto document
+Use the same source to create reports, presentations, websites, and more. Quarto works with R, Python, Julia, and Observable.
 
-Let's go to your R project that we created before. Open it.
+In this training we will use **R**.
 
-+ Create new file -> Quarto document
+## What happens when you render?
 
-## Create quarto document
+You write your content in a `.qmd` file. When you render it, Quarto runs the code, adds its output to your writing, and creates the finished document.
+
+That makes it easier to update a report when the data changes: update the data, render again, and the numbers and figures are refreshed from the code.
+
+## How to create a Quarto document
+
+Open the R Project you created earlier. In RStudio, choose **File → New File → Quarto Document…**.
+
+Give the document a name and save it inside your project. Keeping the document and its data together makes it easier to find and share your work.
+
+## Create a Quarto document
 
 ![](Figures/new_quarto.png){fig-align="center"}
 
-## Create quarto document
+## Choose a format and render
 
-Let's start chosing a title and setting the output to html.
+Start with **HTML** and click **Render**. Quarto will create a document you can open in your browser.
 
-- Render it
+- Try rendering the same source as Word and PDF, then compare the results.
+- For the template exercise, switch the output format to Word.
 
-- Do the same for PDF, repeat for word.
+. . .
 
-- Explore the differences.
+The writing and code stay in the `.qmd` source. You can render it again whenever you update the content or data.
 
-- From now on we will work using the word option.
+## Parts of a Quarto document
 
-## Quarto parts
+A `.qmd` file has two main parts:
 
-Quarto is divided into two parts:
-
-- metadata/yaml part: is the block of text between `---` on the top.
-
-- rendarable part: is the part that contains the content that will be rendered into text.
+- **Metadata** at the top, between lines containing `---`. This is YAML and stores settings such as the title and output format.
+- **Document body** below the metadata. This contains your text, headings, code, and other content to render.
 
 ## Write some text
 
-Start writing some text to the quarto, use `#` for headings and write some text, example:
+Quarto uses Markdown for headings and basic formatting. For example:
 
-```text
-# Heading 1
-## Heading 2
-### Heading 3
+```markdown
+# Main heading
+## Smaller heading
 
-This is some code
+This is a paragraph with **bold text**.
+
+- This is a list item.
+- And another one.
 ```
 
-Render it and see the result.
+. . .
+
+Render the document and see how the source becomes a formatted page.
 
 ## Add some code
 
-You can add a block of code and see the output, explain how to do it and show an example.
+Put R code in a code chunk. Quarto can run it and include the result in the document:
 
-## Eval/Echo
+```{r}
+scores <- c(7, 8, 10)
+mean(scores)
+```
 
-Exaplin what eval, echo, messages and so mean, explain they can be set up block by block on all the block at the same time
+. . .
 
-## `YOUR TURN`
+The code and its result are connected: change the values and render again to update the result.
 
-1. Go to the downloads section and download the set that says Data 1 it is a table with 4 columns:
+## `echo`, `eval`, `messages`, and `warnings`
 
-- database
-- condition
-- year
-- prevalence
+These options control what happens to code chunks:
 
-2. Read it in your quarto document (e.g copy it to a folder called `data` or something similar) and create a plot a table or some text. See example in text slide.
+- `echo`: show (`TRUE`) or hide (`FALSE`) the code in the rendered document.
+- `eval`: run (`TRUE`) or skip (`FALSE`) the code.
+- `message` and `warning`: show or hide messages and warnings produced by the code.
 
-## `YOUR TURN`
+. . .
+
+Set options in the chunk header, or set document-wide defaults in the YAML under `execute:`. For example, a chunk with `{r, echo=FALSE, message=FALSE}` runs `summary(scores)` but hides its code and messages while showing the result.
+
+. . .
+
+You can also change this options globaly with the initial block of yaml file, the following block for example will make all the code to be hidden but executed:
 
 ```text
-
-The maximum prevalence in 2023 was `r max(data$prevalence)` for `r data$condition[data$prevalence == max(data$prevalence)]` in `r data$database[data$prevalence == max(data$prevalence)]`.
-
-Here you can see a plot of the prevalence:
-
-``{r, echo = FALSE}
-library(readr)
-library(ggplot2)
-library(here)
-
-data <- read_csv(file = here("data", "data1.csv"))
-
-ggplot(data = data, mapping = aes(x = year, y = prevalence, colour = condition)) +
-  geom_point() +
-  facet_grid(~database)
-``
-
+---
+execute:
+  echo: false
+  eval: true
+---
 ```
+
+## `YOUR TURN`
+
+1. Open the course website’s **Downloads** tab and choose your GitHub username.
+2. Click **Download Data 1 results** and save `data1.csv` in a `data` folder inside your R Project.
+3. Read it into your Quarto document. Add a sentence, table, or plot that tells us something about the data.
+
+## `YOUR TURN` Read, summarise, and plot
+
+Read the CSV with `readr`, then find the row with the highest prevalence:
+
+```{r, eval=FALSE}
+library(readr)
+data <- read_csv(here::here("data", "data1.csv"))
+highest <- data |>
+  filter(prevalence == max(prevalence))
+```
+
+```text
+The highest example prevalence is `r highest_example$prevalence` for `r highest_example$condition` at `r highest_example$database` in `r highest_example$year`.
+```
+
+For example, you could describe the highest value in a sentence, make a table, or plot prevalence by year and condition.
+
+These chunks are examples for your own document.
+
+```{r, eval=FALSE}
+library(ggplot2)
+ggplot(data, aes(x = year, y = prevalence, colour = condition)) +
+  geom_point() +
+  facet_wrap(~database)
+```
+
+Inline R expressions run when you render the document, just like code in a chunk.
 
 ## Spacing in Quarto
 
-You may have noticed that a single newline in the source does not create a line break in the rendered document. Markdown treats consecutive lines as part of the same paragraph.
+Leave a blank line in the source to start a new paragraph. A single newline in the source may still appear as part of the same paragraph when rendered.
 
-To start a new paragraph, leave a blank line between blocks of text.
-
-You can also insert a page break using `{{< pagebreak >}}`:
-
-{{< pagebreak >}}
-
-Adding several blank lines does not create extra vertical space: one or more blank lines simply separate paragraphs.
-
-If you want to force a line break without starting a new paragraph, end the line with `\`, as shown below.
-
-This is the first line.\
-This starts a new line within the same paragraph.
-
-If you want to add a visually empty line, place `&nbsp;` on its own line. Unlike additional blank lines in the source, it creates a paragraph containing a non-breaking space, which is preserved in the rendered document. The empty line before the next section is created in this way.
+In a presentation, a new `##` heading starts a new slide. Keep headings short so the audience can see the main point at a glance.
 
 ## Use templates
 
-Explain the use of templates
+A template gives documents a shared look and saves you from formatting every report by hand. For a Word report, a reference document can define headings, fonts, spacing, headers, footers, and caption styles.
 
-## Example of template
+Quarto uses the content and styles in your `.qmd` file; Word uses the matching styles in the reference document to decide how those parts look.
 
-To show them to download and use this template: https://github.com/darwin-eu/visOmopResults/blob/main/inst/quarto/darwinReportRef.docx
+## Example of a Word template
 
-## Show how to change the headings and things in template
+The [darwinReportRef.docx template](https://github.com/darwin-eu/visOmopResults/blob/main/inst/quarto/darwinReportRef.docx) is an example of a Word reference document.
 
-## Show how to a add a caption in the text as
+Download it and open it in Word to explore the styles. In your Quarto document, set it as the `reference-doc` for Word output, then render the report to apply those styles.
 
-```text
+For example, save the template in your project folder and add this to the document YAML:
+
+```yaml
+format:
+  docx:
+    reference-doc: "darwinReportRef.docx"
+```
+
+## Custom styles for captions
+
+You can give a block of text a style name that exists in the Word reference document:
+
+```markdown
 :::{custom-style="FigureCaption"}
-Figure 1. This is the title for figure 1.
+Figure 1. The prevalence of the different condition over time.
 :::
 
 :::{custom-style="CaptionFooter"}
@@ -153,18 +193,26 @@ CI = confidence interval
 :::
 ```
 
-Show example how to modify the template so this would look diferent.
+Create or change the `FigureCaption` and `CaptionFooter` styles in the Word template to control their appearance. The style names in the document and template need to match.
 
-## `YOUR TUNR`
+## `YOUR TURN`
 
-Why use quarto? Now last minute a new data partner submitted new results and two other updated their old results... No problem quarto is the solution!!
+A new data partner sends updated results at the last minute, and two other partners have updated their old results. No need to rebuild the report by hand:
 
-1. Download the `Data 2` results.
+1. In your username tab on **Downloads**, click **Download Data 2 results** and save `data2.csv` in your `data` folder.
+2. Update your `read_csv()` line to read `data2.csv`.
+3. Render the Quarto document again and compare the results.
 
-2. Replace the old results by the new ones
+. . .
 
-3. Regenerate the document
-
-4. New report done :)
+The report is refreshed from the new data. Check what changed for SIDI Plata, notice the new SIDI Or results, and confirm that SIDI Bronze stayed the same.
 
 ## Final remarks
+
+- Keep the writing, code, and results together in the `.qmd` source.
+- Use a template when reports need a consistent look.
+- When the data changes, update the input files and render again.
+
+. . .
+
+That’s Quarto: write it once, render it when you need it, and let the code update the results.
