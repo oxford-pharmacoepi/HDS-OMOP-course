@@ -96,6 +96,7 @@ A Console `>` means R is ready. If you see `+`, it is usually waiting for someth
 A **function** does a job. Put the inputs, called **arguments**, inside its brackets:
 
 ```{r}
+ages <- c(23, 35, 41, 52)
 mean(ages)
 length(ages)
 ```
