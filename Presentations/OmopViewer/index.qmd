@@ -25,30 +25,34 @@ editor: visual
 
 ## From reports to apps
 
-In Quarto we wrote a report and rendered it. With **Shiny**, we can let someone explore the results themselves: choose a database, change a filter, or switch between plots.
+In Quarto we rendered a report with fixed plots and tables. A **Shiny** app lets someone interact with the results. They can choose a database, change a filter, or switch between plots, and the displayed output can update.
 
-A Shiny app has two main parts:
+A Shiny app has a user interface and a server function. We will keep them in separate files, matching the structure that OmopViewer generates:
 
-- **UI (user interface):** what you see, such as buttons, sliders, and spaces for plots.
-- **Server:** the R code that responds to inputs and creates the outputs.
+- **`ui.R`** defines the `ui` object: the controls someone can use and the spaces where outputs will appear.
+- **`server.R`** defines the `server` function that reads those inputs and creates the outputs.
 
-Change an input and Shiny updates the outputs that depend on it. That is **reactivity**.
+When an input changes, Shiny updates the outputs that depend on it. This is **reactivity**.
 
-Here, "server" means a function in our R code. The whole practice app can run on your own computer.
+Here, "server" means a function in our R code. Both files form one app, which can run on your own computer.
 
 ## Your first Shiny app
 
-Reopen **practical.Rproj** after the OmopStudyBuilder session. In RStudio, choose **File → New File → Shiny Web App…**, name the app **first-shiny**, and select a single-file app, `app.R`.
+Reopen **practical.Rproj** after the OmopStudyBuilder session. In RStudio, choose **File → New File → Shiny Web App…**, name the app **first-shiny**, and select a multiple-file app.
 
 Click **Run App** and move the slider in the starter histogram example. What changes?
 
 . . .
 
-The next two slides show the complete code for the example. Put both blocks together in **first-shiny/app.R**, replacing the starter code, with `shinyApp()` at the end. Install `shiny` and `bslib` if RStudio reports that either is missing.
+RStudio creates **first-shiny/ui.R** and **first-shiny/server.R**. Shiny reads both files when it starts the app.
+
+Install `shiny` and `bslib` if RStudio reports that either is missing.
 
 The app keeps your R session busy while it runs. Click **Stop** in RStudio before running other code or restarting the app.
 
 ## The UI: what goes where?
+
+Replace the contents of **first-shiny/ui.R** with:
 
 ```{r, eval=FALSE}
 library(shiny)
@@ -69,7 +73,11 @@ ui <- fluidPage(
 
 ## The server: make the plot
 
+Replace the contents of **first-shiny/server.R** with:
+
 ```{r, eval=FALSE}
+library(shiny)
+
 server <- function(input, output, session) {
   output$distPlot <- renderPlot({
     x <- faithful$waiting
@@ -79,8 +87,6 @@ server <- function(input, output, session) {
          main = "Old Faithful")
   })
 }
-
-shinyApp(ui = ui, server = server)
 ```
 
 `faithful` is a built-in dataset; the histogram groups its waiting times into bins. `input$bins` reads the slider, and `output$distPlot` sends the plot to the UI.
@@ -89,9 +95,10 @@ Just as `$` picked a table column in R, here it picks a named input or output. `
 
 ## Give the UI a style with bslib
 
-**bslib** gives us layouts, cards, sidebars, and themes. Replace the previous `ui` block with this one and keep the same server:
+**bslib** gives us layouts, cards, sidebars, and themes. Replace the contents of **ui.R** with this code and leave **server.R** unchanged:
 
 ```{r, eval=FALSE}
+library(shiny)
 library(bslib)
 
 ui <- page_sidebar(
@@ -105,20 +112,20 @@ ui <- page_sidebar(
 )
 ```
 
-Put `library(bslib)` near the top of `app.R`, replace the `ui` block, save, and click **Run App** again. Keep `shinyApp(ui, server)` at the end. The IDs still connect the slider and plot.
+Save **ui.R** and click **Run App** again. The IDs still connect the slider in **ui.R** to the plot created in **server.R**.
 
 ## Meet OmopViewer
 
-Building every filter, table, and plot by hand takes time. **OmopViewer creates a Shiny app for us** from supported OMOP study results.
+Building every filter, table, and plot by hand takes time. **OmopViewer creates a multiple-file Shiny app for us** from supported OMOP study results.
 
-It prepares the panels and code. We can then make small changes to fit our study.
+It generates separate UI, server, and setup files. We can then make small changes to fit our study.
 
 . . .
 
 Two ways to use it:
 
-- `launchDynamicApp()`: open a viewer and upload results to explore.
-- `exportStaticApp()`: create app files that we can inspect, edit, and share.
+- `launchDynamicApp()`: quickly inspect uploaded results without creating an app project.
+- `exportStaticApp()`: generate a persistent set of app files that we can inspect, edit, and share.
 
 ## What data does it need?
 
@@ -139,7 +146,7 @@ Download **OmopViewer results** for this exercise. The four-column Data 1 and Da
 1. Open the course website's [Downloads](../../Downloads/index.qmd) tab and choose your GitHub username.
 2. Click **Download OmopViewer results**.
 3. Save `omopviewer_results.csv` in **practical/data**.
-4. Create an R script called `omopviewer.R` in **practical**, beside `practice.R`. Keep the viewer code here and the simple histogram app in `first-shiny/app.R`.
+4. Create an R script called `omopviewer.R` in **practical**, beside `practice.R`. Keep the viewer code here and the simple histogram app in the **first-shiny** folder.
 
 The code in these slides is for you to run in RStudio. It does not launch an app when we render the presentation.
 
@@ -214,10 +221,9 @@ For this exercise, keep **practical** as the active R Project. Browse the files 
 | `global.R` | Packages and data loaded for the app. |
 | `ui.R` | Layout, panels, labels, and input controls. |
 | `server.R` | Code that responds to inputs and builds outputs. |
+| `functions.R` | Helper functions used by the UI and server. |
 | `background.md` | Text for the background panel. |
 | `rawData/` and `data/` | Original results, preparation code, and prepared app data. |
-
-Our first app had UI and server together in `app.R`. This app keeps them in separate files so they are easier to explore.
 
 ## Start with the export options
 
@@ -272,7 +278,7 @@ Running an app on your computer does not publish it for everyone else. Sharing t
 
 ## Final remarks
 
-- **Shiny:** the UI collects inputs and displays outputs; the server connects them with R code.
+- **Shiny:** `ui.R` collects inputs and displays outputs; `server.R` connects them with R code.
 - **OmopViewer:** creates the app structure and result panels for us.
 - Use the dynamic viewer to explore, or export an app when you want to customise it.
 
