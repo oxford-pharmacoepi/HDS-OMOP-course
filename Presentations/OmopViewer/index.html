@@ -208,24 +208,26 @@
 
   <p class="date">2026-11-09</p>
 </section><section id="from-reports-to-apps" class="slide level2"><h2>From reports to apps</h2>
-<p>In Quarto we wrote a report and rendered it. With <strong>Shiny</strong>, we can let someone explore the results themselves: choose a database, change a filter, or switch between plots.</p>
-<p>A Shiny app has two main parts:</p>
+<p>In Quarto we rendered a report with fixed plots and tables. A <strong>Shiny</strong> app lets someone interact with the results. They can choose a database, change a filter, or switch between plots, and the displayed output can update.</p>
+<p>A Shiny app has a user interface and a server function. We will keep them in separate files, matching the structure that OmopViewer generates:</p>
 <ul>
 <li class="fragment">
-<strong>UI (user interface):</strong> what you see, such as buttons, sliders, and spaces for plots.</li>
+<strong><code>ui.R</code></strong> defines the <code>ui</code> object: the controls someone can use and the spaces where outputs will appear.</li>
 <li class="fragment">
-<strong>Server:</strong> the R code that responds to inputs and creates the outputs.</li>
+<strong><code>server.R</code></strong> defines the <code>server</code> function that reads those inputs and creates the outputs.</li>
 </ul>
-<p>Change an input and Shiny updates the outputs that depend on it. That is <strong>reactivity</strong>.</p>
-<p>Here, “server” means a function in our R code. The whole practice app can run on your own computer.</p>
+<p>When an input changes, Shiny updates the outputs that depend on it. This is <strong>reactivity</strong>.</p>
+<p>Here, “server” means a function in our R code. Both files form one app, which can run on your own computer.</p>
 </section><section id="your-first-shiny-app" class="slide level2"><h2>Your first Shiny app</h2>
-<p>Reopen <strong>practical.Rproj</strong> after the OmopStudyBuilder session. In RStudio, choose <strong>File → New File → Shiny Web App…</strong>, name the app <strong>first-shiny</strong>, and select a single-file app, <code>app.R</code>.</p>
+<p>Reopen <strong>practical.Rproj</strong> after the OmopStudyBuilder session. In RStudio, choose <strong>File → New File → Shiny Web App…</strong>, name the app <strong>first-shiny</strong>, and select a multiple-file app.</p>
 <p>Click <strong>Run App</strong> and move the slider in the starter histogram example. What changes?</p>
 <div class="fragment">
-<p>The next two slides show the complete code for the example. Put both blocks together in <strong>first-shiny/app.R</strong>, replacing the starter code, with <code><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp()</a></code> at the end. Install <code>shiny</code> and <code>bslib</code> if RStudio reports that either is missing.</p>
+<p>RStudio creates <strong>first-shiny/ui.R</strong> and <strong>first-shiny/server.R</strong>. Shiny reads both files when it starts the app.</p>
+<p>Install <code>shiny</code> and <code>bslib</code> if RStudio reports that either is missing.</p>
 <p>The app keeps your R session busy while it runs. Click <strong>Stop</strong> in RStudio before running other code or restarting the app.</p>
 </div>
 </section><section id="the-ui-what-goes-where" class="slide level2"><h2>The UI: what goes where?</h2>
+<p>Replace the contents of <strong>first-shiny/ui.R</strong> with:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/">shiny</a></span><span class="op">)</span></span>
 <span></span>
@@ -242,8 +244,11 @@
 </div>
 <p><code>bins</code> is the slider’s ID. <code>distPlot</code> is the space where the server will put the plot. These IDs connect the two parts of the app.</p>
 </section><section id="the-server-make-the-plot" class="slide level2"><h2>The server: make the plot</h2>
+<p>Replace the contents of <strong>first-shiny/server.R</strong> with:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/">shiny</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">output</span><span class="op">$</span><span class="va">distPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
 <span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">faithful</span><span class="op">$</span><span class="va">waiting</span></span>
 <span>    <span class="va">bins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, length.out <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">bins</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -251,16 +256,15 @@
 <span>         xlab <span class="op">=</span> <span class="st">"Waiting time to next eruption (minutes)"</span>,</span>
 <span>         main <span class="op">=</span> <span class="st">"Old Faithful"</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>faithful</code> is a built-in dataset; the histogram groups its waiting times into bins. <code>input$bins</code> reads the slider, and <code>output$distPlot</code> sends the plot to the UI.</p>
 <p>Just as <code>$</code> picked a table column in R, here it picks a named input or output. <code><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot()</a></code> reruns when the slider value changes.</p>
 </section><section id="give-the-ui-a-style-with-bslib" class="slide level2"><h2>Give the UI a style with bslib</h2>
-<p><strong>bslib</strong> gives us layouts, cards, sidebars, and themes. Replace the previous <code>ui</code> block with this one and keep the same server:</p>
+<p><strong>bslib</strong> gives us layouts, cards, sidebars, and themes. Replace the contents of <strong>ui.R</strong> with this code and leave <strong>server.R</strong> unchanged:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/bslib/">bslib</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/">shiny</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/bslib/">bslib</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rstudio.github.io/bslib/reference/page_sidebar.html">page_sidebar</a></span><span class="op">(</span></span>
 <span>  title <span class="op">=</span> <span class="st">"My first app"</span>,</span>
@@ -272,17 +276,17 @@
 <span>  <span class="fu"><a href="https://rstudio.github.io/bslib/reference/card.html">card</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">"distPlot"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Put <code><a href="https://rstudio.github.io/bslib/">library(bslib)</a></code> near the top of <code>app.R</code>, replace the <code>ui</code> block, save, and click <strong>Run App</strong> again. Keep <code>shinyApp(ui, server)</code> at the end. The IDs still connect the slider and plot.</p>
+<p>Save <strong>ui.R</strong> and click <strong>Run App</strong> again. The IDs still connect the slider in <strong>ui.R</strong> to the plot created in <strong>server.R</strong>.</p>
 </section><section id="meet-omopviewer" class="slide level2"><h2>Meet OmopViewer</h2>
-<p>Building every filter, table, and plot by hand takes time. <strong>OmopViewer creates a Shiny app for us</strong> from supported OMOP study results.</p>
-<p>It prepares the panels and code. We can then make small changes to fit our study.</p>
+<p>Building every filter, table, and plot by hand takes time. <strong>OmopViewer creates a multiple-file Shiny app for us</strong> from supported OMOP study results.</p>
+<p>It generates separate UI, server, and setup files. We can then make small changes to fit our study.</p>
 <div class="fragment">
 <p>Two ways to use it:</p>
 <ul>
 <li class="fragment">
-<code>launchDynamicApp()</code>: open a viewer and upload results to explore.</li>
+<code>launchDynamicApp()</code>: quickly inspect uploaded results without creating an app project.</li>
 <li class="fragment">
-<code>exportStaticApp()</code>: create app files that we can inspect, edit, and share.</li>
+<code>exportStaticApp()</code>: generate a persistent set of app files that we can inspect, edit, and share.</li>
 </ul>
 </div>
 </section><section id="what-data-does-it-need" class="slide level2"><h2>What data does it need?</h2>
@@ -299,7 +303,7 @@
 <li class="fragment">Open the course website’s <a href="../../Downloads/index.html">Downloads</a> tab and choose your GitHub username.</li>
 <li class="fragment">Click <strong>Download OmopViewer results</strong>.</li>
 <li class="fragment">Save <code>omopviewer_results.csv</code> in <strong>practical/data</strong>.</li>
-<li class="fragment">Create an R script called <code>omopviewer.R</code> in <strong>practical</strong>, beside <code>practice.R</code>. Keep the viewer code here and the simple histogram app in <code>first-shiny/app.R</code>.</li>
+<li class="fragment">Create an R script called <code>omopviewer.R</code> in <strong>practical</strong>, beside <code>practice.R</code>. Keep the viewer code here and the simple histogram app in the <strong>first-shiny</strong> folder.</li>
 </ol>
 <p>The code in these slides is for you to run in RStudio. It does not launch an app when we render the presentation.</p>
 </section><section id="open-the-dynamic-viewer" class="slide level2"><h2>Open the dynamic viewer</h2>
@@ -376,19 +380,21 @@
 <td>Code that responds to inputs and builds outputs.</td>
 </tr>
 <tr class="even">
+<td><code>functions.R</code></td>
+<td>Helper functions used by the UI and server.</td>
+</tr>
+<tr class="odd">
 <td><code>background.md</code></td>
 <td>Text for the background panel.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>
 <code>rawData/</code> and <code>data/</code>
 </td>
 <td>Original results, preparation code, and prepared app data.</td>
 </tr>
 </tbody>
-</table>
-<p>Our first app had UI and server together in <code>app.R</code>. This app keeps them in separate files so they are easier to explore.</p>
-</section><section id="start-with-the-export-options" class="slide level2"><h2>Start with the export options</h2>
+</table></section><section id="start-with-the-export-options" class="slide level2"><h2>Start with the export options</h2>
 <p>Before editing the generated files, try changing the title and hiding the summary panel:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">exportStaticApp</span><span class="op">(</span></span>
@@ -435,7 +441,7 @@
 </section><section id="final-remarks" class="slide level2"><h2>Final remarks</h2>
 <ul>
 <li class="fragment">
-<strong>Shiny:</strong> the UI collects inputs and displays outputs; the server connects them with R code.</li>
+<strong>Shiny:</strong> <code>ui.R</code> collects inputs and displays outputs; <code>server.R</code> connects them with R code.</li>
 <li class="fragment">
 <strong>OmopViewer:</strong> creates the app structure and result panels for us.</li>
 <li class="fragment">Use the dynamic viewer to explore, or export an app when you want to customise it.</li>

@@ -186,7 +186,7 @@
     "href": "Presentations/PhenotypeR/index.html#create-cdm-reference-1",
     "title": "Creating cohorts from scratch using R",
     "section": "Create CDM reference",
-    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmpOtTIC5/file21ad679a71b3.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
+    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmpJKs3Ei/file21044e2ec4f0.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist",
@@ -662,42 +662,42 @@
     "href": "Presentations/OmopViewer/index.html#from-reports-to-apps",
     "title": "OmopViewer",
     "section": "From reports to apps",
-    "text": "From reports to apps\nIn Quarto we wrote a report and rendered it. With Shiny, we can let someone explore the results themselves: choose a database, change a filter, or switch between plots.\nA Shiny app has two main parts:\n\n\nUI (user interface): what you see, such as buttons, sliders, and spaces for plots.\n\nServer: the R code that responds to inputs and creates the outputs.\n\nChange an input and Shiny updates the outputs that depend on it. That is reactivity.\nHere, “server” means a function in our R code. The whole practice app can run on your own computer."
+    "text": "From reports to apps\nIn Quarto we rendered a report with fixed plots and tables. A Shiny app lets someone interact with the results. They can choose a database, change a filter, or switch between plots, and the displayed output can update.\nA Shiny app has a user interface and a server function. We will keep them in separate files, matching the structure that OmopViewer generates:\n\n\nui.R defines the ui object: the controls someone can use and the spaces where outputs will appear.\n\nserver.R defines the server function that reads those inputs and creates the outputs.\n\nWhen an input changes, Shiny updates the outputs that depend on it. This is reactivity.\nHere, “server” means a function in our R code. Both files form one app, which can run on your own computer."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#your-first-shiny-app",
     "href": "Presentations/OmopViewer/index.html#your-first-shiny-app",
     "title": "OmopViewer",
     "section": "Your first Shiny app",
-    "text": "Your first Shiny app\nReopen practical.Rproj after the OmopStudyBuilder session. In RStudio, choose File → New File → Shiny Web App…, name the app first-shiny, and select a single-file app, app.R.\nClick Run App and move the slider in the starter histogram example. What changes?\n\nThe next two slides show the complete code for the example. Put both blocks together in first-shiny/app.R, replacing the starter code, with shinyApp() at the end. Install shiny and bslib if RStudio reports that either is missing.\nThe app keeps your R session busy while it runs. Click Stop in RStudio before running other code or restarting the app."
+    "text": "Your first Shiny app\nReopen practical.Rproj after the OmopStudyBuilder session. In RStudio, choose File → New File → Shiny Web App…, name the app first-shiny, and select a multiple-file app.\nClick Run App and move the slider in the starter histogram example. What changes?\n\nRStudio creates first-shiny/ui.R and first-shiny/server.R. Shiny reads both files when it starts the app.\nInstall shiny and bslib if RStudio reports that either is missing.\nThe app keeps your R session busy while it runs. Click Stop in RStudio before running other code or restarting the app."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#the-ui-what-goes-where",
     "href": "Presentations/OmopViewer/index.html#the-ui-what-goes-where",
     "title": "OmopViewer",
     "section": "The UI: what goes where?",
-    "text": "The UI: what goes where?\n\nlibrary(shiny)\n\nui &lt;- fluidPage(\n  titlePanel(\"Hello Shiny!\"),\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\"bins\", \"Number of bins:\",\n                  min = 1, max = 50, value = 30)\n    ),\n    mainPanel(plotOutput(\"distPlot\"))\n  )\n)\n\nbins is the slider’s ID. distPlot is the space where the server will put the plot. These IDs connect the two parts of the app."
+    "text": "The UI: what goes where?\nReplace the contents of first-shiny/ui.R with:\n\nlibrary(shiny)\n\nui &lt;- fluidPage(\n  titlePanel(\"Hello Shiny!\"),\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\"bins\", \"Number of bins:\",\n                  min = 1, max = 50, value = 30)\n    ),\n    mainPanel(plotOutput(\"distPlot\"))\n  )\n)\n\nbins is the slider’s ID. distPlot is the space where the server will put the plot. These IDs connect the two parts of the app."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#the-server-make-the-plot",
     "href": "Presentations/OmopViewer/index.html#the-server-make-the-plot",
     "title": "OmopViewer",
     "section": "The server: make the plot",
-    "text": "The server: make the plot\n\nserver &lt;- function(input, output, session) {\n  output$distPlot &lt;- renderPlot({\n    x &lt;- faithful$waiting\n    bins &lt;- seq(min(x), max(x), length.out = input$bins + 1)\n    hist(x, breaks = bins, col = \"steelblue\", border = \"white\",\n         xlab = \"Waiting time to next eruption (minutes)\",\n         main = \"Old Faithful\")\n  })\n}\n\nshinyApp(ui = ui, server = server)\n\nfaithful is a built-in dataset; the histogram groups its waiting times into bins. input$bins reads the slider, and output$distPlot sends the plot to the UI.\nJust as $ picked a table column in R, here it picks a named input or output. renderPlot() reruns when the slider value changes."
+    "text": "The server: make the plot\nReplace the contents of first-shiny/server.R with:\n\nlibrary(shiny)\n\nserver &lt;- function(input, output, session) {\n  output$distPlot &lt;- renderPlot({\n    x &lt;- faithful$waiting\n    bins &lt;- seq(min(x), max(x), length.out = input$bins + 1)\n    hist(x, breaks = bins, col = \"steelblue\", border = \"white\",\n         xlab = \"Waiting time to next eruption (minutes)\",\n         main = \"Old Faithful\")\n  })\n}\n\nfaithful is a built-in dataset; the histogram groups its waiting times into bins. input$bins reads the slider, and output$distPlot sends the plot to the UI.\nJust as $ picked a table column in R, here it picks a named input or output. renderPlot() reruns when the slider value changes."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#give-the-ui-a-style-with-bslib",
     "href": "Presentations/OmopViewer/index.html#give-the-ui-a-style-with-bslib",
     "title": "OmopViewer",
     "section": "Give the UI a style with bslib",
-    "text": "Give the UI a style with bslib\nbslib gives us layouts, cards, sidebars, and themes. Replace the previous ui block with this one and keep the same server:\n\nlibrary(bslib)\n\nui &lt;- page_sidebar(\n  title = \"My first app\",\n  theme = bs_theme(bootswatch = \"flatly\"),\n  sidebar = sidebar(\n    sliderInput(\"bins\", \"Number of bins:\",\n                min = 1, max = 50, value = 30)\n  ),\n  card(plotOutput(\"distPlot\"))\n)\n\nPut library(bslib) near the top of app.R, replace the ui block, save, and click Run App again. Keep shinyApp(ui, server) at the end. The IDs still connect the slider and plot."
+    "text": "Give the UI a style with bslib\nbslib gives us layouts, cards, sidebars, and themes. Replace the contents of ui.R with this code and leave server.R unchanged:\n\nlibrary(shiny)\nlibrary(bslib)\n\nui &lt;- page_sidebar(\n  title = \"My first app\",\n  theme = bs_theme(bootswatch = \"flatly\"),\n  sidebar = sidebar(\n    sliderInput(\"bins\", \"Number of bins:\",\n                min = 1, max = 50, value = 30)\n  ),\n  card(plotOutput(\"distPlot\"))\n)\n\nSave ui.R and click Run App again. The IDs still connect the slider in ui.R to the plot created in server.R."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#meet-omopviewer",
     "href": "Presentations/OmopViewer/index.html#meet-omopviewer",
     "title": "OmopViewer",
     "section": "Meet OmopViewer",
-    "text": "Meet OmopViewer\nBuilding every filter, table, and plot by hand takes time. OmopViewer creates a Shiny app for us from supported OMOP study results.\nIt prepares the panels and code. We can then make small changes to fit our study.\n\nTwo ways to use it:\n\n\nlaunchDynamicApp(): open a viewer and upload results to explore.\n\nexportStaticApp(): create app files that we can inspect, edit, and share."
+    "text": "Meet OmopViewer\nBuilding every filter, table, and plot by hand takes time. OmopViewer creates a multiple-file Shiny app for us from supported OMOP study results.\nIt generates separate UI, server, and setup files. We can then make small changes to fit our study.\n\nTwo ways to use it:\n\n\nlaunchDynamicApp(): quickly inspect uploaded results without creating an app project.\n\nexportStaticApp(): generate a persistent set of app files that we can inspect, edit, and share."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#what-data-does-it-need",
@@ -711,7 +711,7 @@
     "href": "Presentations/OmopViewer/index.html#your-turn-get-the-results",
     "title": "OmopViewer",
     "section": "\nYOUR TURN Get the results",
-    "text": "YOUR TURN Get the results\n\nOpen the course website’s Downloads tab and choose your GitHub username.\nClick Download OmopViewer results.\nSave omopviewer_results.csv in practical/data.\nCreate an R script called omopviewer.R in practical, beside practice.R. Keep the viewer code here and the simple histogram app in first-shiny/app.R.\n\nThe code in these slides is for you to run in RStudio. It does not launch an app when we render the presentation."
+    "text": "YOUR TURN Get the results\n\nOpen the course website’s Downloads tab and choose your GitHub username.\nClick Download OmopViewer results.\nSave omopviewer_results.csv in practical/data.\nCreate an R script called omopviewer.R in practical, beside practice.R. Keep the viewer code here and the simple histogram app in the first-shiny folder.\n\nThe code in these slides is for you to run in RStudio. It does not launch an app when we render the presentation."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#open-the-dynamic-viewer",
@@ -746,7 +746,7 @@
     "href": "Presentations/OmopViewer/index.html#what-did-omopviewer-create",
     "title": "OmopViewer",
     "section": "What did OmopViewer create?",
-    "text": "What did OmopViewer create?\nStop the app, then open viewer/shiny in RStudio’s Files pane.\nFor this exercise, keep practical as the active R Project. Browse the files without opening the generated shiny.Rproj, so the here() paths in our script stay the same.\n\n\n\n\n\n\nFile\nWhat to look for\n\n\n\nglobal.R\nPackages and data loaded for the app.\n\n\nui.R\nLayout, panels, labels, and input controls.\n\n\nserver.R\nCode that responds to inputs and builds outputs.\n\n\nbackground.md\nText for the background panel.\n\n\n\nrawData/ and data/\n\nOriginal results, preparation code, and prepared app data.\n\n\n\nOur first app had UI and server together in app.R. This app keeps them in separate files so they are easier to explore."
+    "text": "What did OmopViewer create?\nStop the app, then open viewer/shiny in RStudio’s Files pane.\nFor this exercise, keep practical as the active R Project. Browse the files without opening the generated shiny.Rproj, so the here() paths in our script stay the same.\n\n\n\n\n\n\nFile\nWhat to look for\n\n\n\nglobal.R\nPackages and data loaded for the app.\n\n\nui.R\nLayout, panels, labels, and input controls.\n\n\nserver.R\nCode that responds to inputs and builds outputs.\n\n\nfunctions.R\nHelper functions used by the UI and server.\n\n\nbackground.md\nText for the background panel.\n\n\n\nrawData/ and data/\n\nOriginal results, preparation code, and prepared app data."
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#start-with-the-export-options",
@@ -781,7 +781,7 @@
     "href": "Presentations/OmopViewer/index.html#final-remarks",
     "title": "OmopViewer",
     "section": "Final remarks",
-    "text": "Final remarks\n\n\nShiny: the UI collects inputs and displays outputs; the server connects them with R code.\n\nOmopViewer: creates the app structure and result panels for us.\nUse the dynamic viewer to explore, or export an app when you want to customise it.\n\nStart with a small change, run the app, and see what happens :)"
+    "text": "Final remarks\n\n\nShiny: ui.R collects inputs and displays outputs; server.R connects them with R code.\n\nOmopViewer: creates the app structure and result panels for us.\nUse the dynamic viewer to explore, or export an app when you want to customise it.\n\nStart with a small change, run the app, and see what happens :)"
   },
   {
     "objectID": "Presentations/OmopViewer/index.html#useful-links",
