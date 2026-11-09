@@ -1,0 +1,11 @@
+concept_id,concept_name,vocabulary_id
+201826,Type 2 diabetes mellitus,SNOMED
+1234567890,FAKE Type 2 diabetes,INVENTED
+4063043,Pre-existing type 2 diabetes mellitus,SNOMED
+43531597,Disorder due to well controlled type 2 diabetes mellitus,SNOMED
+4130162,Insulin treated type 2 diabetes mellitus,SNOMED
+4129519,Pregnancy and type 2 diabetes mellitus,SNOMED
+45770928,Retinal edema due to type 2 diabetes mellitus,SNOMED
+44803781,Dementia monitoring third letter,SNOMED
+4200875,Type 2 diabetes mellitus with peripheral angiopathy,SNOMED
+4196141,Arthropathy due to type 2 diabetes mellitus,SNOMED
