@@ -6,17 +6,16 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.11.9">
-
-  <meta name="dcterms.date" content="2026-11-09">
-  <title>HDS-OMOP-course – Presentation</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
-  <style>
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="UTF-8">
+<meta name="generator" content="quarto-1.11.9">
+<meta name="dcterms.date" content="2026-11-09">
+<title>HDS-OMOP-course – OmopStudyBuilder</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+<style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
@@ -34,15 +33,81 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-e6beccd3067aa6ca58895913f1130f0a.css">
-  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-e6beccd3067aa6ca58895913f1130f0a.css">
+<link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+<style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -129,27 +194,232 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="Presentation – HDS-OMOP-course">
+<meta property="og:title" content="OmopStudyBuilder – HDS-OMOP-course">
 <meta property="og:site_name" content="HDS-OMOP-course">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Presentation</h1>
+<section id="title-slide" class="quarto-title-block center"><h1 class="title">OmopStudyBuilder</h1>
 
 <div class="quarto-title-authors">
 </div>
 
   <p class="date">2026-11-09</p>
+</section><section id="why-omopstudybuilder" class="slide level2"><h2>Why OmopStudyBuilder?</h2>
+<p>We have seen how an R Project keeps our work together and how GitHub helps us share it. Now imagine several teams running the same study in different OMOP databases.</p>
+<p>It helps if everyone knows where to find the code, the instructions, and the results.</p>
+<div class="fragment">
+<p><strong>OmopStudyBuilder</strong> gives us a common starting structure for study projects and repositories. We add the study-specific code and documentation.</p>
+</div>
+</section><section id="what-will-we-do" class="slide level2"><h2>What will we do?</h2>
+<ol type="1">
+<li class="fragment">Create the study structure with <code>initStudy()</code>.</li>
+<li class="fragment">Explore the generated files and publish the repository on GitHub.</li>
+<li class="fragment">See how <code>renv</code> records the packages a project uses.</li>
+<li class="fragment">Use <code>reviewStudy()</code> to get an overview of the code and dependencies.</li>
+</ol>
+<p>The package also has Docker tools for running studies in containers. Today we will focus on setting up and reviewing a study.</p>
+</section><section id="create-a-study" class="slide level2"><h2>Create a study</h2>
+<p>Install the package from CRAN if you do not have it yet:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"OmopStudyBuilder"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>From your current R Project, choose a new folder beside it. Replace <code>yourusername</code> with your GitHub username:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://oxford-pharmacoepi.github.io/OmopStudyBuilder/">OmopStudyBuilder</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">study_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/basename.html">dirname</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, <span class="st">"hds-study-yourusername"</span><span class="op">)</span></span>
+<span><span class="fu">initStudy</span><span class="op">(</span></span>
+<span>  directory <span class="op">=</span> <span class="va">study_dir</span>,</span>
+<span>  studyTitle <span class="op">=</span> <span class="st">"My HDS practice study"</span>,</span>
+<span>  studyLeads <span class="op">=</span> <span class="st">"Your name"</span>,</span>
+<span>  studyDescription <span class="op">=</span> <span class="st">"Practising a shared OMOP study structure."</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The destination must be new or empty. Let <code>initStudy()</code> create its contents before opening any of the generated R Projects.</p>
+</section><section id="what-did-it-create" class="slide level2"><h2>What did it create?</h2>
+<pre class="text"><code>hds-study-yourusername/
+├── README.md
+├── INSTRUCTIONS.md
+├── diagnosticsCode/
+├── diagnosticsShiny/
+├── studyCode/
+└── studyShiny/</code></pre>
+<ul>
+<li class="fragment">
+<strong>diagnosticsCode:</strong> prepare checks before the main analysis.</li>
+<li class="fragment">
+<strong>studyCode:</strong> define cohorts and run the study analyses.</li>
+<li class="fragment">
+<strong>diagnosticsShiny</strong> and <strong>studyShiny:</strong> places for apps that explore the results.</li>
+</ul>
+<p>Both <code>diagnostics</code> and <code>study</code> default to <code>TRUE</code>. Set either to <code>FALSE</code> in <code>initStudy()</code> if you do not need that pair of folders.</p>
+</section><section id="one-repository-several-r-projects" class="slide level2"><h2>One repository, several R Projects</h2>
+<p>Each of the four component folders contains an <code>.Rproj</code> file. Open the project for the part you are working on.</p>
+<p>For example, open <strong>studyCode/studyCode.Rproj</strong> for the main analysis. In that session, <code><a href="https://here.r-lib.org/reference/here.html">here()</a></code> points to <code>studyCode</code>.</p>
+<div class="fragment">
+<table class="caption-top">
+<colgroup>
+<col style="width: 64%">
+<col style="width: 35%">
+</colgroup>
+<thead><tr class="header">
+<th>File or folder inside <code>studyCode</code>
+</th>
+<th>What goes there?</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>codeToRun.R</code></td>
+<td>The entry script, including database-specific settings.</td>
+</tr>
+<tr class="even">
+<td><code>runStudy.R</code></td>
+<td>The sequence of study steps.</td>
+</tr>
+<tr class="odd">
+<td>
+<code>codelist/</code> and <code>cohorts/</code>
+</td>
+<td>Code to define the study population.</td>
+</tr>
+<tr class="even">
+<td><code>analyses/</code></td>
+<td>Code for the analyses.</td>
+</tr>
+<tr class="odd">
+<td><code>Results/</code></td>
+<td>Output from the study.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section><section id="your-turn-explore-the-template" class="slide level2"><h2>
+<code>YOUR TURN</code> Explore the template</h2>
+<ol type="1">
+<li class="fragment">Run the <code>initStudy()</code> example with your own folder name and study details.</li>
+<li class="fragment">Read the root <code>README.md</code> and <code>INSTRUCTIONS.md</code>. Which parts would you update for a real study?</li>
+<li class="fragment">Open <strong>studyCode/studyCode.Rproj</strong>, then look at <code>codeToRun.R</code> and <code>runStudy.R</code>.</li>
+<li class="fragment">Find where you would add cohort definitions and an analysis.</li>
+</ol>
+<p>For now, explore the scripts rather than sourcing them: the database connection and study-specific code are still to be filled in.</p>
+</section><section id="your-turn-put-the-study-on-github" class="slide level2 smaller"><h2>
+<code>YOUR TURN</code> Put the study on GitHub</h2>
+<p>Use the <strong>whole study folder</strong>, <code>hds-study-yourusername</code>, as the repository root.</p>
+<ol type="1">
+<li class="fragment">In GitHub Desktop, choose <strong>File → Add Local Repository…</strong> and select that folder.</li>
+<li class="fragment">If Desktop says it is not a Git repository, follow <strong>create a repository here</strong>. Use the existing folder and keep the README created by OmopStudyBuilder.</li>
+<li class="fragment">Review the files and commit any pending changes with a message such as <code>Add study structure</code>.</li>
+<li class="fragment">Click <strong>Publish repository</strong>, choose <strong>oxford-pharmacoepi</strong> as the organisation, and publish it as a private repository.</li>
+<li class="fragment">Open it on GitHub and check that the README and all four component folders are there.</li>
+</ol>
+<p>Use a unique repository name. If you cannot select the organisation, ask the trainer to check your access.</p>
+</section><section id="keep-the-instructions-with-the-code" class="slide level2"><h2>Keep the instructions with the code</h2>
+<p>In the root README, write a short description of your practice study. For example: which population would you study, and what would you measure?</p>
+<p>Then use the workflow from the GitHub session:</p>
+<ul>
+<li class="fragment">Create a branch for your changes.</li>
+<li class="fragment">Commit and push them.</li>
+<li class="fragment">Open a pull request and ask a colleague whether the instructions are clear.</li>
+</ul>
+<p>OmopStudyBuilder can also create a GitHub repository through <code>initStudy()</code> or <code>linkGitHub()</code> when R authentication is configured. See the <a href="https://cran.r-project.org/web/packages/OmopStudyBuilder/refman/OmopStudyBuilder.html">CRAN reference manual</a> for that route.</p>
+</section><section id="why-use-renv" class="slide level2"><h2>Why use renv?</h2>
+<p>The same code can behave differently when people have different package versions. <strong>renv</strong> gives an R Project its own package library and records package versions in <strong>renv.lock</strong>.</p>
+<div class="fragment">
+<ul>
+<li class="fragment">The study developer prepares the environment and records it.</li>
+<li class="fragment">A colleague restores that environment when they run the study.</li>
+<li class="fragment">The lockfile is committed alongside the code, so changes can be reviewed in GitHub.</li>
+</ul>
+<p>The generated study folders do not yet contain a lockfile. Prepare <code>renv</code> in each component R Project that you use, after deciding which packages its code needs.</p>
+</div>
+</section><section id="renv-the-basic-workflow" class="slide level2 smaller"><h2>renv: the basic workflow</h2>
+<p>Open <strong>studyCode/studyCode.Rproj</strong> before setting up its environment. Install <code>renv</code> if needed, then initialise it once:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"renv"</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/renv/">renv</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rstudio.github.io/renv/reference/init.html">init</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code><a href="https://rstudio.github.io/renv/reference/init.html">init()</a></code> scans the project and prepares its package library and lockfile. It may need to install packages referenced by the template.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 68%">
+</colgroup>
+<thead><tr class="header">
+<th>Function</th>
+<th>When would we use it?</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code><a href="https://rstudio.github.io/renv/reference/snapshot.html">snapshot()</a></code></td>
+<td>Record the package versions after changing and checking the code.</td>
+</tr>
+<tr class="even">
+<td><code><a href="https://rstudio.github.io/renv/reference/restore.html">restore()</a></code></td>
+<td>Install the versions recorded in an existing lockfile.</td>
+</tr>
+<tr class="odd">
+<td><code><a href="https://rstudio.github.io/renv/reference/status.html">status()</a></code></td>
+<td>Check whether the project library and lockfile agree.</td>
+</tr>
+</tbody>
+</table>
+<p>Commit <code>renv.lock</code> and the activation files created by <code>renv</code>; its <code>.gitignore</code> excludes the local package library. <code>renv</code> records the R version but does not install R itself.</p>
+<p>More detail: <a href="https://rstudio.github.io/renv/articles/renv.html">Introduction to renv</a>.</p>
+</section><section id="get-an-overview-with-reviewstudy" class="slide level2"><h2>Get an overview with reviewStudy()</h2>
+<p>Before sharing code with a data partner, it is useful to see what is in the project.</p>
+<p>From the <strong>studyCode</strong> R Project, install OmopStudyBuilder there if it is missing from your new <code>renv</code> library, then run:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://oxford-pharmacoepi.github.io/OmopStudyBuilder/">OmopStudyBuilder</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">reviewStudy</span><span class="op">(</span>dir <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span>, dependencies <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This prints a summary of the R scripts and JSON, CSV, and Excel files. We skip the dependency review here because the fresh template has no <code>renv.lock</code> yet.</p>
+<p>It gives us a starting point for review; we still need to read the code and check that it answers the study question.</p>
+</section><section id="review-the-dependencies-too" class="slide level2"><h2>Review the dependencies too</h2>
+<p>Once <strong>studyCode/renv.lock</strong> exists, run:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">reviewStudy</span><span class="op">(</span>dir <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"analysis"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>By default, both <code>code</code> and <code>dependencies</code> are <code>TRUE</code>. The dependency review uses the lockfile and reports on package versions and sources.</p>
+<div class="fragment">
+<p>For a reporting or app project, open that component’s R Project and use <code>type = "reporting"</code>.</p>
+<p>Run the review in the component folder containing the lockfile. A review of the repository root will not automatically review every component’s environment.</p>
+</div>
+</section><section id="your-turn-review-your-study" class="slide level2"><h2>
+<code>YOUR TURN</code> Review your study</h2>
+<ol type="1">
+<li class="fragment">Run <code>reviewStudy(dir = here(), dependencies = FALSE)</code> from <strong>studyCode</strong>.</li>
+<li class="fragment">Find the entry script and the analysis scripts in the output. Which are still empty?</li>
+<li class="fragment">If you have prepared a lockfile, run the dependency review too. Pick one package and find its recorded version.</li>
+<li class="fragment">Add a note to your pull request describing what still needs to be completed before the study can run.</li>
+</ol>
+<p>Discuss the review with your colleague. A common folder structure makes it easier to find things, but the code and instructions still need a human review.</p>
+</section><section id="final-remarks" class="slide level2"><h2>Final remarks</h2>
+<ul>
+<li class="fragment">Start with <code>initStudy()</code> so everyone recognises the study layout.</li>
+<li class="fragment">Keep the instructions and code together in GitHub.</li>
+<li class="fragment">Use <code>renv</code> to record and restore package versions.</li>
+<li class="fragment">Use <code>reviewStudy()</code> to help you inspect the project before sharing it.</li>
+</ul>
+<p>Next, we will see how <strong>OmopViewer</strong> helps us build apps to explore study results.</p>
+</section><section id="useful-links" class="slide level2"><h2>Useful links</h2>
+<ul>
+<li class="fragment"><a href="https://cran.r-project.org/package=OmopStudyBuilder">OmopStudyBuilder on CRAN</a></li>
+<li class="fragment"><a href="https://cran.r-project.org/web/packages/OmopStudyBuilder/refman/OmopStudyBuilder.html">CRAN reference manual</a></li>
+<li class="fragment"><a href="https://oxford-pharmacoepi.github.io/OmopStudyBuilder/">Package guides and examples</a></li>
+<li class="fragment"><a href="https://rstudio.github.io/renv/articles/renv.html">Introduction to renv</a></li>
+</ul>
+<p>Examples follow the CRAN release of OmopStudyBuilder, <strong>0.1.1</strong>.</p>
+
+
 </section>
-<section class="slide level2">
-
-
-
-</section>
-    </div>
+</div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 <div style="position: relative; width: 100%;">
@@ -163,24 +433,7 @@ HDS OMOP Training
 </div>
 </div></div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script><script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../../site_libs/revealjs/plugin/search/search.js"></script><script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -372,8 +625,42 @@ HDS OMOP Training
           RevealZoom
         ]
       });
-    </script>
-    <script id="quarto-html-after-body" type="application/javascript">
+    </script><script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script><script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
         tabsets.forEach(function(tabset) {
@@ -604,6 +891,6 @@ HDS OMOP Training
         }
       });
       </script>
-    
+
 
 </body></html>

@@ -6,17 +6,16 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.11.9">
-
-  <meta name="dcterms.date" content="2026-11-09">
-  <title>HDS-OMOP-course – Presentation</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
-  <style>
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="UTF-8">
+<meta name="generator" content="quarto-1.11.9">
+<meta name="dcterms.date" content="2026-11-09">
+<title>HDS-OMOP-course – OmopViewer</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+<style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
@@ -34,15 +33,81 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-e6beccd3067aa6ca58895913f1130f0a.css">
-  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-e6beccd3067aa6ca58895913f1130f0a.css">
+<link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+<style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -129,27 +194,243 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="Presentation – HDS-OMOP-course">
+<meta property="og:title" content="OmopViewer – HDS-OMOP-course">
 <meta property="og:site_name" content="HDS-OMOP-course">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Presentation</h1>
+<section id="title-slide" class="quarto-title-block center"><h1 class="title">OmopViewer</h1>
 
 <div class="quarto-title-authors">
 </div>
 
   <p class="date">2026-11-09</p>
+</section><section id="from-reports-to-apps" class="slide level2"><h2>From reports to apps</h2>
+<p>In Quarto we wrote a report and rendered it. With <strong>Shiny</strong>, we can let someone explore the results themselves: choose a database, change a filter, or switch between plots.</p>
+<p>A Shiny app has two main parts:</p>
+<ul>
+<li class="fragment">
+<strong>UI (user interface):</strong> what you see, such as buttons, sliders, and spaces for plots.</li>
+<li class="fragment">
+<strong>Server:</strong> the R code that responds to inputs and creates the outputs.</li>
+</ul>
+<p>Change an input and Shiny updates the outputs that depend on it. That is <strong>reactivity</strong>.</p>
+</section><section id="your-first-shiny-app" class="slide level2"><h2>Your first Shiny app</h2>
+<p>Open your R Project. In RStudio, choose <strong>File → New File → Shiny Web App…</strong> and select a single-file app, <code>app.R</code>.</p>
+<p>Click <strong>Run App</strong> and move the slider in the starter histogram example. What changes?</p>
+<div class="fragment">
+<p>The next two slides show the UI and server for this example. Put them together in <code>app.R</code>.</p>
+<p>The app keeps your R session busy while it runs. Click <strong>Stop</strong> in RStudio before running other code or restarting the app.</p>
+</div>
+</section><section id="the-ui-what-goes-where" class="slide level2"><h2>The UI: what goes where?</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/">shiny</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html">titlePanel</a></span><span class="op">(</span><span class="st">"Hello Shiny!"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarLayout</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">sidebarPanel</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span><span class="op">(</span><span class="st">"bins"</span>, <span class="st">"Number of bins:"</span>,</span>
+<span>                  min <span class="op">=</span> <span class="fl">1</span>, max <span class="op">=</span> <span class="fl">50</span>, value <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html">mainPanel</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">"distPlot"</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>bins</code> is the slider’s ID. <code>distPlot</code> is the space where the server will put the plot. These IDs connect the two parts of the app.</p>
+</section><section id="the-server-make-the-plot" class="slide level2"><h2>The server: make the plot</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">distPlot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">faithful</span><span class="op">$</span><span class="va">waiting</span></span>
+<span>    <span class="va">bins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, length.out <span class="op">=</span> <span class="va">input</span><span class="op">$</span><span class="va">bins</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">x</span>, breaks <span class="op">=</span> <span class="va">bins</span>, col <span class="op">=</span> <span class="st">"steelblue"</span>, border <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>         xlab <span class="op">=</span> <span class="st">"Waiting time to next eruption (minutes)"</span>,</span>
+<span>         main <span class="op">=</span> <span class="st">"Old Faithful"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>input$bins</code> reads the slider. <code><a href="https://rdrr.io/pkg/shiny/man/renderPlot.html">renderPlot()</a></code> reruns when that value changes, and <code>output$distPlot</code> sends the new plot to the UI.</p>
+</section><section id="give-the-ui-a-style-with-bslib" class="slide level2"><h2>Give the UI a style with bslib</h2>
+<p><strong>bslib</strong> gives us layouts, cards, sidebars, and themes. Replace the previous <code>ui</code> block with this one and keep the same server:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/bslib/">bslib</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rstudio.github.io/bslib/reference/page_sidebar.html">page_sidebar</a></span><span class="op">(</span></span>
+<span>  title <span class="op">=</span> <span class="st">"My first app"</span>,</span>
+<span>  theme <span class="op">=</span> <span class="fu"><a href="https://rstudio.github.io/bslib/reference/bs_theme.html">bs_theme</a></span><span class="op">(</span>bootswatch <span class="op">=</span> <span class="st">"flatly"</span><span class="op">)</span>,</span>
+<span>  sidebar <span class="op">=</span> <span class="fu"><a href="https://rstudio.github.io/bslib/reference/sidebar.html">sidebar</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sliderInput.html">sliderInput</a></span><span class="op">(</span><span class="st">"bins"</span>, <span class="st">"Number of bins:"</span>,</span>
+<span>                min <span class="op">=</span> <span class="fl">1</span>, max <span class="op">=</span> <span class="fl">50</span>, value <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rstudio.github.io/bslib/reference/card.html">card</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html">plotOutput</a></span><span class="op">(</span><span class="st">"distPlot"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Run <code>shinyApp(ui, server)</code> again. The layout changes, but the matching IDs mean the slider and plot still work together.</p>
+</section><section id="meet-omopviewer" class="slide level2"><h2>Meet OmopViewer</h2>
+<p>Building every filter, table, and plot by hand takes time. <strong>OmopViewer creates a Shiny app for us</strong> from supported OMOP study results.</p>
+<p>It prepares the panels and code. We can then make small changes to fit our study.</p>
+<div class="fragment">
+<p>Two ways to use it:</p>
+<ul>
+<li class="fragment">
+<code>launchDynamicApp()</code>: open a viewer and upload results to explore.</li>
+<li class="fragment">
+<code>exportStaticApp()</code>: create app files that we can inspect, edit, and share.</li>
+</ul>
+</div>
+</section><section id="what-data-does-it-need" class="slide level2"><h2>What data does it need?</h2>
+<p>OmopViewer works with <strong>summarised_result</strong> objects: summary estimates together with settings that describe the analyses that produced them.</p>
+<p>The settings help OmopViewer choose the appropriate panels for supported result types.</p>
+<div class="fragment">
+<p>For this exercise, we will use cohort attrition and characteristics results from the reporting training, for <strong>amoxicillin</strong> and <strong>metformin</strong>.</p>
+<p>Download <strong>OmopViewer results</strong> for this exercise. The four-column Data 1 and Data 2 files from the Quarto session are ordinary tables and cannot be used directly here.</p>
+</div>
+</section><section id="your-turn-get-the-results" class="slide level2"><h2>
+<code>YOUR TURN</code> Get the results</h2>
+<ol type="1">
+<li class="fragment">Open the course website’s <a href="../../Downloads/index.html">Downloads</a> tab and choose your GitHub username.</li>
+<li class="fragment">Click <strong>Download OmopViewer results</strong>.</li>
+<li class="fragment">Save <code>omopviewer_results.csv</code> in the <code>data</code> folder of your R Project.</li>
+<li class="fragment">Create an R script called <code>omopviewer.R</code> in your project. We will use it to explore and export an app.</li>
+</ol>
+<p>The code in these slides is for you to run in RStudio. It does not launch an app when we render the presentation.</p>
+</section><section id="open-the-dynamic-viewer" class="slide level2"><h2>Open the dynamic viewer</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/OmopViewer/">OmopViewer</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">launchDynamicApp</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Upload <code>omopviewer_results.csv</code>, then use <strong>Bind data and load shiny</strong> to build the panels.</p>
+<div class="fragment">
+<p>This is a quick way to look at results without creating an app project. Stop the app in RStudio when you want to continue coding.</p>
+</div>
+</section><section id="your-turn-explore-the-results" class="slide level2"><h2>
+<code>YOUR TURN</code> Explore the results</h2>
+<ul>
+<li class="fragment">Find the cohort characteristics and attrition panels.</li>
+<li class="fragment">Switch between amoxicillin and metformin. What changes?</li>
+<li class="fragment">Try a filter or a table option, then update the output if the panel has an update button.</li>
+<li class="fragment">Pick one result you would want to show in a report.</li>
+</ul>
+<p>Think about the UI and server we just saw: which controls are inputs, and which tables or plots are outputs?</p>
+</section><section id="import-the-results-in-r" class="slide level2"><h2>Import the results in R</h2>
+<p>Stop the dynamic app and return to <code>omopviewer.R</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/OmopViewer/">OmopViewer</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu.github.io/omopgenerics/">omopgenerics</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/">shiny</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/importSummarisedResult.html">importSummarisedResult</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"data"</span>, <span class="st">"omopviewer_results.csv"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://darwin-eu.github.io/omopgenerics/reference/settings.html">settings</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Use <code><a href="https://darwin-eu.github.io/omopgenerics/reference/importSummarisedResult.html">importSummarisedResult()</a></code> to restore the results and their settings. <code>read_csv()</code> alone does not reconstruct this object.</p>
+</section><section id="export-an-app-we-can-edit" class="slide level2"><h2>Export an app we can edit</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">exportStaticApp</span><span class="op">(</span></span>
+<span>  result <span class="op">=</span> <span class="va">result</span>,</span>
+<span>  directory <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"viewer"</span><span class="op">)</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"My study results"</span>,</span>
+<span>  background <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  summary <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  open <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/runApp.html">runApp</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"viewer"</span>, <span class="st">"shiny"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>OmopViewer creates a <strong>shiny</strong> folder inside <code>viewer</code>. Here, “static” means the results are supplied when we generate the app; the app itself is still interactive and needs R to run.</p>
+</section><section id="what-did-omopviewer-create" class="slide level2"><h2>What did OmopViewer create?</h2>
+<p>Stop the app, then open <code>viewer/shiny</code> in RStudio’s Files pane.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 75%">
+</colgroup>
+<thead><tr class="header">
+<th>File</th>
+<th>What to look for</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>global.R</code></td>
+<td>Packages and data loaded for the app.</td>
+</tr>
+<tr class="even">
+<td><code>ui.R</code></td>
+<td>Layout, panels, labels, and input controls.</td>
+</tr>
+<tr class="odd">
+<td><code>server.R</code></td>
+<td>Code that responds to inputs and builds outputs.</td>
+</tr>
+<tr class="even">
+<td><code>background.md</code></td>
+<td>Text for the background panel.</td>
+</tr>
+<tr class="odd">
+<td>
+<code>rawData/</code> and <code>data/</code>
+</td>
+<td>Original results, preparation code, and prepared app data.</td>
+</tr>
+</tbody>
+</table>
+<p>Our first app had UI and server together in <code>app.R</code>. This app keeps them in separate files so they are easier to explore.</p>
+</section><section id="start-with-the-export-options" class="slide level2"><h2>Start with the export options</h2>
+<p>Before editing the generated files, try changing the title and hiding the summary panel:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">exportStaticApp</span><span class="op">(</span></span>
+<span>  result <span class="op">=</span> <span class="va">result</span>,</span>
+<span>  directory <span class="op">=</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"viewer_custom"</span><span class="op">)</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Exploring our cohorts"</span>,</span>
+<span>  background <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  summary <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  open <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/runApp.html">runApp</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"viewer_custom"</span>, <span class="st">"shiny"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We use a second folder so we can compare the two apps. There are also options for themes, logos, and organising panels.</p>
+</section><section id="your-turn-make-it-yours" class="slide level2"><h2>
+<code>YOUR TURN</code> Make it yours</h2>
+<p>Stop the app and work in <strong>viewer_custom/shiny</strong>:</p>
+<ol type="1">
+<li class="fragment">Edit <code>background.md</code>: add a heading and two sentences explaining what someone can explore.</li>
+<li class="fragment">Open <code>ui.R</code>. Find a visible label and change its text. Keep input and output IDs the same so their connections still work.</li>
+<li class="fragment">Find the corresponding input or output in <code>server.R</code>. Can you follow what it does?</li>
+<li class="fragment">Run the app again and check your changes.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/runApp.html">runApp</a></span><span class="op">(</span><span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"viewer_custom"</span>, <span class="st">"shiny"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Save your edits before restarting. Exporting again to the same location can overwrite the generated app, so use a new folder if you want to keep your manual changes.</p>
+</section><section id="final-remarks" class="slide level2"><h2>Final remarks</h2>
+<ul>
+<li class="fragment">
+<strong>Shiny:</strong> the UI collects inputs and displays outputs; the server connects them with R code.</li>
+<li class="fragment">
+<strong>OmopViewer:</strong> creates the app structure and result panels for us.</li>
+<li class="fragment">Use the dynamic viewer to explore, or export an app when you want to customise it.</li>
+</ul>
+<p>Start with a small change, run the app, and see what happens :)</p>
+</section><section id="useful-links" class="slide level2"><h2>Useful links</h2>
+<ul>
+<li class="fragment"><a href="https://ohdsi.github.io/OmopViewer/">OmopViewer documentation</a></li>
+<li class="fragment"><a href="https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/">Shiny: your first app</a></li>
+<li class="fragment"><a href="https://rstudio.github.io/bslib/">bslib layouts and themes</a></li>
+</ul>
+<p>Adapted from the <a href="https://github.com/oxford-pharmacoepi/HDS_training_reporting/blob/main/Presentation/hds_training.qmd">HDS reporting training</a>.</p>
+
+
 </section>
-<section class="slide level2">
-
-
-
-</section>
-    </div>
+</div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 <div style="position: relative; width: 100%;">
@@ -163,24 +444,7 @@ HDS OMOP Training
 </div>
 </div></div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script><script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../../site_libs/revealjs/plugin/search/search.js"></script><script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -372,8 +636,42 @@ HDS OMOP Training
           RevealZoom
         ]
       });
-    </script>
-    <script id="quarto-html-after-body" type="application/javascript">
+    </script><script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script><script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
         tabsets.forEach(function(tabset) {
@@ -604,6 +902,6 @@ HDS OMOP Training
         }
       });
       </script>
-    
+
 
 </body></html>

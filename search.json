@@ -116,7 +116,7 @@
     "href": "Presentations/PhenotypeR/index.html#create-cdm-reference-1",
     "title": "Creating cohorts from scratch using R",
     "section": "Create CDM reference",
-    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmpFG0R9M/file218a51143cac.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
+    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp39pwZX/file21396ac8254f.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist",
@@ -558,6 +558,230 @@
     "title": "GitHub and GitHub Desktop",
     "section": "You are ready",
     "text": "You are ready"
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#from-reports-to-apps",
+    "href": "Presentations/OmopViewer/index.html#from-reports-to-apps",
+    "title": "OmopViewer",
+    "section": "From reports to apps",
+    "text": "From reports to apps\nIn Quarto we wrote a report and rendered it. With Shiny, we can let someone explore the results themselves: choose a database, change a filter, or switch between plots.\nA Shiny app has two main parts:\n\n\nUI (user interface): what you see, such as buttons, sliders, and spaces for plots.\n\nServer: the R code that responds to inputs and creates the outputs.\n\nChange an input and Shiny updates the outputs that depend on it. That is reactivity."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#your-first-shiny-app",
+    "href": "Presentations/OmopViewer/index.html#your-first-shiny-app",
+    "title": "OmopViewer",
+    "section": "Your first Shiny app",
+    "text": "Your first Shiny app\nOpen your R Project. In RStudio, choose File → New File → Shiny Web App… and select a single-file app, app.R.\nClick Run App and move the slider in the starter histogram example. What changes?\n\nThe next two slides show the UI and server for this example. Put them together in app.R.\nThe app keeps your R session busy while it runs. Click Stop in RStudio before running other code or restarting the app."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#the-ui-what-goes-where",
+    "href": "Presentations/OmopViewer/index.html#the-ui-what-goes-where",
+    "title": "OmopViewer",
+    "section": "The UI: what goes where?",
+    "text": "The UI: what goes where?\n\nlibrary(shiny)\n\nui &lt;- fluidPage(\n  titlePanel(\"Hello Shiny!\"),\n  sidebarLayout(\n    sidebarPanel(\n      sliderInput(\"bins\", \"Number of bins:\",\n                  min = 1, max = 50, value = 30)\n    ),\n    mainPanel(plotOutput(\"distPlot\"))\n  )\n)\n\nbins is the slider’s ID. distPlot is the space where the server will put the plot. These IDs connect the two parts of the app."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#the-server-make-the-plot",
+    "href": "Presentations/OmopViewer/index.html#the-server-make-the-plot",
+    "title": "OmopViewer",
+    "section": "The server: make the plot",
+    "text": "The server: make the plot\n\nserver &lt;- function(input, output, session) {\n  output$distPlot &lt;- renderPlot({\n    x &lt;- faithful$waiting\n    bins &lt;- seq(min(x), max(x), length.out = input$bins + 1)\n    hist(x, breaks = bins, col = \"steelblue\", border = \"white\",\n         xlab = \"Waiting time to next eruption (minutes)\",\n         main = \"Old Faithful\")\n  })\n}\n\nshinyApp(ui = ui, server = server)\n\ninput$bins reads the slider. renderPlot() reruns when that value changes, and output$distPlot sends the new plot to the UI."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#give-the-ui-a-style-with-bslib",
+    "href": "Presentations/OmopViewer/index.html#give-the-ui-a-style-with-bslib",
+    "title": "OmopViewer",
+    "section": "Give the UI a style with bslib",
+    "text": "Give the UI a style with bslib\nbslib gives us layouts, cards, sidebars, and themes. Replace the previous ui block with this one and keep the same server:\n\nlibrary(bslib)\n\nui &lt;- page_sidebar(\n  title = \"My first app\",\n  theme = bs_theme(bootswatch = \"flatly\"),\n  sidebar = sidebar(\n    sliderInput(\"bins\", \"Number of bins:\",\n                min = 1, max = 50, value = 30)\n  ),\n  card(plotOutput(\"distPlot\"))\n)\n\nRun shinyApp(ui, server) again. The layout changes, but the matching IDs mean the slider and plot still work together."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#meet-omopviewer",
+    "href": "Presentations/OmopViewer/index.html#meet-omopviewer",
+    "title": "OmopViewer",
+    "section": "Meet OmopViewer",
+    "text": "Meet OmopViewer\nBuilding every filter, table, and plot by hand takes time. OmopViewer creates a Shiny app for us from supported OMOP study results.\nIt prepares the panels and code. We can then make small changes to fit our study.\n\nTwo ways to use it:\n\n\nlaunchDynamicApp(): open a viewer and upload results to explore.\n\nexportStaticApp(): create app files that we can inspect, edit, and share."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#what-data-does-it-need",
+    "href": "Presentations/OmopViewer/index.html#what-data-does-it-need",
+    "title": "OmopViewer",
+    "section": "What data does it need?",
+    "text": "What data does it need?\nOmopViewer works with summarised_result objects: summary estimates together with settings that describe the analyses that produced them.\nThe settings help OmopViewer choose the appropriate panels for supported result types.\n\nFor this exercise, we will use cohort attrition and characteristics results from the reporting training, for amoxicillin and metformin.\nDownload OmopViewer results for this exercise. The four-column Data 1 and Data 2 files from the Quarto session are ordinary tables and cannot be used directly here."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#your-turn-get-the-results",
+    "href": "Presentations/OmopViewer/index.html#your-turn-get-the-results",
+    "title": "OmopViewer",
+    "section": "\nYOUR TURN Get the results",
+    "text": "YOUR TURN Get the results\n\nOpen the course website’s Downloads tab and choose your GitHub username.\nClick Download OmopViewer results.\nSave omopviewer_results.csv in the data folder of your R Project.\nCreate an R script called omopviewer.R in your project. We will use it to explore and export an app.\n\nThe code in these slides is for you to run in RStudio. It does not launch an app when we render the presentation."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#open-the-dynamic-viewer",
+    "href": "Presentations/OmopViewer/index.html#open-the-dynamic-viewer",
+    "title": "OmopViewer",
+    "section": "Open the dynamic viewer",
+    "text": "Open the dynamic viewer\n\nlibrary(OmopViewer)\n\nlaunchDynamicApp()\n\nUpload omopviewer_results.csv, then use Bind data and load shiny to build the panels.\n\nThis is a quick way to look at results without creating an app project. Stop the app in RStudio when you want to continue coding."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#your-turn-explore-the-results",
+    "href": "Presentations/OmopViewer/index.html#your-turn-explore-the-results",
+    "title": "OmopViewer",
+    "section": "\nYOUR TURN Explore the results",
+    "text": "YOUR TURN Explore the results\n\nFind the cohort characteristics and attrition panels.\nSwitch between amoxicillin and metformin. What changes?\nTry a filter or a table option, then update the output if the panel has an update button.\nPick one result you would want to show in a report.\n\nThink about the UI and server we just saw: which controls are inputs, and which tables or plots are outputs?"
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#import-the-results-in-r",
+    "href": "Presentations/OmopViewer/index.html#import-the-results-in-r",
+    "title": "OmopViewer",
+    "section": "Import the results in R",
+    "text": "Import the results in R\nStop the dynamic app and return to omopviewer.R.\n\nlibrary(OmopViewer)\nlibrary(omopgenerics)\nlibrary(here)\nlibrary(shiny)\n\nresult &lt;- importSummarisedResult(\n  here(\"data\", \"omopviewer_results.csv\")\n)\nsettings(result)\n\nUse importSummarisedResult() to restore the results and their settings. read_csv() alone does not reconstruct this object."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#export-an-app-we-can-edit",
+    "href": "Presentations/OmopViewer/index.html#export-an-app-we-can-edit",
+    "title": "OmopViewer",
+    "section": "Export an app we can edit",
+    "text": "Export an app we can edit\n\nexportStaticApp(\n  result = result,\n  directory = here(\"viewer\"),\n  title = \"My study results\",\n  background = TRUE,\n  summary = TRUE,\n  open = FALSE\n)\n\nrunApp(here(\"viewer\", \"shiny\"))\n\nOmopViewer creates a shiny folder inside viewer. Here, “static” means the results are supplied when we generate the app; the app itself is still interactive and needs R to run."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#what-did-omopviewer-create",
+    "href": "Presentations/OmopViewer/index.html#what-did-omopviewer-create",
+    "title": "OmopViewer",
+    "section": "What did OmopViewer create?",
+    "text": "What did OmopViewer create?\nStop the app, then open viewer/shiny in RStudio’s Files pane.\n\n\n\n\n\n\nFile\nWhat to look for\n\n\n\nglobal.R\nPackages and data loaded for the app.\n\n\nui.R\nLayout, panels, labels, and input controls.\n\n\nserver.R\nCode that responds to inputs and builds outputs.\n\n\nbackground.md\nText for the background panel.\n\n\n\nrawData/ and data/\n\nOriginal results, preparation code, and prepared app data.\n\n\n\nOur first app had UI and server together in app.R. This app keeps them in separate files so they are easier to explore."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#start-with-the-export-options",
+    "href": "Presentations/OmopViewer/index.html#start-with-the-export-options",
+    "title": "OmopViewer",
+    "section": "Start with the export options",
+    "text": "Start with the export options\nBefore editing the generated files, try changing the title and hiding the summary panel:\n\nexportStaticApp(\n  result = result,\n  directory = here(\"viewer_custom\"),\n  title = \"Exploring our cohorts\",\n  background = TRUE,\n  summary = FALSE,\n  open = FALSE\n)\n\nrunApp(here(\"viewer_custom\", \"shiny\"))\n\nWe use a second folder so we can compare the two apps. There are also options for themes, logos, and organising panels."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#your-turn-make-it-yours",
+    "href": "Presentations/OmopViewer/index.html#your-turn-make-it-yours",
+    "title": "OmopViewer",
+    "section": "\nYOUR TURN Make it yours",
+    "text": "YOUR TURN Make it yours\nStop the app and work in viewer_custom/shiny:\n\nEdit background.md: add a heading and two sentences explaining what someone can explore.\nOpen ui.R. Find a visible label and change its text. Keep input and output IDs the same so their connections still work.\nFind the corresponding input or output in server.R. Can you follow what it does?\nRun the app again and check your changes.\n\n\nrunApp(here(\"viewer_custom\", \"shiny\"))\n\nSave your edits before restarting. Exporting again to the same location can overwrite the generated app, so use a new folder if you want to keep your manual changes."
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#final-remarks",
+    "href": "Presentations/OmopViewer/index.html#final-remarks",
+    "title": "OmopViewer",
+    "section": "Final remarks",
+    "text": "Final remarks\n\n\nShiny: the UI collects inputs and displays outputs; the server connects them with R code.\n\nOmopViewer: creates the app structure and result panels for us.\nUse the dynamic viewer to explore, or export an app when you want to customise it.\n\nStart with a small change, run the app, and see what happens :)"
+  },
+  {
+    "objectID": "Presentations/OmopViewer/index.html#useful-links",
+    "href": "Presentations/OmopViewer/index.html#useful-links",
+    "title": "OmopViewer",
+    "section": "Useful links",
+    "text": "Useful links\n\nOmopViewer documentation\nShiny: your first app\nbslib layouts and themes\n\nAdapted from the HDS reporting training."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#why-omopstudybuilder",
+    "href": "Presentations/OmopStudyBuilder/index.html#why-omopstudybuilder",
+    "title": "OmopStudyBuilder",
+    "section": "Why OmopStudyBuilder?",
+    "text": "Why OmopStudyBuilder?\nWe have seen how an R Project keeps our work together and how GitHub helps us share it. Now imagine several teams running the same study in different OMOP databases.\nIt helps if everyone knows where to find the code, the instructions, and the results.\n\nOmopStudyBuilder gives us a common starting structure for study projects and repositories. We add the study-specific code and documentation."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#what-will-we-do",
+    "href": "Presentations/OmopStudyBuilder/index.html#what-will-we-do",
+    "title": "OmopStudyBuilder",
+    "section": "What will we do?",
+    "text": "What will we do?\n\nCreate the study structure with initStudy().\nExplore the generated files and publish the repository on GitHub.\nSee how renv records the packages a project uses.\nUse reviewStudy() to get an overview of the code and dependencies.\n\nThe package also has Docker tools for running studies in containers. Today we will focus on setting up and reviewing a study."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#create-a-study",
+    "href": "Presentations/OmopStudyBuilder/index.html#create-a-study",
+    "title": "OmopStudyBuilder",
+    "section": "Create a study",
+    "text": "Create a study\nInstall the package from CRAN if you do not have it yet:\n\ninstall.packages(\"OmopStudyBuilder\", dependencies = TRUE)\n\nFrom your current R Project, choose a new folder beside it. Replace yourusername with your GitHub username:\n\nlibrary(OmopStudyBuilder)\nlibrary(here)\n\nstudy_dir &lt;- file.path(dirname(here()), \"hds-study-yourusername\")\ninitStudy(\n  directory = study_dir,\n  studyTitle = \"My HDS practice study\",\n  studyLeads = \"Your name\",\n  studyDescription = \"Practising a shared OMOP study structure.\"\n)\n\nThe destination must be new or empty. Let initStudy() create its contents before opening any of the generated R Projects."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#what-did-it-create",
+    "href": "Presentations/OmopStudyBuilder/index.html#what-did-it-create",
+    "title": "OmopStudyBuilder",
+    "section": "What did it create?",
+    "text": "What did it create?\nhds-study-yourusername/\n├── README.md\n├── INSTRUCTIONS.md\n├── diagnosticsCode/\n├── diagnosticsShiny/\n├── studyCode/\n└── studyShiny/\n\n\ndiagnosticsCode: prepare checks before the main analysis.\n\nstudyCode: define cohorts and run the study analyses.\n\ndiagnosticsShiny and studyShiny: places for apps that explore the results.\n\nBoth diagnostics and study default to TRUE. Set either to FALSE in initStudy() if you do not need that pair of folders."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#one-repository-several-r-projects",
+    "href": "Presentations/OmopStudyBuilder/index.html#one-repository-several-r-projects",
+    "title": "OmopStudyBuilder",
+    "section": "One repository, several R Projects",
+    "text": "One repository, several R Projects\nEach of the four component folders contains an .Rproj file. Open the project for the part you are working on.\nFor example, open studyCode/studyCode.Rproj for the main analysis. In that session, here() points to studyCode.\n\n\n\n\n\n\n\nFile or folder inside studyCode\n\nWhat goes there?\n\n\n\ncodeToRun.R\nThe entry script, including database-specific settings.\n\n\nrunStudy.R\nThe sequence of study steps.\n\n\n\ncodelist/ and cohorts/\n\nCode to define the study population.\n\n\nanalyses/\nCode for the analyses.\n\n\nResults/\nOutput from the study."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#your-turn-explore-the-template",
+    "href": "Presentations/OmopStudyBuilder/index.html#your-turn-explore-the-template",
+    "title": "OmopStudyBuilder",
+    "section": "\nYOUR TURN Explore the template",
+    "text": "YOUR TURN Explore the template\n\nRun the initStudy() example with your own folder name and study details.\nRead the root README.md and INSTRUCTIONS.md. Which parts would you update for a real study?\nOpen studyCode/studyCode.Rproj, then look at codeToRun.R and runStudy.R.\nFind where you would add cohort definitions and an analysis.\n\nFor now, explore the scripts rather than sourcing them: the database connection and study-specific code are still to be filled in."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#your-turn-put-the-study-on-github",
+    "href": "Presentations/OmopStudyBuilder/index.html#your-turn-put-the-study-on-github",
+    "title": "OmopStudyBuilder",
+    "section": "\nYOUR TURN Put the study on GitHub",
+    "text": "YOUR TURN Put the study on GitHub\nUse the whole study folder, hds-study-yourusername, as the repository root.\n\nIn GitHub Desktop, choose File → Add Local Repository… and select that folder.\nIf Desktop says it is not a Git repository, follow create a repository here. Use the existing folder and keep the README created by OmopStudyBuilder.\nReview the files and commit any pending changes with a message such as Add study structure.\nClick Publish repository, choose oxford-pharmacoepi as the organisation, and publish it as a private repository.\nOpen it on GitHub and check that the README and all four component folders are there.\n\nUse a unique repository name. If you cannot select the organisation, ask the trainer to check your access."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#keep-the-instructions-with-the-code",
+    "href": "Presentations/OmopStudyBuilder/index.html#keep-the-instructions-with-the-code",
+    "title": "OmopStudyBuilder",
+    "section": "Keep the instructions with the code",
+    "text": "Keep the instructions with the code\nIn the root README, write a short description of your practice study. For example: which population would you study, and what would you measure?\nThen use the workflow from the GitHub session:\n\nCreate a branch for your changes.\nCommit and push them.\nOpen a pull request and ask a colleague whether the instructions are clear.\n\nOmopStudyBuilder can also create a GitHub repository through initStudy() or linkGitHub() when R authentication is configured. See the CRAN reference manual for that route."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#why-use-renv",
+    "href": "Presentations/OmopStudyBuilder/index.html#why-use-renv",
+    "title": "OmopStudyBuilder",
+    "section": "Why use renv?",
+    "text": "Why use renv?\nThe same code can behave differently when people have different package versions. renv gives an R Project its own package library and records package versions in renv.lock.\n\n\nThe study developer prepares the environment and records it.\nA colleague restores that environment when they run the study.\nThe lockfile is committed alongside the code, so changes can be reviewed in GitHub.\n\nThe generated study folders do not yet contain a lockfile. Prepare renv in each component R Project that you use, after deciding which packages its code needs."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#renv-the-basic-workflow",
+    "href": "Presentations/OmopStudyBuilder/index.html#renv-the-basic-workflow",
+    "title": "OmopStudyBuilder",
+    "section": "renv: the basic workflow",
+    "text": "renv: the basic workflow\nOpen studyCode/studyCode.Rproj before setting up its environment. Install renv if needed, then initialise it once:\n\ninstall.packages(\"renv\")\nlibrary(renv)\ninit()\n\ninit() scans the project and prepares its package library and lockfile. It may need to install packages referenced by the template.\n\n\n\n\n\n\nFunction\nWhen would we use it?\n\n\n\nsnapshot()\nRecord the package versions after changing and checking the code.\n\n\nrestore()\nInstall the versions recorded in an existing lockfile.\n\n\nstatus()\nCheck whether the project library and lockfile agree.\n\n\n\nCommit renv.lock and the activation files created by renv; its .gitignore excludes the local package library. renv records the R version but does not install R itself.\nMore detail: Introduction to renv."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#get-an-overview-with-reviewstudy",
+    "href": "Presentations/OmopStudyBuilder/index.html#get-an-overview-with-reviewstudy",
+    "title": "OmopStudyBuilder",
+    "section": "Get an overview with reviewStudy()",
+    "text": "Get an overview with reviewStudy()\nBefore sharing code with a data partner, it is useful to see what is in the project.\nFrom the studyCode R Project, install OmopStudyBuilder there if it is missing from your new renv library, then run:\n\nlibrary(OmopStudyBuilder)\nlibrary(here)\n\nreviewStudy(dir = here(), dependencies = FALSE)\n\nThis prints a summary of the R scripts and JSON, CSV, and Excel files. We skip the dependency review here because the fresh template has no renv.lock yet.\nIt gives us a starting point for review; we still need to read the code and check that it answers the study question."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#review-the-dependencies-too",
+    "href": "Presentations/OmopStudyBuilder/index.html#review-the-dependencies-too",
+    "title": "OmopStudyBuilder",
+    "section": "Review the dependencies too",
+    "text": "Review the dependencies too\nOnce studyCode/renv.lock exists, run:\n\nreviewStudy(dir = here(), type = \"analysis\")\n\nBy default, both code and dependencies are TRUE. The dependency review uses the lockfile and reports on package versions and sources.\n\nFor a reporting or app project, open that component’s R Project and use type = \"reporting\".\nRun the review in the component folder containing the lockfile. A review of the repository root will not automatically review every component’s environment."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#your-turn-review-your-study",
+    "href": "Presentations/OmopStudyBuilder/index.html#your-turn-review-your-study",
+    "title": "OmopStudyBuilder",
+    "section": "\nYOUR TURN Review your study",
+    "text": "YOUR TURN Review your study\n\nRun reviewStudy(dir = here(), dependencies = FALSE) from studyCode.\nFind the entry script and the analysis scripts in the output. Which are still empty?\nIf you have prepared a lockfile, run the dependency review too. Pick one package and find its recorded version.\nAdd a note to your pull request describing what still needs to be completed before the study can run.\n\nDiscuss the review with your colleague. A common folder structure makes it easier to find things, but the code and instructions still need a human review."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#final-remarks",
+    "href": "Presentations/OmopStudyBuilder/index.html#final-remarks",
+    "title": "OmopStudyBuilder",
+    "section": "Final remarks",
+    "text": "Final remarks\n\nStart with initStudy() so everyone recognises the study layout.\nKeep the instructions and code together in GitHub.\nUse renv to record and restore package versions.\nUse reviewStudy() to help you inspect the project before sharing it.\n\nNext, we will see how OmopViewer helps us build apps to explore study results."
+  },
+  {
+    "objectID": "Presentations/OmopStudyBuilder/index.html#useful-links",
+    "href": "Presentations/OmopStudyBuilder/index.html#useful-links",
+    "title": "OmopStudyBuilder",
+    "section": "Useful links",
+    "text": "Useful links\n\nOmopStudyBuilder on CRAN\nCRAN reference manual\nPackage guides and examples\nIntroduction to renv\n\nExamples follow the CRAN release of OmopStudyBuilder, 0.1.1."
   },
   {
     "objectID": "Presentations/Quarto/index.html#quarto",
