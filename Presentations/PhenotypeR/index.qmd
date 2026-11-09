@@ -189,6 +189,7 @@ library(PhenotypeR)
 library(omopgenerics)
 library(here)
 library(duckdb)
+library(CohortCharacteristics)
 library(visOmopResults)
 library(gt)
 ```
@@ -347,10 +348,10 @@ cdm$essential_hypertension_base <- conceptCohort(
 At this stage, each qualifying hypertension record can contribute to cohort entry.
 
 ```{r, echo=FALSE}
-CohortCharacteristics::summariseCohortAttrition(
+summariseCohortAttrition(
   cdm$essential_hypertension_base
 ) |>
-  CohortCharacteristics::tableCohortAttrition()
+  tableCohortAttrition()
 ```
 :::
 
@@ -391,10 +392,10 @@ cdm$essential_hypertension <- cdm$essential_hypertension_base |>
 How does each requirement affect the number of people meeting our phenotype definition?
 
 ```{r, echo=FALSE}
-CohortCharacteristics::summariseCohortAttrition(
+summariseCohortAttrition(
   cdm$essential_hypertension
 ) |>
-  CohortCharacteristics::tableCohortAttrition()
+  tableCohortAttrition()
 ```
 
 ## More complex phenotype definitions
@@ -456,10 +457,10 @@ cdm$warfarin_base <- conceptCohort(
 At this stage, qualifying warfarin exposures can contribute to cohort entries.
 
 ```{r, echo=FALSE}
-CohortCharacteristics::summariseCohortAttrition(
+summariseCohortAttrition(
   cdm$warfarin_base
 ) |>
-  CohortCharacteristics::tableCohortAttrition()
+  tableCohortAttrition()
 ```
 :::
 
@@ -500,8 +501,8 @@ cdm$warfarin_new_users <- cdm$warfarin_base |>
 How do our requirements affect the number of warfarin treatment episodes?
 
 ```{r, echo=FALSE}
-CohortCharacteristics::summariseCohortAttrition(cdm$warfarin_new_users) |>
-  CohortCharacteristics::tableCohortAttrition()
+summariseCohortAttrition(cdm$warfarin_new_users) |>
+  tableCohortAttrition()
 ```
 
 # Step 3: Reviewing cohorts

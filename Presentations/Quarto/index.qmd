@@ -131,13 +131,19 @@ Read the CSV with `readr`, then find the row with the highest prevalence:
 
 ```{r, eval=FALSE}
 library(readr)
-data <- read_csv(here::here("data", "data1.csv"))
-highest <- data |>
+library(here)
+library(dplyr)
+data <- read_csv(here("data", "data1.csv"))
+highest_example <- data |>
   filter(prevalence == max(prevalence))
 ```
 
-```text
-The highest example prevalence is `r highest_example$prevalence` for `r highest_example$condition` at `r highest_example$database` in `r highest_example$year`.
+In your document, you could write this sentence using inline R:
+
+```{=html}
+<pre><code>The highest prevalence is &#96;r highest_example$prevalence&#96;
+for &#96;r highest_example$condition&#96;
+in &#96;r highest_example$database&#96; in &#96;r highest_example$year&#96;.</code></pre>
 ```
 
 For example, you could describe the highest value in a sentence, make a table, or plot prevalence by year and condition.
