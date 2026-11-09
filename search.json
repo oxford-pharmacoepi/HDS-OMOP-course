@@ -109,14 +109,14 @@
     "href": "Presentations/PhenotypeR/index.html#create-cdm-reference",
     "title": "Creating cohorts from scratch using R",
     "section": "Create CDM reference",
-    "text": "Create CDM reference\n\nLoad relevant packages\n\n\n\nlibrary(omock)\nlibrary(CodelistGenerator)\nlibrary(CohortConstructor)\nlibrary(PhenotypeR)\nlibrary(omopgenerics)\nlibrary(here)\nlibrary(duckdb)\nlibrary(visOmopResults)\nlibrary(gt)\n\n\nCreate a cdm reference to a synthetic omop database\n\n\n\n\ncdm &lt;- mockCdmFromDataset(datasetName = \"synpuf-1k_5.4\", source = \"duckdb\")"
+    "text": "Create CDM reference\n\nLoad relevant packages\n\n\n\nlibrary(omock)\nlibrary(CodelistGenerator)\nlibrary(CohortConstructor)\nlibrary(PhenotypeR)\nlibrary(omopgenerics)\nlibrary(here)\nlibrary(duckdb)\nlibrary(CohortCharacteristics)\nlibrary(visOmopResults)\nlibrary(gt)\n\n\nCreate a cdm reference to a synthetic omop database\n\n\n\n\ncdm &lt;- mockCdmFromDataset(datasetName = \"synpuf-1k_5.4\", source = \"duckdb\")"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#create-cdm-reference-1",
     "href": "Presentations/PhenotypeR/index.html#create-cdm-reference-1",
     "title": "Creating cohorts from scratch using R",
     "section": "Create CDM reference",
-    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmpgzCg2u/file1c9226438594.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
+    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmpFG0R9M/file218a51143cac.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist",
@@ -466,7 +466,7 @@
     "href": "Presentations/GitHub/index.html#how-everything-works",
     "title": "GitHub and GitHub Desktop",
     "section": "How everything works",
-    "text": "How everything works\nGit\n\n\n\n\nCommand\nDescription\n\n\n\n\ngit init\nCreate a new local repository.\n\n\ngit clone &lt;url&gt;\nCopy a remote repository locally.\n\n\ngit remote add origin &lt;url&gt;\nAdd a new remote repository.\n\n\ngit status\nCheck status of changes and branch.\n\n\ngit add &lt;file&gt;\nStage specific file(s) for commit.\n\n\ngit commit -m \"message\"\nCommit staged changes.\n\n\ngit log\nView commit history.\n\n\ngit diff\nShow unstaged changes.\n\n\ngit branch &lt;name&gt;\nCreate a new branch.\n\n\ngit checkout &lt;branch&gt;\nSwitch to a branch.\n\n\ngit merge &lt;branch&gt;\nMerge another branch into the current one.\n\n\ngit fetch\nDownload updates from remote (no merge).\n\n\ngit pull\nFetch and merge changes from remote.\n\n\ngit push\nPush local commits to remote.\n\n\ngit revert &lt;commit&gt;\nRevert a specific commit with a new one.\n\n\n\n\n\nGitHub Desktop provides a graphical interface for working with Git and GitHub."
+    "text": "How everything works\nGit\n\n\n\n\n\n\n\n\nCommand\nDescription\n\n\n\n\ngit init\nCreate a new local repository.\n\n\ngit clone &lt;url&gt;\nCopy a remote repository locally.\n\n\ngit remote add origin &lt;url&gt;\nAdd a new remote repository.\n\n\ngit status\nCheck status of changes and branch.\n\n\ngit add &lt;file&gt;\nStage specific file(s) for commit.\n\n\ngit commit -m \"message\"\nCommit staged changes.\n\n\ngit log\nView commit history.\n\n\ngit diff\nShow unstaged changes.\n\n\ngit branch &lt;name&gt;\nCreate a new branch.\n\n\ngit checkout &lt;branch&gt;\nSwitch to a branch.\n\n\ngit merge &lt;branch&gt;\nMerge another branch into the current one.\n\n\ngit fetch\nDownload updates from remote (no merge).\n\n\ngit pull\nFetch and merge changes from remote.\n\n\ngit push\nPush local commits to remote.\n\n\ngit revert &lt;commit&gt;\nRevert a specific commit with a new one.\n\n\n\n\n\nGitHub Desktop provides a graphical interface for working with Git and GitHub."
   },
   {
     "objectID": "Presentations/GitHub/index.html#workflow",
@@ -539,11 +539,144 @@
     "text": "Templates\n\nTemplates can be used to create new repositories:"
   },
   {
+    "objectID": "Presentations/GitHub/index.html#github-on-the-server",
+    "href": "Presentations/GitHub/index.html#github-on-the-server",
+    "title": "GitHub and GitHub Desktop",
+    "section": "GitHub on the server",
+    "text": "GitHub on the server\nWhen working with the rstudio server, you won’t be able to access to GitHub Desktop, so the UI is going to be a bit more complicated.\n\nFirst you will need to link your RStudio server with your github account, to do that you can follow this Tutorial.\n\n\nOnce done you will have to navigate trough the Git panel:"
+  },
+  {
+    "objectID": "Presentations/GitHub/index.html#delete-the-mock-repo",
+    "href": "Presentations/GitHub/index.html#delete-the-mock-repo",
+    "title": "GitHub and GitHub Desktop",
+    "section": "Delete the mock repo",
+    "text": "Delete the mock repo\nFor the sake of scalability and to know also how it is done please delete the toy repo you used in this session:\n\nFind your repo in github.com -&gt; Settings -&gt; Danger Zone -&gt; Delete this repository -&gt; confirm"
+  },
+  {
     "objectID": "Presentations/GitHub/index.html#you-are-ready",
     "href": "Presentations/GitHub/index.html#you-are-ready",
     "title": "GitHub and GitHub Desktop",
     "section": "You are ready",
     "text": "You are ready"
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#quarto",
+    "href": "Presentations/Quarto/index.html#quarto",
+    "title": "Introduction to Quarto",
+    "section": "Quarto",
+    "text": "Quarto\nQuarto is a free tool for creating documents from a plain-text source file. You can combine writing, code, and the results of that code in one place.\nUse the same source to create reports, presentations, websites, and more. Quarto works with R, Python, Julia, and Observable.\nIn this training we will use R."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#what-happens-when-you-render",
+    "href": "Presentations/Quarto/index.html#what-happens-when-you-render",
+    "title": "Introduction to Quarto",
+    "section": "What happens when you render?",
+    "text": "What happens when you render?\nYou write your content in a .qmd file. When you render it, Quarto runs the code, adds its output to your writing, and creates the finished document.\nThat makes it easier to update a report when the data changes: update the data, render again, and the numbers and figures are refreshed from the code."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#how-to-create-a-quarto-document",
+    "href": "Presentations/Quarto/index.html#how-to-create-a-quarto-document",
+    "title": "Introduction to Quarto",
+    "section": "How to create a Quarto document",
+    "text": "How to create a Quarto document\nOpen the R Project you created earlier. In RStudio, choose File → New File → Quarto Document….\nGive the document a name and save it inside your project. Keeping the document and its data together makes it easier to find and share your work."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#create-a-quarto-document",
+    "href": "Presentations/Quarto/index.html#create-a-quarto-document",
+    "title": "Introduction to Quarto",
+    "section": "Create a Quarto document",
+    "text": "Create a Quarto document"
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#choose-a-format-and-render",
+    "href": "Presentations/Quarto/index.html#choose-a-format-and-render",
+    "title": "Introduction to Quarto",
+    "section": "Choose a format and render",
+    "text": "Choose a format and render\nStart with HTML and click Render. Quarto will create a document you can open in your browser.\n\nTry rendering the same source as Word and PDF, then compare the results.\nFor the template exercise, switch the output format to Word.\n\n\nThe writing and code stay in the .qmd source. You can render it again whenever you update the content or data."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#parts-of-a-quarto-document",
+    "href": "Presentations/Quarto/index.html#parts-of-a-quarto-document",
+    "title": "Introduction to Quarto",
+    "section": "Parts of a Quarto document",
+    "text": "Parts of a Quarto document\nA .qmd file has two main parts:\n\n\nMetadata at the top, between lines containing ---. This is YAML and stores settings such as the title and output format.\n\nDocument body below the metadata. This contains your text, headings, code, and other content to render."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#write-some-text",
+    "href": "Presentations/Quarto/index.html#write-some-text",
+    "title": "Introduction to Quarto",
+    "section": "Write some text",
+    "text": "Write some text\nQuarto uses Markdown for headings and basic formatting. For example:\n# Main heading\n## Smaller heading\n\nThis is a paragraph with **bold text**.\n\n- This is a list item.\n- And another one.\n\nRender the document and see how the source becomes a formatted page."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#add-some-code",
+    "href": "Presentations/Quarto/index.html#add-some-code",
+    "title": "Introduction to Quarto",
+    "section": "Add some code",
+    "text": "Add some code\nPut R code in a code chunk. Quarto can run it and include the result in the document:\n\nscores &lt;- c(7, 8, 10)\nmean(scores)\n\n[1] 8.333333\n\n\n\nThe code and its result are connected: change the values and render again to update the result."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#echo-eval-messages-and-warnings",
+    "href": "Presentations/Quarto/index.html#echo-eval-messages-and-warnings",
+    "title": "Introduction to Quarto",
+    "section": "\necho, eval, messages, and warnings\n",
+    "text": "echo, eval, messages, and warnings\n\nThese options control what happens to code chunks:\n\n\necho: show (TRUE) or hide (FALSE) the code in the rendered document.\n\neval: run (TRUE) or skip (FALSE) the code.\n\nmessage and warning: show or hide messages and warnings produced by the code.\n\n\nSet options in the chunk header, or set document-wide defaults in the YAML under execute:. For example, a chunk with {r, echo=FALSE, message=FALSE} runs summary(scores) but hides its code and messages while showing the result.\n\n\nYou can also change this options globaly with the initial block of yaml file, the following block for example will make all the code to be hidden but executed:\n---\nexecute:\n  echo: false\n  eval: true\n---"
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#your-turn",
+    "href": "Presentations/Quarto/index.html#your-turn",
+    "title": "Introduction to Quarto",
+    "section": "YOUR TURN",
+    "text": "YOUR TURN\n\nOpen the course website’s Downloads tab and choose your GitHub username.\nClick Download Data 1 results and save data1.csv in a data folder inside your R Project.\nRead it into your Quarto document. Add a sentence, table, or plot that tells us something about the data."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#your-turn-read-summarise-and-plot",
+    "href": "Presentations/Quarto/index.html#your-turn-read-summarise-and-plot",
+    "title": "Introduction to Quarto",
+    "section": "\nYOUR TURN Read, summarise, and plot",
+    "text": "YOUR TURN Read, summarise, and plot\nRead the CSV with readr, then find the row with the highest prevalence:\n\nlibrary(readr)\nlibrary(here)\nlibrary(dplyr)\ndata &lt;- read_csv(here(\"data\", \"data1.csv\"))\nhighest_example &lt;- data |&gt;\n  filter(prevalence == max(prevalence))\n\nIn your document, you could write this sentence using inline R:\nThe highest prevalence is `r highest_example$prevalence`\nfor `r highest_example$condition`\nin `r highest_example$database` in `r highest_example$year`.\nFor example, you could describe the highest value in a sentence, make a table, or plot prevalence by year and condition.\nThese chunks are examples for your own document.\n\nlibrary(ggplot2)\nggplot(data, aes(x = year, y = prevalence, colour = condition)) +\n  geom_point() +\n  facet_wrap(~database)\n\nInline R expressions run when you render the document, just like code in a chunk."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#spacing-in-quarto",
+    "href": "Presentations/Quarto/index.html#spacing-in-quarto",
+    "title": "Introduction to Quarto",
+    "section": "Spacing in Quarto",
+    "text": "Spacing in Quarto\nLeave a blank line in the source to start a new paragraph. A single newline in the source may still appear as part of the same paragraph when rendered.\nIn a presentation, a new ## heading starts a new slide. Keep headings short so the audience can see the main point at a glance."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#use-templates",
+    "href": "Presentations/Quarto/index.html#use-templates",
+    "title": "Introduction to Quarto",
+    "section": "Use templates",
+    "text": "Use templates\nA template gives documents a shared look and saves you from formatting every report by hand. For a Word report, a reference document can define headings, fonts, spacing, headers, footers, and caption styles.\nQuarto uses the content and styles in your .qmd file; Word uses the matching styles in the reference document to decide how those parts look."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#example-of-a-word-template",
+    "href": "Presentations/Quarto/index.html#example-of-a-word-template",
+    "title": "Introduction to Quarto",
+    "section": "Example of a Word template",
+    "text": "Example of a Word template\nThe darwinReportRef.docx template is an example of a Word reference document.\nDownload it and open it in Word to explore the styles. In your Quarto document, set it as the reference-doc for Word output, then render the report to apply those styles.\nFor example, save the template in your project folder and add this to the document YAML:\nformat:\n  docx:\n    reference-doc: \"darwinReportRef.docx\""
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#custom-styles-for-captions",
+    "href": "Presentations/Quarto/index.html#custom-styles-for-captions",
+    "title": "Introduction to Quarto",
+    "section": "Custom styles for captions",
+    "text": "Custom styles for captions\nYou can give a block of text a style name that exists in the Word reference document:\n:::{custom-style=\"FigureCaption\"}\nFigure 1. The prevalence of the different condition over time.\n:::\n\n:::{custom-style=\"CaptionFooter\"}\nCI = confidence interval\n:::\nCreate or change the FigureCaption and CaptionFooter styles in the Word template to control their appearance. The style names in the document and template need to match."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#your-turn-1",
+    "href": "Presentations/Quarto/index.html#your-turn-1",
+    "title": "Introduction to Quarto",
+    "section": "YOUR TURN",
+    "text": "YOUR TURN\nA new data partner sends updated results at the last minute, and two other partners have updated their old results. No need to rebuild the report by hand:\n\nIn your username tab on Downloads, click Download Data 2 results and save data2.csv in your data folder.\nUpdate your read_csv() line to read data2.csv.\nRender the Quarto document again and compare the results.\n\n\nThe report is refreshed from the new data. Check what changed for SIDI Plata, notice the new SIDI Or results, and confirm that SIDI Bronze stayed the same."
+  },
+  {
+    "objectID": "Presentations/Quarto/index.html#final-remarks",
+    "href": "Presentations/Quarto/index.html#final-remarks",
+    "title": "Introduction to Quarto",
+    "section": "Final remarks",
+    "text": "Final remarks\n\nKeep the writing, code, and results together in the .qmd source.\nUse a template when reports need a consistent look.\nWhen the data changes, update the input files and render again.\n\n\nThat’s Quarto: write it once, render it when you need it, and let the code update the results."
   },
   {
     "objectID": "Presentations/Welcome/index.html#welcome",
@@ -578,7 +711,7 @@
     "href": "Presentations/Welcome/index.html#schedule",
     "title": "Welcome",
     "section": "Schedule",
-    "text": "Schedule\n\n\nDay\nPresentation\nLink\n\n\n\nDay 1: Tools for conducting studies: R\nR introduction\nView Slides\n\n\nDay 1: Tools for conducting studies: GitHub\nGitHub training\nView Slides\n\n\nDay 1: Tools for conducting studies\nOmopStudyBuilder and OmopViewer\nView Slides\n\n\nDay 2: OMOP phenotyping using R\nCodelistGenerator\nView Slides\n\n\nDay 2: OMOP phenotyping using R\nCohortConstructor\nView Slides\n\n\nDay 2: OMOP phenotyping using R\nPhenotypeR\nView Slides\n\n\nDay 3: Characterising a study population\nPatientProfiles\nView Slides\n\n\nDay 3: Characterising a study population\nCohortCharacteristics\nView Slides"
+    "text": "Schedule\n\n\nDay\nPresentation\nLink\n\n\n\nDay 1: Tools for conducting studies\nR\nView Slides\n\n\nDay 1: Tools for conducting studies\nGitHub\nView Slides\n\n\nDay 1: Tools for conducting studies\nQuarto\nView Slides\n\n\nDay 1: Tools for conducting studies\nOmopStudyBuilder\nView Slides\n\n\nDay 1: Tools for conducting studies\nOmopViewer\nView Slides\n\n\nDay 2: OMOP phenotyping using R\nCodelistGenerator\nView Slides\n\n\nDay 2: OMOP phenotyping using R\nCohortConstructor\nView Slides\n\n\nDay 2: OMOP phenotyping using R\nPhenotypeR\nView Slides\n\n\nDay 3: Characterising a study population\nPatientProfiles\nView Slides\n\n\nDay 3: Characterising a study population\nCohortCharacteristics\nView Slides"
   },
   {
     "objectID": "Presentations/Welcome/index.html#how-we-are-going-to-work",
