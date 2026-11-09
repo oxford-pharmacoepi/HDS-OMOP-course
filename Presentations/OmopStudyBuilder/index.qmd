@@ -50,7 +50,7 @@ Install the package from CRAN if you do not have it yet:
 install.packages("OmopStudyBuilder", dependencies = TRUE)
 ```
 
-Reopen **r-introduction.Rproj**. Choose a new folder beside it, replacing `yourusername` with your GitHub username:
+Reopen **practical.Rproj**. Choose a new folder beside it, replacing `yourusername` with your GitHub username:
 
 ```{r, eval=FALSE}
 library(OmopStudyBuilder)
@@ -223,7 +223,7 @@ Discuss the review with your colleague. A common folder structure makes it easie
 - Use `renv` to record and restore package versions.
 - Use `reviewStudy()` to help you inspect the project before sharing it.
 
-Next, we will see how **OmopViewer** helps us build apps to explore study results. Reopen **r-introduction.Rproj** for that exercise so we use the same practice project and `data` folder as in Quarto.
+Next, we will see how **OmopViewer** helps us build apps to explore study results. Reopen **practical.Rproj** for that exercise so we use the same practice project and `data` folder as in Quarto.
 
 ## Useful links
 

@@ -59,7 +59,7 @@ Think of it as a home for the exercise.
 In RStudio:
 
 1.  Choose **File → New Project… → New Directory → New Project**.
-2.  Give it a name and choose a folder you can find again.
+2.  Name it **practical** and choose a folder you can find again.
 3.  Click **Create Project**. Check the project name at the top-right of RStudio.
 4.  Choose **File → New File → R Script** and save it as `practice.R` inside the project.
 
@@ -68,8 +68,8 @@ Use the Files panel to create folders called `data` and `Results`. The names and
 ## A simple project layout
 
 ``` text
-your_project/
-├── your_project.Rproj
+practical/
+├── practical.Rproj
 ├── practice.R
 ├── data/
 └── Results/

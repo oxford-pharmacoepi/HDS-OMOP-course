@@ -38,7 +38,7 @@ Here, "server" means a function in our R code. The whole practice app can run on
 
 ## Your first Shiny app
 
-Reopen **r-introduction.Rproj** after the OmopStudyBuilder session. In RStudio, choose **File → New File → Shiny Web App…**, name the app **first-shiny**, and select a single-file app, `app.R`.
+Reopen **practical.Rproj** after the OmopStudyBuilder session. In RStudio, choose **File → New File → Shiny Web App…**, name the app **first-shiny**, and select a single-file app, `app.R`.
 
 Click **Run App** and move the slider in the starter histogram example. What changes?
 
@@ -138,8 +138,8 @@ Download **OmopViewer results** for this exercise. The four-column Data 1 and Da
 
 1. Open the course website's [Downloads](../../Downloads/index.qmd) tab and choose your GitHub username.
 2. Click **Download OmopViewer results**.
-3. Save `omopviewer_results.csv` in **r-introduction/data**.
-4. Create an R script called `omopviewer.R` in **r-introduction**, beside `practice.R`. Keep the viewer code here and the simple histogram app in `first-shiny/app.R`.
+3. Save `omopviewer_results.csv` in **practical/data**.
+4. Create an R script called `omopviewer.R` in **practical**, beside `practice.R`. Keep the viewer code here and the simple histogram app in `first-shiny/app.R`.
 
 The code in these slides is for you to run in RStudio. It does not launch an app when we render the presentation.
 
@@ -207,7 +207,7 @@ OmopViewer creates a **shiny** folder inside `viewer`. Here, "static" means the 
 
 Stop the app, then open `viewer/shiny` in RStudio's Files pane.
 
-For this exercise, keep **r-introduction** as the active R Project. Browse the files without opening the generated `shiny.Rproj`, so the `here()` paths in our script stay the same.
+For this exercise, keep **practical** as the active R Project. Browse the files without opening the generated `shiny.Rproj`, so the `here()` paths in our script stay the same.
 
 | File | What to look for |
 |------|------------------|
@@ -257,7 +257,7 @@ Save your edits before restarting. Exporting again to the same location can over
 
 - **R is still busy:** stop the previous app before running more code.
 - **Result object not found:** rerun the import step in `omopviewer.R`.
-- **Cannot find a file:** check that **r-introduction** is still the active project and that you saved the correct CSV in `data`.
+- **Cannot find a file:** check that **practical** is still the active project and that you saved the correct CSV in `data`.
 - **Package missing:** install the named package in the active project's library, then try again.
 
 If a small edit breaks the app, undo that edit and restart. Check labels and IDs carefully; changing the displayed text should not change the connection between UI and server.

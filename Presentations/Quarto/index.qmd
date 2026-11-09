@@ -28,7 +28,7 @@ Quarto is a free tool for creating documents from a plain-text source file. You 
 
 Use the same source to create reports, presentations, websites, and more. Quarto works with R, Python, Julia, and Observable.
 
-We will use **R** and return to the initial project. By the end, you will have a report that updates when we replace its input data.
+We will use **R** and return to the **practical** project. By the end, you will have a report that updates when we replace its input data.
 
 ## What happens when you render?
 
@@ -38,7 +38,7 @@ That makes it easier to update a report when the data changes: update the data, 
 
 ## How to create a Quarto document
 
-Open **r-introduction.Rproj**. In RStudio, choose **File → New File → Quarto Document…**.
+Open **practical.Rproj**. In RStudio, choose **File → New File → Quarto Document…**.
 
 Choose HTML, give it a title, and save it as **my-report.qmd** in the project root, beside `practice.R`. Use the **Source** editor when typing the Markdown examples below.
 
@@ -169,7 +169,7 @@ If you see **object not found**, look for the earlier chunk that should create i
 ## `YOUR TURN` Get the data
 
 1. Open the course website’s **Downloads** tab and choose your GitHub username.
-2. Click **Download Data 1 results** and save `data1.csv` in **r-introduction/data**.
+2. Click **Download Data 1 results** and save `data1.csv` in **practical/data**.
 3. Read it into your Quarto document. Add a sentence, table, or plot that tells us something about the data.
 
 These are made-up prevalence percentages for five conditions. Each row describes a **database**, **condition**, **year**, and **prevalence**. For example, `8.4` means 8.4%.
@@ -324,4 +324,4 @@ Fix the first reported error and render again. Ask for help if the message does 
 
 That’s Quarto: write it once, render it when you need it, and let the code update the results.
 
-Save **my-report.qmd** in **r-introduction**. Next, OmopStudyBuilder will help us organise a bigger study into a shared repository.
+Save **my-report.qmd** in **practical**. Next, OmopStudyBuilder will help us organise a bigger study into a shared repository.
