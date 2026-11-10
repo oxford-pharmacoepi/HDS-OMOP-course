@@ -186,7 +186,7 @@
     "href": "Presentations/PhenotypeR/index.html#create-cdm-reference-1",
     "title": "Creating cohorts from scratch using R",
     "section": "Create CDM reference",
-    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmpnJYuVf/file28254952e2ed.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
+    "text": "Create CDM reference\n\nThe cdm object provides a reference to the tables in our data source.\nWe can access individual tables using $. For example, to access the OMOP person table:\n\ncdm$person\n\n# A query:  ?? x 18\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmpi2Ln4h/file295d142a815b.duckdb]\n   person_id gender_concept_id year_of_birth month_of_birth day_of_birth\n       &lt;int&gt;             &lt;int&gt;         &lt;int&gt;          &lt;int&gt;        &lt;int&gt;\n 1         0              8507          1932              7            1\n 2         1              8532          1957              9            1\n 3         2              8532          1934             11            1\n 4         3              8507          1942              9            1\n 5         4              8507          1934              7            1\n 6         5              8532          1930             12            1\n 7         6              8532          1942              5            1\n 8         7              8507          1943              4            1\n 9         8              8532          1951             12            1\n10         9              8532          1942              2            1\n# ℹ more rows\n# ℹ 13 more variables: birth_datetime &lt;dttm&gt;, race_concept_id &lt;int&gt;,\n#   ethnicity_concept_id &lt;int&gt;, location_id &lt;int&gt;, provider_id &lt;int&gt;,\n#   care_site_id &lt;int&gt;, person_source_value &lt;chr&gt;, gender_source_value &lt;chr&gt;,\n#   gender_source_concept_id &lt;int&gt;, race_source_value &lt;chr&gt;,\n#   race_source_concept_id &lt;int&gt;, ethnicity_source_value &lt;chr&gt;,\n#   ethnicity_source_concept_id &lt;int&gt;"
   },
   {
     "objectID": "Presentations/PhenotypeR/index.html#primary-hypertension-codelist",
@@ -791,6 +791,223 @@
     "text": "Useful links\n\nOmopViewer documentation\nShiny: your first app\nbslib layouts and themes\n\nAdapted from the HDS reporting training."
   },
   {
+    "objectID": "Presentations/CodelistGenerator/slides.html#reference-to-the-cdm-vocabulary-tables-1",
+    "href": "Presentations/CodelistGenerator/slides.html#reference-to-the-cdm-vocabulary-tables-1",
+    "title": "CodelistGenerator",
+    "section": "Reference to the CDM vocabulary tables",
+    "text": "Reference to the CDM vocabulary tables\n\nlibrary(omock)\nlibrary(duckdb)\nlibrary(CDMConnector)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(DBI)\nlibrary(here)\n\ncdm &lt;- mockCdmFromDataset(\"GiBleed\", \"duckdb\")\n\n\ncdm\n\n\n\n\n── # OMOP CDM reference (duckdb) of GiBleed ──────────────────────────────────────────────────────────────────────────────────────\n\n\n• omop tables: care_site, cdm_source, concept, concept_ancestor, concept_class, concept_relationship, concept_synonym,\ncondition_era, condition_occurrence, cost, death, device_exposure, domain, dose_era, drug_era, drug_exposure, drug_strength,\nfact_relationship, location, measurement, metadata, note, note_nlp, observation, observation_period, payer_plan_period, person,\nprocedure_occurrence, provider, relationship, source_to_concept_map, specimen, visit_detail, visit_occurrence, vocabulary\n\n\n• cohort tables: -\n\n\n• achilles tables: -\n\n\n• other tables: -"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#reference-to-the-cdm-vocabulary-tables-2",
+    "href": "Presentations/CodelistGenerator/slides.html#reference-to-the-cdm-vocabulary-tables-2",
+    "title": "CodelistGenerator",
+    "section": "Reference to the CDM vocabulary tables",
+    "text": "Reference to the CDM vocabulary tables\nNote, Eunomia doesn´t have a full set of vocabularies:\n\ncdm$concept |&gt; \n  tally() |&gt;\n  pull()\n\n[1] 444\n\n\n\nWe’ll create a mock to show some of the functions where Eunomia won’t work because of its partial vocabularies\n\nlibrary(CodelistGenerator)\ncdm_mock &lt;- mockVocabRef()\ncdm_mock"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#cdm-vocabulary-tables-1",
+    "href": "Presentations/CodelistGenerator/slides.html#cdm-vocabulary-tables-1",
+    "title": "CodelistGenerator",
+    "section": "CDM vocabulary tables",
+    "text": "CDM vocabulary tables\nhttps://athena.ohdsi.org"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#cdm-vocabulary-tables-2",
+    "href": "Presentations/CodelistGenerator/slides.html#cdm-vocabulary-tables-2",
+    "title": "CodelistGenerator",
+    "section": "CDM vocabulary tables",
+    "text": "CDM vocabulary tables\n\ncdm$concept |&gt; glimpse()\n\nRows: ??\nColumns: 10\n$ concept_id       &lt;int&gt; 35208414, 1118088, 40213201, 1557272, 4336464, 4295880, 3020630, 19129655, 44923712, 1569708, 40213216,…\n$ concept_name     &lt;chr&gt; \"Gastrointestinal hemorrhage, unspecified\", \"celecoxib 200 MG Oral Capsule [Celebrex]\", \"pneumococcal p…\n$ domain_id        &lt;chr&gt; \"Condition\", \"Drug\", \"Drug\", \"Drug\", \"Procedure\", \"Procedure\", \"Measurement\", \"Drug\", \"Drug\", \"Conditio…\n$ vocabulary_id    &lt;chr&gt; \"ICD10CM\", \"RxNorm\", \"CVX\", \"RxNorm\", \"SNOMED\", \"SNOMED\", \"LOINC\", \"RxNorm\", \"NDC\", \"ICD10CM\", \"CVX\", \"…\n$ concept_class_id &lt;chr&gt; \"4-char billing code\", \"Branded Drug\", \"CVX\", \"Ingredient\", \"Procedure\", \"Procedure\", \"Lab Test\", \"Clin…\n$ standard_concept &lt;chr&gt; NA, \"S\", \"S\", \"S\", \"S\", \"S\", \"S\", \"S\", NA, NA, \"S\", \"S\", \"S\", \"S\", \"S\", \"S\", NA, \"S\", \"S\", \"S\", \"S\", \"S…\n$ concept_code     &lt;chr&gt; \"K92.2\", \"213469\", \"33\", \"46041\", \"232717009\", \"76601001\", \"2885-2\", \"789980\", \"00025152531\", \"K92\", \"1…\n$ valid_start_date &lt;date&gt; 2007-01-01, 1970-01-01, 2008-12-01, 1970-01-01, 1970-01-01, 1970-01-01, 1970-01-01, 2008-03-30, 2000-0…\n$ valid_end_date   &lt;date&gt; 2099-12-31, 2099-12-31, 2099-12-31, 2099-12-31, 2099-12-31, 2099-12-31, 2099-12-31, 2099-12-31, 2099-1…\n$ invalid_reason   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#cdm-vocabulary-tables-3",
+    "href": "Presentations/CodelistGenerator/slides.html#cdm-vocabulary-tables-3",
+    "title": "CodelistGenerator",
+    "section": "CDM vocabulary tables",
+    "text": "CDM vocabulary tables\n\ncdm$condition_occurrence |&gt;\n  group_by(condition_concept_id) |&gt;\n  tally() |&gt;\n  left_join(\n    cdm$concept |&gt;\n      select(\"concept_id\", \"concept_name\"),\n    by = c(\"condition_concept_id\" = \"concept_id\")\n  ) |&gt;\n  collect() |&gt;\n  arrange(desc(n))\n\n# A tibble: 80 × 3\n   condition_concept_id     n concept_name                            \n                  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;                                   \n 1             40481087 17268 Viral sinusitis                         \n 2              4112343 10217 Acute viral pharyngitis                 \n 3               260139  8184 Acute bronchitis                        \n 4               372328  3605 Otitis media                            \n 5                80180  2694 Osteoarthritis                          \n 6                28060  2656 Streptococcal sore throat               \n 7                81151  1915 Sprain of ankle                         \n 8               378001  1013 Concussion with no loss of consciousness\n 9              4283893  1001 Sinusitis                               \n10              4294548   939 Acute bacterial sinusitis               \n# ℹ 70 more rows"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#cdm-vocabulary-tables-4",
+    "href": "Presentations/CodelistGenerator/slides.html#cdm-vocabulary-tables-4",
+    "title": "CodelistGenerator",
+    "section": "CDM vocabulary tables",
+    "text": "CDM vocabulary tables\n\ncdm$concept_ancestor |&gt; glimpse()\n\nRows: ??\nColumns: 4\n$ ancestor_concept_id      &lt;int&gt; 4180628, 4179141, 21500574, 21505770, 21503967, 36203060, 36151386, 21502552, 40765628, 4433964…\n$ descendant_concept_id    &lt;int&gt; 313217, 4146173, 1118084, 1119510, 40162522, 40479422, 1119510, 1112807, 40769189, 19128009, 15…\n$ min_levels_of_separation &lt;int&gt; 5, 2, 4, 0, 5, 4, 0, 4, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0,…\n$ max_levels_of_separation &lt;int&gt; 6, 2, 4, 0, 6, 4, 0, 4, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 3, 0, 0, 3, 0, 0, 0, 0, 0, 0,…"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#cdm-vocabulary-tables-5",
+    "href": "Presentations/CodelistGenerator/slides.html#cdm-vocabulary-tables-5",
+    "title": "CodelistGenerator",
+    "section": "CDM vocabulary tables",
+    "text": "CDM vocabulary tables\n\ncdm$concept_relationship |&gt; glimpse()\n\nRows: ??\nColumns: 6\n$ concept_id_1     &lt;int&gt; 192671, 1118088, 1569708, 35208414, 35208414, 40162359, 44923712, 45011828\n$ concept_id_2     &lt;int&gt; 35208414, 44923712, 35208414, 192671, 1569708, 45011828, 1118088, 40162359\n$ relationship_id  &lt;chr&gt; \"Mapped from\", \"Mapped from\", \"Subsumes\", \"Maps to\", \"Is a\", \"Mapped from\", \"Maps to\", \"Maps to\"\n$ valid_start_date &lt;date&gt; 1970-01-01, 1970-01-01, 2016-03-25, 1970-01-01, 2016-03-25, 2009-08-03, 1970-01-01, 2009-08-03\n$ valid_end_date   &lt;date&gt; 2099-12-31, 2099-12-31, 2099-12-31, 2099-12-31, 2099-12-31, 2099-12-31, 2099-12-31, 2099-12-31\n$ invalid_reason   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#cdm-vocabulary-tables-6",
+    "href": "Presentations/CodelistGenerator/slides.html#cdm-vocabulary-tables-6",
+    "title": "CodelistGenerator",
+    "section": "CDM vocabulary tables",
+    "text": "CDM vocabulary tables\n\ncdm$concept_synonym |&gt; glimpse()\n\nRows: ??\nColumns: 3\n$ concept_id           &lt;int&gt; 964261, 1322184, 441267, 1718412, 4336464, 4102123, 4237458, 4280726, 4330583, 3014576, 4242997, 30…\n$ concept_synonym_name &lt;chr&gt; \"cyanocobalamin 5000 MCG/ML Injectable Solution\", \"clopidogrel\", \"Cystic fibrosis (disorder)\", \"Kyl…\n$ language_concept_id  &lt;int&gt; 4180186, 4180186, 4180186, 4180186, 4180186, 4180186, 4180186, 4180186, 4180186, 4180186, 4180186, …"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#vocabulary-version",
+    "href": "Presentations/CodelistGenerator/slides.html#vocabulary-version",
+    "title": "CodelistGenerator",
+    "section": "Vocabulary version",
+    "text": "Vocabulary version\nSearch results will be specific to the version of the vocabulary being used\n\nvocabularyVersion(cdm = cdm)\n\n[1] \"v5.0 18-JAN-19\""
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#available-vocabularies",
+    "href": "Presentations/CodelistGenerator/slides.html#available-vocabularies",
+    "title": "CodelistGenerator",
+    "section": "Available vocabularies",
+    "text": "Available vocabularies\nWhat vocabularies are available?\n\navailableVocabularies(cdm = cdm)\n\n[1] \"CVX\"    \"Gender\" \"LOINC\"  \"RxNorm\" \"SNOMED\" \"Visit\""
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#available-domains",
+    "href": "Presentations/CodelistGenerator/slides.html#available-domains",
+    "title": "CodelistGenerator",
+    "section": "Available domains",
+    "text": "Available domains\nWhat domains are present?\n\navailableDomains(cdm = cdm)\n\n[1] \"Condition\"   \"Drug\"        \"Gender\"      \"Measurement\" \"Observation\" \"Procedure\"   \"Visit\""
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#concept-classes",
+    "href": "Presentations/CodelistGenerator/slides.html#concept-classes",
+    "title": "CodelistGenerator",
+    "section": "Concept classes",
+    "text": "Concept classes\nWhat concept classes are present?\n\navailableConceptClassIds(\n  cdm = cdm,\n  standardConcept = \"Standard\",\n  domain = \"Drug\"\n)\n\n[1] \"Branded Drug\"        \"Branded Drug Comp\"   \"Branded Pack\"        \"Clinical Drug\"       \"Clinical Drug Comp\" \n[6] \"CVX\"                 \"Ingredient\"          \"Quant Branded Drug\"  \"Quant Clinical Drug\"\n\n\n\n\navailableConceptClassIds(\n  cdm = cdm,\n  standardConcept = \"Standard\",\n  domain = \"Condition\"\n)\n\n[1] \"Clinical Finding\""
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#relationship-id",
+    "href": "Presentations/CodelistGenerator/slides.html#relationship-id",
+    "title": "CodelistGenerator",
+    "section": "Relationship ID",
+    "text": "Relationship ID\nWhat relationships do we have between standard concepts?\n\navailableRelationshipIds(\n  cdm = cdm_mock,\n  standardConcept1 = \"Standard\",\n  standardConcept2 = \"Standard\",\n  domains1 = \"condition\",\n  domains2 = \"condition\"\n)\n\n[1] \"Due to of\"\n\n\nWhat relationships do we have between non-standard to standard concepts?\n\navailableRelationshipIds(\n  cdm = cdm_mock,\n  standardConcept1 = \"Standard\",\n  standardConcept2 = \"Non-standard\",\n  domains1 = \"condition\",\n  domains2 = \"condition\"\n)\n\n[1] \"Mapped from\""
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#drug-dose-forms",
+    "href": "Presentations/CodelistGenerator/slides.html#drug-dose-forms",
+    "title": "CodelistGenerator",
+    "section": "Drug dose forms",
+    "text": "Drug dose forms\n\navailableDoseForms(cdm = cdm_mock)\n\n[1] \"Injectable Foam\"       \"Injection\"             \"Nasal Powder\"          \"Topical Liquefied Gas\""
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#your-turn",
+    "href": "Presentations/CodelistGenerator/slides.html#your-turn",
+    "title": "CodelistGenerator",
+    "section": "Your turn",
+    "text": "Your turn\nUsing a cdm reference you have connected to:\n\nWhat is the vocabulary version of the cdm?\nHow many concepts are in your concept table? How many of these are standard concepts?\nWhat domains are available? Which domains would you use if you were defining a cohort of people with asthma?"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#solution",
+    "href": "Presentations/CodelistGenerator/slides.html#solution",
+    "title": "CodelistGenerator",
+    "section": "Solution",
+    "text": "Solution\n\n💡 Click to see solution\n\nvocabularyVersion(cdm = cdm)\n\ncdm$concept |&gt;\n  tally()\n\navailableDomains(cdm = cdm)"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#vocabulary-based-codelists-using-codelistgenerator-1",
+    "href": "Presentations/CodelistGenerator/slides.html#vocabulary-based-codelists-using-codelistgenerator-1",
+    "title": "CodelistGenerator",
+    "section": "Vocabulary-based codelists using CodelistGenerator",
+    "text": "Vocabulary-based codelists using CodelistGenerator\nWe can use drug hierarchies and relationships to create vocabulary-based codelists."
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#drug-ingredients",
+    "href": "Presentations/CodelistGenerator/slides.html#drug-ingredients",
+    "title": "CodelistGenerator",
+    "section": "Drug ingredients",
+    "text": "Drug ingredients\n\ningredients &lt;- getDrugIngredientCodes(cdm = cdm, nameStyle = \"{concept_name}\")\ningredients\n\n\n- acetaminophen (7 codes)\n- albuterol (2 codes)\n- alendronate (2 codes)\n- alfentanil (1 codes)\n- alteplase (2 codes)\n- amiodarone (2 codes)\nalong with 85 more codelists\n\n\n\n\ningredients$warfarin\n\n[1]  1310149 40163554\n\n\n\n\n\ncdm$concept |&gt;\n  filter(concept_id %in% c(1310149, 40163554))\n\n# A query:  ?? x 10\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmpOq3bnr/file272a4edefeed.duckdb]\n  concept_id concept_name   domain_id vocabulary_id concept_class_id standard_concept concept_code valid_start_date valid_end_date\n       &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;        &lt;date&gt;           &lt;date&gt;        \n1    1310149 Warfarin       Drug      RxNorm        Ingredient       S                11289        1970-01-01       2099-12-31    \n2   40163554 Warfarin Sodi… Drug      RxNorm        Clinical Drug    S                855332       2009-08-02       2099-12-31    \n# ℹ 1 more variable: invalid_reason &lt;chr&gt;"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#atc-classifications",
+    "href": "Presentations/CodelistGenerator/slides.html#atc-classifications",
+    "title": "CodelistGenerator",
+    "section": "ATC classifications",
+    "text": "ATC classifications\n\natc &lt;- getATCCodes(cdm = cdm_mock, nameStyle = \"{concept_name}\")\natc\n\n\n- alimentary_tract_and_metabolism (2 codes)\n\n\n\n\n\natc$alimentary_tract_and_metabolism\n\n[1] 12 13"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#your-turn-1",
+    "href": "Presentations/CodelistGenerator/slides.html#your-turn-1",
+    "title": "CodelistGenerator",
+    "section": "Your turn",
+    "text": "Your turn\nUsing your data:\n\nGet codes for memantine using getDrugIngredientCodes. How many codes do you include?\n\nHow how many records for memantine are in the drug exposure table (hint: filter on the drug_concept_id field from the drug_exposure table)?\n\n0\n67\n110\n245"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#solution-1",
+    "href": "Presentations/CodelistGenerator/slides.html#solution-1",
+    "title": "CodelistGenerator",
+    "section": "Solution",
+    "text": "Solution\n\n💡 Click to see solution\n\nmemantine_codes &lt;- getDrugIngredientCodes(cdm = cdm, name = \"memantine\")\nmemantine_codes\n\ncdm$drug_exposure |&gt;\n  filter(drug_concept_id %in% !!memantine_codes[[1]]) |&gt;\n  tally()"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#systematic-search-using-codelistgenerator-1",
+    "href": "Presentations/CodelistGenerator/slides.html#systematic-search-using-codelistgenerator-1",
+    "title": "CodelistGenerator",
+    "section": "Systematic search using CodelistGenerator",
+    "text": "Systematic search using CodelistGenerator\n\nCodelistGenerator is used to create a candidate set of codes for helping to define patient cohorts in data mapped to the OMOP common data model.\n\n\nA little like the process for a systematic review, the idea is that for a specified search strategy, CodelistGenerator will identify a set of concepts that may be relevant, with these then being screened to remove any irrelevant codes."
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#codes-for-asthma",
+    "href": "Presentations/CodelistGenerator/slides.html#codes-for-asthma",
+    "title": "CodelistGenerator",
+    "section": "Codes for asthma",
+    "text": "Codes for asthma\n\nasthma_codes &lt;- getCandidateCodes(\n  cdm = cdm,\n  keywords = \"asthma\",\n  domains = \"Condition\"\n)\nasthma_codes |&gt; glimpse()\n\nRows: 2\nColumns: 12\n$ concept_id         &lt;int&gt; 317009, 4051466\n$ found_from         &lt;chr&gt; \"From initial search\", \"From initial search\"\n$ concept_name       &lt;chr&gt; \"Asthma\", \"Childhood asthma\"\n$ vocabulary_version &lt;chr&gt; \"v5.0 18-JAN-19\", \"v5.0 18-JAN-19\"\n$ domain_id          &lt;chr&gt; \"Condition\", \"Condition\"\n$ vocabulary_id      &lt;chr&gt; \"SNOMED\", \"SNOMED\"\n$ concept_class_id   &lt;chr&gt; \"Clinical Finding\", \"Clinical Finding\"\n$ standard_concept   &lt;chr&gt; \"S\", \"S\"\n$ concept_code       &lt;chr&gt; \"195967001\", \"233678006\"\n$ valid_start_date   &lt;date&gt; 1970-01-01, 1970-01-01\n$ valid_end_date     &lt;date&gt; 2099-12-31, 2099-12-31\n$ invalid_reason     &lt;chr&gt; NA, NA\n\n\n\n\n\nasthma_cs &lt;- newCodelist(list(\"asthma\" = asthma_codes$concept_id))\nasthma_cs\n\n\n- asthma (2 codes)"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#your-turn-2",
+    "href": "Presentations/CodelistGenerator/slides.html#your-turn-2",
+    "title": "CodelistGenerator",
+    "section": "Your turn",
+    "text": "Your turn\nUsing Eunomia data:\n\nSearch for codes for sinusitis recorded in the condition domain\nDo you identify any more codes if you also search in the observation domain as well as the condition domain"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#solution-2",
+    "href": "Presentations/CodelistGenerator/slides.html#solution-2",
+    "title": "CodelistGenerator",
+    "section": "Solution",
+    "text": "Solution\n\n💡 Click to see solution\n\nsinusitis_codes &lt;- getCandidateCodes(\n  cdm = cdm,\n  keywords = \"sinusitis\",\n  domains = \"Condition\"\n)\nnrow(sinusitis_codes)\n\nsinusitis_codes_2 &lt;- getCandidateCodes(\n  cdm = cdm,\n  keywords = \"sinusitis\",\n  domains = c(\"Condition\", \"Observation\")\n)\nnrow(sinusitis_codes_2)"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#code-counts",
+    "href": "Presentations/CodelistGenerator/slides.html#code-counts",
+    "title": "CodelistGenerator",
+    "section": "Code counts",
+    "text": "Code counts\n\nlibrary(omopgenerics)\nasthma_code_use &lt;- summariseCodeUse(\n  x = asthma_cs,\n  byYear = TRUE,\n  bySex = TRUE,\n  ageGroup = list(\n    c(0, 17),\n    c(18, 65),\n    c(66, 150)\n  ),\n  cdm = cdm\n) \n\ntableCodeUse(result = asthma_code_use |&gt;\n  filter(strata_name == \"overall\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDatabase name\n\n\n\n\n\nGiBleed\n\n\n\nCodelist name\nYear\nSex\nAge group\nStandard concept name\nStandard concept ID\nSource concept name\nSource concept ID\nSource concept value\nType concept id\nType concept name\nDomain ID\nTable\n\nEstimate name\n\n\n\nPerson count\nRecord count\n\n\n\n\nasthma\noverall\noverall\noverall\noverall\n–\n–\n–\n–\n–\n–\n–\n–\n101\n101\n\n\n\n\n\n\nChildhood asthma\n4051466\nChildhood asthma\n4051466\n233678006\n32020\n–\ncondition\ncondition_occurrence\n96\n96\n\n\n\n\n\n\nAsthma\n317009\nAsthma\n317009\n195967001\n32020\n–\ncondition\ncondition_occurrence\n5\n5"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#code-counts-1",
+    "href": "Presentations/CodelistGenerator/slides.html#code-counts-1",
+    "title": "CodelistGenerator",
+    "section": "Code counts",
+    "text": "Code counts\n\ntableCodeUse(result = asthma_code_use |&gt;\n  filter(\n    strata_name == \"year\",\n    strata_level %in% c(\"2004\", \"2005\", \"2006\")\n  ))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDatabase name\n\n\n\n\n\nGiBleed\n\n\n\nCodelist name\nYear\nSex\nAge group\nStandard concept name\nStandard concept ID\nSource concept name\nSource concept ID\nSource concept value\nType concept id\nType concept name\nDomain ID\nTable\n\nEstimate name\n\n\n\nPerson count\nRecord count\n\n\n\n\nasthma\n2004\noverall\noverall\noverall\n–\n–\n–\n–\n–\n–\n–\n–\n1\n1\n\n\n\n\n\n\nAsthma\n317009\nAsthma\n317009\n195967001\n32020\n–\ncondition\ncondition_occurrence\n1\n1\n\n\n\n2006\noverall\noverall\noverall\n–\n–\n–\n–\n–\n–\n–\n–\n1\n1\n\n\n\n\n\n\nAsthma\n317009\nAsthma\n317009\n195967001\n32020\n–\ncondition\ncondition_occurrence\n1\n1"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#code-counts-2",
+    "href": "Presentations/CodelistGenerator/slides.html#code-counts-2",
+    "title": "CodelistGenerator",
+    "section": "Code counts",
+    "text": "Code counts\n\ntableCodeUse(result = asthma_code_use |&gt;\n  filter(strata_name == \"age_group\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDatabase name\n\n\n\n\n\nGiBleed\n\n\n\nCodelist name\nYear\nSex\nAge group\nStandard concept name\nStandard concept ID\nSource concept name\nSource concept ID\nSource concept value\nType concept id\nType concept name\nDomain ID\nTable\n\nEstimate name\n\n\n\nPerson count\nRecord count\n\n\n\n\nasthma\noverall\noverall\n0 to 17\noverall\n–\n–\n–\n–\n–\n–\n–\n–\n96\n96\n\n\n\n\n\n\nChildhood asthma\n4051466\nChildhood asthma\n4051466\n233678006\n32020\n–\ncondition\ncondition_occurrence\n96\n96\n\n\n\n\n\n18 to 65\noverall\n–\n–\n–\n–\n–\n–\n–\n–\n5\n5\n\n\n\n\n\n\nAsthma\n317009\nAsthma\n317009\n195967001\n32020\n–\ncondition\ncondition_occurrence\n5\n5"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#your-turn-3",
+    "href": "Presentations/CodelistGenerator/slides.html#your-turn-3",
+    "title": "CodelistGenerator",
+    "section": "Your turn",
+    "text": "Your turn\nUsing Eunomia data:\n\nIdentify codes for appendicitis from the condition domain\nMake a table with counts of the usage of these codes"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#solution-3",
+    "href": "Presentations/CodelistGenerator/slides.html#solution-3",
+    "title": "CodelistGenerator",
+    "section": "Solution",
+    "text": "Solution\n\n💡 Click to see solution\n\nappendicitis_codes &lt;- getCandidateCodes(\n  cdm = cdm,\n  keywords = \"appendicitis\",\n  domains = \"Condition\"\n)\ntableCodeUse(result = appendicitis)"
+  },
+  {
+    "objectID": "Presentations/CodelistGenerator/slides.html#codelistgenerator",
+    "href": "Presentations/CodelistGenerator/slides.html#codelistgenerator",
+    "title": "CodelistGenerator",
+    "section": "CodelistGenerator",
+    "text": "CodelistGenerator\n\n\n👉 Packages website\n👉 CRAN link\n👉 Manual\n📧 edward.burn@ndorms.ox.ac.uk"
+  },
+  {
     "objectID": "Presentations/OmopStudyBuilder/index.html#why-omopstudybuilder",
     "href": "Presentations/OmopStudyBuilder/index.html#why-omopstudybuilder",
     "title": "OmopStudyBuilder",
@@ -1110,28 +1327,28 @@
     "href": "Presentations/PatientProfiles/index.html#addsex",
     "title": "PatientProfiles",
     "section": "addSex()",
-    "text": "addSex()\n\nUse addSex() when the table contains person_id or subject_id and you want the person’s sex as a new column:\n\n\n\ncdm$my_cohort |&gt;\n  addSex(\n    sexName = \"sex\", # name of the new column (default = \"sex\")\n    missingSexValue = \"None\" # label for missing gender_concept_id (default = \"None\")\n  )\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date sex   \n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;chr&gt; \n 1                    1          0 2010-05-07        2010-05-07      Male  \n 2                    1          4 2010-04-26        2010-04-26      Male  \n 3                    1          5 2009-04-24        2009-04-25      Female\n 4                    1          6 2010-07-12        2010-07-12      Female\n 5                    1          8 2008-11-28        2008-11-28      Female\n 6                    1         17 2008-04-07        2008-04-07      Male  \n 7                    1         19 2010-01-05        2010-01-05      Female\n 8                    1         22 2008-11-14        2008-11-17      Male  \n 9                    1         23 2010-02-06        2010-02-06      Female\n10                    1         25 2010-06-27        2010-06-27      Female\n# ℹ more rows"
+    "text": "addSex()\n\nUse addSex() when the table contains person_id or subject_id and you want the person’s sex as a new column:\n\n\n\ncdm$my_cohort |&gt;\n  addSex(\n    sexName = \"sex\", # name of the new column (default = \"sex\")\n    missingSexValue = \"None\" # label for missing gender_concept_id (default = \"None\")\n  )\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date sex   \n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;chr&gt; \n 1                    1          0 2010-05-07        2010-05-07      Male  \n 2                    1          4 2010-04-26        2010-04-26      Male  \n 3                    1          5 2009-04-24        2009-04-25      Female\n 4                    1          6 2010-07-12        2010-07-12      Female\n 5                    1          8 2008-11-28        2008-11-28      Female\n 6                    1         17 2008-09-27        2008-09-27      Male  \n 7                    1         19 2010-01-05        2010-01-05      Female\n 8                    1         22 2008-11-14        2008-11-17      Male  \n 9                    1         23 2010-02-06        2010-02-06      Female\n10                    1         25 2009-01-31        2009-01-31      Female\n# ℹ more rows"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#addage",
     "href": "Presentations/PatientProfiles/index.html#addage",
     "title": "PatientProfiles",
     "section": "addAge()",
-    "text": "addAge()\n\nUse addAge() to calculate age at an index date. The table must contain person_id or subject_id:\n\n\n\ncdm$my_cohort |&gt;\n  addAge(\n    indexDate = \"cohort_start_date\", # date to compute age (default = \"cohort_start_date\") \n    ageName = \"age\", # name of the age column (default = \"age\") \n    ageMissingMonth = 1, # Month for individuals with missing month (default = 1) \n    ageMissingDay = 1, # Day for individuals with missing day (default = 1)\n    ageImposeMonth = FALSE, # Whether to impose default month to all individuals (default = FALSE) \n    ageImposeDay = FALSE, # Whether to impose default day to all individuals (default = FALSE)\n    ageUnit = \"years\" # 'years', 'months' or 'days'.\n  )\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date   age\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;dbl&gt;\n 1                    1          0 2010-05-07        2010-05-07         77\n 2                    1          4 2010-04-26        2010-04-26         75\n 3                    1          5 2009-04-24        2009-04-25         78\n 4                    1          6 2010-07-12        2010-07-12         68\n 5                    1          8 2008-11-28        2008-11-28         56\n 6                    1         17 2008-04-07        2008-04-07         80\n 7                    1         19 2010-01-05        2010-01-05         84\n 8                    1         22 2008-11-14        2008-11-17         56\n 9                    1         23 2010-02-06        2010-02-06         97\n10                    1         25 2010-06-27        2010-06-27         71\n# ℹ more rows"
+    "text": "addAge()\n\nUse addAge() to calculate age at an index date. The table must contain person_id or subject_id:\n\n\n\ncdm$my_cohort |&gt;\n  addAge(\n    indexDate = \"cohort_start_date\", # date to compute age (default = \"cohort_start_date\") \n    ageName = \"age\", # name of the age column (default = \"age\") \n    ageMissingMonth = 1, # Month for individuals with missing month (default = 1) \n    ageMissingDay = 1, # Day for individuals with missing day (default = 1)\n    ageImposeMonth = FALSE, # Whether to impose default month to all individuals (default = FALSE) \n    ageImposeDay = FALSE, # Whether to impose default day to all individuals (default = FALSE)\n    ageUnit = \"years\" # 'years', 'months' or 'days'.\n  )\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date   age\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;dbl&gt;\n 1                    1          0 2010-05-07        2010-05-07         77\n 2                    1          4 2010-04-26        2010-04-26         75\n 3                    1          5 2009-04-24        2009-04-25         78\n 4                    1          6 2010-07-12        2010-07-12         68\n 5                    1          8 2008-11-28        2008-11-28         56\n 6                    1         17 2008-09-27        2008-09-27         81\n 7                    1         19 2010-01-05        2010-01-05         84\n 8                    1         22 2008-11-14        2008-11-17         56\n 9                    1         23 2010-02-06        2010-02-06         97\n10                    1         25 2009-01-31        2009-01-31         70\n# ℹ more rows"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#addage-1",
     "href": "Presentations/PatientProfiles/index.html#addage-1",
     "title": "PatientProfiles",
     "section": "addAge()",
-    "text": "addAge()\n\nAdd age groups\n\n\n\ncdm$drug_exposure |&gt;\n  addAge(\n    indexDate = \"drug_exposure_start_date\",\n    ageGroup = list(c(0, 39), c(40, Inf))\n  ) |&gt;\n   select(\"person_id\",  \"drug_exposure_start_date\", \"age\", \"age_group\")\n\n\n\n\n\n# A query:  ?? x 4\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   person_id drug_exposure_start_date   age age_group  \n       &lt;int&gt; &lt;date&gt;                   &lt;dbl&gt; &lt;chr&gt;      \n 1         0 2008-06-24                  75 40 or above\n 2         0 2010-05-13                  77 40 or above\n 3         0 2008-06-05                  75 40 or above\n 4         0 2008-02-23                  75 40 or above\n 5         0 2008-03-31                  75 40 or above\n 6         0 2009-12-30                  77 40 or above\n 7         1 2010-02-07                  52 40 or above\n 8         1 2010-06-20                  52 40 or above\n 9         1 2008-04-27                  50 40 or above\n10         1 2009-11-07                  52 40 or above\n# ℹ more rows"
+    "text": "addAge()\n\nAdd age groups\n\n\n\ncdm$drug_exposure |&gt;\n  addAge(\n    indexDate = \"drug_exposure_start_date\",\n    ageGroup = list(c(0, 39), c(40, Inf))\n  ) |&gt;\n   select(\"person_id\",  \"drug_exposure_start_date\", \"age\", \"age_group\")\n\n\n\n\n\n# A query:  ?? x 4\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   person_id drug_exposure_start_date   age age_group  \n       &lt;int&gt; &lt;date&gt;                   &lt;dbl&gt; &lt;chr&gt;      \n 1         0 2008-06-24                  75 40 or above\n 2         0 2010-05-13                  77 40 or above\n 3         0 2008-06-05                  75 40 or above\n 4         0 2008-02-23                  75 40 or above\n 5         0 2008-03-31                  75 40 or above\n 6         0 2009-12-30                  77 40 or above\n 7         1 2010-02-07                  52 40 or above\n 8         1 2010-06-20                  52 40 or above\n 9         1 2008-04-27                  50 40 or above\n10         1 2009-11-07                  52 40 or above\n# ℹ more rows"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#addage-2",
     "href": "Presentations/PatientProfiles/index.html#addage-2",
     "title": "PatientProfiles",
     "section": "addAge()",
-    "text": "addAge()\nYou can create several labelled age-group columns in one call:\n\n\ncdm$drug_exposure |&gt;\n  addAge(\n    indexDate = \"drug_exposure_start_date\",\n    ageGroup = list(\n      \"age_group\" = list(\"&lt;40\" = c(0, 39), \"&gt;=40\" = c(40, Inf)),\n      \"category\" = list(\"kids\" = c(0, 17), \"adults\" = c(18, Inf))\n    )\n  ) |&gt;\n  select(\"person_id\",  \"drug_exposure_start_date\", \"age\", \"age_group\", \"category\")\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   person_id drug_exposure_start_date   age age_group category\n       &lt;int&gt; &lt;date&gt;                   &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   \n 1         0 2008-06-24                  75 &gt;=40      adults  \n 2         0 2010-05-13                  77 &gt;=40      adults  \n 3         0 2008-06-05                  75 &gt;=40      adults  \n 4         0 2008-02-23                  75 &gt;=40      adults  \n 5         0 2008-03-31                  75 &gt;=40      adults  \n 6         0 2009-12-30                  77 &gt;=40      adults  \n 7         1 2010-02-07                  52 &gt;=40      adults  \n 8         1 2010-06-20                  52 &gt;=40      adults  \n 9         1 2008-04-27                  50 &gt;=40      adults  \n10         1 2009-11-07                  52 &gt;=40      adults  \n# ℹ more rows"
+    "text": "addAge()\nYou can create several labelled age-group columns in one call:\n\n\ncdm$drug_exposure |&gt;\n  addAge(\n    indexDate = \"drug_exposure_start_date\",\n    ageGroup = list(\n      \"age_group\" = list(\"&lt;40\" = c(0, 39), \"&gt;=40\" = c(40, Inf)),\n      \"category\" = list(\"kids\" = c(0, 17), \"adults\" = c(18, Inf))\n    )\n  ) |&gt;\n  select(\"person_id\",  \"drug_exposure_start_date\", \"age\", \"age_group\", \"category\")\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   person_id drug_exposure_start_date   age age_group category\n       &lt;int&gt; &lt;date&gt;                   &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   \n 1         0 2008-06-24                  75 &gt;=40      adults  \n 2         0 2010-05-13                  77 &gt;=40      adults  \n 3         0 2008-06-05                  75 &gt;=40      adults  \n 4         0 2008-02-23                  75 &gt;=40      adults  \n 5         0 2008-03-31                  75 &gt;=40      adults  \n 6         0 2009-12-30                  77 &gt;=40      adults  \n 7         1 2010-02-07                  52 &gt;=40      adults  \n 8         1 2010-06-20                  52 &gt;=40      adults  \n 9         1 2008-04-27                  50 &gt;=40      adults  \n10         1 2009-11-07                  52 &gt;=40      adults  \n# ℹ more rows"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#addpriorobservation",
@@ -1159,14 +1376,14 @@
     "href": "Presentations/PatientProfiles/index.html#addpriorobservation-3",
     "title": "PatientProfiles",
     "section": "addPriorObservation()",
-    "text": "addPriorObservation()\n\nThe default output is the number of days from observation start to index date:\n\n\n\ncdm$my_cohort |&gt;\n  addPriorObservation()\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date prior_observation\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                      &lt;dbl&gt;\n 1                    1        123 2009-08-18        2009-08-18                    595\n 2                    1        123 2009-10-16        2009-10-16                    654\n 3                    1        269 2009-11-14        2009-11-14                    317\n 4                    1        901 2009-04-04        2009-04-04                    459\n 5                    1        894 2008-05-01        2008-05-01                    121\n 6                    1        927 2010-02-23        2010-02-23                    784\n 7                    1       1153 2008-11-24        2008-11-24                    328\n 8                    1        194 2009-07-18        2009-07-22                    564\n 9                    1        229 2009-09-10        2009-09-10                    618\n10                    1        408 2010-06-04        2010-06-04                    519\n# ℹ more rows"
+    "text": "addPriorObservation()\n\nThe default output is the number of days from observation start to index date:\n\n\n\ncdm$my_cohort |&gt;\n  addPriorObservation()\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date prior_observation\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                      &lt;dbl&gt;\n 1                    1        226 2009-11-20        2009-12-06                    323\n 2                    1        519 2010-04-08        2010-04-08                    828\n 3                    1       1157 2009-09-15        2009-09-15                    623\n 4                    1         41 2008-05-15        2008-05-15                    135\n 5                    1        109 2008-09-18        2008-09-18                    261\n 6                    1        665 2010-04-19        2010-04-19                    839\n 7                    1         30 2008-06-15        2008-06-15                    166\n 8                    1        213 2008-12-14        2008-12-14                    348\n 9                    1        287 2009-01-29        2009-01-29                    394\n10                    1        767 2009-06-23        2009-06-23                    539\n# ℹ more rows"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#addpriorobservation-4",
     "href": "Presentations/PatientProfiles/index.html#addpriorobservation-4",
     "title": "PatientProfiles",
     "section": "addPriorObservation()",
-    "text": "addPriorObservation()\n\nYou can return the observation-period start date instead of a duration:\n\n\n\ncdm$condition_occurrence |&gt;\n  addPriorObservation(\n    indexDate = \"condition_start_date\", \n    priorObservationName = \"start_observation\", # name of the column\n    priorObservationType = \"date\" # default = \"days\"\n  ) |&gt;\n select(\"person_id\", \"condition_occurrence_id\", \"condition_concept_id\", \"condition_start_date\", \"start_observation\")\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   person_id condition_occurrence_id condition_concept_id condition_start_date start_observation\n       &lt;int&gt;                   &lt;int&gt;                &lt;int&gt; &lt;date&gt;               &lt;date&gt;           \n 1         0                  247920               381566 2008-06-24           2008-01-01       \n 2         0                  165361               138525 2010-06-30           2008-01-01       \n 3         0                   20403               197035 2008-05-08           2008-01-01       \n 4         0                   65523                77646 2009-05-15           2008-01-01       \n 5         0                  217923               443211 2008-04-24           2008-01-01       \n 6         0                  404403               261600 2009-06-06           2008-01-01       \n 7         0                   78722               442792 2008-02-23           2008-01-01       \n 8         0                   94562               437966 2008-06-05           2008-01-01       \n 9         0                  230164               312437 2008-11-03           2008-01-01       \n10         0                  478564              4185932 2008-11-03           2008-01-01       \n# ℹ more rows"
+    "text": "addPriorObservation()\n\nYou can return the observation-period start date instead of a duration:\n\n\n\ncdm$condition_occurrence |&gt;\n  addPriorObservation(\n    indexDate = \"condition_start_date\", \n    priorObservationName = \"start_observation\", # name of the column\n    priorObservationType = \"date\" # default = \"days\"\n  ) |&gt;\n select(\"person_id\", \"condition_occurrence_id\", \"condition_concept_id\", \"condition_start_date\", \"start_observation\")\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   person_id condition_occurrence_id condition_concept_id condition_start_date start_observation\n       &lt;int&gt;                   &lt;int&gt;                &lt;int&gt; &lt;date&gt;               &lt;date&gt;           \n 1         0                  247920               381566 2008-06-24           2008-01-01       \n 2         0                  165361               138525 2010-06-30           2008-01-01       \n 3         0                   20403               197035 2008-05-08           2008-01-01       \n 4         0                   65523                77646 2009-05-15           2008-01-01       \n 5         0                  217923               443211 2008-04-24           2008-01-01       \n 6         0                  404403               261600 2009-06-06           2008-01-01       \n 7         0                   78722               442792 2008-02-23           2008-01-01       \n 8         0                   94562               437966 2008-06-05           2008-01-01       \n 9         0                  230164               312437 2008-11-03           2008-01-01       \n10         0                  478564              4185932 2008-11-03           2008-01-01       \n# ℹ more rows"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#addfutureobservation",
@@ -1194,7 +1411,7 @@
     "href": "Presentations/PatientProfiles/index.html#addfutureobservation-3",
     "title": "PatientProfiles",
     "section": "addFutureObservation()",
-    "text": "addFutureObservation()\n\n\ncdm$my_cohort |&gt;\n  addFutureObservation()\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date future_observation\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                       &lt;dbl&gt;\n 1                    1        123 2009-08-18        2009-08-18                     500\n 2                    1        123 2009-10-16        2009-10-16                     441\n 3                    1        269 2009-11-14        2009-11-14                     412\n 4                    1        901 2009-04-04        2009-04-04                     636\n 5                    1        894 2008-05-01        2008-05-01                     974\n 6                    1        927 2010-02-23        2010-02-23                     311\n 7                    1       1153 2008-11-24        2008-11-24                     767\n 8                    1        194 2009-07-18        2009-07-22                     531\n 9                    1        229 2009-09-10        2009-09-10                     477\n10                    1        408 2010-06-04        2010-06-04                     210\n# ℹ more rows"
+    "text": "addFutureObservation()\n\n\ncdm$my_cohort |&gt;\n  addFutureObservation()\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date future_observation\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                       &lt;dbl&gt;\n 1                    1        226 2009-11-20        2009-12-06                     406\n 2                    1        519 2010-04-08        2010-04-08                     267\n 3                    1       1157 2009-09-15        2009-09-15                     472\n 4                    1         41 2008-05-15        2008-05-15                     960\n 5                    1        109 2008-09-18        2008-09-18                     834\n 6                    1        665 2010-04-19        2010-04-19                     256\n 7                    1         30 2008-06-15        2008-06-15                     929\n 8                    1        213 2008-12-14        2008-12-14                     747\n 9                    1        287 2009-01-29        2009-01-29                     701\n10                    1        767 2009-06-23        2009-06-23                     556\n# ℹ more rows"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#addinobservation",
@@ -1222,35 +1439,35 @@
     "href": "Presentations/PatientProfiles/index.html#addinobservation-3",
     "title": "PatientProfiles",
     "section": "addInObservation()",
-    "text": "addInObservation()\n\n\ncdm$condition_occurrence |&gt;\n  addInObservation(indexDate = \"condition_start_date\") |&gt;\n  filter(in_observation == 1) |&gt;\n  select(\"condition_concept_id\", \"person_id\", \"condition_start_date\", \"in_observation\")\n\n\n\n\n\n# A query:  ?? x 4\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   condition_concept_id person_id condition_start_date in_observation\n                  &lt;int&gt;     &lt;int&gt; &lt;date&gt;                        &lt;dbl&gt;\n 1               381566         0 2008-06-24                        1\n 2               138525         0 2010-06-30                        1\n 3               197035         0 2008-05-08                        1\n 4                77646         0 2009-05-15                        1\n 5               443211         0 2008-04-24                        1\n 6               261600         0 2009-06-06                        1\n 7               442792         0 2008-02-23                        1\n 8               437966         0 2008-06-05                        1\n 9               312437         0 2008-11-03                        1\n10              4185932         0 2008-11-03                        1\n# ℹ more rows"
+    "text": "addInObservation()\n\n\ncdm$condition_occurrence |&gt;\n  addInObservation(indexDate = \"condition_start_date\") |&gt;\n  filter(in_observation == 1) |&gt;\n  select(\"condition_concept_id\", \"person_id\", \"condition_start_date\", \"in_observation\")\n\n\n\n\n\n# A query:  ?? x 4\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   condition_concept_id person_id condition_start_date in_observation\n                  &lt;int&gt;     &lt;int&gt; &lt;date&gt;                        &lt;dbl&gt;\n 1               381566         0 2008-06-24                        1\n 2               138525         0 2010-06-30                        1\n 3               197035         0 2008-05-08                        1\n 4                77646         0 2009-05-15                        1\n 5               443211         0 2008-04-24                        1\n 6               261600         0 2009-06-06                        1\n 7               442792         0 2008-02-23                        1\n 8               437966         0 2008-06-05                        1\n 9               312437         0 2008-11-03                        1\n10              4185932         0 2008-11-03                        1\n# ℹ more rows"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#adddateofbirth",
     "href": "Presentations/PatientProfiles/index.html#adddateofbirth",
     "title": "PatientProfiles",
     "section": "addDateOfBirth()",
-    "text": "addDateOfBirth()\n\nUse addDateOfBirth() to add subjects’ date of birth.\n\n\n\ncdm$my_cohort |&gt;\n  addDateOfBirth()\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date date_of_birth\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;date&gt;       \n 1                    1          0 2010-05-07        2010-05-07      1932-07-01   \n 2                    1          4 2010-04-26        2010-04-26      1934-07-01   \n 3                    1          5 2009-04-24        2009-04-25      1930-12-01   \n 4                    1          6 2010-07-12        2010-07-12      1942-05-01   \n 5                    1          8 2008-11-28        2008-11-28      1951-12-01   \n 6                    1         17 2008-04-07        2008-04-07      1927-07-01   \n 7                    1         19 2010-01-05        2010-01-05      1925-04-01   \n 8                    1         22 2008-11-14        2008-11-17      1952-05-01   \n 9                    1         23 2010-02-06        2010-02-06      1912-08-01   \n10                    1         25 2010-06-27        2010-06-27      1938-09-01   \n# ℹ more rows"
+    "text": "addDateOfBirth()\n\nUse addDateOfBirth() to add subjects’ date of birth.\n\n\n\ncdm$my_cohort |&gt;\n  addDateOfBirth()\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date date_of_birth\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;date&gt;       \n 1                    1          0 2010-05-07        2010-05-07      1932-07-01   \n 2                    1          4 2010-04-26        2010-04-26      1934-07-01   \n 3                    1          5 2009-04-24        2009-04-25      1930-12-01   \n 4                    1          6 2010-07-12        2010-07-12      1942-05-01   \n 5                    1          8 2008-11-28        2008-11-28      1951-12-01   \n 6                    1         17 2008-09-27        2008-09-27      1927-07-01   \n 7                    1         19 2010-01-05        2010-01-05      1925-04-01   \n 8                    1         22 2008-11-14        2008-11-17      1952-05-01   \n 9                    1         23 2010-02-06        2010-02-06      1912-08-01   \n10                    1         25 2009-01-31        2009-01-31      1938-09-01   \n# ℹ more rows"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#addbirthday",
     "href": "Presentations/PatientProfiles/index.html#addbirthday",
     "title": "PatientProfiles",
     "section": "addBirthday()",
-    "text": "addBirthday()\n\nUse addBirthday() to add specific birthdays of individuals, accounting for leap years and correcting the invalid dates to the next valid date\n\n\n\ncdm$my_cohort |&gt;\n  addDateOfBirth() |&gt;\n  addBirthday(\n    birthday = 5, # default is 0\n    birthdayName = \"5th_birthday\"\n    )\n\n\n\n\n\n# A query:  ?? x 6\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date date_of_birth `5th_birthday`\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;date&gt;        &lt;date&gt;        \n 1                    1          0 2010-05-07        2010-05-07      1932-07-01    1937-07-01    \n 2                    1          4 2009-01-16        2009-01-16      1934-07-01    1939-07-01    \n 3                    1          5 2010-11-05        2010-11-05      1930-12-01    1935-12-01    \n 4                    1          6 2010-07-12        2010-07-12      1942-05-01    1947-05-01    \n 5                    1          8 2008-11-28        2008-11-28      1951-12-01    1956-12-01    \n 6                    1         17 2009-01-30        2009-01-30      1927-07-01    1932-07-01    \n 7                    1         19 2010-07-08        2010-07-08      1925-04-01    1930-04-01    \n 8                    1         22 2009-05-23        2009-05-23      1952-05-01    1957-05-01    \n 9                    1         23 2010-02-06        2010-02-06      1912-08-01    1917-08-01    \n10                    1         25 2009-01-31        2009-01-31      1938-09-01    1943-09-01    \n# ℹ more rows"
+    "text": "addBirthday()\n\nUse addBirthday() to add specific birthdays of individuals, accounting for leap years and correcting the invalid dates to the next valid date\n\n\n\ncdm$my_cohort |&gt;\n  addDateOfBirth() |&gt;\n  addBirthday(\n    birthday = 5, # default is 0\n    birthdayName = \"5th_birthday\"\n    )\n\n\n\n\n\n# A query:  ?? x 6\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date date_of_birth `5th_birthday`\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;date&gt;        &lt;date&gt;        \n 1                    1          0 2010-05-07        2010-05-07      1932-07-01    1937-07-01    \n 2                    1          4 2009-01-16        2009-01-16      1934-07-01    1939-07-01    \n 3                    1          5 2010-11-05        2010-11-05      1930-12-01    1935-12-01    \n 4                    1          6 2010-07-12        2010-07-12      1942-05-01    1947-05-01    \n 5                    1          8 2008-11-28        2008-11-28      1951-12-01    1956-12-01    \n 6                    1         17 2009-01-30        2009-01-30      1927-07-01    1932-07-01    \n 7                    1         19 2010-07-08        2010-07-08      1925-04-01    1930-04-01    \n 8                    1         22 2009-05-23        2009-05-23      1952-05-01    1957-05-01    \n 9                    1         23 2010-02-06        2010-02-06      1912-08-01    1917-08-01    \n10                    1         25 2010-06-27        2010-06-27      1938-09-01    1943-09-01    \n# ℹ more rows"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#adddemographics",
     "href": "Presentations/PatientProfiles/index.html#adddemographics",
     "title": "PatientProfiles",
     "section": "addDemographics()",
-    "text": "addDemographics()\n\naddDemographics() is a convenience wrapper for common patient-level features.\n\n\n\ncdm$my_cohort |&gt;\n  addDemographics()\n\n\n\n\n\n# A query:  ?? x 8\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date   age sex    prior_observation\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;\n 1                    1          0 2010-05-07        2010-05-07         77 Male                 857\n 2                    1          4 2010-04-26        2010-04-26         75 Male                 846\n 3                    1          5 2009-04-24        2009-04-25         78 Female               479\n 4                    1          6 2010-07-12        2010-07-12         68 Female               923\n 5                    1          8 2008-11-28        2008-11-28         56 Female               332\n 6                    1         17 2008-04-07        2008-04-07         80 Male                  97\n 7                    1         19 2010-01-05        2010-01-05         84 Female               735\n 8                    1         22 2008-11-14        2008-11-17         56 Male                 318\n 9                    1         23 2010-02-06        2010-02-06         97 Female               767\n10                    1         25 2010-06-27        2010-06-27         71 Female               908\n# ℹ more rows\n# ℹ 1 more variable: future_observation &lt;dbl&gt;"
+    "text": "addDemographics()\n\naddDemographics() is a convenience wrapper for common patient-level features.\n\n\n\ncdm$my_cohort |&gt;\n  addDemographics()\n\n\n\n\n\n# A query:  ?? x 8\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date   age sex    prior_observation\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;\n 1                    1          0 2010-05-07        2010-05-07         77 Male                 857\n 2                    1          4 2010-04-26        2010-04-26         75 Male                 846\n 3                    1          5 2009-04-24        2009-04-25         78 Female               479\n 4                    1          6 2010-07-12        2010-07-12         68 Female               923\n 5                    1          8 2008-11-28        2008-11-28         56 Female               332\n 6                    1         17 2008-09-27        2008-09-27         81 Male                 270\n 7                    1         19 2010-01-05        2010-01-05         84 Female               735\n 8                    1         22 2008-11-14        2008-11-17         56 Male                 318\n 9                    1         23 2010-02-06        2010-02-06         97 Female               767\n10                    1         25 2009-01-31        2009-01-31         70 Female               396\n# ℹ more rows\n# ℹ 1 more variable: future_observation &lt;dbl&gt;"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#adddemographics-1",
     "href": "Presentations/PatientProfiles/index.html#adddemographics-1",
     "title": "PatientProfiles",
     "section": "addDemographics()",
-    "text": "addDemographics()\n\n\ncdm$my_cohort |&gt;\n  addDemographics(\n    age = TRUE,\n    ageGroup = list(\"kids\" = c(0, 17), \"adults\" = c(18, Inf)),\n    sex = FALSE,\n    priorObservation = TRUE,\n    priorObservationName = \"observation_start\",\n    priorObservationType = \"date\",\n    futureObservation = TRUE,\n    futureObservationName = \"observation_end\",\n    futureObservationType = \"date\"\n  )\n\n\n\n\n\n# A query:  ?? x 8\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date   age age_group observation_start\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;dbl&gt; &lt;chr&gt;     &lt;date&gt;           \n 1                    1          0 2010-05-07        2010-05-07         77 adults    2008-01-01       \n 2                    1          4 2010-04-26        2010-04-26         75 adults    2008-01-01       \n 3                    1          5 2009-04-24        2009-04-25         78 adults    2008-01-01       \n 4                    1          6 2010-07-12        2010-07-12         68 adults    2008-01-01       \n 5                    1          8 2008-11-28        2008-11-28         56 adults    2008-01-01       \n 6                    1         17 2008-04-07        2008-04-07         80 adults    2008-01-01       \n 7                    1         19 2010-01-05        2010-01-05         84 adults    2008-01-01       \n 8                    1         22 2008-11-14        2008-11-17         56 adults    2008-01-01       \n 9                    1         23 2010-02-06        2010-02-06         97 adults    2008-01-01       \n10                    1         25 2010-06-27        2010-06-27         71 adults    2008-01-01       \n# ℹ more rows\n# ℹ 1 more variable: observation_end &lt;date&gt;"
+    "text": "addDemographics()\n\n\ncdm$my_cohort |&gt;\n  addDemographics(\n    age = TRUE,\n    ageGroup = list(\"kids\" = c(0, 17), \"adults\" = c(18, Inf)),\n    sex = FALSE,\n    priorObservation = TRUE,\n    priorObservationName = \"observation_start\",\n    priorObservationType = \"date\",\n    futureObservation = TRUE,\n    futureObservationName = \"observation_end\",\n    futureObservationType = \"date\"\n  )\n\n\n\n\n\n# A query:  ?? x 8\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date   age age_group observation_start\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;dbl&gt; &lt;chr&gt;     &lt;date&gt;           \n 1                    1          0 2010-05-07        2010-05-07         77 adults    2008-01-01       \n 2                    1          4 2010-04-26        2010-04-26         75 adults    2008-01-01       \n 3                    1          5 2009-04-24        2009-04-25         78 adults    2008-01-01       \n 4                    1          6 2010-07-12        2010-07-12         68 adults    2008-01-01       \n 5                    1          8 2008-11-28        2008-11-28         56 adults    2008-01-01       \n 6                    1         17 2008-09-27        2008-09-27         81 adults    2008-01-01       \n 7                    1         19 2010-01-05        2010-01-05         84 adults    2008-01-01       \n 8                    1         22 2008-11-14        2008-11-17         56 adults    2008-01-01       \n 9                    1         23 2010-02-06        2010-02-06         97 adults    2008-01-01       \n10                    1         25 2009-01-31        2009-01-31         70 adults    2008-01-01       \n# ℹ more rows\n# ℹ 1 more variable: observation_end &lt;date&gt;"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#your-turn",
@@ -1264,7 +1481,7 @@
     "href": "Presentations/PatientProfiles/index.html#your-turn-1",
     "title": "PatientProfiles",
     "section": "Your Turn",
-    "text": "Your Turn\n\n\n cdm$my_cohort |&gt;\n  addDemographics(\n    age = FALSE,\n    ageGroup = list(\n      \"&lt;18\" = c(0, 17),\n      \"18-64\" = c(18, 64),\n      \"65+\" = c(65, Inf)\n    ), \n    priorObservation = TRUE,\n    priorObservationType = \"days\",\n    futureObservation = TRUE,\n    futureObservationType = \"days\"\n  ) \n\n\n\n\n\n# A query:  ?? x 8\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date age_group sex    prior_observation\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt;\n 1                    1          0 2010-05-07        2010-05-07      65+       Male                 857\n 2                    1          4 2010-04-26        2010-04-26      65+       Male                 846\n 3                    1          5 2009-04-24        2009-04-25      65+       Female               479\n 4                    1          6 2010-07-12        2010-07-12      65+       Female               923\n 5                    1          8 2008-11-28        2008-11-28      18-64     Female               332\n 6                    1         17 2008-04-07        2008-04-07      65+       Male                  97\n 7                    1         19 2010-01-05        2010-01-05      65+       Female               735\n 8                    1         22 2008-11-14        2008-11-17      18-64     Male                 318\n 9                    1         23 2010-02-06        2010-02-06      65+       Female               767\n10                    1         25 2010-06-27        2010-06-27      65+       Female               908\n# ℹ more rows\n# ℹ 1 more variable: future_observation &lt;dbl&gt;"
+    "text": "Your Turn\n\n\n cdm$my_cohort |&gt;\n  addDemographics(\n    age = FALSE,\n    ageGroup = list(\n      \"&lt;18\" = c(0, 17),\n      \"18-64\" = c(18, 64),\n      \"65+\" = c(65, Inf)\n    ), \n    priorObservation = TRUE,\n    priorObservationType = \"days\",\n    futureObservation = TRUE,\n    futureObservationType = \"days\"\n  ) \n\n\n\n\n\n# A query:  ?? x 8\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date age_group sex    prior_observation\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt;\n 1                    1          0 2010-05-07        2010-05-07      65+       Male                 857\n 2                    1          4 2010-04-26        2010-04-26      65+       Male                 846\n 3                    1          5 2009-04-24        2009-04-25      65+       Female               479\n 4                    1          6 2010-07-12        2010-07-12      65+       Female               923\n 5                    1          8 2008-11-28        2008-11-28      18-64     Female               332\n 6                    1         17 2008-09-27        2008-09-27      65+       Male                 270\n 7                    1         19 2010-01-05        2010-01-05      65+       Female               735\n 8                    1         22 2008-11-14        2008-11-17      18-64     Male                 318\n 9                    1         23 2010-02-06        2010-02-06      65+       Female               767\n10                    1         25 2009-01-31        2009-01-31      65+       Female               396\n# ℹ more rows\n# ℹ 1 more variable: future_observation &lt;dbl&gt;"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#choosing-a-characteristic-helper",
@@ -1313,35 +1530,35 @@
     "href": "Presentations/PatientProfiles/index.html#addcohortintersectflag",
     "title": "PatientProfiles",
     "section": "addCohortIntersectFlag",
-    "text": "addCohortIntersectFlag\n\nDid the person enter another cohort in the next 180 days or 181-365 days?\n\n\n\ncdm$my_cohort |&gt;\n  addCohortIntersectFlag(\n    targetCohortTable = \"medications\", \n    window = list(c(1, 180), c(181, 365))\n  ) |&gt; glimpse()\n\n\n\n\n\nRows: ??\nColumns: 6\n$ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ subject_id           &lt;int&gt; 123, 123, 269, 901, 894, 927, 1153, 194, 229, 408, 272, 349, 41, 109, 665, 30, …\n$ cohort_start_date    &lt;date&gt; 2009-08-18, 2009-10-16, 2009-11-14, 2009-04-04, 2008-05-01, 2010-02-23, 2008-1…\n$ cohort_end_date      &lt;date&gt; 2009-08-18, 2009-10-16, 2009-11-14, 2009-04-04, 2008-05-01, 2010-02-23, 2008-1…\n$ heparin_181_to_365   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ heparin_1_to_180     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0…"
+    "text": "addCohortIntersectFlag\n\nDid the person enter another cohort in the next 180 days or 181-365 days?\n\n\n\ncdm$my_cohort |&gt;\n  addCohortIntersectFlag(\n    targetCohortTable = \"medications\", \n    window = list(c(1, 180), c(181, 365))\n  ) |&gt; glimpse()\n\n\n\n\n\nRows: ??\nColumns: 6\n$ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ subject_id           &lt;int&gt; 226, 519, 1157, 41, 109, 665, 30, 213, 287, 767, 1201, 123, 123, 269, 901, 349,…\n$ cohort_start_date    &lt;date&gt; 2009-11-20, 2010-04-08, 2009-09-15, 2008-05-15, 2008-09-18, 2010-04-19, 2008-0…\n$ cohort_end_date      &lt;date&gt; 2009-12-06, 2010-04-08, 2009-09-15, 2008-05-15, 2008-09-18, 2010-04-19, 2008-0…\n$ heparin_181_to_365   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ heparin_1_to_180     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0…"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#addtableintersectcount",
     "href": "Presentations/PatientProfiles/index.html#addtableintersectcount",
     "title": "PatientProfiles",
     "section": "addTableIntersectCount",
-    "text": "addTableIntersectCount\n\nHow many drug exposure records did the person have in the year after cohort entry?\n\n\n\ncdm$my_cohort |&gt;\n  addTableIntersectCount(\n    tableName = \"drug_exposure\",\n    window = c(0, 365), \n    nameStyle = \"number_prescriptions\", \n    name = \"my_cohort2\" #Name of the new table, if NULL a temporary table is returned.\n  )\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date number_prescriptions\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                         &lt;dbl&gt;\n 1                    1        123 2009-08-18        2009-08-18                        30\n 2                    1        123 2009-10-16        2009-10-16                        30\n 3                    1        269 2009-11-14        2009-11-14                        11\n 4                    1        901 2009-04-04        2009-04-04                        25\n 5                    1        894 2008-05-01        2008-05-01                        48\n 6                    1        927 2010-02-23        2010-02-23                         3\n 7                    1       1153 2008-11-24        2008-11-24                         4\n 8                    1        194 2009-07-18        2009-07-22                        69\n 9                    1        229 2009-09-10        2009-09-10                         2\n10                    1        408 2010-06-04        2010-06-04                         3\n# ℹ more rows"
+    "text": "addTableIntersectCount\n\nHow many drug exposure records did the person have in the year after cohort entry?\n\n\n\ncdm$my_cohort |&gt;\n  addTableIntersectCount(\n    tableName = \"drug_exposure\",\n    window = c(0, 365), \n    nameStyle = \"number_prescriptions\", \n    name = \"my_cohort2\" #Name of the new table, if NULL a temporary table is returned.\n  )\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date number_prescriptions\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                         &lt;dbl&gt;\n 1                    1        226 2009-11-20        2009-12-06                         0\n 2                    1        519 2010-04-08        2010-04-08                        15\n 3                    1       1157 2009-09-15        2009-09-15                         2\n 4                    1         41 2008-05-15        2008-05-15                        35\n 5                    1        109 2008-09-18        2008-09-18                         3\n 6                    1        665 2010-04-19        2010-04-19                         1\n 7                    1         30 2008-06-15        2008-06-15                        86\n 8                    1        213 2008-12-14        2008-12-14                        74\n 9                    1        287 2009-01-29        2009-01-29                         1\n10                    1        767 2009-06-23        2009-06-23                        58\n# ℹ more rows"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#addcohortintersectdate",
     "href": "Presentations/PatientProfiles/index.html#addcohortintersectdate",
     "title": "PatientProfiles",
     "section": "addCohortIntersectDate",
-    "text": "addCohortIntersectDate\n\nWhen did the person first enter the medication cohort after cohort entry?\n\n\n\ncdm$my_cohort |&gt;\n  addCohortIntersectDate(\n    targetCohortTable = \"medications\",\n    targetCohortId = \"heparin\",\n    window = c(0, Inf),\n    order = \"first\", # date to use if there are multiple records for an individual during the window of interest\n    nameStyle = \"first_{cohort_name}\"\n  )\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date first_heparin\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;date&gt;       \n 1                    1        123 2009-08-18        2009-08-18      NA           \n 2                    1        123 2009-10-16        2009-10-16      NA           \n 3                    1        269 2009-11-14        2009-11-14      NA           \n 4                    1        901 2009-04-04        2009-04-04      NA           \n 5                    1        894 2008-05-01        2008-05-01      NA           \n 6                    1        927 2010-02-23        2010-02-23      NA           \n 7                    1       1153 2008-11-24        2008-11-24      NA           \n 8                    1        194 2009-07-18        2009-07-22      2010-03-09   \n 9                    1        229 2009-09-10        2009-09-10      NA           \n10                    1        408 2010-06-04        2010-06-04      NA           \n# ℹ more rows"
+    "text": "addCohortIntersectDate\n\nWhen did the person first enter the medication cohort after cohort entry?\n\n\n\ncdm$my_cohort |&gt;\n  addCohortIntersectDate(\n    targetCohortTable = \"medications\",\n    targetCohortId = \"heparin\",\n    window = c(0, Inf),\n    order = \"first\", # date to use if there are multiple records for an individual during the window of interest\n    nameStyle = \"first_{cohort_name}\"\n  )\n\n\n\n\n\n# A query:  ?? x 5\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date first_heparin\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;date&gt;       \n 1                    1        226 2009-11-20        2009-12-06      NA           \n 2                    1        519 2010-04-08        2010-04-08      NA           \n 3                    1       1157 2009-09-15        2009-09-15      NA           \n 4                    1         41 2008-05-15        2008-05-15      NA           \n 5                    1        109 2008-09-18        2008-09-18      NA           \n 6                    1        665 2010-04-19        2010-04-19      NA           \n 7                    1         30 2008-06-15        2008-06-15      NA           \n 8                    1        213 2008-12-14        2008-12-14      NA           \n 9                    1        287 2009-01-29        2009-01-29      NA           \n10                    1        767 2009-06-23        2009-06-23      NA           \n# ℹ more rows"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#addconceptintersectdays",
     "href": "Presentations/PatientProfiles/index.html#addconceptintersectdays",
     "title": "PatientProfiles",
     "section": "addConceptIntersectDays",
-    "text": "addConceptIntersectDays\nHow many days until the next record for a concept set?\n\ncdm$my_cohort |&gt;\n  addConceptIntersectDays(\n    conceptSet = list(omeprazole = 19019418),\n    window = c(0, 365),\n    inObservation = FALSE, # If TRUE only records inside an observation period will be considered.\n    nameStyle = \"next_{concept_name}\"\n  ) |&gt;\n  glimpse()\n\n\n\n\nRows: ??\nColumns: 5\n$ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ subject_id           &lt;int&gt; 123, 123, 269, 901, 894, 927, 1153, 194, 229, 408, 272, 349, 41, 109, 665, 30, …\n$ cohort_start_date    &lt;date&gt; 2009-08-18, 2009-10-16, 2009-11-14, 2009-04-04, 2008-05-01, 2010-02-23, 2008-1…\n$ cohort_end_date      &lt;date&gt; 2009-08-18, 2009-10-16, 2009-11-14, 2009-04-04, 2008-05-01, 2010-02-23, 2008-1…\n$ next_omeprazole      &lt;dbl&gt; 231, 172, NA, NA, NA, NA, NA, 303, NA, NA, NA, NA, NA, NA, NA, 42, 32, NA, NA, …"
+    "text": "addConceptIntersectDays\nHow many days until the next record for a concept set?\n\ncdm$my_cohort |&gt;\n  addConceptIntersectDays(\n    conceptSet = list(omeprazole = 19019418),\n    window = c(0, 365),\n    inObservation = FALSE, # If TRUE only records inside an observation period will be considered.\n    nameStyle = \"next_{concept_name}\"\n  ) |&gt;\n  glimpse()\n\n\n\n\nRows: ??\nColumns: 5\n$ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ subject_id           &lt;int&gt; 226, 519, 1157, 41, 109, 665, 30, 213, 287, 767, 1201, 123, 123, 269, 901, 349,…\n$ cohort_start_date    &lt;date&gt; 2009-11-20, 2010-04-08, 2009-09-15, 2008-05-15, 2008-09-18, 2010-04-19, 2008-0…\n$ cohort_end_date      &lt;date&gt; 2009-12-06, 2010-04-08, 2009-09-15, 2008-05-15, 2008-09-18, 2010-04-19, 2008-0…\n$ next_omeprazole      &lt;dbl&gt; NA, NA, NA, NA, NA, NA, 42, 32, NA, NA, NA, 231, 172, NA, NA, NA, NA, NA, NA, N…"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#addconceptintersectfield",
     "href": "Presentations/PatientProfiles/index.html#addconceptintersectfield",
     "title": "PatientProfiles",
     "section": "addConceptIntersectField",
-    "text": "addConceptIntersectField\nWhat is the quantity of omeprazole recorded?\n\ncdm$my_cohort |&gt;\n  addConceptIntersectField(\n    conceptSet =list(omeprazole = 19019418) ,\n    field = \"quantity\",\n    window = c(0, 365),\n    order = \"first\",\n    nameStyle = \"omeprazole_qty\"\n  ) |&gt;\n  glimpse()\n\n\n\n\nRows: ??\nColumns: 5\n$ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ subject_id           &lt;int&gt; 123, 123, 269, 901, 894, 927, 1153, 194, 229, 408, 272, 349, 41, 109, 665, 30, …\n$ cohort_start_date    &lt;date&gt; 2009-08-18, 2009-10-16, 2009-11-14, 2009-04-04, 2008-05-01, 2010-02-23, 2008-1…\n$ cohort_end_date      &lt;date&gt; 2009-08-18, 2009-10-16, 2009-11-14, 2009-04-04, 2008-05-01, 2010-02-23, 2008-1…\n$ omeprazole_qty       &lt;dbl&gt; 30, 30, NA, NA, NA, NA, NA, 30, NA, NA, NA, NA, NA, NA, NA, 90, 30, NA, NA, NA,…"
+    "text": "addConceptIntersectField\nWhat is the quantity of omeprazole recorded?\n\ncdm$my_cohort |&gt;\n  addConceptIntersectField(\n    conceptSet =list(omeprazole = 19019418) ,\n    field = \"quantity\",\n    window = c(0, 365),\n    order = \"first\",\n    nameStyle = \"omeprazole_qty\"\n  ) |&gt;\n  glimpse()\n\n\n\n\nRows: ??\nColumns: 5\n$ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ subject_id           &lt;int&gt; 226, 519, 1157, 41, 109, 665, 30, 213, 287, 767, 1201, 123, 123, 269, 901, 349,…\n$ cohort_start_date    &lt;date&gt; 2009-11-20, 2010-04-08, 2009-09-15, 2008-05-15, 2008-09-18, 2010-04-19, 2008-0…\n$ cohort_end_date      &lt;date&gt; 2009-12-06, 2010-04-08, 2009-09-15, 2008-05-15, 2008-09-18, 2010-04-19, 2008-0…\n$ omeprazole_qty       &lt;dbl&gt; NA, NA, NA, NA, NA, NA, 90, 30, NA, NA, NA, 30, 30, NA, NA, NA, NA, NA, NA, NA,…"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#your-turn-2",
@@ -1355,7 +1572,7 @@
     "href": "Presentations/PatientProfiles/index.html#your-turn-3",
     "title": "PatientProfiles",
     "section": "Your Turn",
-    "text": "Your Turn\n\n\ncdm$my_cohort |&gt;\n  addCohortIntersectFlag(\n    targetCohortTable = \"medications\",\n    targetCohortId = \"heparin\",\n    window = list(\"prior_year\" = c(-365, -1)),\n    nameStyle = \"prior_{cohort_name}\"\n  )\n\ncdm$my_cohort |&gt;\n  addTableIntersectCount(\n    tableName = \"condition_occurrence\",\n    window = c(-365, -1),\n    nameStyle = \"prior_conditions\"\n  )\n\n\n\n\n\n# A query:  ?? x 6\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date prior_heparin prior_conditions\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                  &lt;dbl&gt;            &lt;dbl&gt;\n 1                    1        123 2009-08-18        2009-08-18                  0              159\n 2                    1        123 2009-10-16        2009-10-16                  0              173\n 3                    1        269 2009-11-14        2009-11-14                  0                0\n 4                    1        901 2009-04-04        2009-04-04                  0               50\n 5                    1        894 2008-05-01        2008-05-01                  0               32\n 6                    1        927 2010-02-23        2010-02-23                  0               51\n 7                    1       1153 2008-11-24        2008-11-24                  0               53\n 8                    1        194 2009-07-18        2009-07-22                  1              217\n 9                    1        229 2009-09-10        2009-09-10                  0              137\n10                    1        408 2010-06-04        2010-06-04                  0               20\n# ℹ more rows"
+    "text": "Your Turn\n\n\ncdm$my_cohort |&gt;\n  addCohortIntersectFlag(\n    targetCohortTable = \"medications\",\n    targetCohortId = \"heparin\",\n    window = list(\"prior_year\" = c(-365, -1)),\n    nameStyle = \"prior_{cohort_name}\"\n  )\n\ncdm$my_cohort |&gt;\n  addTableIntersectCount(\n    tableName = \"condition_occurrence\",\n    window = c(-365, -1),\n    nameStyle = \"prior_conditions\"\n  )\n\n\n\n\n\n# A query:  ?? x 6\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/RtmphlDGJa/file285c2e58ed60.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date prior_heparin prior_conditions\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                  &lt;dbl&gt;            &lt;dbl&gt;\n 1                    1        226 2009-11-20        2009-12-06                  0               50\n 2                    1        519 2010-04-08        2010-04-08                  0               76\n 3                    1       1157 2009-09-15        2009-09-15                  0               49\n 4                    1         41 2008-05-15        2008-05-15                  0               51\n 5                    1        109 2008-09-18        2008-09-18                  0               27\n 6                    1        665 2010-04-19        2010-04-19                  0               49\n 7                    1         30 2008-06-15        2008-06-15                  0               52\n 8                    1        213 2008-12-14        2008-12-14                  0              216\n 9                    1        287 2009-01-29        2009-01-29                  0               97\n10                    1        767 2009-06-23        2009-06-23                  0               84\n# ℹ more rows"
   },
   {
     "objectID": "Presentations/PatientProfiles/index.html#more-intersection-functions-in-patientprofiles",
@@ -1370,6 +1587,279 @@
     "title": "PatientProfiles",
     "section": "Thank you!",
     "text": "Thank you!\n\nResources\n👉 Package website\n👉 CRAN\n👉 PDF manual\n📧 cecilia.campanile@ndorms.ox.ac.uk"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#introduction",
+    "href": "Presentations/CohortConstructor/slides.html#introduction",
+    "title": "CohortConstructor",
+    "section": "Introduction",
+    "text": "Introduction\n\nCohortConstructor package is designed to support cohort building pipelines in R, using data mapped to the OMOP Common Data Model.\n\n\n\n\n\nThe code is publicly available in OHDSI’s GitHub repository CohortConstructor.\n\n\n\n\n\nCohortConstructor v0.6.3 is available in CRAN.\n\n\n\n\n\nVignettes with further information can be found in the package website."
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#omop-cohorts-in-r-1",
+    "href": "Presentations/CohortConstructor/slides.html#omop-cohorts-in-r-1",
+    "title": "CohortConstructor",
+    "section": "OMOP Cohorts in R",
+    "text": "OMOP Cohorts in R\n\nThe &lt;cohort_table&gt; class is defined in the R package omopgenerics.\nThis is the class that CohortConstructor uses, as well as other OMOP analytical packages.\n\nAs defined in omopgenerics, a &lt;cohort_table&gt; must have at least the following 4 columns (without any missing values in them):\n\ncohort_definition_id: Unique identifier for each cohort in the table.\nsubject_id: Unique patient identifier.\ncohort_start_date: Date when the person enters the cohort.\ncohort_end_date: Date when the person exits the cohort."
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#omop-cohorts-in-r-2",
+    "href": "Presentations/CohortConstructor/slides.html#omop-cohorts-in-r-2",
+    "title": "CohortConstructor",
+    "section": "OMOP Cohorts in R",
+    "text": "OMOP Cohorts in R\n\ncdm$cohort\n\n# A query:  ?? x 4\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp6PblqB/file290a2689250f.duckdb]\n   cohort_definition_id subject_id cohort_start_date cohort_end_date\n                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;         \n 1                    1         57 2008-06-04        2008-06-14     \n 2                    1         57 2010-07-06        2010-07-16     \n 3                    1        222 1967-01-19        1967-01-30     \n 4                    1       2075 2016-06-17        2016-06-24     \n 5                    1       2100 2015-04-11        2015-04-19     \n 6                    1       2325 1999-12-09        1999-12-22     \n 7                    1       2325 2004-07-31        2004-08-11     \n 8                    1       2702 1989-02-15        1989-02-24     \n 9                    1       3457 2005-08-06        2005-08-18     \n10                    1       3462 1990-06-15        1990-06-22     \n# ℹ more rows"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#omop-cohorts-in-r-3",
+    "href": "Presentations/CohortConstructor/slides.html#omop-cohorts-in-r-3",
+    "title": "CohortConstructor",
+    "section": "OMOP Cohorts in R",
+    "text": "OMOP Cohorts in R\nAdditionally, the &lt;cohort_table&gt; object has the follwing attributes:\n\n\nSettings: Relate each cohort definition ID with a cohort name and other variables that define the cohort.\n\n\n\nsettings(cdm$cohort)\n\n# A tibble: 2 × 4\n  cohort_definition_id cohort_name       cdm_version vocabulary_version\n                 &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;       &lt;chr&gt;             \n1                    1 viral_pharyngitis 5.3         v5.0 18-JAN-19    \n2                    2 viral_sinusitis   5.3         v5.0 18-JAN-19"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#omop-cohorts-in-r-4",
+    "href": "Presentations/CohortConstructor/slides.html#omop-cohorts-in-r-4",
+    "title": "CohortConstructor",
+    "section": "OMOP Cohorts in R",
+    "text": "OMOP Cohorts in R\n\n\nAttrition: Store information on each inclusion criteria applied and how many records and subjects were kept after.\n\n\n\nattrition(cdm$cohort)\n\n# A tibble: 8 × 7\n  cohort_definition_id number_records number_subjects reason_id reason                    excluded_records excluded_subjects\n                 &lt;int&gt;          &lt;int&gt;           &lt;int&gt;     &lt;int&gt; &lt;chr&gt;                                &lt;int&gt;             &lt;int&gt;\n1                    1          10217            2606         1 Initial qualifying events                0                 0\n2                    1          10217            2606         2 Record in observation                    0                 0\n3                    1          10217            2606         3 Not missing record date                  0                 0\n4                    1          10217            2606         4 Merge overlapping records                0                 0\n5                    2          17268            2686         1 Initial qualifying events                0                 0\n6                    2          17268            2686         2 Record in observation                    0                 0\n7                    2          17268            2686         3 Not missing record date                  0                 0\n8                    2          17268            2686         4 Merge overlapping records                0                 0"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#omop-cohorts-in-r-5",
+    "href": "Presentations/CohortConstructor/slides.html#omop-cohorts-in-r-5",
+    "title": "CohortConstructor",
+    "section": "OMOP Cohorts in R",
+    "text": "OMOP Cohorts in R\n\n\nCohort count: Number of records and subjects for each cohort.\n\n\n\ncohortCount(cdm$cohort)\n\n# A tibble: 2 × 3\n  cohort_definition_id number_records number_subjects\n                 &lt;int&gt;          &lt;int&gt;           &lt;int&gt;\n1                    1          10217            2606\n2                    2          17268            2686"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#omop-cohorts-in-r-6",
+    "href": "Presentations/CohortConstructor/slides.html#omop-cohorts-in-r-6",
+    "title": "CohortConstructor",
+    "section": "OMOP Cohorts in R",
+    "text": "OMOP Cohorts in R\n\n\nCohort codelist: Codelists used to define entry events and inclusion criteria for each cohort.\n\n\n\nattr(cdm$cohort, \"cohort_codelist\")\n\n# A query:  ?? x 4\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp6PblqB/file290a2689250f.duckdb]\n  cohort_definition_id codelist_name     concept_id codelist_type\n                 &lt;int&gt; &lt;chr&gt;                  &lt;int&gt; &lt;chr&gt;        \n1                    1 viral_pharyngitis    4112343 index event  \n2                    2 viral_sinusitis     40481087 index event"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#cohortconstructor-function-sets",
+    "href": "Presentations/CohortConstructor/slides.html#cohortconstructor-function-sets",
+    "title": "CohortConstructor",
+    "section": "CohortConstructor function Sets",
+    "text": "CohortConstructor function Sets\n\n\n\n\n\n\n\n\n\n \n\n\n\n\nBase cohorts Cohort construction based on clinical concepts or demographics.\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\nRequirements and Filtering Demographic restrictions, event presence/absence conditions, and filtering specific records.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\nUpdate cohort entry and exit Adjusting entry and exit dates to align with study periods, observation windows, or key events.\n\n\n\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\nTransformation and Combination Merging, stratifying, collapsing, matching, or intersecting cohorts."
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#functions-to-build-base-cohorts",
+    "href": "Presentations/CohortConstructor/slides.html#functions-to-build-base-cohorts",
+    "title": "CohortConstructor",
+    "section": "Functions to build base cohorts",
+    "text": "Functions to build base cohorts\n\n\n\n\ndemographicsCohort()\n\n\n\n\n\nconceptCohort()\n\n\n\n\n\nmeasurementCohort()\n\n\n\n\n\ndeathCohort()"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#demographics-based---example",
+    "href": "Presentations/CohortConstructor/slides.html#demographics-based---example",
+    "title": "CohortConstructor",
+    "section": "Demographics based - Example",
+    "text": "Demographics based - Example\n\n\n\n\nTwo cohorts, females and males, both aged 18 to 60 years old, with at least 365 days of previous observation in the database.\n\n\n\ncdm$age_cohort &lt;- demographicsCohort(\n  cdm = cdm, \n  ageRange = c(18, 60), \n  sex = c(\"Female\", \"Male\"),\n  minPriorObservation = 365,\n  name = \"age_cohort\"\n)\n\nsettings(x = cdm$age_cohort)\n\n# A tibble: 2 × 5\n  cohort_definition_id cohort_name    age_range sex    min_prior_observation\n                 &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;     &lt;chr&gt;                  &lt;dbl&gt;\n1                    1 demographics_1 18_60     Female                   365\n2                    2 demographics_2 18_60     Male                     365"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#demographics-based---example-1",
+    "href": "Presentations/CohortConstructor/slides.html#demographics-based---example-1",
+    "title": "CohortConstructor",
+    "section": "Demographics based - Example",
+    "text": "Demographics based - Example\n\n\n\n\ncohortCount(cohort = cdm$age_cohort)\n\n# A tibble: 2 × 3\n  cohort_definition_id number_records number_subjects\n                 &lt;int&gt;          &lt;int&gt;           &lt;int&gt;\n1                    1           1373            1373\n2                    2           1321            1321\n\n\n\n\n\n\n\nattrition(x = cdm$age_cohort)\n\n# A tibble: 12 × 7\n   cohort_definition_id number_records number_subjects reason_id reason                                  excluded_records excluded_subjects\n                  &lt;int&gt;          &lt;int&gt;           &lt;int&gt;     &lt;int&gt; &lt;chr&gt;                                              &lt;int&gt;             &lt;int&gt;\n 1                    1           2694            2694         1 Initial qualifying events                              0                 0\n 2                    1           2694            2694         2 Non-missing sex                                        0                 0\n 3                    1           1373            1373         3 Sex requirement: Female                             1321              1321\n 4                    1           1373            1373         4 Non-missing year of birth                              0                 0\n 5                    1           1373            1373         5 Age requirement: 18 to 60                              0                 0\n 6                    1           1373            1373         6 Prior observation requirement: 365 days                0                 0\n 7                    2           2694            2694         1 Initial qualifying events                              0                 0\n 8                    2           2694            2694         2 Non-missing sex                                        0                 0\n 9                    2           1321            1321         3 Sex requirement: Male                               1373              1373\n10                    2           1321            1321         4 Non-missing year of birth                              0                 0\n11                    2           1321            1321         5 Age requirement: 18 to 60                              0                 0\n12                    2           1321            1321         6 Prior observation requirement: 365 days                0                 0"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#demographics-based---example-2",
+    "href": "Presentations/CohortConstructor/slides.html#demographics-based---example-2",
+    "title": "CohortConstructor",
+    "section": "Demographics based - Example",
+    "text": "Demographics based - Example\n\n\n\nTo better visualise the attrition, we can use the package CohortCharacteristics to create a formatted table:\n\ncdm$age_cohort |&gt; \n  summariseCohortAttrition() |&gt;\n  tableCohortAttrition()\n\n\n\n\n\n\n\n\n\n\n\n\n\nReason\n\nVariable name\n\n\n\nnumber_records\nnumber_subjects\nexcluded_records\nexcluded_subjects\n\n\n\n\nGiBleed; demographics_1\n\n\nInitial qualifying events\n2,694\n2,694\n0\n0\n\n\nNon-missing sex\n2,694\n2,694\n0\n0\n\n\nSex requirement: Female\n1,373\n1,373\n1,321\n1,321\n\n\nNon-missing year of birth\n1,373\n1,373\n0\n0\n\n\nAge requirement: 18 to 60\n1,373\n1,373\n0\n0\n\n\nPrior observation requirement: 365 days\n1,373\n1,373\n0\n0\n\n\nGiBleed; demographics_2\n\n\nInitial qualifying events\n2,694\n2,694\n0\n0\n\n\nNon-missing sex\n2,694\n2,694\n0\n0\n\n\nSex requirement: Male\n1,321\n1,321\n1,373\n1,373\n\n\nNon-missing year of birth\n1,321\n1,321\n0\n0\n\n\nAge requirement: 18 to 60\n1,321\n1,321\n0\n0\n\n\nPrior observation requirement: 365 days\n1,321\n1,321\n0\n0"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#concept-based---example",
+    "href": "Presentations/CohortConstructor/slides.html#concept-based---example",
+    "title": "CohortConstructor",
+    "section": "Concept based - Example",
+    "text": "Concept based - Example\n\n\n\n\nLet’s create a cohort of medications that contains two drugs: diclofenac, and acetaminophen.\n\n\n\n\nCreate codelist of the drug of interest\n\n\n\n\ndrugCodes &lt;- list(\n  \"diclofenac\" = c(1124300L),\n  \"acetaminophen\" = c(1125315L, 1127078L, 1127433L, 19133768L, 40162522L, 40229134L, 40231925L)\n) |&gt;\n  newCodelist()"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#concept-based---example-1",
+    "href": "Presentations/CohortConstructor/slides.html#concept-based---example-1",
+    "title": "CohortConstructor",
+    "section": "Concept based - Example",
+    "text": "Concept based - Example\n\nCreate concept based cohorts\n\n\n\ncdm$medications &lt;- conceptCohort(\n  cdm = cdm, \n  conceptSet = drugCodes, \n  name = \"medications\"\n)\n\nsettings(x = cdm$medications)\n\n# A tibble: 2 × 4\n  cohort_definition_id cohort_name   cdm_version vocabulary_version\n                 &lt;int&gt; &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;             \n1                    1 acetaminophen 5.3         v5.0 18-JAN-19    \n2                    2 diclofenac    5.3         v5.0 18-JAN-19"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#concept-based---example-2",
+    "href": "Presentations/CohortConstructor/slides.html#concept-based---example-2",
+    "title": "CohortConstructor",
+    "section": "Concept based - Example",
+    "text": "Concept based - Example\n\n\n\n\nAttrition\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReason\n\nVariable name\n\n\n\nnumber_records\nnumber_subjects\nexcluded_records\nexcluded_subjects\n\n\n\n\nacetaminophen\n\n\nInitial qualifying events\n14,205\n2,679\n0\n0\n\n\nRecord in observation\n14,205\n2,679\n0\n0\n\n\nNot missing record date\n14,205\n2,679\n0\n0\n\n\nMerge overlapping records\n13,908\n2,679\n297\n0\n\n\ndiclofenac\n\n\nInitial qualifying events\n850\n850\n0\n0\n\n\nRecord in observation\n830\n830\n20\n20\n\n\nNot missing record date\n830\n830\n0\n0\n\n\nMerge overlapping records\n830\n830\n0\n0"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#concept-based---example-3",
+    "href": "Presentations/CohortConstructor/slides.html#concept-based---example-3",
+    "title": "CohortConstructor",
+    "section": "Concept based - Example",
+    "text": "Concept based - Example\n\n\n\n\nCohort codelist as an attribute\n\n\n\nattr(cdm$medications, \"cohort_codelist\")\n\n# A query:  ?? x 4\n# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp6PblqB/file290a2689250f.duckdb]\n  cohort_definition_id codelist_name concept_id codelist_type\n                 &lt;int&gt; &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;        \n1                    1 acetaminophen    1125315 index event  \n2                    1 acetaminophen    1127078 index event  \n3                    1 acetaminophen    1127433 index event  \n4                    1 acetaminophen   19133768 index event  \n5                    1 acetaminophen   40162522 index event  \n6                    1 acetaminophen   40229134 index event  \n7                    1 acetaminophen   40231925 index event  \n8                    2 diclofenac       1124300 index event"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#get-started-create-the-cdm_reference-object",
+    "href": "Presentations/CohortConstructor/slides.html#get-started-create-the-cdm_reference-object",
+    "title": "CohortConstructor",
+    "section": "Get Started: Create the cdm_reference object",
+    "text": "Get Started: Create the cdm_reference object\n\n# Load relevant packages\nlibrary(CDMConnector)\nlibrary(CodelistGenerator)\nlibrary(CohortConstructor)\nlibrary(CohortCharacteristics)\nlibrary(duckdb)\nlibrary(DBI)\nlibrary(dplyr)\nlibrary(gt)\nlibrary(here)\n\ncdm &lt;- mockCdmFromDataset(\"delphi-100k\", \"duckdb\")\ncdm$person |&gt; \n  tally()"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#exercise-1---base-cohorts",
+    "href": "Presentations/CohortConstructor/slides.html#exercise-1---base-cohorts",
+    "title": "CohortConstructor",
+    "section": "✏️ Exercise 1 - Base cohorts",
+    "text": "✏️ Exercise 1 - Base cohorts\n\n\n\nCreate a base cohort table named base_conditions_cohort that has two cohorts: Rheumatoid Arthritis (RA) and Pneumonia. Use the codelist below.\n\ncodes &lt;- list(\n  \"ra\" = c(80809L),\n  \"pneumonia\" = c(255848L)\n) |&gt; newCodelist()\n\n\n\n\n\n💡 Click to see solution\n\ncodes &lt;- list(\n  \"ra\" = c(80809L),\n  \"pneumonia\" = c(255848L)\n) |&gt; newCodelist()\n\ncdm$base_conditions_cohort &lt;- conceptCohort(cdm = cdm, conceptSet = codes, name = \"base_conditions_cohort\")\n\nsummariseCohortCount(cohort = cdm$base_conditions_cohort) |&gt; \n  tableCohortCount()\n\nMove to the next slide to see the cohort attrition"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#exercise-1---base-cohorts-1",
+    "href": "Presentations/CohortConstructor/slides.html#exercise-1---base-cohorts-1",
+    "title": "CohortConstructor",
+    "section": "✏️ Exercise 1 - Base cohorts",
+    "text": "✏️ Exercise 1 - Base cohorts"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#functions-to-apply-requirements-and-filter",
+    "href": "Presentations/CohortConstructor/slides.html#functions-to-apply-requirements-and-filter",
+    "title": "CohortConstructor",
+    "section": "Functions to apply requirements and filter",
+    "text": "Functions to apply requirements and filter\n\n\n\n\n\n\n\nOn demographics\n\nrequireDemographics()\nrequireAge()\nrequireSex()\nrequirePriorObservation()\nrequireFutureObservation()\n\n\n\n\n\n\n\n\nOn cohort entries\n\nrequireIsFirstEntry()\nrequireIsLastEntry()\nrequireIsEntry()\n\n\n\n\n\n\nRequire presence or absence based on other cohorts, concepts, and tables\n\nrequireCohortIntersect()\nrequireConceptIntersect()\nrequireTableIntersect()\n\n\n\n\n\n\n\n\nOther\n\nrequireInDateRange()\nrequireMincohortCount()\nrequireDuration()"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#requirement-functions---example",
+    "href": "Presentations/CohortConstructor/slides.html#requirement-functions---example",
+    "title": "CohortConstructor",
+    "section": "Requirement functions - Example",
+    "text": "Requirement functions - Example\n\n\n\n\n\nWe can apply different inclusion criteria using CohortConstructor’s functions in a pipe-line fashion. For instance, in what follows we require\n\nonly first record per person\nsubjects 18 years old or more at cohort start date\nonly females\nat least 30 days of prior observation at cohort start date\n\n\n\n\n\ncdm$medications_requirement &lt;- cdm$medications |&gt; \n  requireIsFirstEntry(name = \"medications_requirement\") |&gt; \n  requireDemographics(\n    ageRange = list(c(18, 150)),\n    sex = \"Female\", \n    minPriorObservation = 30,\n    name = \"medications_requirement\"\n  )"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#requirement-functions---example-1",
+    "href": "Presentations/CohortConstructor/slides.html#requirement-functions---example-1",
+    "title": "CohortConstructor",
+    "section": "Requirement functions - Example",
+    "text": "Requirement functions - Example\n\n\n\nAttrition Acetaminophen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReason\n\nVariable name\n\n\n\nnumber_records\nnumber_subjects\nexcluded_records\nexcluded_subjects\n\n\n\n\nacetaminophen\n\n\nInitial qualifying events\n14,205\n2,679\n0\n0\n\n\nRecord in observation\n14,205\n2,679\n0\n0\n\n\nNot missing record date\n14,205\n2,679\n0\n0\n\n\nMerge overlapping records\n13,908\n2,679\n297\n0\n\n\nRestricted to first entry\n2,679\n2,679\n11,229\n0\n\n\nAge requirement: 18 to 150\n309\n309\n2,370\n2,370\n\n\nSex requirement: Female\n176\n176\n133\n133\n\n\nPrior observation requirement: 30 days\n176\n176\n0\n0\n\n\nFuture observation requirement: 0 days\n176\n176\n0\n0"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#requirement-functions---example-2",
+    "href": "Presentations/CohortConstructor/slides.html#requirement-functions---example-2",
+    "title": "CohortConstructor",
+    "section": "Requirement functions - Example",
+    "text": "Requirement functions - Example\n\n\n\n\nNow, we only want to keep those records for which prescription happened on the same day of a healthcare visit.\n\n\n\ncdm$medications_requirement &lt;- cdm$medications_requirement |&gt; \n  requireTableIntersect(\n    tableName = \"visit_occurrence\",\n    indexDate = \"cohort_start_date\",\n    window = c(0, 0),\n    intersections = c(1, Inf)\n  )"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#requirement-functions---example-3",
+    "href": "Presentations/CohortConstructor/slides.html#requirement-functions---example-3",
+    "title": "CohortConstructor",
+    "section": "Requirement functions - Example",
+    "text": "Requirement functions - Example\n\n\n\nAttrition Acetaminophen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReason\n\nVariable name\n\n\n\nnumber_records\nnumber_subjects\nexcluded_records\nexcluded_subjects\n\n\n\n\nacetaminophen\n\n\nInitial qualifying events\n14,205\n2,679\n0\n0\n\n\nRecord in observation\n14,205\n2,679\n0\n0\n\n\nNot missing record date\n14,205\n2,679\n0\n0\n\n\nMerge overlapping records\n13,908\n2,679\n297\n0\n\n\nRestricted to first entry\n2,679\n2,679\n11,229\n0\n\n\nAge requirement: 18 to 150\n309\n309\n2,370\n2,370\n\n\nSex requirement: Female\n176\n176\n133\n133\n\n\nPrior observation requirement: 30 days\n176\n176\n0\n0\n\n\nFuture observation requirement: 0 days\n176\n176\n0\n0\n\n\nIn table visit_occurrence between 0 & 0 days relative to cohort_start_date between 1 and Inf\n1\n1\n175\n175"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#exercise-2---requirement-and-filtering",
+    "href": "Presentations/CohortConstructor/slides.html#exercise-2---requirement-and-filtering",
+    "title": "CohortConstructor",
+    "section": "✏️ Exercise 2 - Requirement and filtering",
+    "text": "✏️ Exercise 2 - Requirement and filtering\nCreate a new cohort named “study_cohort” by applying the following criteria to the base conditions cohort:\n\nFor all cohorts, require that records start between January 1, 1990, and December 31, 2011.\nFor the Rheumatoid Arthritis cohort, exclude patients with a history of osteoarthritis prior to or on the day of diagnosis.\n\n\n\nosteoarthritisCodes &lt;- list(\"osteoarthritis\" = c(80180L)) |&gt; newCodelist()\n\n\n\n\n\n\n\n💡 Click to see solution\n\nosteoarthritisCodes &lt;- list(\"osteoarthritis\" = c(80180L)) |&gt; newCodelist()\n\ncdm$study_cohort &lt;- cdm$base_conditions_cohort |&gt;\n  requireInDateRange(\n    dateRange = as.Date(c(\"1990-01-01\", \"2011-12-31\")),\n    name = \"study_cohort\"\n  ) |&gt;\n  requireConceptIntersect(\n    conceptSet = osteoarthritisCodes,\n    cohortId = \"ra\",\n    window = list(c(-Inf, 0)),\n    intersections = 0,\n    name = \"study_cohort\"\n  )\n\nsummariseCohortAttrition(cohort = cdm$study_cohort) |&gt;\n  tableCohortAttrition()\n\nMove to the next slide to see the cohort attrition"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#exercise-2---requirement-and-filtering-1",
+    "href": "Presentations/CohortConstructor/slides.html#exercise-2---requirement-and-filtering-1",
+    "title": "CohortConstructor",
+    "section": "✏️ Exercise 2 - Requirement and filtering",
+    "text": "✏️ Exercise 2 - Requirement and filtering"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#functions-to-update-cohort-start-and-end-dates",
+    "href": "Presentations/CohortConstructor/slides.html#functions-to-update-cohort-start-and-end-dates",
+    "title": "CohortConstructor",
+    "section": "Functions to update cohort start and end dates",
+    "text": "Functions to update cohort start and end dates\n\n\n\n\n\n\n\nCohort exit\n\nexitAtObservationEnd()\nexitAtDeath()\nexitAtFirstDate()\nexitAtLastDate()\n\n\n\n\n\n\n\n\nCohort entry\n\nentryAtFirstDate()\nentryAtLastDate()\n\n\n\n\n\n\nTrim start and end dates\n\ntrimDemographics()\ntrimToDateRange()\ntrimDuration()\n\n\n\n\n\n\n\n\nPad start and end dates\n\npadCohortDate()\npadCohortEnd()\npadCohortStart()"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#update-cohort-entry-and-exit---example",
+    "href": "Presentations/CohortConstructor/slides.html#update-cohort-entry-and-exit---example",
+    "title": "CohortConstructor",
+    "section": "Update cohort entry and exit - Example",
+    "text": "Update cohort entry and exit - Example\n\n\n\n\nWe can trim start and end dates to match demographic requirements.\n\nFor instance, cohort dates can be trimmed so the subject contributes time while:\n\nAged 20 to 40 years old\nPrior observation of at least 365 days\n\n\n\n\n\ncdm$medications_trimmed &lt;- cdm$medications |&gt;\n  trimDemographics(\n    ageRange = list(c(20, 40)),\n    minPriorObservation = 365,\n    name = \"medications_trimmed\"\n  )"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#update-cohort-entry-and-exit---example-1",
+    "href": "Presentations/CohortConstructor/slides.html#update-cohort-entry-and-exit---example-1",
+    "title": "CohortConstructor",
+    "section": "Update cohort entry and exit - Example",
+    "text": "Update cohort entry and exit - Example\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReason\n\nVariable name\n\n\n\nnumber_records\nnumber_subjects\nexcluded_records\nexcluded_subjects\n\n\n\n\nacetaminophen\n\n\nInitial qualifying events\n14,205\n2,679\n0\n0\n\n\nRecord in observation\n14,205\n2,679\n0\n0\n\n\nNot missing record date\n14,205\n2,679\n0\n0\n\n\nMerge overlapping records\n13,908\n2,679\n297\n0\n\n\nNon-missing year of birth\n13,908\n2,679\n0\n0\n\n\nAge requirement: 20 to 40\n4,049\n2,124\n9,859\n555\n\n\nPrior observation requirement: 365 days\n4,049\n2,124\n0\n0"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#exercise-3---update-cohort-entry-and-exit",
+    "href": "Presentations/CohortConstructor/slides.html#exercise-3---update-cohort-entry-and-exit",
+    "title": "CohortConstructor",
+    "section": "✏️ Exercise 3 - Update cohort entry and exit",
+    "text": "✏️ Exercise 3 - Update cohort entry and exit\n1) Since Rheumatoid Arthritis is a chronic condition, define its cohort exit so patients remain in the cohort from first diagnostic date to the end of the patient’s observation.\n\n2) For Pneumonia, assume the infection lasts for two months from the diagnosis day, thereby update the cohort end date to be exactly 60 days after the cohort start.\n\n\n👉Use the cohortId argument to choose which cohort to modify.\n\n\n\n\n\n\n💡 Click to see solution\n\ncdm$study_cohort &lt;- cdm$study_cohort |&gt;\n  exitAtObservationEnd(\n    cohortId = \"ra\",\n    persistAcrossObservationPeriods = TRUE,\n    name = \"study_cohort\"\n  ) |&gt;\n  padCohortDate(\n    days = 60,\n    cohortDate = \"cohort_end_date\",\n    cohortId = \"pneumonia\",\n    name = \"study_cohort\"\n  )\n\nsummariseCohortAttrition(cohort = cdm$study_cohort) |&gt;\n  tableCohortAttrition()\n\nMove to the next slide to see the attrition."
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#exercise-3---update-cohort-entry-and-exit-1",
+    "href": "Presentations/CohortConstructor/slides.html#exercise-3---update-cohort-entry-and-exit-1",
+    "title": "CohortConstructor",
+    "section": "✏️ Exercise 3 - Update cohort entry and exit",
+    "text": "✏️ Exercise 3 - Update cohort entry and exit"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#functions-for-cohort-transformation-and-combination",
+    "href": "Presentations/CohortConstructor/slides.html#functions-for-cohort-transformation-and-combination",
+    "title": "CohortConstructor",
+    "section": "Functions for Cohort Transformation and Combination",
+    "text": "Functions for Cohort Transformation and Combination\n\n\n\n\nSplit cohorts\n\nyearCohorts()\nstratifyCohorts()\ntimeWindowCohorts()\n\n\n\n\n\n\n\n\nCombine cohorts\n\nunionCohorts()\nintersectCohorts()\n\n\n\n\n\n\n\n\nFilter cohorts\n\nsubsetCohorts()\nsampleCohorts()\n\n\n\n\n\n\nMatch cohorts\n\nmatchCohorts()\n\n\n\n\n\n\n\n\nConcatenate entries\n\ncollapseCohorts()\n\n\n\n\n\n\n\n\nCopy and rename cohorts\n\nrenameCohort()\ncopyCohorts()"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#cohort-combinations---example",
+    "href": "Presentations/CohortConstructor/slides.html#cohort-combinations---example",
+    "title": "CohortConstructor",
+    "section": "Cohort combinations - Example",
+    "text": "Cohort combinations - Example\n\n\n\n\nCollapse drug exposures that are within a gap of 7 days."
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#cohort-combinations---example-1",
+    "href": "Presentations/CohortConstructor/slides.html#cohort-combinations---example-1",
+    "title": "CohortConstructor",
+    "section": "Cohort combinations - Example",
+    "text": "Cohort combinations - Example\n\n\n\n\ncdm$medications_collapsed &lt;- cdm$medications |&gt;\n  collapseCohorts(gap = 7, name = \"medications_collapsed\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReason\n\nVariable name\n\n\n\nnumber_records\nnumber_subjects\nexcluded_records\nexcluded_subjects\n\n\n\n\nacetaminophen\n\n\nInitial qualifying events\n14,205\n2,679\n0\n0\n\n\nRecord in observation\n14,205\n2,679\n0\n0\n\n\nNot missing record date\n14,205\n2,679\n0\n0\n\n\nMerge overlapping records\n13,908\n2,679\n297\n0\n\n\nCollapse cohort with a gap of 7 days.\n13,899\n2,679\n9\n0"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#cohort-combinations---example-2",
+    "href": "Presentations/CohortConstructor/slides.html#cohort-combinations---example-2",
+    "title": "CohortConstructor",
+    "section": "Cohort combinations - Example",
+    "text": "Cohort combinations - Example\n\n\n\n\nCreate a new cohort that contains people who had an exposure to both diclofenac and acetaminophen at the same time."
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#cohort-combinations---example-3",
+    "href": "Presentations/CohortConstructor/slides.html#cohort-combinations---example-3",
+    "title": "CohortConstructor",
+    "section": "Cohort combinations - Example",
+    "text": "Cohort combinations - Example\n\n\n\n\ncdm$intersection &lt;- cdm$medications_collapsed |&gt;\n  intersectCohorts(name = \"intersection\")\n\nsettings(x = cdm$intersection)\n\n# A tibble: 1 × 5\n  cohort_definition_id cohort_name                gap acetaminophen diclofenac\n                 &lt;int&gt; &lt;chr&gt;                    &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;\n1                    1 acetaminophen_diclofenac     0             1          1"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#exercise-4---transformation-and-combination",
+    "href": "Presentations/CohortConstructor/slides.html#exercise-4---transformation-and-combination",
+    "title": "CohortConstructor",
+    "section": "✏️ Exercise 4 - Transformation and Combination",
+    "text": "✏️ Exercise 4 - Transformation and Combination\nCreate a third cohort containing patients with Pneumonia who have Rheumatoid Arthritis at the same time. The final cohort table should keep all original cohorts plus the new intersection cohort.\n\n\n\n\nFinally, rename cohorts so they are called “pneumonia”, “rheumatoid_arthritis”, and “pneumonia_and_rheumatoid_arthritis”.\n\n\n\n\n\n\n💡 Click to see solution\n\ncdm$study_cohort &lt;- cdm$study_cohort |&gt;\n  intersectCohorts(\n    keepOriginalCohorts = TRUE,\n    name = \"study_cohort\",\n  ) |&gt;\n   renameCohort(\n    newCohortName = c(\"aki\", \"ckd\", \"aki_ckd\")\n  )\n\nsummariseCohortAttrition(cohort = cdm$study_cohort) |&gt;\n  tableCohortAttrition() \n\nMove to the next slide to see the attrition."
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#exercise-4---transformation-and-combination-1",
+    "href": "Presentations/CohortConstructor/slides.html#exercise-4---transformation-and-combination-1",
+    "title": "CohortConstructor",
+    "section": "✏️ Exercise 4 - Transformation and Combination",
+    "text": "✏️ Exercise 4 - Transformation and Combination"
+  },
+  {
+    "objectID": "Presentations/CohortConstructor/slides.html#cohortconstructor",
+    "href": "Presentations/CohortConstructor/slides.html#cohortconstructor",
+    "title": "CohortConstructor",
+    "section": "CohortConstructor",
+    "text": "CohortConstructor\n\n\n👉 Packages website\n👉 CRAN link\n👉 Manual\n📧 nuria.mercadebesora@ndorms.ox.ac.uk"
   },
   {
     "objectID": "Presentations/Welcome/index.html#welcome",
