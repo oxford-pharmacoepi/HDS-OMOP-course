@@ -233,14 +233,7 @@ library(dplyr)
 library(gt)
 library(here)
 
-con <- dbConnect(duckdb::duckdb(), dbdir = eunomiaDir())
-
-cdm <- cdmFromCon(
-  con = con,
-  cdmSchema = "main",
-  writeSchema = "main",
-  writePrefix = "cc_"
-)
+cdm <- mockCdmFromDataset("GiBleed", "duckdb")
 ```
 
 ## Demographics based - Example
