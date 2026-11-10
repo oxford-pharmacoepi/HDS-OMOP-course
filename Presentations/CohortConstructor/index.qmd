@@ -21,6 +21,7 @@ format:
 execute:
   echo: true
   eval: true
+  freeze: true
 editor: visual
 ---
 
@@ -68,21 +69,14 @@ options(width = 200)
 ## OMOP Cohorts in R
 
 ```{r, echo=FALSE, message=FALSE}
+library(omock)
 library(CDMConnector)
 library(CodelistGenerator)
 library(CohortConstructor)
 library(CohortCharacteristics)
 library(dplyr)
 
-requireEunomia()
-
-con <- DBI::dbConnect(duckdb::duckdb(), dbdir = eunomiaDir())
-cdm <- cdmFromCon(
-  con, 
-  cdmSchema = "main", 
-  writeSchema = "main",
-  writePrefix = "my_study_"
-)
+cdm <- mockCdmFromDataset("delphi-100k", "duckdb")
 
 cdm$cohort <- conceptCohort(
   cdm = cdm, 
@@ -389,13 +383,9 @@ library(dplyr)
 library(gt)
 library(here)
 
-con <- dbConnect(drv = duckdb(dbdir = here("Databases", "delphi.duckdb")))
-cdm <- cdmFromCon(
-  con = con,
-  cdmSchema = "main",
-  writeSchema = "results",
-  writePrefix = "cc_"
-)
+cdm <- mockCdmFromDataset("delphi-100k", "duckdb")
+cdm$person |> 
+  tally()
 ```
 
 ## ✏️ Exercise 1 - Base cohorts
@@ -422,7 +412,7 @@ codes <- list(
 ```{r, eval=FALSE}
 codes <- list(
   "ra" = c(80809L),
-  "pneumonia"            = c(255848L)
+  "pneumonia" = c(255848L)
 ) |> newCodelist()
 
 cdm$base_conditions_cohort <- conceptCohort(cdm = cdm, conceptSet = codes, name = "base_conditions_cohort")
