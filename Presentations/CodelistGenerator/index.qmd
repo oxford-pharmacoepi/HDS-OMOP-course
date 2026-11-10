@@ -48,8 +48,6 @@ library(here)
 cdm <- mockCdmFromDataset("GiBleed", "duckdb")
 ```
 
-
-
 ```{r, message=TRUE}
 cdm
 ```
@@ -80,7 +78,7 @@ cdm_mock
 
 <https://athena.ohdsi.org>
 
-![](images/paste-08513A51.png){width="2000"}
+![](images/clipboard-3050807556.png)
 
 ## CDM vocabulary tables
 
@@ -214,7 +212,9 @@ Using a cdm reference you have connected to:
 ## Solution
 
 <details>
-  <summary>💡 Click to see solution</summary> 
+
+<summary>💡 Click to see solution</summary>
+
 ```{r, eval = FALSE}
 vocabularyVersion(cdm = cdm)
 
@@ -223,6 +223,7 @@ cdm$concept |>
 
 availableDomains(cdm = cdm)
 ```
+
 </details>
 
 # Vocabulary based codelists using CodelistGenerator
@@ -285,7 +286,9 @@ Using your data:
 ## Solution
 
 <details>
-  <summary>💡 Click to see solution</summary> 
+
+<summary>💡 Click to see solution</summary>
+
 ```{r, eval = FALSE}
 memantine_codes <- getDrugIngredientCodes(cdm = cdm, name = "memantine")
 memantine_codes
@@ -294,6 +297,7 @@ cdm$drug_exposure |>
   filter(drug_concept_id %in% !!memantine_codes[[1]]) |>
   tally()
 ```
+
 </details>
 
 # Systematic search using CodelistGenerator
@@ -341,7 +345,9 @@ Using Eunomia data:
 ## Solution
 
 <details>
-  <summary>💡 Click to see solution</summary> 
+
+<summary>💡 Click to see solution</summary>
+
 ```{r, eval = FALSE}
 sinusitis_codes <- getCandidateCodes(
   cdm = cdm,
@@ -357,6 +363,7 @@ sinusitis_codes_2 <- getCandidateCodes(
 )
 nrow(sinusitis_codes_2)
 ```
+
 </details>
 
 # Codelist diagnostics
@@ -398,7 +405,6 @@ tableCodeUse(result = asthma_code_use |>
   filter(strata_name == "age_group"))
 ```
 
-
 ## Your turn
 
 Using Eunomia data:
@@ -410,7 +416,9 @@ Using Eunomia data:
 ## Solution
 
 <details>
-  <summary>💡 Click to see solution</summary> 
+
+<summary>💡 Click to see solution</summary>
+
 ```{r, eval = FALSE}
 appendicitis_codes <- getCandidateCodes(
   cdm = cdm,
@@ -419,24 +427,21 @@ appendicitis_codes <- getCandidateCodes(
 )
 tableCodeUse(result = appendicitis)
 ```
+
 </details>
 
 ## CodelistGenerator
 
-<div style="display: flex; align-items: center; justify-content: space-between;">
-
-<div style="flex: 1;">
-
-👉 [**Packages website**](https://darwin-eu.github.io/CodelistGenerator/)  
-👉 [**CRAN link**](https://cran.r-project.org/package=CodelistGenerator)  
+::::: {style="display: flex; align-items: center; justify-content: space-between;"}
+::: {style="flex: 1;"}
+👉 [**Packages website**](https://darwin-eu.github.io/CodelistGenerator/)\
+👉 [**CRAN link**](https://cran.r-project.org/package=CodelistGenerator)\
 👉 [**Manual**](https://cran.r-project.org/web/packages/CodelistGenerator/CodelistGenerator.pdf)
 
 📧 <a href="mailto:edward.burn@ndorms.ox.ac.uk">edward.burn\@ndorms.ox.ac.uk</a>
+:::
 
-</div>
-
-<div style="flex: 1; text-align: center;">
-  <img src="images/hexsticker.png" width="600"/>
-</div>
-
-</div>
+::: {style="flex: 1; text-align: center;"}
+<img src="images/hexsticker.png" width="600"/>
+:::
+:::::
