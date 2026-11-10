@@ -6,17 +6,16 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.11.9">
-
-  <meta name="dcterms.date" content="2026-11-09">
-  <title>HDS-OMOP-course – Presentation</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
-  <style>
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="UTF-8">
+<meta name="generator" content="quarto-1.11.9">
+<meta name="dcterms.date" content="2026-11-10">
+<title>HDS-OMOP-course – PatientProfiles</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+<style>
     /* Default styles provided by pandoc.
     ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
     */
@@ -34,15 +33,81 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-e6beccd3067aa6ca58895913f1130f0a.css">
-  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-e6beccd3067aa6ca58895913f1130f0a.css">
+<link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+<style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -129,27 +194,1025 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="Presentation – HDS-OMOP-course">
+<meta property="og:title" content="PatientProfiles – HDS-OMOP-course">
+<meta property="og:description" content="Adding patient-level characteristics to OMOP CDM tables">
 <meta property="og:site_name" content="HDS-OMOP-course">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Presentation</h1>
+<section id="title-slide" class="quarto-title-block center"><h1 class="title">PatientProfiles</h1>
+  <p class="subtitle">Adding patient-level characteristics to OMOP CDM tables</p>
 
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2026-11-09</p>
-</section>
-<section class="slide level2">
+  <p class="date">2026-11-10</p>
+</section><section id="what-you-will-be-able-to-do" class="slide level2"><h2>What you will be able to do</h2>
+<ul>
+<li class="fragment"><p>Add patient-level characteristics to cohort and CDM tables.</p></li>
+<li class="fragment"><p>Check whether records are inside observation and quantify lookback/follow-up time.</p></li>
+<li class="fragment"><p>Create features from intersections with cohorts, concepts, and OMOP CDM tables.</p></li>
+</ul></section><section id="todays-workflow" class="slide level2"><h2>Today’s workflow</h2>
+<ol type="1">
+<li class="fragment"><p>Connect to a synthetic OMOP CDM database.</p></li>
+<li class="fragment"><p>Create two small cohorts for live examples.</p></li>
+<li class="fragment"><p>Add demographics and observation-period features.</p></li>
+<li class="fragment"><p>Build intersection features.</p></li>
+</ol>
+<div class="fragment">
+<center>
+<img src="https://github.com/darwin-eu/PatientProfiles/blob/main/man/figures/logo.png?raw=true" alt="OmopSketch logo" width="350">
+</center>
+</div>
+</section><section id="settings" class="slide level2"><h2>Settings</h2>
+<div class="fragment">
+<p><strong>PatientProfiles</strong> starts with a table that has a person identifier and, usually, an index date.</p>
+</div>
+<div class="fragment">
+<p>It returns the same table with extra columns.</p>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>For cohort tables, the default index date is <code>cohort_start_date</code>. For CDM clinical tables, set the relevant date column explicitly.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section><section id="setup" class="title-slide slide level1 center"><h1>Setup</h1>
+
+</section><section id="load-packages-and-create-the-cdm-object" class="slide level2"><h2>Load packages and create the CDM object</h2>
+<ul>
+<li class="fragment">Load the required packages</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu.github.io/PatientProfiles/">PatientProfiles</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://darwin-eu.github.io/CDMConnector/">CDMConnector</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/CohortConstructor/">CohortConstructor</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r.duckdb.org/">duckdb</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ohdsi.github.io/omock/">omock</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org">DBI</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment">Create a CDM object from the <strong>synpuf-1k</strong> synthetic dataset</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu">omock</span><span class="fu">::</span><span class="fu"><a href="https://ohdsi.github.io/omock/reference/mockCdmFromDataset.html">mockCdmFromDataset</a></span><span class="op">(</span>source <span class="op">=</span> <span class="st">"duckdb"</span>, datasetName <span class="op">=</span> <span class="st">"synpuf-1k"</span> <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section><section id="create-a-cohort" class="slide level2"><h2>Create a cohort</h2>
+<p>Using <strong>CohortConstructor</strong> we will create:</p>
+<ul>
+<li class="fragment">
+<code>my_cohort</code>: people with arthritis-related records.</li>
+<li class="fragment">
+<code>medications</code>: people with heparin records.</li>
+</ul>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/CohortConstructor/reference/conceptCohort.html">conceptCohort</a></span><span class="op">(</span></span>
+<span>  cdm <span class="op">=</span> <span class="va">cdm</span>,</span>
+<span>  conceptSet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>arthritis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">80180</span>, <span class="fl">80809</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  name <span class="op">=</span> <span class="st">"my_cohort"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">cdm</span><span class="op">$</span><span class="va">medications</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ohdsi.github.io/CohortConstructor/reference/conceptCohort.html">conceptCohort</a></span><span class="op">(</span></span>
+<span>  cdm <span class="op">=</span> <span class="va">cdm</span>,</span>
+<span>  conceptSet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>heparin <span class="op">=</span> <span class="fl">1367571</span><span class="op">)</span>,</span>
+<span>  name <span class="op">=</span> <span class="st">"medications"</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section></section><section><section id="add-demographics" class="title-slide slide level1 center"><h1>Add demographics</h1>
+
+</section><section id="addsex" class="slide level2"><h2>addSex()</h2>
+<div class="fragment">
+<p>Use <code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addSex.html">addSex()</a></code> when the table contains <code>person_id</code> or <code>subject_id</code> and you want the person’s sex as a new column:</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addSex.html">addSex</a></span><span class="op">(</span></span>
+<span>    sexName <span class="op">=</span> <span class="st">"sex"</span>, <span class="co"># name of the new column (default = "sex")</span></span>
+<span>    missingSexValue <span class="op">=</span> <span class="st">"None"</span> <span class="co"># label for missing gender_concept_id (default = "None")</span></span>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 5
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   cohort_definition_id subject_id cohort_start_date cohort_end_date sex   
+                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;chr&gt; 
+ 1                    1          0 2010-05-07        2010-05-07      Male  
+ 2                    1          4 2010-04-26        2010-04-26      Male  
+ 3                    1          5 2009-04-24        2009-04-25      Female
+ 4                    1          6 2010-07-12        2010-07-12      Female
+ 5                    1          8 2008-11-28        2008-11-28      Female
+ 6                    1         17 2008-04-07        2008-04-07      Male  
+ 7                    1         19 2010-01-05        2010-01-05      Female
+ 8                    1         22 2008-11-14        2008-11-17      Male  
+ 9                    1         23 2010-02-06        2010-02-06      Female
+10                    1         25 2010-06-27        2010-06-27      Female
+# ℹ more rows</code></pre>
+</div>
+</div>
+</div>
+</section><section id="addage" class="slide level2"><h2>addAge()</h2>
+<div class="fragment">
+<p>Use <code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addAge.html">addAge()</a></code> to calculate age at an index date. The table must contain <code>person_id</code> or <code>subject_id</code>:</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addAge.html">addAge</a></span><span class="op">(</span></span>
+<span>    indexDate <span class="op">=</span> <span class="st">"cohort_start_date"</span>, <span class="co"># date to compute age (default = "cohort_start_date") </span></span>
+<span>    ageName <span class="op">=</span> <span class="st">"age"</span>, <span class="co"># name of the age column (default = "age") </span></span>
+<span>    ageMissingMonth <span class="op">=</span> <span class="fl">1</span>, <span class="co"># Month for individuals with missing month (default = 1) </span></span>
+<span>    ageMissingDay <span class="op">=</span> <span class="fl">1</span>, <span class="co"># Day for individuals with missing day (default = 1)</span></span>
+<span>    ageImposeMonth <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># Whether to impose default month to all individuals (default = FALSE) </span></span>
+<span>    ageImposeDay <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># Whether to impose default day to all individuals (default = FALSE)</span></span>
+<span>    ageUnit <span class="op">=</span> <span class="st">"years"</span> <span class="co"># 'years', 'months' or 'days'.</span></span>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 5
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   cohort_definition_id subject_id cohort_start_date cohort_end_date   age
+                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;dbl&gt;
+ 1                    1          0 2010-05-07        2010-05-07         77
+ 2                    1          4 2010-04-26        2010-04-26         75
+ 3                    1          5 2009-04-24        2009-04-25         78
+ 4                    1          6 2010-07-12        2010-07-12         68
+ 5                    1          8 2008-11-28        2008-11-28         56
+ 6                    1         17 2008-04-07        2008-04-07         80
+ 7                    1         19 2010-01-05        2010-01-05         84
+ 8                    1         22 2008-11-14        2008-11-17         56
+ 9                    1         23 2010-02-06        2010-02-06         97
+10                    1         25 2010-06-27        2010-06-27         71
+# ℹ more rows</code></pre>
+</div>
+</div>
+</div>
+</section><section id="addage-1" class="slide level2"><h2>addAge()</h2>
+<div class="fragment">
+<p>Add age groups</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">drug_exposure</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addAge.html">addAge</a></span><span class="op">(</span></span>
+<span>    indexDate <span class="op">=</span> <span class="st">"drug_exposure_start_date"</span>,</span>
+<span>    ageGroup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">39</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">40</span>, <span class="cn">Inf</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="st">"person_id"</span>,  <span class="st">"drug_exposure_start_date"</span>, <span class="st">"age"</span>, <span class="st">"age_group"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 4
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   person_id drug_exposure_start_date   age age_group  
+       &lt;int&gt; &lt;date&gt;                   &lt;dbl&gt; &lt;chr&gt;      
+ 1         0 2008-06-24                  75 40 or above
+ 2         0 2010-05-13                  77 40 or above
+ 3         0 2008-06-05                  75 40 or above
+ 4         0 2008-02-23                  75 40 or above
+ 5         0 2008-03-31                  75 40 or above
+ 6         0 2009-12-30                  77 40 or above
+ 7         1 2010-02-07                  52 40 or above
+ 8         1 2010-06-20                  52 40 or above
+ 9         1 2008-04-27                  50 40 or above
+10         1 2009-11-07                  52 40 or above
+# ℹ more rows</code></pre>
+</div>
+</div>
+</div>
+</section><section id="addage-2" class="slide level2"><h2>addAge()</h2>
+<p>You can create several labelled age-group columns in one call:</p>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">drug_exposure</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addAge.html">addAge</a></span><span class="op">(</span></span>
+<span>    indexDate <span class="op">=</span> <span class="st">"drug_exposure_start_date"</span>,</span>
+<span>    ageGroup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>      <span class="st">"age_group"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"&lt;40"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">39</span><span class="op">)</span>, <span class="st">"&gt;=40"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">40</span>, <span class="cn">Inf</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>      <span class="st">"category"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"kids"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">17</span><span class="op">)</span>, <span class="st">"adults"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="cn">Inf</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="st">"person_id"</span>,  <span class="st">"drug_exposure_start_date"</span>, <span class="st">"age"</span>, <span class="st">"age_group"</span>, <span class="st">"category"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 5
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   person_id drug_exposure_start_date   age age_group category
+       &lt;int&gt; &lt;date&gt;                   &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;   
+ 1         0 2008-06-24                  75 &gt;=40      adults  
+ 2         0 2010-05-13                  77 &gt;=40      adults  
+ 3         0 2008-06-05                  75 &gt;=40      adults  
+ 4         0 2008-02-23                  75 &gt;=40      adults  
+ 5         0 2008-03-31                  75 &gt;=40      adults  
+ 6         0 2009-12-30                  77 &gt;=40      adults  
+ 7         1 2010-02-07                  52 &gt;=40      adults  
+ 8         1 2010-06-20                  52 &gt;=40      adults  
+ 9         1 2008-04-27                  50 &gt;=40      adults  
+10         1 2009-11-07                  52 &gt;=40      adults  
+# ℹ more rows</code></pre>
+</div>
+</div>
+</div>
+</section><section id="addpriorobservation" class="slide level2"><h2>addPriorObservation()</h2>
+<div class="fragment">
+<p>How much lookback time did each person have before the index date?</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure><p><img data-src="index_files/figure-revealjs/unnamed-chunk-13-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section><section id="addpriorobservation-1" class="slide level2"><h2>addPriorObservation()</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section><section id="addpriorobservation-2" class="slide level2"><h2>addPriorObservation()</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section><section id="addpriorobservation-3" class="slide level2"><h2>addPriorObservation()</h2>
+<div class="fragment">
+<p>The default output is the number of days from observation start to index date:</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addPriorObservation.html">addPriorObservation</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 5
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   cohort_definition_id subject_id cohort_start_date cohort_end_date prior_observation
+                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                      &lt;dbl&gt;
+ 1                    1        123 2009-08-18        2009-08-18                    595
+ 2                    1        123 2009-10-16        2009-10-16                    654
+ 3                    1        269 2009-11-14        2009-11-14                    317
+ 4                    1        901 2009-04-04        2009-04-04                    459
+ 5                    1        894 2008-05-01        2008-05-01                    121
+ 6                    1        927 2010-02-23        2010-02-23                    784
+ 7                    1       1153 2008-11-24        2008-11-24                    328
+ 8                    1        194 2009-07-18        2009-07-22                    564
+ 9                    1        229 2009-09-10        2009-09-10                    618
+10                    1        408 2010-06-04        2010-06-04                    519
+# ℹ more rows</code></pre>
+</div>
+</div>
+</div>
+</section><section id="addpriorobservation-4" class="slide level2"><h2>addPriorObservation()</h2>
+<div class="fragment">
+<p>You can return the observation-period start date instead of a duration:</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">condition_occurrence</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addPriorObservation.html">addPriorObservation</a></span><span class="op">(</span></span>
+<span>    indexDate <span class="op">=</span> <span class="st">"condition_start_date"</span>, </span>
+<span>    priorObservationName <span class="op">=</span> <span class="st">"start_observation"</span>, <span class="co"># name of the column</span></span>
+<span>    priorObservationType <span class="op">=</span> <span class="st">"date"</span> <span class="co"># default = "days"</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="st">"person_id"</span>, <span class="st">"condition_occurrence_id"</span>, <span class="st">"condition_concept_id"</span>, <span class="st">"condition_start_date"</span>, <span class="st">"start_observation"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 5
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   person_id condition_occurrence_id condition_concept_id condition_start_date start_observation
+       &lt;int&gt;                   &lt;int&gt;                &lt;int&gt; &lt;date&gt;               &lt;date&gt;           
+ 1         0                  247920               381566 2008-06-24           2008-01-01       
+ 2         0                  165361               138525 2010-06-30           2008-01-01       
+ 3         0                   20403               197035 2008-05-08           2008-01-01       
+ 4         0                   65523                77646 2009-05-15           2008-01-01       
+ 5         0                  217923               443211 2008-04-24           2008-01-01       
+ 6         0                  404403               261600 2009-06-06           2008-01-01       
+ 7         0                   78722               442792 2008-02-23           2008-01-01       
+ 8         0                   94562               437966 2008-06-05           2008-01-01       
+ 9         0                  230164               312437 2008-11-03           2008-01-01       
+10         0                  478564              4185932 2008-11-03           2008-01-01       
+# ℹ more rows</code></pre>
+</div>
+</div>
+</div>
+</section><section id="addfutureobservation" class="slide level2"><h2>addFutureObservation()</h2>
+<div class="fragment">
+<p>How much follow-up time did each person have after the index date? . . .</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure><p><img data-src="index_files/figure-revealjs/unnamed-chunk-20-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section><section id="addfutureobservation-1" class="slide level2"><h2>addFutureObservation()</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section><section id="addfutureobservation-2" class="slide level2"><h2>addFutureObservation()</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section><section id="addfutureobservation-3" class="slide level2"><h2>addFutureObservation()</h2>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addFutureObservation.html">addFutureObservation</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 5
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   cohort_definition_id subject_id cohort_start_date cohort_end_date future_observation
+                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                       &lt;dbl&gt;
+ 1                    1        123 2009-08-18        2009-08-18                     500
+ 2                    1        123 2009-10-16        2009-10-16                     441
+ 3                    1        269 2009-11-14        2009-11-14                     412
+ 4                    1        901 2009-04-04        2009-04-04                     636
+ 5                    1        894 2008-05-01        2008-05-01                     974
+ 6                    1        927 2010-02-23        2010-02-23                     311
+ 7                    1       1153 2008-11-24        2008-11-24                     767
+ 8                    1        194 2009-07-18        2009-07-22                     531
+ 9                    1        229 2009-09-10        2009-09-10                     477
+10                    1        408 2010-06-04        2010-06-04                     210
+# ℹ more rows</code></pre>
+</div>
+</div>
+</div>
+</section><section id="addinobservation" class="slide level2"><h2>addInObservation()</h2>
+<div class="fragment">
+<p>Is each index date inside an observation period?</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure><p><img data-src="index_files/figure-revealjs/unnamed-chunk-25-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section><section id="addinobservation-1" class="slide level2"><h2>addInObservation()</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section><section id="addinobservation-2" class="slide level2"><h2>addInObservation()</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section><section id="addinobservation-3" class="slide level2"><h2>addInObservation()</h2>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">condition_occurrence</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addInObservation.html">addInObservation</a></span><span class="op">(</span>indexDate <span class="op">=</span> <span class="st">"condition_start_date"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">in_observation</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="st">"condition_concept_id"</span>, <span class="st">"person_id"</span>, <span class="st">"condition_start_date"</span>, <span class="st">"in_observation"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 4
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   condition_concept_id person_id condition_start_date in_observation
+                  &lt;int&gt;     &lt;int&gt; &lt;date&gt;                        &lt;dbl&gt;
+ 1               381566         0 2008-06-24                        1
+ 2               138525         0 2010-06-30                        1
+ 3               197035         0 2008-05-08                        1
+ 4                77646         0 2009-05-15                        1
+ 5               443211         0 2008-04-24                        1
+ 6               261600         0 2009-06-06                        1
+ 7               442792         0 2008-02-23                        1
+ 8               437966         0 2008-06-05                        1
+ 9               312437         0 2008-11-03                        1
+10              4185932         0 2008-11-03                        1
+# ℹ more rows</code></pre>
+</div>
+</div>
+</div>
+</section><section id="adddateofbirth" class="slide level2"><h2>addDateOfBirth()</h2>
+<div class="fragment">
+<p>Use <code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addDateOfBirth.html">addDateOfBirth()</a></code> to add subjects’ date of birth.</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addDateOfBirth.html">addDateOfBirth</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 5
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   cohort_definition_id subject_id cohort_start_date cohort_end_date date_of_birth
+                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;date&gt;       
+ 1                    1          0 2010-05-07        2010-05-07      1932-07-01   
+ 2                    1          4 2010-04-26        2010-04-26      1934-07-01   
+ 3                    1          5 2009-04-24        2009-04-25      1930-12-01   
+ 4                    1          6 2010-07-12        2010-07-12      1942-05-01   
+ 5                    1          8 2008-11-28        2008-11-28      1951-12-01   
+ 6                    1         17 2008-04-07        2008-04-07      1927-07-01   
+ 7                    1         19 2010-01-05        2010-01-05      1925-04-01   
+ 8                    1         22 2008-11-14        2008-11-17      1952-05-01   
+ 9                    1         23 2010-02-06        2010-02-06      1912-08-01   
+10                    1         25 2010-06-27        2010-06-27      1938-09-01   
+# ℹ more rows</code></pre>
+</div>
+</div>
+</div>
+</section><section id="addbirthday" class="slide level2"><h2>addBirthday()</h2>
+<div class="fragment">
+<p>Use <code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addBirthday.html">addBirthday()</a></code> to add specific birthdays of individuals, accounting for leap years and correcting the invalid dates to the next valid date</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addDateOfBirth.html">addDateOfBirth</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addBirthday.html">addBirthday</a></span><span class="op">(</span></span>
+<span>    birthday <span class="op">=</span> <span class="fl">5</span>, <span class="co"># default is 0</span></span>
+<span>    birthdayName <span class="op">=</span> <span class="st">"5th_birthday"</span></span>
+<span>    <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 6
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   cohort_definition_id subject_id cohort_start_date cohort_end_date date_of_birth `5th_birthday`
+                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;date&gt;        &lt;date&gt;        
+ 1                    1          0 2010-05-07        2010-05-07      1932-07-01    1937-07-01    
+ 2                    1          4 2009-01-16        2009-01-16      1934-07-01    1939-07-01    
+ 3                    1          5 2010-11-05        2010-11-05      1930-12-01    1935-12-01    
+ 4                    1          6 2010-07-12        2010-07-12      1942-05-01    1947-05-01    
+ 5                    1          8 2008-11-28        2008-11-28      1951-12-01    1956-12-01    
+ 6                    1         17 2009-01-30        2009-01-30      1927-07-01    1932-07-01    
+ 7                    1         19 2010-07-08        2010-07-08      1925-04-01    1930-04-01    
+ 8                    1         22 2009-05-23        2009-05-23      1952-05-01    1957-05-01    
+ 9                    1         23 2010-02-06        2010-02-06      1912-08-01    1917-08-01    
+10                    1         25 2009-01-31        2009-01-31      1938-09-01    1943-09-01    
+# ℹ more rows</code></pre>
+</div>
+</div>
+</div>
+</section><section id="adddemographics" class="slide level2"><h2>addDemographics()</h2>
+<div class="fragment">
+<p><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addDemographics.html">addDemographics()</a></code> is a convenience wrapper for common patient-level features.</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addDemographics.html">addDemographics</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 8
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   cohort_definition_id subject_id cohort_start_date cohort_end_date   age sex    prior_observation
+                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;
+ 1                    1          0 2010-05-07        2010-05-07         77 Male                 857
+ 2                    1          4 2010-04-26        2010-04-26         75 Male                 846
+ 3                    1          5 2009-04-24        2009-04-25         78 Female               479
+ 4                    1          6 2010-07-12        2010-07-12         68 Female               923
+ 5                    1          8 2008-11-28        2008-11-28         56 Female               332
+ 6                    1         17 2008-04-07        2008-04-07         80 Male                  97
+ 7                    1         19 2010-01-05        2010-01-05         84 Female               735
+ 8                    1         22 2008-11-14        2008-11-17         56 Male                 318
+ 9                    1         23 2010-02-06        2010-02-06         97 Female               767
+10                    1         25 2010-06-27        2010-06-27         71 Female               908
+# ℹ more rows
+# ℹ 1 more variable: future_observation &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+</section><section id="adddemographics-1" class="slide level2"><h2>addDemographics()</h2>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addDemographics.html">addDemographics</a></span><span class="op">(</span></span>
+<span>    age <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    ageGroup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"kids"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">17</span><span class="op">)</span>, <span class="st">"adults"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="cn">Inf</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    sex <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    priorObservation <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    priorObservationName <span class="op">=</span> <span class="st">"observation_start"</span>,</span>
+<span>    priorObservationType <span class="op">=</span> <span class="st">"date"</span>,</span>
+<span>    futureObservation <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    futureObservationName <span class="op">=</span> <span class="st">"observation_end"</span>,</span>
+<span>    futureObservationType <span class="op">=</span> <span class="st">"date"</span></span>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 8
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   cohort_definition_id subject_id cohort_start_date cohort_end_date   age age_group observation_start
+                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;dbl&gt; &lt;chr&gt;     &lt;date&gt;           
+ 1                    1          0 2010-05-07        2010-05-07         77 adults    2008-01-01       
+ 2                    1          4 2010-04-26        2010-04-26         75 adults    2008-01-01       
+ 3                    1          5 2009-04-24        2009-04-25         78 adults    2008-01-01       
+ 4                    1          6 2010-07-12        2010-07-12         68 adults    2008-01-01       
+ 5                    1          8 2008-11-28        2008-11-28         56 adults    2008-01-01       
+ 6                    1         17 2008-04-07        2008-04-07         80 adults    2008-01-01       
+ 7                    1         19 2010-01-05        2010-01-05         84 adults    2008-01-01       
+ 8                    1         22 2008-11-14        2008-11-17         56 adults    2008-01-01       
+ 9                    1         23 2010-02-06        2010-02-06         97 adults    2008-01-01       
+10                    1         25 2010-06-27        2010-06-27         71 adults    2008-01-01       
+# ℹ more rows
+# ℹ 1 more variable: observation_end &lt;date&gt;</code></pre>
+</div>
+</div>
+</div>
+</section><section id="your-turn" class="slide level2"><h2>Your Turn</h2>
+<div class="fragment">
+<p>Starting from <code>cdm$my_cohort</code>, create a table with:</p>
+<ul>
+<li class="fragment">sex</li>
+<li class="fragment">age groups <code>&lt;18</code>, <code>18-64</code>, and <code>65+</code>
+</li>
+<li class="fragment">prior observation in days</li>
+<li class="fragment">future observation in days</li>
+</ul>
+</div>
+</section><section id="your-turn-1" class="slide level2"><h2>Your Turn</h2>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span> <span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addDemographics.html">addDemographics</a></span><span class="op">(</span></span>
+<span>    age <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    ageGroup <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>      <span class="st">"&lt;18"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">17</span><span class="op">)</span>,</span>
+<span>      <span class="st">"18-64"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">18</span>, <span class="fl">64</span><span class="op">)</span>,</span>
+<span>      <span class="st">"65+"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">65</span>, <span class="cn">Inf</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>, </span>
+<span>    priorObservation <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    priorObservationType <span class="op">=</span> <span class="st">"days"</span>,</span>
+<span>    futureObservation <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    futureObservationType <span class="op">=</span> <span class="st">"days"</span></span>
+<span>  <span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 8
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   cohort_definition_id subject_id cohort_start_date cohort_end_date age_group sex    prior_observation
+                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt;
+ 1                    1          0 2010-05-07        2010-05-07      65+       Male                 857
+ 2                    1          4 2010-04-26        2010-04-26      65+       Male                 846
+ 3                    1          5 2009-04-24        2009-04-25      65+       Female               479
+ 4                    1          6 2010-07-12        2010-07-12      65+       Female               923
+ 5                    1          8 2008-11-28        2008-11-28      18-64     Female               332
+ 6                    1         17 2008-04-07        2008-04-07      65+       Male                  97
+ 7                    1         19 2010-01-05        2010-01-05      65+       Female               735
+ 8                    1         22 2008-11-14        2008-11-17      18-64     Male                 318
+ 9                    1         23 2010-02-06        2010-02-06      65+       Female               767
+10                    1         25 2010-06-27        2010-06-27      65+       Female               908
+# ℹ more rows
+# ℹ 1 more variable: future_observation &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+</section><section id="choosing-a-characteristic-helper" class="slide level2"><h2>Choosing a characteristic helper</h2>
+<div class="fragment">
+<table class="caption-top">
+<thead><tr class="header">
+<th>Need</th>
+<th>Helper</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Sex</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addSex.html">addSex()</a></code></td>
+</tr>
+<tr class="even">
+<td>Age or age groups</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addAge.html">addAge()</a></code></td>
+</tr>
+<tr class="odd">
+<td>Lookback time</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addPriorObservation.html">addPriorObservation()</a></code></td>
+</tr>
+<tr class="even">
+<td>Follow-up time</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addFutureObservation.html">addFutureObservation()</a></code></td>
+</tr>
+<tr class="odd">
+<td>Date inside observation</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addInObservation.html">addInObservation()</a></code></td>
+</tr>
+<tr class="even">
+<td>Common demographics together</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addDemographics.html">addDemographics()</a></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section></section><section><section id="add-intersections" class="title-slide slide level1 center"><h1>Add intersections</h1>
+
+</section><section id="the-intersection-functions" class="slide level2"><h2>The intersection functions</h2>
+<ul>
+<li class="fragment">Did the person have an event?</li>
+<li class="fragment">How many events did they have?</li>
+<li class="fragment">When was the first or last event?</li>
+<li class="fragment">How many days until or since the event?</li>
+</ul></section><section id="functions" class="slide level2"><h2>15 functions</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<ul>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectFlag.html">addCohortIntersectFlag</a></li>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectCount.html">addCohortIntersectCount</a></li>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectDays.html">addCohortIntersectDays</a></li>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectDate.html">addCohortIntersectDate</a></li>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectField.html">addCohortIntersectField</a></li>
+</ul>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<ul>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectFlag.html">addConceptIntersectFlag</a></li>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectCount.html">addConceptIntersectCount</a></li>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectDays.html">addConceptIntersectDays</a></li>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectDate.html">addConceptIntersectDate</a></li>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectField.html">addConceptIntersectField</a></li>
+</ul>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<ul>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectFlag.html">addTableIntersectFlag</a></li>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectCount.html">addTableIntersectCount</a></li>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectDays.html">addTableIntersectDays</a></li>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectDate.html">addTableIntersectDate</a></li>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectField.html">addTableIntersectField</a></li>
+</ul>
+</div></div>
+</section><section id="how-to-choose" class="slide level2"><h2>How to choose</h2>
+<div class="fragment">
+<table class="caption-top">
+<thead><tr class="header">
+<th>Source of target records</th>
+<th><code>Flag</code></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Cohort table</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectFlag.html">addCohortIntersectFlag()</a></code></td>
+</tr>
+<tr class="even">
+<td>Concept set</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectFlag.html">addConceptIntersectFlag()</a></code></td>
+</tr>
+<tr class="odd">
+<td>OMOP table</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectFlag.html">addTableIntersectFlag()</a></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment">
+<table class="caption-top">
+<thead><tr class="header">
+<th>Source of target records</th>
+<th><code>Count</code></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Cohort table</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectCount.html">addCohortIntersectCount()</a></code></td>
+</tr>
+<tr class="even">
+<td>Concept set</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectCount.html">addConceptIntersectCount()</a></code></td>
+</tr>
+<tr class="odd">
+<td>OMOP table</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectCount.html">addTableIntersectCount()</a></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section><section id="how-to-choose-1" class="slide level2"><h2>How to choose</h2>
+<div class="fragment">
+<table class="caption-top">
+<thead><tr class="header">
+<th>Source of target records</th>
+<th><code>Date</code></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Cohort table</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectDate.html">addCohortIntersectDate()</a></code></td>
+</tr>
+<tr class="even">
+<td>Concept set</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectDate.html">addConceptIntersectDate()</a></code></td>
+</tr>
+<tr class="odd">
+<td>OMOP table</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectDate.html">addTableIntersectDate()</a></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment">
+<table class="caption-top">
+<thead><tr class="header">
+<th>Source of target records</th>
+<th><code>Days</code></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Cohort table</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectDays.html">addCohortIntersectDays()</a></code></td>
+</tr>
+<tr class="even">
+<td>Concept set</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectDays.html">addConceptIntersectDays()</a></code></td>
+</tr>
+<tr class="odd">
+<td>OMOP table</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectDays.html">addTableIntersectDays()</a></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section><section id="how-to-choose-2" class="slide level2"><h2>How to choose</h2>
+<div class="fragment">
+<table class="caption-top">
+<thead><tr class="header">
+<th>Source of target records</th>
+<th><code>Field</code></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Cohort table</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectField.html">addCohortIntersectField()</a></code></td>
+</tr>
+<tr class="even">
+<td>Concept set</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectField.html">addConceptIntersectField()</a></code></td>
+</tr>
+<tr class="odd">
+<td>OMOP table</td>
+<td><code><a href="https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectField.html">addTableIntersectField()</a></code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section><section id="addcohortintersectflag" class="slide level2"><h2>addCohortIntersectFlag</h2>
+<div class="fragment">
+<p>Did the person enter another cohort in the next 180 days or 181-365 days?</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectFlag.html">addCohortIntersectFlag</a></span><span class="op">(</span></span>
+<span>    targetCohortTable <span class="op">=</span> <span class="st">"medications"</span>, </span>
+<span>    window <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">180</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">181</span>, <span class="fl">365</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: ??
+Columns: 6
+$ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+$ subject_id           &lt;int&gt; 123, 123, 269, 901, 894, 927, 1153, 194, 229, 408, 272, 349, 41, 109, 665, 30, …
+$ cohort_start_date    &lt;date&gt; 2009-08-18, 2009-10-16, 2009-11-14, 2009-04-04, 2008-05-01, 2010-02-23, 2008-1…
+$ cohort_end_date      &lt;date&gt; 2009-08-18, 2009-10-16, 2009-11-14, 2009-04-04, 2008-05-01, 2010-02-23, 2008-1…
+$ heparin_181_to_365   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ heparin_1_to_180     &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0…</code></pre>
+</div>
+</div>
+</div>
+</section><section id="addtableintersectcount" class="slide level2"><h2>addTableIntersectCount</h2>
+<div class="fragment">
+<p>How many drug exposure records did the person have in the year after cohort entry?</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectCount.html">addTableIntersectCount</a></span><span class="op">(</span></span>
+<span>    tableName <span class="op">=</span> <span class="st">"drug_exposure"</span>,</span>
+<span>    window <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">365</span><span class="op">)</span>, </span>
+<span>    nameStyle <span class="op">=</span> <span class="st">"number_prescriptions"</span>, </span>
+<span>    name <span class="op">=</span> <span class="st">"my_cohort2"</span> <span class="co">#Name of the new table, if NULL a temporary table is returned.</span></span>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 5
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   cohort_definition_id subject_id cohort_start_date cohort_end_date number_prescriptions
+                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                         &lt;dbl&gt;
+ 1                    1        123 2009-08-18        2009-08-18                        30
+ 2                    1        123 2009-10-16        2009-10-16                        30
+ 3                    1        269 2009-11-14        2009-11-14                        11
+ 4                    1        901 2009-04-04        2009-04-04                        25
+ 5                    1        894 2008-05-01        2008-05-01                        48
+ 6                    1        927 2010-02-23        2010-02-23                         3
+ 7                    1       1153 2008-11-24        2008-11-24                         4
+ 8                    1        194 2009-07-18        2009-07-22                        69
+ 9                    1        229 2009-09-10        2009-09-10                         2
+10                    1        408 2010-06-04        2010-06-04                         3
+# ℹ more rows</code></pre>
+</div>
+</div>
+</div>
+</section><section id="addcohortintersectdate" class="slide level2"><h2>addCohortIntersectDate</h2>
+<div class="fragment">
+<p>When did the person first enter the medication cohort after cohort entry?</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectDate.html">addCohortIntersectDate</a></span><span class="op">(</span></span>
+<span>    targetCohortTable <span class="op">=</span> <span class="st">"medications"</span>,</span>
+<span>    targetCohortId <span class="op">=</span> <span class="st">"heparin"</span>,</span>
+<span>    window <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="cn">Inf</span><span class="op">)</span>,</span>
+<span>    order <span class="op">=</span> <span class="st">"first"</span>, <span class="co"># date to use if there are multiple records for an individual during the window of interest</span></span>
+<span>    nameStyle <span class="op">=</span> <span class="st">"first_{cohort_name}"</span></span>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 5
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   cohort_definition_id subject_id cohort_start_date cohort_end_date first_heparin
+                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;          &lt;date&gt;       
+ 1                    1        123 2009-08-18        2009-08-18      NA           
+ 2                    1        123 2009-10-16        2009-10-16      NA           
+ 3                    1        269 2009-11-14        2009-11-14      NA           
+ 4                    1        901 2009-04-04        2009-04-04      NA           
+ 5                    1        894 2008-05-01        2008-05-01      NA           
+ 6                    1        927 2010-02-23        2010-02-23      NA           
+ 7                    1       1153 2008-11-24        2008-11-24      NA           
+ 8                    1        194 2009-07-18        2009-07-22      2010-03-09   
+ 9                    1        229 2009-09-10        2009-09-10      NA           
+10                    1        408 2010-06-04        2010-06-04      NA           
+# ℹ more rows</code></pre>
+</div>
+</div>
+</div>
+</section><section id="addconceptintersectdays" class="slide level2"><h2>addConceptIntersectDays</h2>
+<p>How many days until the next record for a concept set?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectDays.html">addConceptIntersectDays</a></span><span class="op">(</span></span>
+<span>    conceptSet <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>omeprazole <span class="op">=</span> <span class="fl">19019418</span><span class="op">)</span>,</span>
+<span>    window <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">365</span><span class="op">)</span>,</span>
+<span>    inObservation <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># If TRUE only records inside an observation period will be considered.</span></span>
+<span>    nameStyle <span class="op">=</span> <span class="st">"next_{concept_name}"</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: ??
+Columns: 5
+$ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+$ subject_id           &lt;int&gt; 123, 123, 269, 901, 894, 927, 1153, 194, 229, 408, 272, 349, 41, 109, 665, 30, …
+$ cohort_start_date    &lt;date&gt; 2009-08-18, 2009-10-16, 2009-11-14, 2009-04-04, 2008-05-01, 2010-02-23, 2008-1…
+$ cohort_end_date      &lt;date&gt; 2009-08-18, 2009-10-16, 2009-11-14, 2009-04-04, 2008-05-01, 2010-02-23, 2008-1…
+$ next_omeprazole      &lt;dbl&gt; 231, 172, NA, NA, NA, NA, NA, 303, NA, NA, NA, NA, NA, NA, NA, 42, 32, NA, NA, …</code></pre>
+</div>
+</div>
+</div>
+</section><section id="addconceptintersectfield" class="slide level2"><h2>addConceptIntersectField</h2>
+<p>What is the quantity of omeprazole recorded?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addConceptIntersectField.html">addConceptIntersectField</a></span><span class="op">(</span></span>
+<span>    conceptSet <span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>omeprazole <span class="op">=</span> <span class="fl">19019418</span><span class="op">)</span> ,</span>
+<span>    field <span class="op">=</span> <span class="st">"quantity"</span>,</span>
+<span>    window <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">365</span><span class="op">)</span>,</span>
+<span>    order <span class="op">=</span> <span class="st">"first"</span>,</span>
+<span>    nameStyle <span class="op">=</span> <span class="st">"omeprazole_qty"</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: ??
+Columns: 5
+$ cohort_definition_id &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…
+$ subject_id           &lt;int&gt; 123, 123, 269, 901, 894, 927, 1153, 194, 229, 408, 272, 349, 41, 109, 665, 30, …
+$ cohort_start_date    &lt;date&gt; 2009-08-18, 2009-10-16, 2009-11-14, 2009-04-04, 2008-05-01, 2010-02-23, 2008-1…
+$ cohort_end_date      &lt;date&gt; 2009-08-18, 2009-10-16, 2009-11-14, 2009-04-04, 2008-05-01, 2010-02-23, 2008-1…
+$ omeprazole_qty       &lt;dbl&gt; 30, 30, NA, NA, NA, NA, NA, 30, NA, NA, NA, NA, NA, NA, NA, 90, 30, NA, NA, NA,…</code></pre>
+</div>
+</div>
+</div>
+</section><section id="your-turn-2" class="slide level2"><h2>Your Turn</h2>
+<div class="fragment">
+<ul>
+<li class="fragment">Did the person have an heparin cohort entry in the year before index?</li>
+<li class="fragment">How many condition occurrence records did they have in the year before index?</li>
+</ul>
+</div>
+</section><section id="your-turn-3" class="slide level2"><h2>Your Turn</h2>
+<div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addCohortIntersectFlag.html">addCohortIntersectFlag</a></span><span class="op">(</span></span>
+<span>    targetCohortTable <span class="op">=</span> <span class="st">"medications"</span>,</span>
+<span>    targetCohortId <span class="op">=</span> <span class="st">"heparin"</span>,</span>
+<span>    window <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"prior_year"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">365</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    nameStyle <span class="op">=</span> <span class="st">"prior_{cohort_name}"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">cdm</span><span class="op">$</span><span class="va">my_cohort</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addTableIntersectCount.html">addTableIntersectCount</a></span><span class="op">(</span></span>
+<span>    tableName <span class="op">=</span> <span class="st">"condition_occurrence"</span>,</span>
+<span>    window <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">365</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>,</span>
+<span>    nameStyle <span class="op">=</span> <span class="st">"prior_conditions"</span></span>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A query:  ?? x 6
+# Database: DuckDB 2.0.0 [unknown@Linux 7.0.0-1019-azure:R 4.6.2//tmp/Rtmp7GBpMF/file2775325281c7.duckdb]
+   cohort_definition_id subject_id cohort_start_date cohort_end_date prior_heparin prior_conditions
+                  &lt;int&gt;      &lt;int&gt; &lt;date&gt;            &lt;date&gt;                  &lt;dbl&gt;            &lt;dbl&gt;
+ 1                    1        123 2009-08-18        2009-08-18                  0              159
+ 2                    1        123 2009-10-16        2009-10-16                  0              173
+ 3                    1        269 2009-11-14        2009-11-14                  0                0
+ 4                    1        901 2009-04-04        2009-04-04                  0               50
+ 5                    1        894 2008-05-01        2008-05-01                  0               32
+ 6                    1        927 2010-02-23        2010-02-23                  0               51
+ 7                    1       1153 2008-11-24        2008-11-24                  0               53
+ 8                    1        194 2009-07-18        2009-07-22                  1              217
+ 9                    1        229 2009-09-10        2009-09-10                  0              137
+10                    1        408 2010-06-04        2010-06-04                  0               20
+# ℹ more rows</code></pre>
+</div>
+</div>
+</div>
+</section><section id="more-intersection-functions-in-patientprofiles" class="slide level2"><h2>More intersection functions in PatientProfiles</h2>
+<ul>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addDeathDate.html">addDeathDate</a></li>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addDeathFlag.html">addDeathFlag</a></li>
+<li class="fragment"><a href="https://darwin-eu.github.io/PatientProfiles/reference/addDeathDays.html">addDeathDays</a></li>
+</ul></section><section id="thank-you" class="slide level2"><h2>Thank you!</h2>
+<div style="display: flex; align-items: center; justify-content: space-between;">
+<section id="resources" style="flex: 1;"><h3>Resources</h3>
+<p>👉 <a href="https://darwin-eu.github.io/PatientProfiles/">Package website</a><br>
+👉 <a href="https://cran.r-project.org/web/packages/PatientProfiles/">CRAN</a><br>
+👉 <a href="https://cran.r-project.org/web/packages/PatientProfiles/PatientProfiles.pdf">PDF manual</a><br>
+📧 <a href="mailto:cecilia.campanile@ndorms.ox.ac.uk">cecilia.campanile@ndorms.ox.ac.uk</a></p>
+</section><div style="flex: 1; text-align: center;">
+<p><img src="https://github.com/darwin-eu/PatientProfiles/blob/main/man/figures/logo.png?raw=true" width="500"></p>
+</div>
+</div>
 
 
-
-</section>
-    </div>
+</section></section>
+</div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 <div style="position: relative; width: 100%;">
@@ -163,24 +1226,7 @@ HDS OMOP Training
 </div>
 </div></div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script><script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../../site_libs/revealjs/plugin/search/search.js"></script><script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -372,8 +1418,42 @@ HDS OMOP Training
           RevealZoom
         ]
       });
-    </script>
-    <script id="quarto-html-after-body" type="application/javascript">
+    </script><script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script><script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
         tabsets.forEach(function(tabset) {
@@ -604,6 +1684,6 @@ HDS OMOP Training
         }
       });
       </script>
-    
+
 
 </body></html>
