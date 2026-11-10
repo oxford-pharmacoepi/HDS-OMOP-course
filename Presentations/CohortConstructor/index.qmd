@@ -21,7 +21,7 @@ format:
       </div>
 execute:
   echo: true
-  eval: false
+  eval: true
   freeze: true
 editor: visual
 ---
