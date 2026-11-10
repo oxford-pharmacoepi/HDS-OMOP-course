@@ -76,7 +76,7 @@ library(CohortConstructor)
 library(CohortCharacteristics)
 library(dplyr)
 
-cdm <- mockCdmFromDataset("delphi-100k", "duckdb")
+cdm <- mockCdmFromDataset("GiBleed", "duckdb")
 
 cdm$cohort <- conceptCohort(
   cdm = cdm, 
