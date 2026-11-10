@@ -216,12 +216,12 @@ Using a cdm reference you have connected to:
 <details>
   <summary>💡 Click to see solution</summary> 
 ```{r, eval = FALSE}
-getVocabVersion(cdm = cdm)
+vocabularyVersion(cdm = cdm)
 
 cdm$concept |>
   tally()
 
-getDomains(cdm = cdm)
+availableDomains(cdm = cdm)
 ```
 </details>
 
