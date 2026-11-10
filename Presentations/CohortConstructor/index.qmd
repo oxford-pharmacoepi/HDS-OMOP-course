@@ -21,7 +21,6 @@ format:
 execute:
   echo: true
   eval: true
-  freeze: true
 editor: visual
 ---
 
@@ -218,23 +217,6 @@ attr(cdm$cohort, "cohort_codelist")
 :::
 
 -   `deathCohort()`
-
-## Create the cdm_reference object
-
-```{r, message=FALSE}
-# Load relevant packages
-library(CDMConnector)
-library(CodelistGenerator)
-library(CohortConstructor)
-library(CohortCharacteristics)
-library(duckdb)
-library(DBI)
-library(dplyr)
-library(gt)
-library(here)
-
-cdm <- mockCdmFromDataset("GiBleed", "duckdb")
-```
 
 ## Demographics based - Example
 
