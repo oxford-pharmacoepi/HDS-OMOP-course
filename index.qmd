@@ -12,7 +12,6 @@
 | Day 1: Tools for conducting studies | **OmopViewer** | [View Slides](Presentations/OmopViewer/index.qmd) |
 | Day 2: OMOP phenotyping using R | **CodelistGenerator** | [View Slides](Presentations/CodelistGenerator/index.qmd) |
 | Day 2: OMOP phenotyping using R | **CohortConstructor** | [View Slides](Presentations/CohortConstructor/index.qmd) |
-| Day 2: OMOP phenotyping using R | **PhenotypeR** | [View Slides](Presentations/PhenotypeR/index.qmd) |
 | Day 3: Characterising a study population | **PatientProfiles** | [View Slides](Presentations/PatientProfiles/index.qmd) |
 | Day 3: Characterising a study population | **CohortCharacteristics** | [View Slides](Presentations/CohortCharacteristics/index.qmd) |
 
