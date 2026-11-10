@@ -3,6 +3,7 @@ title: "CohortConstructor"
 subtitle: "Build and Curate Study Cohorts in R Using the OMOP Common Data Model"
 format:
   revealjs: 
+    output-file: "slides.html"
     theme: [simple, ../../styleSS25.scss]
     incremental: true   
     slide-number: true
@@ -21,6 +22,7 @@ format:
 execute:
   echo: true
   eval: true
+  freeze: true
 editor: visual
 ---
 
